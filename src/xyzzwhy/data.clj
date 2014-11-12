@@ -12,6 +12,7 @@
     "You are in {{room}}."
     "This is {{room}}."
     "You find yourself in {{room}}."
+    "You start doing the worm until you find yourself in {{room}}."
     "You wake up from an odd dream unsure of where you are."
     "You wake up in {{room}}."
     "The taxi driver randomly drops you off at {{room}}."
@@ -30,6 +31,7 @@
     "{{person}} {{action}} you!"
     "{{person}} starts breakdancing and won't stop no matter how much you scream."
     "{{person}} attacks you and knocks you out! You awake sometime later in {{room}}."
+    "{{person}} appears in a puff of smoke and shouts, 'You will never go to {{location}} again!'"
     "You startle {{person}} who drops {{item}} and then runs away."
     "You get tired of waiting for your Uber and decide to walk to {{room}} instead."
     "You start eating {{food}} and don't stop until you're done."
@@ -53,6 +55,7 @@
     "{{person}} is here, hiding behind a sofa."
     "{{person}} is here, munching on {{food}}."
     "It appears abandoned."
+    "Someone has been here recently."
     "It seems that no one has been here for a long time."
     "There has been significant damage from a fire."))
 
@@ -60,6 +63,10 @@
   (list
     "You aren't wearing any clothes."
     "Your shoes are on the wrong feet."
+    "Your tie feels uneven."
+    "You're not wearing any underwear."
+    "You do a little jig and then whistle."
+    "You clap once."
     "You have socks on your hands."
     "You feel nervous."
     "You feel anxious."
@@ -73,6 +80,7 @@
 
 (def rooms
   (list
+    "an all-you-can-eat buffet"
     "a grotto"
     "your bedroom"
     "McDonald's"
@@ -95,10 +103,38 @@
     "a meeting"
     "a Luby's"))
 
-(def items
+(def foods
+  ; Ex. 'Someone is nearby munching on a burrito.'
   (list
+    "a cup of steaming gravy"
+    "a burrito"
+    "a salad"
+    "a Reese's Peanut Butter Cup"
+    "an apple pocket"
+    "an apple cinnamon Pop Tart"
+    "a wedge of cheese"
+    "a wedge of cheese with some mold on it"
+    "a slice of fried spam"
+    "a moist churro"
+    "a chocolate bobka"
+    "a Cinnabon"
+    "some duck confit"
+    "some pasta"
+    "some uncooked rice"
+    "some vitamins"
+    "some Fritos"
+    "some sushi"
+    "some old fruit leather"))
+
+(def -items
+  (list
+    "a pair of jean shorts"
+    "a non-Euclidian Lego"
     "spray-on bacon"
     "spackle"
+    "an unfamiliar briefcase"
+    "a towel from the Las Vegas Radisson"
+    "a receipt for a bunny outfit"
     "a floppy disk"
     "a pencil"
     "a lantern"
@@ -123,6 +159,9 @@
     "a wet Lincoln Log"
     "a VHS tape covered in blood"))
 
+(def items
+  (concat food -items))
+
 (def directions
   (list
     "north"
@@ -144,6 +183,7 @@
   (list
     "Gene Shalit"
     "Clive Chatterjee"
+    "Chris Morgan"
     "Nancy Grace"
     "Lindsay Lohan"
     "Barack Obama"
@@ -177,13 +217,29 @@
     "hungry"
     "thirsty"
     "bored"
+    "hopeful"
+    "sad"
+    "forlorn"
     "angry"))
+
+(def adverbs
+  (list
+    "carefully"
+    "wistfully"
+    "lustfully"
+    "warily"
+    "balefully"))
 
 (def scents
   (list
     "acrid"
     "sweet"
     "sour"
+    "rotten"
+    "nice"
+    "foul"
+    "like feet"
+    "like your grandfather's hair cream"
     "bitter"
     "smoky"
     "gross"
@@ -215,20 +271,9 @@
     "drunk"
     "stoned"
     "confused"
+    "hungry"
+    "thirsty"
     "temporarily blind"
     "temporarily deaf"
     "covered in bees"))
 
-(def food
-  ; Ex. 'Someone is nearby munching on a burrito.'
-  (list
-    "a burrito"
-    "a salad"
-    "a Reese's Peanut Butter Cup"
-    "duck confit"
-    "some pasta"
-    "uncooked rice"
-    "vitamins"
-    "Fritos"
-    "sushi"
-    "some old fruit leather"))
