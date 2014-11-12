@@ -6,45 +6,57 @@
 (defn pluralize [s]
   (str s "s"))
 
+; This function is called to convert a {{item}} placeholder in the event
+; templates with an item from a collection of the same name but pluralized.
+; Ex. {{room}} = rooms collection.
+(defn get-collection [coll-name] 
+  @(-> (pluralize coll-name) symbol resolve))
+
+; Here's our regexp pattern, searching the templates for {{whatever}}.}
 (def make-matcher
   (fn [target] (re-matcher #"\{\{(\w+)\}\}" target)))
 
 (defn get-random-thing [coll]
   (nth coll (rand-int (count coll))))
 
+; Constructs the event to be tweeted.
 (defn get-random-event [event-types]
   (let [event-type (get-random-thing event-types)
         event (get-random-thing 
                 @(-> (pluralize event-type) 
                      symbol 
                      resolve))]
+    ; Here we want to randomize how the events get put together.
+    ; There's a 75% chance that a location event will have a secondary event.
     (if (and (= event-type "location-event")
              (< (rand-int 100) 75))
       (do
         (let [output (str event " " (get-random-thing secondary-events))]
+          ; If there is a secondary event, there's a 50% chance that there
+          ; will be a tertiary event.
           (if (< (rand-int 100) 50)
+            ; And if there is a tertiary event, there's a 50/50 chance it
+            ; will append the secondary event or replace it entirely.
             (if (< (rand-int 100) 50)
               (str event " " (get-random-thing tertiary-events))
               (str output " " (get-random-thing tertiary-events)))
             output)))
       event)))
 
-(defn interpolate [event match]
+; Populates the event's placeholders with randomized results
+(defn create-tweet [event match]
   (let [current-match (re-find match)]
     (if (nil? current-match)
       event
       (recur 
         (string/replace-first event
                         (first current-match)
-                        (get-random-thing 
-                          @(-> (pluralize (second current-match)) 
-                               symbol 
-                               resolve)))
+                        (get-random-thing (get-collection
+                                            (second current-match))))
         match))))
 
 (defn -main
-  "I don't do a whole lot ... yet."
   [& args]
   (let [event (get-random-event event-types)
         match (make-matcher event)]
-    (interpolate event match)))
+    (create-tweet event match)))
