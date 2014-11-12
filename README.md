@@ -8,17 +8,12 @@ dreamlike world. (Although, currently, xyzzwhy isn't yet posting to Twitter.)
 Make sure you have leiningen installed. Clone the repo and run it from the
 repl and then repeatedly issue (-main) to see random events.
 
-## Usage
-
-FIXME: explanation
-
-    $ java -jar xyzzwhy-0.1.0-standalone.jar [args]
-
 ## Current Status
 
 Very basic and completely random for now. Future plans (roughly in order):
 
 - Move all 'thing data' (e.g., rooms, items, people) into a database.
+- Add metadata to things, such as whether its singular or plural, synonyms, etc.
 - Get xyzzwhy tweeting.
 - Maintain xyzzwhy's state: health, inventory, and so forth.
 - Create consistency in the adventure.

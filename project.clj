@@ -1,5 +1,5 @@
 (defproject xyzzwhy "0.1.0-SNAPSHOT"
-  :description "A Twitter bot who goes on surreal  adventures."
+  :description "A Twitter bot who goes on surreal adventures."
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
