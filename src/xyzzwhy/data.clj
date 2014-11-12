@@ -11,34 +11,53 @@
     "You are standing {{direction}} of {{room}}."
     "You are in {{room}}."
     "This is {{room}}."
+    "You open the secret door only to see {{room}}."
     "You find yourself in {{room}}."
     "You start doing the worm until you find yourself in {{room}}."
     "You wake up from an odd dream unsure of where you are."
     "You wake up in {{room}}."
+    "You climb down the tree and find yourself in {{room}}."
     "The taxi driver randomly drops you off at {{room}}."
     "The fog clears and you find yourself in {{room}}."
     "After walking for a long time, you find yourself in {{room}}."
+    "You find your way blindly and end up at {{room}}."
+    "No matter how hard you tried, you still end up at {{room}}."
+    "You climb out of the treasure chest. You are now in {{room}}."
+    "You come to in {{room}}."
     "After scrambling through some dense underbrush, you find yourself in {{room}}."))
 
 (def action-events
   (list
+    "You awake from a nightmare. You saw yourself in {{room}}. The corpse of {{person}} was there, holding {{item}}."
     "You grab {{item}}, hoping {{person}} doesn't notice."
+    "You pick up {{item}}."
+    "You drop {{item}}."
+    "The radio crackles to life. 'Mayday, mayday, it's {{person}} calling. We're in trouble. We need assistance. Mayday, mayday.'"
     "You pick up {{item}}. Was this here before?"
     "You find {{item}} but decide to leave it alone."
-    "{{person}} drops {{item}}, looks at you carefully, then leaves."
+    "{{person}} drops {{item}}, looks at you {{adverb}}, then leaves."
     "Suddenly, {{person}} {{action}} you!"
     "{{person}} {{action}} {{person}}!"
     "{{person}} {{action}} you!"
+    "{{person}} drops {{item}} here."
     "{{person}} starts breakdancing and won't stop no matter how much you scream."
     "{{person}} attacks you and knocks you out! You awake sometime later in {{room}}."
     "{{person}} appears in a puff of smoke and shouts, 'You will never go to {{location}} again!'"
     "You startle {{person}} who drops {{item}} and then runs away."
+    "{{person}} slams down an empty glass. 'All this nonsense about {{item}} needs to stop!' I can't take it anymore!'"
     "You get tired of waiting for your Uber and decide to walk to {{room}} instead."
+    "The phone rings. {{person}} stares at it {{adverb}}. You refuse to answer it. Eventually the phone stops ringing."
     "You start eating {{food}} and don't stop until you're done."
+    "You start to eat {{food}} but it doesn't taste very good."
     "You eat {{food}}. {{person}} looks {{adjective}}."
     "You check your inventory. You are carrying {{item}}, {{item}}, and {{item}}."
     "You check your inventory. You are carrying {{item}} and {{item}}."
     "You check your inventory. You are empty-handed."
+    "You open up your copy of {{book}}. Someone has scribbled all over the margins. You throw it down on the floor in disgust."
+    "{{person}} picks up {{item}}."
+    "You start spinning around and around while {{person}} claps and cheers."
+    "{{person}} calls from {{room}} asking for {{item}}."
+    "You peek out the window. {{person}} is messing around with your mailbox. You crouch in fear."
     "You check your health: you are {{diagnose}}."))
 
 (def secondary-events
@@ -54,9 +73,16 @@
     "You find {{person}}, hiding behind a sofa."
     "{{person}} is here, hiding behind a sofa."
     "{{person}} is here, munching on {{food}}."
+    "{{person}} is here, pretending to be invisible."
+    "{{person}} is here, having a coughing fit."
+    "{{person}} is here, having a sneezing fit."
+    "{{person}} is here, being menaced by a hamster."
+    "{{person}} is here."
+    "{{person}} says, 'I've been waiting for you.'"
     "It appears abandoned."
     "Someone has been here recently."
     "It seems that no one has been here for a long time."
+    "Someone has attached marionnette wires to your hands, feet, and head."
     "There has been significant damage from a fire."))
 
 (def tertiary-events
@@ -76,6 +102,8 @@
     "You wish you had your grandpappy's harmonica."
     "You are starting to feel sleepy."
     "You think about brushing your hair but change your mind."
+    "A warm breeze blows by."
+    "A cool breeze blows by."
     "You are starting to feel hungry."))
 
 (def rooms
@@ -96,7 +124,6 @@
     "the trunk of a car"
     "an airplane about to crash"
     "a ballpit"
-    "trouble"
     "a graveyard"
     "a playground"
     "a pile of diapers"
@@ -121,13 +148,21 @@
     "some duck confit"
     "some pasta"
     "some uncooked rice"
-    "some vitamins"
     "some Fritos"
     "some sushi"
     "some old fruit leather"))
 
+(def books
+  (list
+    "Catcher in the Rye"
+    "Infinite Jest"
+    "Gravity's Rainbow"
+    "A Prayer for Owen Meany"))
+
 (def -items
   (list
+    "some vitamins"
+    "a bucket of corks"
     "a pair of jean shorts"
     "a non-Euclidian Lego"
     "spray-on bacon"
@@ -148,7 +183,6 @@
     "a bag of rice"
     "a giant styrofoam peanut"
     "a phone book"
-    "a copy of Catcher in the Rye"
     "a pyramid of tennis balls"
     "a deflated soccer ball"
     "your fourth grade report card"
@@ -160,7 +194,7 @@
     "a VHS tape covered in blood"))
 
 (def items
-  (concat food -items))
+  (concat food (map #(str "a copy of " %) books) -items))
 
 (def directions
   (list
@@ -181,6 +215,13 @@
 
 (def persons
   (list
+    "Samuel L. Jackson"
+    "Johnny Cash"
+    "a police officer"
+    "Alex Trebek"
+    "Craig Ferguson"
+    "Geoff Petersen"
+    "Stephen King"
     "Gene Shalit"
     "Clive Chatterjee"
     "Chris Morgan"
@@ -195,7 +236,16 @@
     "George W. Bush"
     "your mom"
     "a bunch of kids"
+    "a crowd of Yoga enthusiasts"
+    "George Clooney"
+    "James Franco"
+    "Jonah Hill"
+    "Scarlet Johannson"
+    "a gas station attendant"
     "Zombie Carl Sagan"))
+
+(def actors
+  (concat persons monsters))
 
 (def actions
   ; Ex. 'Suddenly, Lindsay Lohan tickles you!'
