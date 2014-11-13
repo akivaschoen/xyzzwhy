@@ -5,44 +5,44 @@
             [monger.collection :refer [count]]
             [monger.query :refer :all]))
 
-(def -db (get-db (connect) "xyzzwhy_test"))
+(def db (get-db (connect) "xyzzwhy_test"))
   
-(defn -encode-collection-name [s]
+(defn- encode-collection-name [s]
   (-> s
       (string/replace #"-" "_")
       (str "s")))
 
-(defn -get-collection-count [coll]
+(defn- get-collection-count [coll]
   (count -db coll))
 
-(defn -get-random-thing [coll]
-  (let [coll (-encode-collection-name coll)]
-    (with-collection -db coll
+(defn- get-random-thing [coll]
+  (let [coll (encode-collection-name coll)]
+    (with-collection db coll
       (find {})
       (limit 1)
-      (skip (rand-int (-get-collection-count coll))))))
+      (skip (rand-int (get-collection-count coll))))))
 
-(defn -get-collection [coll]
-  (let [coll (-encode-collection-name coll)]
+(defn- get-collection [coll]
+  (let [coll (encode-collection-name coll)]
     (with-collection -db coll
       (find {}))))
 
-(defn -get-collections [coll]
+(defn- get-collections [coll]
   (loop [coll coll result {}]
     (if (empty? coll)
       result
       (recur (rest coll)
-             (concat result (-get-collection (first coll)))))))
+             (concat result (get-collection (first coll)))))))
 
 (defn get-event-type []
   (->
-    (-get-random-thing "event-type")
+    (get-random-thing "event-type")
     (first)
     (:type)))
 
 (defn get-event [event-type]
   (->
-    (-get-random-thing event-type)
+    (get-random-thing event-type)
     (first)
     (:event)))
 
@@ -56,7 +56,7 @@
 (defn get-word [coll]
   (if (= coll "actor")
     (get-actor)
-    (let [word (first (-get-random-thing coll))]
+    (let [word (first (get-random-thing coll))]
       (if-let [article (:article word)]
         (str article " " (:name word))
         (:name word)))))
