@@ -47,7 +47,7 @@
     (:event)))
 
 (defn get-actor []
-  (let [actors (-get-collections ["person" "animal"])
+  (let [actors (get-collections ["person" "animal"])
         actor (nth actors (rand-int (clojure.core/count actors)))]
     (if-let [article (:article actor)]
       (str article " " (:name actor))
