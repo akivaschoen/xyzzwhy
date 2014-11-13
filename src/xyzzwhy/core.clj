@@ -34,21 +34,20 @@
     ; There's a 75% chance that a location event will have a secondary event.
     (if (and (= event-type "location-event")
              (< (rand-int 100) 75))
-      (do
-        (let [output (str event " " (get-random-thing 
-                                      (get-collection "secondary-event")))]
-          ; If there is a secondary event, there's a 50% chance that there
-          ; will be a tertiary event.
-          (if (< (rand-int 100) 50)
-            (let [tertiary-event (get-random-thing 
-                                   (get-collection "secondary-event"))]
-              ; And if there is a tertiary event, there's a 50/50 chance it
-              ; will append the secondary event or replace it entirely.
-              (if (< (rand-int 100) 50)
-                (str event " " tertiary-event)
-                (str output " " tertiary-event))
-              output)))))
-      event))
+      (let [output (str event " " (get-random-thing 
+                                    (get-collection "secondary-event")))]
+        ; If there is a secondary event, there's a 50% chance that there
+        ; will be a tertiary event.
+        (if (< (rand-int 100) 50)
+          (let [tertiary-event (get-random-thing 
+                                 (get-collection "tertiary-event"))]
+            ; And if there is a tertiary event, there's a 50/50 chance it
+            ; will append the secondary event or replace it entirely.
+            (if (< (rand-int 100) 50)
+              (str event " " tertiary-event)
+              (str output " " tertiary-event)))
+          output))
+      event)))
 
 ; Populates the event's placeholders with randomized results
 (defn create-tweet [event match]
