@@ -12,10 +12,7 @@ repl and then repeatedly issue (-main) to see random events.
 
 Very basic and completely random for now. Future plans (roughly in order):
 
-- Move all 'thing data' (e.g., rooms, items, people) into a database.
-- Add metadata to things, such as whether its singular or plural, synonyms, 
-appropriate preopositions, etc.
-- Better capitalization and subject/verb agreements.
+- Add more metadata and put prepositions to work where needed.
 - Get xyzzwhy tweeting.
 - Maintain xyzzwhy's state: health, inventory, and so forth.
 - Create consistency in the adventure.
