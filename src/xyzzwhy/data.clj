@@ -24,6 +24,8 @@
     "No matter how hard you tried, you still end up at {{room}}."
     "You climb out of the treasure chest. You are now in {{room}}."
     "You come to in {{room}}."
+    "You follow the winding path only to find yourself in {{room}}."
+    "The elevator doors open to reveal {{room}}."
     "After scrambling through some dense underbrush, you find yourself in {{room}}."))
 
 (def action-events
@@ -35,26 +37,26 @@
     "The radio crackles to life. 'Mayday, mayday, it's {{person}} calling. We're in trouble. We need assistance. Mayday, mayday.'"
     "You pick up {{item}}. Was this here before?"
     "You find {{item}} but decide to leave it alone."
-    "{{person}} drops {{item}}, looks at you {{adverb}}, then leaves."
-    "Suddenly, {{person}} {{action}} you!"
-    "{{person}} {{action}} {{person}}!"
-    "{{person}} {{action}} you!"
-    "{{person}} drops {{item}} here."
+    "{{actor}} drops {{item}}, looks at you {{adverb}}, then leaves."
+    "Suddenly, {{actor}} {{action}} you!"
+    "{{actor}} {{action}} {{actor}}!"
+    "{{actor}} {{action}} you!"
+    "{{actor}} drops {{item}} here."
     "{{person}} starts breakdancing and won't stop no matter how much you scream."
-    "{{person}} attacks you and knocks you out! You awake sometime later in {{room}}."
-    "{{person}} appears in a puff of smoke and shouts, 'You will never go to {{location}} again!'"
+    "{{actor}} attacks you and knocks you out! You awake sometime later in {{room}}."
+    "{{person}} appears in a puff of smoke and shouts, 'You will never go to {{room}} again!'"
     "You startle {{person}} who drops {{item}} and then runs away."
-    "{{person}} slams down an empty glass. 'All this nonsense about {{item}} needs to stop!' I can't take it anymore!'"
+    "{{person}} slams down an empty glass. 'All this nonsense about {{item}} needs to stop! I can't take it anymore!'"
     "You get tired of waiting for your Uber and decide to walk to {{room}} instead."
     "The phone rings. {{person}} stares at it {{adverb}}. You refuse to answer it. Eventually the phone stops ringing."
     "You start eating {{food}} and don't stop until you're done."
     "You start to eat {{food}} but it doesn't taste very good."
-    "You eat {{food}}. {{person}} looks {{adjective}}."
+    "You eat {{food}}. {{actor}} looks on {{adjective}}."
     "You check your inventory. You are carrying {{item}}, {{item}}, and {{item}}."
     "You check your inventory. You are carrying {{item}} and {{item}}."
     "You check your inventory. You are empty-handed."
     "You open up your copy of {{book}}. Someone has scribbled all over the margins. You throw it down on the floor in disgust."
-    "{{person}} picks up {{item}}."
+    "{{actor}} picks up {{item}}."
     "You start spinning around and around while {{person}} claps and cheers."
     "{{person}} calls from {{room}} asking for {{item}}."
     "You peek out the window. {{person}} is messing around with your mailbox. You crouch in fear."
@@ -108,6 +110,8 @@
 
 (def rooms
   (list
+    "a Starbucks"
+    "a park restroom"
     "an all-you-can-eat buffet"
     "a grotto"
     "your bedroom"
@@ -133,7 +137,6 @@
 (def foods
   ; Ex. 'Someone is nearby munching on a burrito.'
   (list
-    "a cup of steaming gravy"
     "a burrito"
     "a salad"
     "a Reese's Peanut Butter Cup"
@@ -152,8 +155,14 @@
     "some sushi"
     "some old fruit leather"))
 
+(def drinks
+  (list
+    "a cup of steaming gravy"
+    ))
+
 (def books
   (list
+    "The Bible"
     "Catcher in the Rye"
     "Infinite Jest"
     "Gravity's Rainbow"
@@ -161,6 +170,8 @@
 
 (def -items
   (list
+    "a pair of skinny jeans"
+    "a sweat-incrusted trilby"
     "some vitamins"
     "a bucket of corks"
     "a pair of jean shorts"
@@ -194,7 +205,7 @@
     "a VHS tape covered in blood"))
 
 (def items
-  (concat food (map #(str "a copy of " %) books) -items))
+  (concat foods drinks (map #(str "a copy of " %) books) -items))
 
 (def directions
   (list
@@ -209,9 +220,21 @@
 
 (def monsters
   (list
-    "orc"
-    "ogre"
-    "troll"))
+    "an orc"
+    "an ogre"
+    "a troll"
+    "a baby dragon"))
+
+(def animals
+  (list
+    "a kitten"
+    "a cat"
+    "a puppy"
+    "a marmot"
+    "a tiger"
+    "a hamster"
+    "a gerbil"
+    "a hedgehog"))
 
 (def persons
   (list
@@ -245,7 +268,7 @@
     "Zombie Carl Sagan"))
 
 (def actors
-  (concat persons monsters))
+  (concat persons animals monsters))
 
 (def actions
   ; Ex. 'Suddenly, Lindsay Lohan tickles you!'
