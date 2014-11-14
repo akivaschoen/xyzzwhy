@@ -6,7 +6,7 @@
 ; Here's our regexp pattern, searching the templates for {{whatever}}.
 (def make-matcher
   (fn [target] 
-    (re-matcher #"\{\{(\w+)\}\}" target)))
+    (re-matcher #"\{\{(\w+(\-\w+)*)\}\}" target)))
 
 (defn capitalize-tweet [tweet]
   (-> tweet

@@ -12,12 +12,15 @@ repl and then repeatedly issue (-main) to see random events.
 
 Very basic and completely random for now. Future plans (roughly in order):
 
-- Add more metadata and put prepositions to work where needed.
 - Get xyzzwhy tweeting.
 - Maintain xyzzwhy's state: health, inventory, and so forth.
 - Create consistency in the adventure.
 - Procedurally-generated 'dungeons' rather than just randomized events.
 - Make it funny (or at least interesting).
+
+# Ongoing
+
+- Add more data. Tons more data.
 
 ## License
 

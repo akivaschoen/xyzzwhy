@@ -13,9 +13,9 @@
       (str "s")))
 
 (defn- get-collection-count [coll]
-  (count -db coll))
+  (count db coll))
 
-(defn- get-random-thing [coll]
+(defn get-random-thing [coll]
   (let [coll (encode-collection-name coll)]
     (with-collection db coll
       (find {})
@@ -24,7 +24,7 @@
 
 (defn- get-collection [coll]
   (let [coll (encode-collection-name coll)]
-    (with-collection -db coll
+    (with-collection db coll
       (find {}))))
 
 (defn- get-collections [coll]
@@ -53,9 +53,17 @@
       (str article " " (:name actor))
       (:name actor))))
 
+(defn get-room-with-preposition []
+  (let [room (first (get-random-thing "room"))
+        prep (nth (:preps room) 
+                  (rand-int (clojure.core/count (:preps room))))]
+    (str prep " " (:article room) " " (:name room))))
+
 (defn get-word [coll]
-  (if (= coll "actor")
-    (get-actor)
+  (cond 
+    (= coll "actor") (get-actor)
+    (= coll "room-with-prep") (get-room-with-preposition)
+    :else 
     (let [word (first (get-random-thing coll))]
       (if-let [article (:article word)]
         (str article " " (:name word))
