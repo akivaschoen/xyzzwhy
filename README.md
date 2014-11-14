@@ -6,7 +6,7 @@ dreamlike world. (Although, currently, xyzzwhy isn't yet posting to Twitter.)
 ## Installation
 
 Make sure you have leiningen installed. Clone the repo and run it from the
-repl and then repeatedly issue (-main) to see random events.
+repl and then repeatedly issue (-main) to see random events. Or you can run it via 'lein repl'.
 
 ## Current Status
 
@@ -18,7 +18,7 @@ Very basic and completely random for now. Future plans (roughly in order):
 - Procedurally-generated 'dungeons' rather than just randomized events.
 - Make it funny (or at least interesting).
 
-# Ongoing
+### Ongoing
 
 - Add more data. Tons more data.
 
