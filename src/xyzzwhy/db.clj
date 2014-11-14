@@ -1,5 +1,7 @@
 (ns xyzzwhy.db)
 
+;; Some default data with which to populate an xyzzwhy database
+
 (def event-types
   [{:type "location-event"}
    {:type "action-event"}])
@@ -29,7 +31,7 @@
     :preps ["in" "near"]} 
    
    {:name "New York Public Library" 
-    :article "a"
+    :article "the"
     :preps ["at" "near" "behind" "in front of"]}
 
    {:name "ravine" 
@@ -185,7 +187,7 @@
     "{{person}} suddenly shrieks."
     "{{person}} shouts, 'You can't go up against city hall!'"
     "You get tired of waiting for your Uber and decide to walk to {{room}} instead."
-    "The phone rings. {{person}} stares at it {{adverb}}. You refuse to answer it. Eventually the phone stops ringing."
+    "The phone rings. {{person}} stares at it {{adverb}}. You refuse to answer it. Eventually the ringing stops."
     "You start eating {{food}} and don't stop until you're done."
     "You start to eat {{food}} but it doesn't taste very good."
     "You eat {{food}}. {{actor}} looks on {{adverb}}."
