@@ -3,56 +3,49 @@
             [xyzzwhy.data :refer :all])
   (:gen-class))
 
-; Here's our regexp pattern, searching the templates for {{whatever}}.
-(def make-matcher
-  (fn [target] 
-    (re-matcher #"\{\{(\w+(\-\w+)*)\}\}" target)))
-
-(defn capitalize-tweet [tweet]
+(defn capitalize [tweet]
   (-> tweet
-    (string/replace ; first word of the tweet
+    (string/replace 
       #"^[a-z]+"
       #(string/capitalize %1))
-    (string/replace ; first word of sentence
+    (string/replace
       #"(\.\s)([a-z]+)"
       #(str (second %1) (string/capitalize (nth %1 2))))))
 
+(defn interpolate-text [text]
+  (let [matcher (re-matcher #"\{\{(\w+(\-\w+)*)\}\}" text)]
+    (loop [text text match (re-find matcher)]
+      (if-not match
+        text
+        (recur 
+          (string/replace-first text
+                                (first match)
+                                (get-word (second match)))
+          (re-find matcher))))))
+
 ; Constructs the event to be tweeted.
-(defn create-event []
+(defn create-tweet []
   (let [event-type (get-event-type)
-        event (get-event event-type)]
+        primary-segment (interpolate-text (get-segment event-type))]
     ; Here we want to randomize how the events get put together.
     ; There's a 75% chance that a location event will have a secondary event.
     (if (and (= event-type "location-event")
              (< (rand-int 100) 75))
-      (let [output (str event " " (get-event "secondary-event"))]
-        ; If there is a secondary event, there's a 50% chance that there
+      (let [secondary-segment (interpolate-text (get-segment "secondary-event"))]
+        ; if there is a secondary event, there's a 50% chance that there
         ; will be a tertiary event.
         (if (< (rand-int 100) 50)
-          (let [tertiary-event (get-event "tertiary-event")]
-            ; And if there is a tertiary event, there's a 50/50 chance it
-            ; will append the secondary event or replace it entirely.
-            (if (< (rand-int 100) 50)
-              (str event " " tertiary-event)
-              (str output " " tertiary-event)))
-          output))
-      event)))
-
-; Populates the event's placeholders with randomized results.
-(defn create-tweet [event match]
-  (let [current-match (re-find match)]
-    (if (nil? current-match)
-      event
-      (recur 
-        (string/replace-first event
-                              (first current-match)
-                              (get-word (second current-match)))
-        match))))
+          (let [tertiary-segment (interpolate-text (get-segment "tertiary-event"))]
+            ; And if there is a tertiary event, there's a 20% chance it
+            ; will replace the secondary segment rather than append it.
+            (if (< (rand-int 100) 20)
+              (str primary-segment " " tertiary-segment)
+              (str primary-segment " " secondary-segment " " tertiary-segment)))
+          secondary-segment))
+      primary-segment)))
 
 (defn -main
   [& args]
-  (let [event (create-event)
-        match (make-matcher event)]
-    (-> (create-tweet event match)
-        (capitalize-tweet)
-        (println))))
+  (-> (create-tweet)
+      capitalize
+      println))

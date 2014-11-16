@@ -1,10 +1,137 @@
-(ns xyzzwhy.db)
+(ns xyzzwhy.db
+  (:require [clojure.string :as string]
+            [monger.core :refer [get-db connect]]
+            [monger.collection :refer [insert-batch]]
+            [xyzzwhy.data :refer [db]]))
 
-;; Some default data with which to populate an xyzzwhy database
+(defn- encode-collection-name [s] (string/replace s #"-" "_"))
 
 (def event-types
-  [{:type "location-event"}
-   {:type "action-event"}])
+  [{:name "location-event"}
+   {:name "action-event"}])
+
+(def location-events
+  [{:name "You have entered {{room}}."}
+   {:name "You are standing {{direction}} of {{room}}."}
+   {:name "You stumble into {{room}}."}
+   {:name "You come across {{room}}."}
+   {:name "You are {{room-with-prep}}."}
+   {:name "This is {{room}}."}
+   {:name "You open the secret door only to see {{room}}."}
+   {:name "You find yourself {{room-with-prep}}."}
+   {:name "You start doing the worm until you find yourself {{room-with-prep}}."}
+   {:name "You wake up from an odd dream unsure of where you are."}
+   {:name "You wake up {{room-with-prep}}."}
+   {:name "You climb down the tree and find yourself {{room-with-prep}}."}
+   {:name "The taxi driver randomly drops you off {{room-with-prep}}."}
+   {:name "The fog clears and you find yourself {{room-with-prep}}."}
+   {:name "After walking for a long time, you find yourself {{room-with-prep}}."}
+   {:name "You find your way blindly and end up {{room-with-prep}}."}
+   {:name "No matter how hard you try, you still end up {{room-with-prep}}."}
+   {:name "You climb out of the treasure chest. You are now {{room-with-prep}}."}
+   {:name "You come to {{room-with-prep}}."}
+   {:name "You follow a winding path only to find yourself {{room-with-prep}}."}
+   {:name "The elevator doors open to reveal {{room}}."}
+   {:name "The trapdoor drops open underneath you and you land {{room-with-prep}}."}
+   {:name "You get tangled up in a revolving door. You stumble out into {{room}}."}
+   {:name "After scrambling through some dense underbrush, you find yourself {{room-with-prep}}."}])
+
+(def action-events
+  [{:name "You awake from a nightmare. You saw yourself {{room-with-prep}}. The corpse of {{person}} was there, holding {{item}}."}
+   {:name "You grab {{item}}, hoping {{person}} doesn't notice."}
+   {:name "You pick up {{item}}."}
+   {:name "You drop {{item}}."}
+   {:name "The radio crackles to life. 'Mayday, mayday, it's {{person}} calling. We're in trouble. We need assistance. Mayday, mayday.'"}
+   {:name "You pick up {{item}}. Was this here before?"}
+   {:name "You find {{item}} but decide to leave it alone."}
+   {:name "{{actor}} drops {{item}}, looks at you {{adverb}}, then leaves."}
+   {:name "Suddenly, {{actor}} {{action}} you!"}
+   {:name "{{actor}} {{action}} {{actor}}!"}
+   {:name "{{actor}} {{action}} you!"}
+   {:name "{{actor}} drops {{item}} here."}
+   {:name "{{person}} starts breakdancing and won't stop no matter how much you scream."}
+   {:name "{{actor}} attacks you and knocks you out! You awake sometime later in {{room}}."}
+   {:name "{{person}} appears in a puff of smoke and shouts, 'You will never go to {{room}} again!'"}
+   {:name "You startle {{person}} who drops {{item}} and then runs away."}
+   {:name "{{person}} slams down an empty glass. 'All this nonsense about {{item}} needs to stop! I can't take it anymore!'"}
+   {:name "{{person}} suddenly shrieks."}
+   {:name "{{person}} shouts, 'You can't go up against city hall!'"}
+   {:name "You get tired of waiting for your Uber and decide to walk to {{room}} instead."}
+   {:name "The phone rings. {{person}} stares at it {{adverb}}. You refuse to answer it. Eventually the ringing stops."}
+   {:name "You start eating {{food}} and don't stop until you're done."}
+   {:name "You start to eat {{food}} but it doesn't taste very good."}
+   {:name "You eat {{food}}. {{actor}} looks on {{adverb}}."}
+   {:name "You feel a little famished so you eat {{food}}."}
+   {:name "You take a sip of {{drink}}."}
+   {:name "You check your inventory. You are empty-handed."}
+   {:name "You check your inventory. You are carrying {{item}}, {{item}}, and {{item}}."}
+   {:name "You check your inventory. You are have {{item}} and {{item}}."}
+   {:name "You open up your copy of {{book}}. Someone has scribbled all over the margins. You throw it down on the floor in disgust."}
+   {:name "{{actor}} picks up {{item}}."}
+   {:name "You start spinning around and around while {{person}} claps and cheers."}
+   {:name "{{person}} is calling from {{room}} asking for {{item}}."}
+   {:name "You peek out the window. {{person}} is messing around with your mailbox. You crouch in fear."}
+   {:name "In the distance, you hear {{person}} let the bass drop."}
+   {:name "You check your health: you are {{diagnose}}."}])
+
+(def secondary-events 
+  [{:name "You see {{item}} here."}
+   {:name "There is {{item}} here."}
+   {:name "{{actor}} is here."}
+   {:name "{{actor}} is here{{actor-action}}"}
+   {:name "You find {{actor}}{{actor-action}}"}
+   {:name "{{person}} {{dialogue}}"}
+   {:name "{{actor}} is here searching for {{item}}."}
+   {:name "{{actor}} is here hoping to run into {{actor}}."}
+   {:name "Something smells {{scent}} here."}
+   {:name "You hear {{noise}} in the distance."}
+   {:name "You hear the sound of {{noise}} nearby."}
+   {:name "The wind howls in the distance."}
+   {:name "It appears abandoned."}
+   {:name "Someone has been here recently."}
+   {:name "It seems that no one has been here for a long time."}
+   {:name "Someone has attached marionnette wires to your hands, feet, and head."}
+   {:name "Someone has left a running bulldozer here."}
+   {:name "There has been significant damage from {{disaster}}."}])
+
+(def tertiary-events 
+  [{:name "You aren't wearing any clothes."}
+   {:name "Your shoes are on the wrong feet."}
+   {:name "Your tie feels uneven."}
+   {:name "You're not wearing any underwear."}
+   {:name "You do a little jig and then whistle."}
+   {:name "You clap once."}
+   {:name "You have socks on your hands."}
+   {:name "You feel nervous."}
+   {:name "You feel anxious."}
+   {:name "You feel cold."}
+   {:name "You feel warm."}
+   {:name "You blink really slowly."}
+   {:name "You yawn."}
+   {:name "You wish you had your grandpappy's harmonica."}
+   {:name "You are starting to feel sleepy."}
+   {:name "You think about brushing your hair but change your mind."}
+   {:name "You have no idea how these rope burns got on your wrists."}
+   {:name "You feel as if you're being followed."}
+   {:name "A warm breeze blows by."}
+   {:name "A cool breeze blows by."}
+   {:name "A basketball bounces by."}
+   {:name "You spot a balloon stuck in a tree."}
+   {:name "Somehow, you've lost your {{garment}}."}
+   {:name "You hear someone breaking eggs and sobbing nearby."}
+   {:name "You hear someone whisking heavy cream while laughing nearby."}
+   {:name "You are starting to feel hungry."}])
+
+(def actor-actions
+  [{:name " looking {{adjective}}."}
+   {:name ", hiding under a table."}
+   {:name ", hiding under a sofa."}
+   {:name ", munching on {{food}}."}
+   {:name ", pretending to be invisible."}
+   {:name ", having a coughing fit."}
+   {:name ", having a sneezing fit."}
+   {:name ", being menaced by {{animal}}."}
+   {:name ", examining {{item}} with great confusion."}])
 
 (def rooms
   [{:name "tire fire" 
@@ -138,254 +265,131 @@
     :article "a"
     :preps ["at" "in" "near" "behind" "in front of"]}])
 
-(def location-events
-  (list
-    "You have entered {{room}}."
-    "You are standing {{direction}} of {{room}}."
-    "You stumble into {{room}}."
-    "You come across {{room}}."
-    "You are {{room-with-prep}}."
-    "This is {{room}}."
-    "You open the secret door only to see {{room}}."
-    "You find yourself {{room-with-prep}}."
-    "You start doing the worm until you find yourself {{room-with-prep}}."
-    "You wake up from an odd dream unsure of where you are."
-    "You wake up {{room-with-prep}}."
-    "You climb down the tree and find yourself {{room-with-prep}}."
-    "The taxi driver randomly drops you off {{room-with-prep}}."
-    "The fog clears and you find yourself {{room-with-prep}}."
-    "After walking for a long time, you find yourself {{room-with-prep}}."
-    "You find your way blindly and end up {{room-with-prep}}."
-    "No matter how hard you try, you still end up {{room-with-prep}}."
-    "You climb out of the treasure chest. You are now {{room-with-prep}}."
-    "You come to {{room-with-prep}}."
-    "You follow the winding path only to find yourself {{room-with-prep}}."
-    "The elevator doors open to reveal {{room}}."
-    "The trapdoor drops open underneath you and you land {{room-with-prep}}."
-    "You get tangled up in a revolving door. You stumble out into {{room}}."
-    "After scrambling through some dense underbrush, you find yourself {{room-with-prep}}."))
-
-(def action-events
-  (list
-    "You awake from a nightmare. You saw yourself {{room-with-prep}}. The corpse of {{person}} was there, holding {{item}}."
-    "You grab {{item}}, hoping {{person}} doesn't notice."
-    "You pick up {{item}}."
-    "You drop {{item}}."
-    "The radio crackles to life. 'Mayday, mayday, it's {{person}} calling. We're in trouble. We need assistance. Mayday, mayday.'"
-    "You pick up {{item}}. Was this here before?"
-    "You find {{item}} but decide to leave it alone."
-    "{{actor}} drops {{item}}, looks at you {{adverb}}, then leaves."
-    "Suddenly, {{actor}} {{action}} you!"
-    "{{actor}} {{action}} {{actor}}!"
-    "{{actor}} {{action}} you!"
-    "{{actor}} drops {{item}} here."
-    "{{person}} starts breakdancing and won't stop no matter how much you scream."
-    "{{actor}} attacks you and knocks you out! You awake sometime later in {{room}}."
-    "{{person}} appears in a puff of smoke and shouts, 'You will never go to {{room}} again!'"
-    "You startle {{person}} who drops {{item}} and then runs away."
-    "{{person}} slams down an empty glass. 'All this nonsense about {{item}} needs to stop! I can't take it anymore!'"
-    "{{person}} suddenly shrieks."
-    "{{person}} shouts, 'You can't go up against city hall!'"
-    "You get tired of waiting for your Uber and decide to walk to {{room}} instead."
-    "The phone rings. {{person}} stares at it {{adverb}}. You refuse to answer it. Eventually the ringing stops."
-    "You start eating {{food}} and don't stop until you're done."
-    "You start to eat {{food}} but it doesn't taste very good."
-    "You eat {{food}}. {{actor}} looks on {{adverb}}."
-    "You check your inventory. You are carrying {{item}}, {{item}}, and {{item}}."
-    "You check your inventory. You are carrying {{item}} and {{item}}."
-    "You check your inventory. You are empty-handed."
-    "You open up your copy of {{book}}. Someone has scribbled all over the margins. You throw it down on the floor in disgust."
-    "{{actor}} picks up {{item}}."
-    "You start spinning around and around while {{person}} claps and cheers."
-    "{{person}} is calling from {{room}} asking for {{item}}."
-    "You peek out the window. {{person}} is messing around with your mailbox. You crouch in fear."
-    "{{person}} says, 'I can't find my protractor.'"
-    "{{person}} asks, 'Why am I holding this pitchfork?'"
-    "In the distance, you hear {{person}} let the bass drop."
-    "You check your health: you are {{diagnose}}."))
-
-(def secondary-events
-  (list
-    "You see {{item}} here."
-    "There is {{item}} here."
-    "{{actor}} is here."
-    "{{actor}} is here{{actor-action}}"
-    "You find {{actor}}{{actor-action}}"
-    "{{person}} {{dialogue}}"
-    "{{actor}} is here searching for {{item}}."
-    "{{actor}} is here hoping to run into {{actor}}."
-    "Something smells {{scent}} here."
-    "You hear {{noise}} in the distance."
-    "You hear the sound of {{noise}} nearby."
-    "The wind howls in the distance."
-    "It appears abandoned."
-    "Someone has been here recently."
-    "It seems that no one has been here for a long time."
-    "Someone has attached marionnette wires to your hands, feet, and head."
-    "Someone has left a running bulldozer here."
-    "There has been significant damage from {{disaster}}."))
-
-(def actor-actions
-  (list
-    " looking {{adjective}}."
-    ", hiding under a table."
-    ", hiding under a sofa."
-    ", munching on {{food}}."
-    ", pretending to be invisible."
-    ", having a coughing fit."
-    ", having a sneezing fit."
-    ", being menaced by {{animal}}."))
-
 (def dialogues
-  (list
-    "says, 'I've been waiting for you.'"
-    "asks, 'Does it smell like {{food}} in here to you?'"))
-
-(def tertiary-events
-  (list
-    "You aren't wearing any clothes."
-    "Your shoes are on the wrong feet."
-    "Your tie feels uneven."
-    "You're not wearing any underwear."
-    "You do a little jig and then whistle."
-    "You clap once."
-    "You have socks on your hands."
-    "You feel nervous."
-    "You feel anxious."
-    "You feel cold."
-    "You feel warm."
-    "You blink really slowly."
-    "You yawn."
-    "You wish you had your grandpappy's harmonica."
-    "You are starting to feel sleepy."
-    "You think about brushing your hair but change your mind."
-    "You have no idea how these rope burns got on your wrists."
-    "You feel as if you're being followed."
-    "A warm breeze blows by."
-    "A cool breeze blows by."
-    "A basketball bounces by."
-    "You spot a balloon stuck in a tree."
-    "Somehow, you've lost your {{garment}}."
-    "You are starting to feel hungry."))
+  [{:name " says, 'I've been waiting for you.'"}
+   {:name " says, 'I can't find my {{garment}}.'"}
+   {:name " asks, 'Why am I holding this pitchfork?'"}
+   {:name " asks, 'Does it smell like {{food}} in here to you?'"}])
 
 (def books
-  (list
-    "the Bible"
-    "Catcher in the Rye"
-    "Infinite Jest"
-    "Gravity's Rainbow"
-    "A Prayer for Owen Meany"))
+  [{:name "the Bible"
+    :article "a copy of"}
+
+   {:name "Catcher in the Rye"
+    :article "a copy of"}
+
+   {:name "Infinite Jest"
+    :article "a copy of"}
+
+   {:name "Gravity's Rainbow"
+    :article "a copy of"}
+
+   {:name "A Prayer for Owen Meany"
+    :article "a copy of"}
+
+   {:name "Hitchhiker's Guide to the Galaxy"
+    :article "a copy of"}])
 
 (def directions
-  (list
-    "north"
-    "northeast"
-    "east"
-    "southeast"
-    "south"
-    "southwest"
-    "west"
-    "northwest"))
+  [{:name "north"}
+   {:name "northeast"}
+   {:name "east"}
+   {:name "southeast"}
+   {:name "south"}
+   {:name "southwest"}
+   {:name "west"}
+   {:name "northwest"}])
 
 (def persons
-  (list
-    "Samuel L. Jackson"
-    "Johnny Cash"
-    "a police officer"
-    "Alex Trebek"
-    "Craig Ferguson"
-    "Geoff Petersen"
-    "Stephen King"
-    "Gene Shalit"
-    "Clive Chatterjee"
-    "Chris Morgan"
-    "Nancy Grace"
-    "Lindsay Lohan"
-    "Barack Obama"
-    "Abe Vigoda"
-    "Louis Gray"
-    "Brad Pitt"
-    "Bill Maher"
-    "Grace Jones"
-    "George W. Bush"
-    "your mom"
-    "a bunch of kids"
-    "a crowd of Yoga enthusiasts"
-    "George Clooney"
-    "James Franco"
-    "Jonah Hill"
-    "Scarlet Johannson"
-    "a gas station attendant"
-    "Zombie Carl Sagan"))
+  [{:name "Samuel L. Jackson"}
+   {:name "Johnny Cash"}
+   {:name "a police officer"}
+   {:name "Alex Trebek"}
+   {:name "Craig Ferguson"}
+   {:name "Geoff Petersen"}
+   {:name "Stephen King"}
+   {:name "Gene Shalit"}
+   {:name "Clive Chatterjee"}
+   {:name "Chris Morgan"}
+   {:name "Nancy Grace"}
+   {:name "Lindsay Lohan"}
+   {:name "Barack Obama"}
+   {:name "Abe Vigoda"}
+   {:name "Louis Gray"}
+   {:name "Brad Pitt"}
+   {:name "Bill Maher"}
+   {:name "Grace Jones"}
+   {:name "George W. Bush"}
+   {:name "your mom"}
+   {:name "a bunch of kids"}
+   {:name "a crowd of Yoga enthusiasts"}
+   {:name "George Clooney"}
+   {:name "James Franco"}
+   {:name "Jonah Hill"}
+   {:name "Scarlet Johannson"}
+   {:name "a gas station attendant"}
+   {:name "Zombie Carl Sagan"}])
 
 (def actions
-  ; Ex. 'Suddenly, Lindsay Lohan tickles you!'
-  (list
-    "attacks"
-    "ignores"
-    "tickles"
-    "stands uncomfortably close to"
-    "pets"
-    "flirts with"))
+  [{:name "attacks"}
+   {:name "ignores"}
+   {:name "tickles"}
+   {:name "stands uncomfortably close to"}
+   {:name "pets"}
+   {:name "flirts with"}])
 
 (def adjectives
-  (list
-    "worried"
-    "relieved"
-    "aroused"
-    "afraid"
-    "sleepy"
-    "hungry"
-    "thirsty"
-    "bored"
-    "hopeful"
-    "sad"
-    "forlorn"
-    "angry"))
+  [{:name "worried"}
+   {:name "relieved"}
+   {:name "aroused"}
+   {:name "afraid"}
+   {:name "sleepy"}
+   {:name "hungry"}
+   {:name "thirsty"}
+   {:name "bored"}
+   {:name "hopeful"}
+   {:name "sad"}
+   {:name "forlorn"}
+   {:name "angry"}])
 
 (def adverbs
-  (list
-    "carefully"
-    "wistfully"
-    "lustfully"
-    "warily"
-    "balefully"))
+  [{:name "carefully"}
+   {:name "wistfully"}
+   {:name "lustfully"}
+   {:name "warily"}
+   {:name "balefully"}])
 
 (def scents
-  (list
-    "acrid"
-    "sweet"
-    "sour"
-    "rotten"
-    "nice"
-    "foul"
-    "like feet"
-    "like your grandfather's hair cream"
-    "bitter"
-    "smoky"
-    "gross"
-    "pleasant"))
+  [{:name "acrid"}
+   {:name "sweet"}
+   {:name "sour"}
+   {:name "rotten"}
+   {:name "nice"}
+   {:name "foul"}
+   {:name "like feet"}
+   {:name "like your grandfather's hair cream"}
+   {:name "bitter"}
+   {:name "smoky"}
+   {:name "gross"}
+   {:name "pleasant"}])
 
 (def diagnoses
-  ; Ex. 'You are feeling great.'
-  (list
-    "feeling great"
-    "lightly wounded"
-    "moderately wounded"
-    "heavily wounded"
-    "near death"
-    "sleepy"
-    "drunk"
-    "stoned"
-    "confused"
-    "hungry"
-    "thirsty"
-    "temporarily blind"
-    "temporarily deaf"
-    "covered in bees"))
+  [{:name "feeling great"}
+   {:name "lightly wounded"}
+   {:name "moderately wounded"}
+   {:name "heavily wounded"}
+   {:name "near death"}
+   {:name "sleepy"}
+   {:name "drunk"}
+   {:name "stoned"}
+   {:name "confused"}
+   {:name "hungry"}
+   {:name "thirsty"}
+   {:name "temporarily blind"}
+   {:name "temporarily deaf"}
+   {:name "covered in bees"}])
 
 (def foods
-  ; Ex. 'Someone is nearby munching on a burrito.'
   [{:name "burrito"
     :article "a"}
    
@@ -695,3 +699,57 @@
 
    {:name "duststorm"
     :article "a"}])
+
+(def collection-list
+  (list
+    "event-types"
+    "location-events"
+    "secondary-events"
+    "tertiary-events"
+    "actor-actions"
+    "rooms"
+    "dialogues"
+    "books"
+    "directions"
+    "persons"
+    "actions"
+    "adjectives"
+    "adverbs"
+    "scents"
+    "diagnoses"
+    "foods"
+    "drinks"
+    "garments"
+    "items"
+    "animals"
+    "noises"
+    "disasters"))
+
+(defn add-database-collection [name]
+  (insert-batch db (encode-collection-name name) @(-> name symbol resolve)))
+
+(defn add-all-collections []
+  (doseq [collection ["event-types"
+                      "location-events"
+                      "action-events"
+                      "secondary-events"
+                      "tertiary-events"
+                      "actor-actions"
+                      "rooms"
+                      "dialogues"
+                      "books"
+                      "directions"
+                      "persons"
+                      "actions"
+                      "adjectives"
+                      "adverbs"
+                      "scents"
+                      "diagnoses"
+                      "foods"
+                      "drinks"
+                      "garments"
+                      "items"
+                      "animals"
+                      "noises"
+                      "disasters"]]
+    (add-database-collection collection)))

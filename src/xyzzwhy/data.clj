@@ -12,6 +12,11 @@
       (string/replace #"-" "_")
       (str "s")))
 
+(defn- format-word [word]
+  (if-let [article (:article word)]
+    (str article " " (:name word))
+    (:name word)))
+
 (defn- get-collection-count [coll]
   (count db coll))
 
@@ -32,9 +37,7 @@
 (defmethod get-random-thing :multi [colls]
   (let [things (get-collections (:colls colls))
         thing (nth things (rand-int (clojure.core/count things)))]
-    (if-let [article (:article thing)]
-      (str article " " (:name thing))
-      (:name thing))))
+    (format-word thing)))
 
 (defmethod get-random-thing :default [coll]
   (let [coll (encode-collection-name coll)]
@@ -49,27 +52,18 @@
                   (rand-int (clojure.core/count (:preps room))))]
     (str prep " " (:article room) " " (:name room))))
 
+(defn get-segment [segment-type] 
+  (-> (get-random-thing segment-type) 
+      first
+      :name))
 
 (defn get-event-type []
-  (-> (get-random-thing "event-type")
-      (first)
-      (:type)))
-
-(defn get-event [event-type]
-  (-> (get-random-thing event-type)
-      (first)
-      (:event)))
+  (get-segment "event-type"))
 
 (defn get-word [coll]
-  (cond 
-    (= coll "actor") (get-random-thing {:type :multi 
-                                        :colls ["person" "animal"]})
-    (= coll "item") (get-random-thing {:type :multi 
-                                       :colls ["item" "food" 
-                                               "garment" "drink"]})
-    (= coll "room-with-prep") (get-room-with-preposition)
-    :else 
-    (let [word (first (get-random-thing coll))]
-      (if-let [article (:article word)]
-        (str article " " (:name word))
-        (:name word)))))
+  (condp = coll
+    "actor" (get-random-thing {:type :multi :colls ["person" "animal"]})
+    "item" (get-random-thing {:type :multi :colls ["item" "food" "book" "garment" "drink"]})
+    "room-with-prep" (get-room-with-preposition)
+    (-> (first (get-random-thing coll))
+        format-word)))
