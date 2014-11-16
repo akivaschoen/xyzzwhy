@@ -1,9 +1,9 @@
  (ns xyzzwhy.db
+  (:refer-clojure :exclude [remove])
   (:require [clojure.string :as string]
             [monger.core :refer [get-db connect]]
             [monger.collection :refer [insert-batch remove]]
             [xyzzwhy.data :refer [db]]))
-  (:refer-clojure :exclude [remove])
 
 (defn- encode-collection-name [s] (string/replace s #"-" "_"))
 
@@ -13,6 +13,7 @@
 
 (def location-events
   [{:name "You have entered {{room}}."}
+   {:name "You jump out of a moving car, roll down a hill, and find yourself {{room-with-prep}}."}
    {:name "You are standing {{direction}} of {{room}}."}
    {:name "You stumble into {{room}}."}
    {:name "You come across {{room}}."}
@@ -33,9 +34,11 @@
    {:name "You come to {{room-with-prep}}."}
    {:name "You follow a winding path only to find yourself {{room-with-prep}}."}
    {:name "The elevator doors open to reveal {{room}}."}
-   {:name "The trapdoor drops open underneath you and you land {{room-with-prep}}."}
+   {:name "The trapdoor drops open beneath you and you land {{room-with-prep}}."}
    {:name "You get tangled up in a revolving door. You stumble out into {{room}}."}
-   {:name "After scrambling through some dense underbrush, you find yourself {{room-with-prep}}."}])
+   {:name "After scrambling through some dense underbrush, you find yourself {{room-with-prep}}."}
+   {:name "Hands on your hips, you survey {{room}} {{adverb}}."}
+   ])
 
 (def action-events
   [{:name "You awake from a nightmare. You saw yourself {{room-with-prep}}. The corpse of {{person}} was there, holding {{item}}."}
@@ -55,7 +58,7 @@
    {:name "{{actor}} attacks you and knocks you out! You awake sometime later in {{room}}."}
    {:name "{{person}} appears in a puff of smoke and shouts, 'You will never go to {{room}} again!'"}
    {:name "You startle {{person}} who drops {{item}} and then runs away."}
-   {:name "{{person}} slams down an empty glass. 'All this nonsense about {{item}} needs to stop! I can't take it anymore!'"}
+   {:name "{{person}} slams down a half-empty empty glass of bourbon. 'All this nonsense about {{item}} needs to stop! I can't take it anymore!'"}
    {:name "{{person}} suddenly shrieks."}
    {:name "{{person}} shouts, 'You can't go up against city hall!'"}
    {:name "You get tired of waiting for your Uber and decide to walk to {{room}} instead."}
@@ -69,6 +72,7 @@
    {:name "You check your inventory. You are carrying {{item}}, {{item}}, and {{item}}."}
    {:name "You check your inventory. You have {{item}} and {{item}}."}
    {:name "You open up your copy of {{book}}. Someone has scribbled all over the margins. You throw it down on the floor in disgust."}
+   {:name "{{actor}} suddenly appears out of the shadows, hisses at you, then scrambles away like a spider."}
    {:name "{{actor}} picks up {{item}}."}
    {:name "You start spinning around and around while {{person}} claps and cheers."}
    {:name "{{person}} is calling from {{room}} asking for {{item}}."}
@@ -78,11 +82,12 @@
 
 (def secondary-events 
   [{:name "You see {{item}} here."}
-   {:name "You see {{item here. It looks oddly familiar."}
+   {:name "You see {{item}} here. It looks oddly familiar."}
    {:name "There is {{item}} here."}
    {:name "{{actor}} is here."}
    {:name "{{actor}} is here{{actor-action}}"}
    {:name "You find {{actor}}{{actor-action}}"}
+   {:name "{{actor}} shot the food."}
    {:name "{{person}} {{dialogue}}"}
    {:name "{{actor}} is here searching for {{item}}."}
    {:name "{{actor}} is here hoping to run into {{actor}}."}
@@ -92,9 +97,11 @@
    {:name "The wind howls in the distance."}
    {:name "It appears abandoned."}
    {:name "Someone has been here recently."}
+   {:name "There are fresh footprints here."}
    {:name "It seems that no one has been here for a long time."}
    {:name "Someone has attached marionnette wires to your hands, feet, and head."}
    {:name "Someone has left a running bulldozer here."}
+   {:name "The words 'eat dulp' are spray-painted on the wall here.'"}
    {:name "There has been significant damage from {{disaster}}."}])
 
 (def tertiary-events 
@@ -111,13 +118,16 @@
    {:name "You feel warm."}
    {:name "You blink really slowly."}
    {:name "You yawn."}
+   {:name "You begin to smile uncontrollably."}
    {:name "You wish you had your grandpappy's harmonica."}
    {:name "You are starting to feel sleepy."}
    {:name "You think about brushing your hair but change your mind."}
+   {:name "You spend a few moments thinking fondly about your teeth."}
    {:name "You have no idea how these rope burns got on your wrists."}
    {:name "You feel as if you're being followed."}
    {:name "A warm breeze blows by."}
    {:name "A cool breeze blows by."}
+   {:name "It starts to rain."}
    {:name "A basketball bounces by."}
    {:name "You spot a balloon stuck in a tree."}
    {:name "Somehow, you've lost your {{garment}}."}
@@ -127,6 +137,14 @@
 
 (def actor-actions
   [{:name "looking {{adjective}}."}
+   {:name "doing the Kenosha Kid."}
+   {:name "thinking {{adverb}} about {{actor}}."}
+   {:name "being chased around by a bee."}
+   {:name "organizing matches."}
+   {:name "juggling some balls."}
+   {:name "dancing in a little circle."}
+   {:name "stooping up and down like a rapper in concert."}
+   {:name "drooling uncontrollably."}
    {:name ", hiding under a table."}
    {:name ", hiding under a sofa."}
    {:name ", munching on {{food}}."}
@@ -134,6 +152,7 @@
    {:name ", having a coughing fit."}
    {:name ", having a sneezing fit."}
    {:name ", being menaced by {{animal}}."}
+   {:name ", ready to start some shit."}
    {:name ", examining {{item}} with great confusion."}])
 
 (def rooms
@@ -146,6 +165,17 @@
     :article "a" 
     :long_name "{{adverb}} burning dildo bonfire"
     :preps ["at" "near" "behind" "in front of"] }
+
+   {:name "maze of twisty passages, all alike"
+    :article "a"
+    :preps ["in"]}
+
+   {:name "Burning Man"
+    :preps ["at"]}
+
+   {:name "Shrim Healing Center"
+    :article "a"
+    :preps ["in" "at" "in front of" "behind"]}
 
    {:name "quicksand"
     :long_name "a pool of quicksand"
@@ -269,11 +299,23 @@
     :preps ["at" "in" "near" "behind" "in front of"]}])
 
 (def dialogues
-  [{:name " says, 'I've been waiting for you.'"}
-   {:name " says, 'I can't find my {{garment}}.'"}
-   {:name " asks, 'Why am I holding this pitchfork?'"}
-   {:name " shrieks, 'What's this shit I keep hearing about erections?!'"}
-   {:name " asks, 'Does it smell like {{food}} in here to you?'"}])
+  [{:name "says, 'I've been waiting for you.'"}
+   {:name "says, 'I can't find my heirloom clown suit."}
+   {:name "says, 'I can't find my {{garment}}.'"}
+   {:name "whispers, 'I've always wanted to be a creepy uncle.'"}
+   {:name "whispers, 'When you hear the circus music, you will know it is time.'"}
+   {:name "asks, 'Why am I holding this pitchfork?'"}
+   {:name "asks, 'How long is a man?'"}
+   {:name "asks, 'Where have you been?'"}
+   {:name "says, 'Took you long enough.'"}
+   {:name "asks, 'Can I have a hug?'"}
+   {:name "says, 'If you asked me to have sex with you, I wouldn't say \"no\"."}
+   {:name "asks, 'Are you following me?'"}
+   {:name "shrieks, 'What's this shit I keep hearing about erections?!'"}
+   {:name "shouts, 'You can't go up against city hall!'"}
+   {:name "mumbles, 'You can't go up against city hall.'"}
+   {:name "mumbles, 'One day I'm going to burn this place to the ground.'"}
+   {:name "asks, 'Does it smell like {{food}} in here to you?'"}])
 
 (def books
   [{:name "the Bible"
@@ -305,35 +347,147 @@
    {:name "northwest"}])
 
 (def persons
-  [{:name "Samuel L. Jackson"}
-   {:name "Johnny Cash"}
+  [{:name "Samuel L. Jackson"
+    :gender :male}
+
+   {:name "Frances McDormand"
+    :gender :female}
+
+   {:name "Whoopi Goldberg"
+    :gender :female}
+
+   {:name "Katy Perry"
+    :gender :female}
+
+   {:name "Lena Horne"
+    :gender :female}
+
+   {:name "Justin Bieber"
+    :gender :male}
+
+   {:name "Tim Heidecker"
+    :gender :male}
+
+   {:name "Eric Wareheim"
+    :gender :male}
+
+   {:name "Jim J. Bullock"
+    :gender :male}
+
+   {:name "Johnny Cash"
+    :gender :male}
+
    {:name "a police officer"}
-   {:name "Alex Trebek"}
-   {:name "Craig Ferguson"}
-   {:name "Geoff Petersen"}
-   {:name "Stephen King"}
-   {:name "Gene Shalit"}
-   {:name "Catmeat Clive"}
-   {:name "Jorts Morgan"}
-   {:name "Construction Charles"}
-   {:name "Nancy Grace"}
-   {:name "Lindsay Lohan"}
-   {:name "Barack Obama"}
-   {:name "Abe Vigoda"}
-   {:name "Louis Gray"}
-   {:name "Brad Pitt"}
-   {:name "Bill Maher"}
-   {:name "Grace Jones"}
-   {:name "George W. Bush"}
+
+   {:name "Alex Trebek"
+    :gender :male}
+
+   {:name "Craig Ferguson"
+    :gender :male}
+
+   {:name "Geoff Petersen"
+    :gender :male}
+
+   {:name "Stephen King"
+    :gender :male}
+
+   {:name "Gene Shalit"
+    :gender :male}
+
+   {:name "Catmeat Clive"
+    :gender :male}
+
+   {:name "Jorts Morgan"
+    :gender :male}
+
+   {:name "Construction Charles"
+    :gender :male}
+
+   {:name "Nancy Grace"
+    :gender :female}
+
+   {:name "Lindsay Lohan"
+    :gender :female}
+
+   {:name "Barack Obama"
+    :gender :male}
+
+   {:name "Abe Vigoda"
+    :gender :male}
+
+   {:name "Louis Gray"
+    :gender :male}
+   
+   {:name "Brad Pitt"
+    :gender :male}
+
+   {:name "Bill Maher"
+    :gender :male}
+
+   {:name "Grace Jones"
+    :gender :female}
+
+   {:name "George W. Bush"
+    :gender :male}
+
    {:name "your mom"}
+
    {:name "a bunch of kids"}
+
    {:name "a crowd of Yoga enthusiasts"}
-   {:name "George Clooney"}
-   {:name "James Franco"}
-   {:name "Jonah Hill"}
-   {:name "Scarlet Johannson"}
+
+   {:name "George Clooney"
+    :gender :male}
+
+   {:name "James Franco"
+    :gender :male}
+
+   {:name "Jonah Hill"
+    :gender :male}
+
+   {:name "Scarlet Johannson"
+    :gender :female}
+
    {:name "a gas station attendant"}
-   {:name "Zombie Carl Sagan"}])
+
+   {:name "Lena Dunham"
+    :gender :female}
+
+   {:name "Hilary Clinton"
+    :gender :female}
+
+   {:name "Hilary Clinton"
+    :gender :female}
+
+   {:name "Craig T. Nelson"
+    :gender :male}
+
+   {:name "Thomas Pynchon"
+    :gender :male}
+
+   {:name "@akiva"
+    :gender :male}
+
+   {:name "@vmcny"
+    :gender :male}
+
+   {:name "@wolfpupy"
+    :gender :female}
+
+   {:name "@KamenPrime"
+    :gender :male}
+
+   {:name "@neonbubble"
+    :gender :male}
+
+   {:name "@micahwittman"
+    :gender :male}
+
+   {:name "@itafroma"
+    :gender :male}
+
+   {:name "Zombie Carl Sagan"
+    :gender :male}])
 
 (def actions
   [{:name "attacks"}
@@ -362,6 +516,9 @@
    {:name "wistfully"}
    {:name "lustfully"}
    {:name "warily"}
+   {:name "bravely"}
+   {:name "sadly"}
+   {:name "happily"}
    {:name "balefully"}])
 
 (def scents
@@ -400,6 +557,9 @@
    
    {:name "salad"
     :article "a"}
+
+   {:name "Rice Chex"
+    :article "a bowl of"}
 
    {:name "Reese's Peanut Butter Cup"
     :article "a"}
@@ -448,7 +608,26 @@
 
 (def drinks
   [{:name "cup of steaming gravy"
-    :article "a"}])
+    :article "a"}
+   
+   {:name "milk"
+    :article "a gallon of"}
+
+   {:name "tea"
+    :article "some"}
+
+   {:name "soda"
+    :article "some"}
+
+   {:name "water"
+    :article "some"}
+
+   {:name "beef broth"
+    :article "some"}
+
+   {:name "scotch"
+    :article "a"}
+   ])
 
 (def garments
   [{:name "hat"
@@ -497,6 +676,14 @@
   [{:name "skinny jeans"
     :article "a pair of"}
    
+   {:name "magic scroll"
+    :article "a"}
+
+   {:name "no tea"}
+
+   {:name "slide rule"
+    :article "a"}
+
    {:name "pinecone"
     :article "a"}
 
@@ -527,7 +714,7 @@
    {:name "towel from the Las Vegas Radisson"
     :article "a"}
    
-   {:name "receipt for a bunny outfit rental"
+   {:name "receipt from a bunny outfit rental"
     :article "a"}
    
    {:name "floppy disk"
@@ -611,6 +798,11 @@
     :article "a"
     :sounds ["pants" "barks" "growls" "whimpers"]
     :adjectives ["panting" "barking" "growling" "whimpering"]}
+
+   {:name "duck"
+    :article "a"
+    :sounds ["quacks"]
+    :adjectives ["quacking"]}
 
    {:name "marmot"
     :article "a"}

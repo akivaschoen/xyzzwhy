@@ -45,7 +45,7 @@
 (defmethod get-random-thing :multi [colls]
   (let [things (get-collections (:colls colls))
         thing (nth things (rand-int (clojure.core/count things)))]
-    (format-word thing)))
+    thing))
 
 (defmethod get-random-thing :default [coll]
   (letfn [(get-collection-count [coll] (count db coll))]
@@ -65,7 +65,7 @@
   (let [room (first (get-random-thing "room"))
         prep (nth (:preps room) 
                   (rand-int (clojure.core/count (:preps room))))]
-    (str prep " " (:article room) " " (:name room))))
+    (str prep " " (format-word room))))
 
 (defn get-segment 
   "Retrieves a random thing from the database."
@@ -87,8 +87,8 @@
     ; Handle special situations. The first two aggregate collections which qualify for the
     ; asking placeholder. The third handles the situation when a segment requires a room
     ; specify how it can be used (can you be in it? can you be near it? under it? etc.))
-    "actor" (get-random-thing {:type :multi :colls ["person" "animal"]})
-    "item" (get-random-thing {:type :multi :colls ["item" "food" "book" "garment" "drink"]})
+    "actor" (format-word (get-random-thing {:type :multi :colls ["person" "animal"]}))
+    "item" (format-word (get-random-thing {:type :multi :colls ["item" "food" "book" "garment" "drink"]}))
     "room-with-prep" (get-room-with-preposition)
     (-> (first (get-random-thing coll))
         format-word)))

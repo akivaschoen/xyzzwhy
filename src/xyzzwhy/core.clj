@@ -8,13 +8,9 @@
   "Ensures proper capitalization throughout the final tweet."
   [tweet]
   (-> tweet
-    (string/replace 
-      #"^[a-z]+"
-      #(string/capitalize %1))
-
-    (string/replace
-      #"(\.\s)([a-z]+)"
-      #(str (second %1) (string/capitalize (nth %1 2))))))
+    (string/replace #"^[a-z]+"        #(string/capitalize %1))
+    (string/replace #"(\.\s)([a-z]+)" #(str (second %1) 
+                                            (string/capitalize (nth %1 2))))))
 
 (defn interpolate-text 
   "Searches text for {{word}} and {{word-modifier}} combinations and replaces them
@@ -60,12 +56,16 @@
   "Starts the bot up with an initial tweet and then randomly waits between
   5 and 30 minutes before tweeting again."
   [& args]
-  (loop []
-    (let [interval (+ 300000 (rand-int 1500000))]
-      (-> (create-tweet)
-          capitalize
-          post-to-twitter)
+  ; This is all extremely ugly but is good enough for now.
+  (letfn [(loop-it [interval] ((println "Next tweet in" (int (/ interval 60000)) "minutes.")
+                               (Thread/sleep interval)))]
+    (loop []
+      (let [interval (+ 300000 (rand-int 1500000))
+            tweet (-> (create-tweet) capitalize)]
+        (try
+          (post-to-twitter tweet)
+          (catch Exception e
+            (loop-it interval)))
 
-      (println "Next tweet in" (int (/ interval 60000)) "minutes.")
-      (Thread/sleep interval))
-    (recur)))
+        (loop-it interval)
+      (recur)))))
