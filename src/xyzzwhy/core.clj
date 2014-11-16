@@ -1,7 +1,8 @@
 (ns xyzzwhy.core
+  (:use [xyzzwhy.twitter]
+        [xyzzwhy.data])
   (:require [clojure.string :as string]
-            [xyzzwhy.data :refer :all])
-  (:gen-class))
+  (:gen-class)))
 
 (defn capitalize [tweet]
   (-> tweet
@@ -48,4 +49,4 @@
   [& args]
   (-> (create-tweet)
       capitalize
-      println))
+      post-to-twitter))

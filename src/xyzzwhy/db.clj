@@ -1,9 +1,9 @@
 (ns xyzzwhy.db
-  (:refer-clojure :exclude [remove])
   (:require [clojure.string :as string]
             [monger.core :refer [get-db connect]]
             [monger.collection :refer [insert-batch remove]]
             [xyzzwhy.data :refer [db]]))
+  (:refer-clojure :exclude [remove])
 
 (defn- encode-collection-name [s] (string/replace s #"-" "_"))
 

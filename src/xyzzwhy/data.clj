@@ -1,9 +1,9 @@
 (ns xyzzwhy.data
   (:refer-clojure :exclude [count sort find])
+  (:use [monger.query])
   (:require [clojure.string :as string]
             [monger.core :refer [get-db connect]]
-            [monger.collection :refer [count]]
-            [monger.query :refer :all]))
+            [monger.collection :refer [count]]))
 
 (def db (get-db (connect) "xyzzwhy_test"))
   
