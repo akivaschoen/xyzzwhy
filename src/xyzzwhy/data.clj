@@ -28,7 +28,6 @@
   "Returns a collection from the database."
   [coll]
   (let [coll (encode-collection-name coll)]
-
     (with-collection db coll
       (find {}))))
 
@@ -43,24 +42,14 @@
 
 (defmulti get-random-thing :type)
 
-(defmethod get-random-thing :multi 
-  "Returns a random entry from an aggregation of collections. Some collections are divided by
-  category such as garments and food both of which are items but cannot be treated similarly
-  (although the phrase is 'eat your hat' you generally don't literally eat your hat even though
-  I once watched Werner Herzog literally eat a shoe. What was I talking about?"
-  [colls]
+(defmethod get-random-thing :multi [colls]
   (let [things (get-collections (:colls colls))
         thing (nth things (rand-int (clojure.core/count things)))]
-
     (format-word thing)))
 
-(defmethod get-random-thing :default 
-  "Returns a random entry from a single collection. Since this is what we do most often, it's
-  marked as default. Calling functions don't need to do anything special."
-  [coll]
-  (letfn [get-collection-count [] (count db coll)]
+(defmethod get-random-thing :default [coll]
+  (letfn [(get-collection-count [coll] (count db coll))]
     (let [coll (encode-collection-name coll)]
-
       (with-collection db coll
         (find {})
         (limit 1)
@@ -76,7 +65,6 @@
   (let [room (first (get-random-thing "room"))
         prep (nth (:preps room) 
                   (rand-int (clojure.core/count (:preps room))))]
-
     (str prep " " (:article room) " " (:name room))))
 
 (defn get-segment 
