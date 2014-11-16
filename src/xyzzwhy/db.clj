@@ -1,7 +1,8 @@
 (ns xyzzwhy.db
+  (:refer-clojure :exclude [remove])
   (:require [clojure.string :as string]
             [monger.core :refer [get-db connect]]
-            [monger.collection :refer [insert-batch]]
+            [monger.collection :refer [insert-batch remove]]
             [xyzzwhy.data :refer [db]]))
 
 (defn- encode-collection-name [s] (string/replace s #"-" "_"))
@@ -43,6 +44,7 @@
    {:name "You drop {{item}}."}
    {:name "The radio crackles to life. 'Mayday, mayday, it's {{person}} calling. We're in trouble. We need assistance. Mayday, mayday.'"}
    {:name "You pick up {{item}}. Was this here before?"}
+   {:name "You pick up {{item}}."}
    {:name "You find {{item}} but decide to leave it alone."}
    {:name "{{actor}} drops {{item}}, looks at you {{adverb}}, then leaves."}
    {:name "Suddenly, {{actor}} {{action}} you!"}
@@ -76,6 +78,7 @@
 
 (def secondary-events 
   [{:name "You see {{item}} here."}
+   {:name "You see {{item here. It looks oddly familiar."}
    {:name "There is {{item}} here."}
    {:name "{{actor}} is here."}
    {:name "{{actor}} is here{{actor-action}}"}
@@ -123,7 +126,7 @@
    {:name "You are starting to feel hungry."}])
 
 (def actor-actions
-  [{:name " looking {{adjective}}."}
+  [{:name "looking {{adjective}}."}
    {:name ", hiding under a table."}
    {:name ", hiding under a sofa."}
    {:name ", munching on {{food}}."}
@@ -312,6 +315,7 @@
    {:name "Gene Shalit"}
    {:name "Catmeat Clive"}
    {:name "Jorts Morgan"}
+   {:name "Construction Charles"}
    {:name "Nancy Grace"}
    {:name "Lindsay Lohan"}
    {:name "Barack Obama"}
@@ -726,31 +730,47 @@
     "noises"
     "disasters"))
 
-(defn add-database-collection [name]
-  (insert-batch db (encode-collection-name name) @(-> name symbol resolve)))
+(def collections
+  ["event-types"
+   "location-events"
+    "action-events"
+    "secondary-events"
+    "tertiary-events"
+    "actor-actions"
+    "rooms"
+    "dialogues"
+    "books"
+    "directions"
+    "persons"
+    "actions"
+    "adjectives"
+    "adverbs"
+    "scents"
+    "diagnoses"
+    "foods"
+    "drinks"
+    "garments"
+    "items"
+    "animals"
+    "noises"
+    "disasters"])
 
-(defn add-all-collections []
-  (doseq [collection ["event-types"
-                      "location-events"
-                      "action-events"
-                      "secondary-events"
-                      "tertiary-events"
-                      "actor-actions"
-                      "rooms"
-                      "dialogues"
-                      "books"
-                      "directions"
-                      "persons"
-                      "actions"
-                      "adjectives"
-                      "adverbs"
-                      "scents"
-                      "diagnoses"
-                      "foods"
-                      "drinks"
-                      "garments"
-                      "items"
-                      "animals"
-                      "noises"
-                      "disasters"]]
-    (add-database-collection collection)))
+(defn clear-db-collection [name]
+  (remove db (encode-collection-name name)))
+
+(defn clear-db-collections []
+  (doseq [c collections] 
+    (clear-db-collection c)))
+
+(defn add-db-collection [name]
+  (insert-batch db 
+                (encode-collection-name name) 
+                @(-> name symbol resolve)))
+
+(defn add-db-collections []
+  (doseq [c collections]
+    (add-db-collection c)))
+
+(defn rebuild-database []
+  (clear-db-collections)
+  (add-db-collections))
