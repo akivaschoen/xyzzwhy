@@ -12,5 +12,7 @@
     (env :twitter-user-access-token)
     (env :twitter-user-access-token-secret)))
 
-(defn post-to-twitter [status-text]
+(defn post-to-twitter 
+  "This, uh, posts to Twitter."
+  [status-text]
   (statuses-update :oauth-creds credentials :params {:status status-text}))

@@ -1,4 +1,4 @@
-(ns xyzzwhy.db
+ (ns xyzzwhy.db
   (:require [clojure.string :as string]
             [monger.core :refer [get-db connect]]
             [monger.collection :refer [insert-batch remove]]
@@ -67,7 +67,7 @@
    {:name "You take a sip of {{drink}}."}
    {:name "You check your inventory. You are empty-handed."}
    {:name "You check your inventory. You are carrying {{item}}, {{item}}, and {{item}}."}
-   {:name "You check your inventory. You are have {{item}} and {{item}}."}
+   {:name "You check your inventory. You have {{item}} and {{item}}."}
    {:name "You open up your copy of {{book}}. Someone has scribbled all over the margins. You throw it down on the floor in disgust."}
    {:name "{{actor}} picks up {{item}}."}
    {:name "You start spinning around and around while {{person}} claps and cheers."}
@@ -497,6 +497,9 @@
   [{:name "skinny jeans"
     :article "a pair of"}
    
+   {:name "pinecone"
+    :article "a"}
+
    {:name "sweat-incrusted trilby"
     :article "a"}
    
@@ -755,22 +758,30 @@
     "noises"
     "disasters"])
 
-(defn clear-db-collection [name]
+(defn clear-db-collection 
+  "Empty a collection of its documents."
+  [name]
   (remove db (encode-collection-name name)))
 
-(defn clear-db-collections []
+(defn clear-db-collections 
+  "Empty a set of collections of their documents."
+  []
   (doseq [c collections] 
     (clear-db-collection c)))
 
-(defn add-db-collection [name]
+(defn add-db-collection 
+  "Adds a collection to the database."
+  [name]
   (insert-batch db 
                 (encode-collection-name name) 
                 @(-> name symbol resolve)))
 
 (defn add-db-collections []
+  "Adds a set of collections to the database."
   (doseq [c collections]
     (add-db-collection c)))
 
 (defn rebuild-database []
+  "Empties the database and adds again all of the collections."
   (clear-db-collections)
   (add-db-collections))
