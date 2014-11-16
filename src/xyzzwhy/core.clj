@@ -41,7 +41,7 @@
             (if (< (rand-int 100) 20)
               (str primary-segment " " tertiary-segment)
               (str primary-segment " " secondary-segment " " tertiary-segment)))
-          secondary-segment))
+          (str primary-segment " " secondary-segment)))
       primary-segment)))
 
 (defn -main

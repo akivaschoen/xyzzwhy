@@ -269,6 +269,7 @@
   [{:name " says, 'I've been waiting for you.'"}
    {:name " says, 'I can't find my {{garment}}.'"}
    {:name " asks, 'Why am I holding this pitchfork?'"}
+   {:name " shrieks, 'What's this shit I keep hearing about erections?!'"}
    {:name " asks, 'Does it smell like {{food}} in here to you?'"}])
 
 (def books
@@ -309,8 +310,8 @@
    {:name "Geoff Petersen"}
    {:name "Stephen King"}
    {:name "Gene Shalit"}
-   {:name "Clive Chatterjee"}
-   {:name "Chris Morgan"}
+   {:name "Catmeat Clive"}
+   {:name "Jorts Morgan"}
    {:name "Nancy Grace"}
    {:name "Lindsay Lohan"}
    {:name "Barack Obama"}
