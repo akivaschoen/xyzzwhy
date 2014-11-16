@@ -12,7 +12,7 @@ repl and then repeatedly issue (-main) to see random events. Or you can run it v
 
 Very basic and completely random for now. Future plans (roughly in order):
 
-- Add timer to establish variable intervals at which xyzzwhy-bot will post.
+- Enable smart quote substitutions.
 - Swap out braces for Clojure data structures that can be interpreted directly.
 - Increase flexibility of segments by adding keyword arguments.
 - Add more depth and branches. Things should be able to have potential follow-up segments.

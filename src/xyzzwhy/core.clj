@@ -57,8 +57,8 @@
   5 and 30 minutes before tweeting again."
   [& args]
   ; This is all extremely ugly but is good enough for now.
-  (letfn [(loop-it [interval] ((println "Next tweet in" (int (/ interval 60000)) "minutes.")
-                               (Thread/sleep interval)))]
+  (letfn [(loop-it [interval] (do ((println "Next tweet in" (int (/ interval 60000)) "minutes.")
+                               (Thread/sleep interval))))]
     (loop []
       (let [interval (+ 300000 (rand-int 1500000))
             tweet (-> (create-tweet) capitalize)]
