@@ -4,13 +4,15 @@
   (:require [clojure.string :as string])
   (:gen-class))
 
-(defn capitalize 
-  "Ensures proper capitalization throughout the final tweet."
+(defn groom-tweet
+  "Ensures proper capitalization throughout the final tweet and, if the tweet starts with an
+  @mention, puts a dot up front so everyone can see it."
   [tweet]
   (-> tweet
-    (string/replace #"^[a-z]+"        #(string/capitalize %1))
-    (string/replace #"(\.\s)([a-z]+)" #(str (second %1) 
-                                            (string/capitalize (nth %1 2))))))
+      (string/replace #"^@"             #".@")
+      (string/replace #"^[a-z]+"        #(string/capitalize %1))
+      (string/replace #"(\.\s)([a-z]+)" #(str (second %1)
+                                              (string/capitalize (nth %1 2))))))
 
 (defn interpolate-text 
   "Searches text for {{word}} and {{word-modifier}} combinations and replaces them
@@ -60,7 +62,7 @@
   (println "xyzzwhy is ready for some magical adventures!")
   (loop []
     (let [interval (+ 300000 (rand-int 1500000))
-          tweet (-> (create-tweet) capitalize)]
+          tweet (-> (create-tweet) groom-tweet)]
       (try
         (post-to-twitter tweet)
         (catch Exception e
