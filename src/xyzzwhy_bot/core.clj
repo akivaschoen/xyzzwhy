@@ -66,7 +66,8 @@
         (catch Exception e
           (Thread/sleep interval)))
 
-      (println "Tweeted: '" tweet "'")
-      (println "Next tweet in" (int (/ 1500000 60000)) "minutes")
+      (println "Tweeted: " tweet)
+      (println "Next tweet in" (int (/ interval 60000)) "minutes")
+
       (Thread/sleep interval)
     (recur))))
