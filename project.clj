@@ -9,4 +9,6 @@
                  [twitter-api "0.7.7"]]
   :main ^:skip-aot xyzzwhy-bot.core
   :target-path "target/%s"
-  :profiles {:uberjar {:aot :all}})
+  :uberjar-name "xyzzwhy-bot-standalone.jar"
+  :profiles {:uberjar {:aot :all}}
+  :min-lein-version "2.0.0")
