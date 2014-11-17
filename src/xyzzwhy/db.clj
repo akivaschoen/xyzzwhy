@@ -87,7 +87,6 @@
    {:name "{{actor}} is here."}
    {:name "{{actor}} is here{{actor-action}}"}
    {:name "You find {{actor}}{{actor-action}}"}
-   {:name "{{actor}} shot the food."}
    {:name "{{person}} {{dialogue}}"}
    {:name "{{actor}} is here searching for {{item}}."}
    {:name "{{actor}} is here hoping to run into {{actor}}."}
@@ -365,6 +364,9 @@
    {:name "Justin Bieber"
     :gender :male}
 
+   {:name "Neil deGrasse Tyson"
+    :gender :male}
+
    {:name "Tim Heidecker"
     :gender :male}
 
@@ -486,6 +488,9 @@
    {:name "@itafroma"
     :gender :male}
 
+   {:name "@clive"
+    :gender :male}
+
    {:name "Zombie Carl Sagan"
     :gender :male}])
 
@@ -508,12 +513,15 @@
    {:name "bored"}
    {:name "hopeful"}
    {:name "sad"}
+   {:name "happy"}
    {:name "forlorn"}
    {:name "angry"}])
 
 (def adverbs
   [{:name "carefully"}
    {:name "wistfully"}
+   {:name "uncertainly"}
+   {:name "willfully"}
    {:name "lustfully"}
    {:name "warily"}
    {:name "bravely"}
@@ -968,12 +976,20 @@
                 (encode-collection-name name) 
                 @(-> name symbol resolve)))
 
-(defn add-db-collections []
+(defn add-db-collections 
   "Adds a set of collections to the database."
+  []
   (doseq [c collections]
     (add-db-collection c)))
 
-(defn rebuild-database []
+(defn refresh-collection 
+  "Clears out the collection and adds all new entries."
+  [name]
+  (clear-db-collection name)
+  (add-db-collection name))
+
+(defn rebuild-database 
   "Empties the database and adds again all of the collections."
+  []
   (clear-db-collections)
   (add-db-collections))
