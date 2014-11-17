@@ -1,1 +1,1 @@
-worker: lein trampoline run -m xyzzwhy-bot.worker
+worker: lein trampoline run -m xyzzwhy-bot.core
