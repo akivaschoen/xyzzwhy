@@ -1,12 +1,13 @@
-(ns xyzzwhy.data
+(ns xyzzwhy-bot.data
   (:refer-clojure :exclude [count sort find])
   (:use [monger.query])
   (:require [clojure.string :as string]
-            [monger.core :refer [get-db connect]]
+            [environ.core :refer [env]]
+            [monger.core :refer [get-db connect-via-uri]]
             [monger.collection :refer [count]]))
 
-(def db (get-db (connect) "xyzzwhy_test"))
-  
+;(def db (get-db (connect) "xyzzwhy_test"))
+
 (defn- encode-collection-name 
   "Makes the collection name compatible with MongoDB. All placeholders are singular while
   the collections are pluralized so this is handled along with converting dashes to
@@ -27,7 +28,9 @@
 (defn- get-collection 
   "Returns a collection from the database."
   [coll]
-  (let [coll (encode-collection-name coll)]
+  (let [uri (env :mongolab-uri)
+        {:keys [conn db]} (connect-via-uri uri)
+        coll (encode-collection-name coll)]
     (with-collection db coll
       (find {}))))
 
@@ -48,8 +51,10 @@
     thing))
 
 (defmethod get-random-thing :default [coll]
-  (letfn [(get-collection-count [coll] (count db coll))]
-    (let [coll (encode-collection-name coll)]
+  (let [uri (env :mongolab-uri)
+        {:keys [conn db]} (connect-via-uri uri)
+        coll (encode-collection-name coll)]
+    (letfn [(get-collection-count [coll] (count db coll))]
       (with-collection db coll
         (find {})
         (limit 1)
