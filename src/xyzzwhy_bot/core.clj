@@ -1,6 +1,6 @@
-(ns xyzzwhy.core
-  (:use [xyzzwhy.twitter]
-        [xyzzwhy.data])
+(ns xyzzwhy-bot.core
+  (:use [xyzzwhy-bot.twitter]
+        [xyzzwhy-bot.data])
   (:require [clojure.string :as string]
   (:gen-class)))
 

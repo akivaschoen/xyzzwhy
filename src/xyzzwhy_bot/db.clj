@@ -1,9 +1,9 @@
- (ns xyzzwhy.db
+ (ns xyzzwhy-bot.db
   (:refer-clojure :exclude [remove])
   (:require [clojure.string :as string]
-            [monger.core :refer [get-db connect]]
-            [monger.collection :refer [insert-batch remove]]
-            [xyzzwhy.data :refer [db]]))
+            [environ.core :refer [env]]
+            [monger.core :refer [connect-via-uri]]
+            [monger.collection :refer [insert-batch remove]]))
 
 (defn- encode-collection-name [s] (string/replace s #"-" "_"))
 
@@ -961,7 +961,8 @@
 (defn clear-db-collection 
   "Empty a collection of its documents."
   [name]
-  (remove db (encode-collection-name name)))
+  (let [{:keys [conn db]} (connect-via-uri (env :mongolab-uri))]
+    (remove db (encode-collection-name name))))
 
 (defn clear-db-collections 
   "Empty a set of collections of their documents."
@@ -972,9 +973,10 @@
 (defn add-db-collection 
   "Adds a collection to the database."
   [name]
-  (insert-batch db 
-                (encode-collection-name name) 
-                @(-> name symbol resolve)))
+  (let [{:keys [conn db]} (connect-via-uri (env :mongolab-uri))]
+    (insert-batch db 
+                  (encode-collection-name name) 
+                  @(-> name symbol resolve))))
 
 (defn add-db-collections 
   "Adds a set of collections to the database."
