@@ -1,1 +1,1 @@
-worker: java $JVM_OPTS -cp target/xyzzy-bot.jar clojure.main
+worker: java $JVM_OPTS -cp target/xyzzy-bot.jar clojure.main -m xyzzy-bot.worker
