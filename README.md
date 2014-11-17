@@ -5,8 +5,7 @@ dreamlike world.
 
 ## Installation
 
-Make sure you have leiningen installed. Clone the repo and run it from the
-repl and then repeatedly issue (-main) to see random events. Or you can run it via 'lein repl'.
+Clone. 'lein run' or bring it up in the repl and repeatedly issue (create-tweet).
 
 ## Current Status
 
