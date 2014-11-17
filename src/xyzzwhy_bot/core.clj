@@ -1,8 +1,8 @@
 (ns xyzzwhy-bot.core
   (:use [xyzzwhy-bot.twitter]
         [xyzzwhy-bot.data])
-  (:require [clojure.string :as string]
-  (:gen-class)))
+  (:require [clojure.string :as string])
+  (:gen-class))
 
 (defn capitalize 
   "Ensures proper capitalization throughout the final tweet."
@@ -66,7 +66,7 @@
         (catch Exception e
           (Thread/sleep interval)))
 
-      (println "Tweeted: " tweet)
+      (println "Tweeted:" tweet)
       (println "Next tweet in" (int (/ interval 60000)) "minutes")
 
       (Thread/sleep interval)
