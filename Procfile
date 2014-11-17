@@ -1,1 +1,1 @@
-worker: java $JVM_OPTS -jar target/xyzzwhy-bot-standalone.jar
+worker: lein trampoline run -m xyzzwhy-bot.core
