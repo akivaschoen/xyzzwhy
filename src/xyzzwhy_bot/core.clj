@@ -68,5 +68,6 @@
 
       (println "Tweeted: '" tweet "'")
       (println "Next tweet in" (int (/ 1500000 60000)) "minutes")
+
       (Thread/sleep interval)
     (recur))))
