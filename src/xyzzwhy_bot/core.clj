@@ -64,12 +64,14 @@
     (let [interval (+ 300000 (rand-int 1500000))
           tweet (-> (create-tweet) groom-tweet)]
       (try
-        (post-to-twitter tweet)
+        (do
+          (post-to-twitter tweet)
+
+          (println "Tweeted:" tweet)
+          (println "Next tweet in" (int (/ interval 60000)) "minutes")
+
+          (Thread/sleep interval))
         (catch Exception e
-          (println "Caught error " (.getMessage e))))
+          (println "Caught error:" (.getMessage e))))
 
-      (println "Tweeted:" tweet)
-      (println "Next tweet in" (int (/ interval 60000)) "minutes")
-
-      (Thread/sleep interval)
     (recur))))
