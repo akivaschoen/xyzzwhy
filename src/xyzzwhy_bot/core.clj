@@ -66,7 +66,7 @@
       (try
         (post-to-twitter tweet)
         (catch Exception e
-          (Thread/sleep interval)))
+          (println "Caught error " (.getMessage e))))
 
       (println "Tweeted:" tweet)
       (println "Next tweet in" (int (/ interval 60000)) "minutes")
