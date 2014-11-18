@@ -1,5 +1,6 @@
 (ns xyzzwhy-bot.core
-  (:use [xyzzwhy-bot.twitter]
+  (:use [typographer.core]
+        [xyzzwhy-bot.twitter]
         [xyzzwhy-bot.data])
   (:require [clojure.string :as string])
   (:gen-class))
@@ -26,6 +27,7 @@
   [tweet]
   (-> tweet
       interpolate-text
+      smarten
       (string/replace #"^@"             #".@")
       (string/replace #"^[a-z]+"        #(string/capitalize %1))
       (string/replace #"(\.\s)([a-z]+)" #(str (second %1)

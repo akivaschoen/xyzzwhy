@@ -6,7 +6,8 @@
   :dependencies [[org.clojure/clojure "1.6.0"]
                  [environ "1.0.0"]
                  [com.novemberain/monger "2.0.0"]
-                 [twitter-api "0.7.7"]]
+                 [twitter-api "0.7.7"]
+                 [typographer "1.0-SNAPSHOT"]]
   :main ^:skip-aot xyzzwhy-bot.core
   :target-path "target/%s"
   :uberjar-name "xyzzwhy-bot-standalone.jar"
