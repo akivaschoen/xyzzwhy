@@ -4,16 +4,6 @@
   (:require [clojure.string :as string])
   (:gen-class))
 
-(defn groom-tweet
-  "Ensures proper capitalization throughout the final tweet and, if the tweet starts with an
-  @mention, puts a dot up front so everyone can see it."
-  [tweet]
-  (-> tweet
-      (string/replace #"^@"             #".@")
-      (string/replace #"^[a-z]+"        #(string/capitalize %1))
-      (string/replace #"(\.\s)([a-z]+)" #(str (second %1)
-                                              (string/capitalize (nth %1 2))))))
-
 (defn interpolate-text 
   "Searches text for {{word}} and {{word-modifier}} combinations and replaces them
   with appropriate things from the database. The 'word' represents a class of possible
@@ -28,6 +18,18 @@
                                 (first match)
                                 (get-word (second match)))
           (re-find matcher))))))
+
+(defn finalize-tweet
+  "Verifies there are no remaining uninterpolated words, ensures proper capitalization 
+  throughout the final tweet and, if the tweet starts with an @mention, puts a dot up 
+  front so everyone can see it."
+  [tweet]
+  (-> tweet
+      interpolate-text
+      (string/replace #"^@"             #".@")
+      (string/replace #"^[a-z]+"        #(string/capitalize %1))
+      (string/replace #"(\.\s)([a-z]+)" #(str (second %1)
+                                              (string/capitalize (nth %1 2))))))
 
 (defn create-tweet 
   "Construct the tweet segment by segment."
