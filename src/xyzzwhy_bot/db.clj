@@ -449,7 +449,7 @@
    {:name "Jonah Hill"
     :gender :male}
 
-   {:name "Scarlet Johannson"
+   {:name "Scarlet Johansson"
     :gender :female}
 
    {:name "a gas station attendant"}
