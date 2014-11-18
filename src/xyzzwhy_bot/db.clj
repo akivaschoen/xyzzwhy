@@ -56,7 +56,7 @@
    {:name "{{actor}} drops {{item}} here."}
    {:name "{{person}} starts breakdancing and won't stop no matter how much you scream."}
    {:name "{{actor}} attacks you and knocks you out! You awake sometime later in {{room}}."}
-   {:name "{{person}} appears in a puff of smoke and shouts, 'You will never go to {{room}} again!'"}
+   {:name "{{person}} appears in a puff of smoke and shouts, 'You will never see your {{item}} again!'"}
    {:name "You startle {{person}} who drops {{item}} and then runs away."}
    {:name "{{person}} slams down a half-empty empty glass of bourbon. 'All this nonsense about {{item}} needs to stop! I can't take it anymore!'"}
    {:name "{{person}} suddenly shrieks."}
@@ -135,15 +135,16 @@
    {:name "You are starting to feel hungry."}])
 
 (def actor-actions
-  [{:name "looking {{adjective}}."}
-   {:name "doing the Kenosha Kid."}
-   {:name "thinking {{adverb}} about {{actor}}."}
-   {:name "being chased around by a bee."}
-   {:name "organizing matches."}
-   {:name "juggling some balls."}
-   {:name "dancing in a little circle."}
-   {:name "stooping up and down like a rapper in concert."}
-   {:name "drooling uncontrollably."}
+  [{:name " looking {{adjective}}."}
+   {:name " shouting at an imaginary helicopter."}
+   {:name " doing the Kenosha Kid."}
+   {:name " thinking {{adverb}} about {{actor}}."}
+   {:name " being chased around by a bee."}
+   {:name " organizing matches."}
+   {:name " juggling some balls."}
+   {:name " dancing in a little circle."}
+   {:name " stooping up and down like a rapper in concert."}
+   {:name " drooling uncontrollably."}
    {:name ", hiding under a table."}
    {:name ", hiding under a sofa."}
    {:name ", munching on {{food}}."}
@@ -303,6 +304,7 @@
    {:name "says, 'I can't find my {{garment}}.'"}
    {:name "whispers, 'I've always wanted to be a creepy uncle.'"}
    {:name "whispers, 'When you hear the circus music, you will know it is time.'"}
+   {:name "asks, 'Have you ever seen an elephant throw up?'"}
    {:name "asks, 'Why am I holding this pitchfork?'"}
    {:name "asks, 'How long is a man?'"}
    {:name "asks, 'Where have you been?'"}
