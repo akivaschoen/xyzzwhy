@@ -64,7 +64,7 @@
   (println "xyzzwhy is ready for some magical adventures!")
   (loop []
     (let [interval (+ 300000 (rand-int 1500000))
-          tweet (-> (create-tweet) groom-tweet)]
+          tweet (-> (create-tweet) finalize-tweet)]
       (try
         (do
           (post-to-twitter tweet)
