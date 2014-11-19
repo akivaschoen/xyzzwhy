@@ -5,13 +5,14 @@ dreamlike world.
 
 ## Installation
 
-Clone. 'lein run' or bring it up in the repl and repeatedly issue (create-tweet).
+Bring it up in the repl and repeatedly issue (create-tweet). Requires a database populated 
+from xyzzwhy-bot.db (and possibly an authorized Twitter account if you want to actually post).
 
 ## Current Status
 
 Very basic and completely random for now. Future plans (roughly in order):
 
-- Enable smart quote substitutions.
+- Refactor the data functions to allow xyzzwhy-bot to get its data from xyzzwhy-bot.db rather than assuming a populated database.
 - Swap out braces for Clojure data structures that can be interpreted directly.
 - Increase flexibility of segments by adding keyword arguments.
 - Add more depth and branches. Things should be able to have potential follow-up segments.
