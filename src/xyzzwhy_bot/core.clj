@@ -5,7 +5,7 @@
   (:require [clojure.string :as string])
   (:gen-class))
 
-(defn interpolate-text 
+(defn- interpolate-text 
   "Searches text for {{word}} and {{word-modifier}} combinations and replaces them
   with appropriate things from the database. The 'word' represents a class of possible
   responses such as {{person}} and {{garment}}."
@@ -20,7 +20,7 @@
                                 (get-word (second match)))
           (re-find matcher))))))
 
-(defn finalize-tweet
+(defn- finalize-tweet
   "Verifies there are no remaining uninterpolated words, ensures proper capitalization 
   throughout the final tweet and, if the tweet starts with an @mention, puts a dot up 
   front so everyone can see it."
@@ -48,14 +48,18 @@
         ; if there is a secondary event, there's a 50% chance that there
         ; will be a tertiary event.
         (if (< (rand-int 100) 50)
-          (let [tertiary-segment (interpolate-text (get-segment "tertiary-event"))]
+          (let [tertiary-segment (interpolate-text (get-segment "tertiary-event"))
+                secondary-tweet (str primary-segment " " secondary-segment)
+                tertiary-tweet (str primary-segment " " tertiary-segment)
+                full-tweet (str secondary-tweet " " tertiary-segment)]
 
             ; And if there is a tertiary event, there's a 20% chance it
             ; will replace the secondary segment rather than append it.
-            (if (< (rand-int 100) 20)
-              (str primary-segment " " tertiary-segment)
-              (str primary-segment " " secondary-segment " " tertiary-segment)))
-          (str primary-segment " " secondary-segment)))
+            (if (and (< (rand-int 100) 80)
+                     (< (count full-tweet) 140))
+              full-tweet
+              tertiary-tweet)
+          secondary-tweet)))
       primary-segment)))
 
 (defn -main
