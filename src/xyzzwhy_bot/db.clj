@@ -5,15 +5,12 @@
             [monger.core :refer [connect-via-uri]]
             [monger.collection :refer [insert-batch remove]]))
 
-(defn- encode-collection-name [s] (string/replace s #"-" "_"))
-
 (def event-types
   [{:name "location-event"}
    {:name "action-event"}])
 
 (def location-events
   [{:name "You have entered {{room}}."}
-   {:name "You jump out of a moving car, roll down a hill, and find yourself {{room-with-prep}}."}
    {:name "You are standing {{direction}} of {{room}}."}
    {:name "You stumble into {{room}}."}
    {:name "You come across {{room}}."}
@@ -27,6 +24,7 @@
    {:name "You climb down the tree and find yourself {{room-with-prep}}."}
    {:name "The taxi driver randomly drops you off {{room-with-prep}}."}
    {:name "The fog clears and you find yourself {{room-with-prep}}."}
+   {:name "You jump out of a moving car, roll down a hill, and find yourself {{room-with-prep}}."}
    {:name "After walking for a long time, you find yourself {{room-with-prep}}."}
    {:name "You find your way blindly and end up {{room-with-prep}}."}
    {:name "No matter how hard you try, you still end up {{room-with-prep}}."}
@@ -38,29 +36,23 @@
    {:name "You get tangled up in a revolving door. You stumble out into {{room}}."}
    {:name "After scrambling through some dense underbrush, you find yourself {{room-with-prep}}."}
    {:name "Hands on your hips, you survey {{room}} {{adverb}}."}
-   ])
+   {:name "You have reached a dead-end. You moonwalk away."}])
 
 (def action-events
   [{:name "You awake from a nightmare. You saw yourself {{room-with-prep}}. The corpse of {{person}} was there, holding {{item}}."}
    {:name "You grab {{item}}, hoping {{person}} doesn't notice."}
-   {:name "You pick up {{item}}."}
-   {:name "You drop {{item}}."}
    {:name "The radio crackles to life. 'Mayday, mayday, it's {{person}} calling. We're in trouble. We need assistance. Mayday, mayday.'"}
-   {:name "You pick up {{item}}. Was this here before?"}
-   {:name "You pick up {{item}}."}
-   {:name "You find {{item}} but decide to leave it alone."}
    {:name "{{actor}} drops {{item}}, looks at you {{adverb}}, then leaves."}
    {:name "Suddenly, {{actor}} {{action}} you!"}
    {:name "{{actor}} {{action}} {{actor}}!"}
    {:name "{{actor}} {{action}} you!"}
    {:name "{{actor}} drops {{item}} here."}
    {:name "{{person}} starts breakdancing and won't stop no matter how much you scream."}
-   {:name "{{actor}} attacks you and knocks you out! You awake sometime later in {{room}}."}
+   {:name "{{actor}} attacks you and knocks you out! You awake sometime later {{room-with-prep}}."}
    {:name "{{person}} appears in a puff of smoke and shouts, 'You will never see your {{item}} again!'"}
-   {:name "You startle {{person}} who drops {{item}} and then runs away."}
+   {:name "You startle {{person}} who drops {{item}} and runs away."}
    {:name "{{person}} slams down a half-empty empty glass of bourbon. 'All this nonsense about {{item}} needs to stop! I can't take it anymore!'"}
    {:name "{{person}} suddenly shrieks."}
-   {:name "{{person}} shouts, 'You can't go up against city hall!'"}
    {:name "You get tired of waiting for your Uber and decide to walk to {{room}} instead."}
    {:name "The phone rings. {{person}} stares at it {{adverb}}. You refuse to answer it. Eventually the ringing stops."}
    {:name "You start eating {{food}} and don't stop until you're done."}
@@ -72,24 +64,32 @@
    {:name "You check your inventory. You are carrying {{item}}, {{item}}, and {{item}}."}
    {:name "You check your inventory. You have {{item}} and {{item}}."}
    {:name "You open up your copy of {{book}}. Someone has scribbled all over the margins. You throw it down on the floor in disgust."}
+   {:name "You open up your copy of {{book}}. Someone has left a recipe for beef stew inside."}
+   {:name "You open up your copy of {{book}}. You read a bit before tossing it over your shoulder and then doing the electric slide."}
    {:name "{{actor}} suddenly appears out of the shadows, hisses at you, then scrambles away like a spider."}
    {:name "{{actor}} picks up {{item}}."}
    {:name "You start spinning around and around while {{person}} claps and cheers."}
    {:name "{{person}} is calling from {{room}} asking for {{item}}."}
    {:name "You peek out the window. {{person}} is messing around with your mailbox. You crouch in fear."}
    {:name "In the distance, you hear {{person}} let the bass drop."}
+   {:name "{{person}} shouts, 'You can't go up against city hall!'"}
    {:name "You check your health: you are {{diagnose}}."}])
 
 (def secondary-events 
   [{:name "You see {{item}} here."}
    {:name "You see {{item}} here. It looks oddly familiar."}
    {:name "There is {{item}} here."}
+   {:name "You pick up {{item}}. Was this here before?"}
+   {:name "You pick up {{item}}."}
+   {:name "You drop {{item}}."}
+   {:name "You find {{item}} here but decide to leave it alone."}
    {:name "{{actor}} is here."}
    {:name "{{actor}} is here{{actor-action}}"}
    {:name "You find {{actor}}{{actor-action}}"}
    {:name "{{person}} {{dialogue}}"}
    {:name "{{actor}} is here searching for {{item}}."}
    {:name "{{actor}} is here hoping to run into {{actor}}."}
+   {:name "A hollow voice intones, '{{intonation}}'"}
    {:name "Something smells {{scent}} here."}
    {:name "You hear {{noise}} in the distance."}
    {:name "You hear the sound of {{noise}} nearby."}
@@ -101,7 +101,8 @@
    {:name "Someone has attached marionnette wires to your hands, feet, and head."}
    {:name "Someone has left a running bulldozer here."}
    {:name "The words 'eat dulp' are spray-painted on the wall here.'"}
-   {:name "There has been significant damage from {{disaster}}."}])
+   {:name "There has been significant damage from {{disaster}}."}
+   {:name "You see a sign here. On it is written '{{sign}}'"}])
 
 (def tertiary-events 
   [{:name "You aren't wearing any clothes."}
@@ -136,6 +137,7 @@
 
 (def actor-actions
   [{:name " looking {{adjective}}."}
+   {:name " dancing furiously."}
    {:name " shouting at an imaginary helicopter."}
    {:name " doing the Kenosha Kid."}
    {:name " thinking {{adverb}} about {{actor}}."}
@@ -234,9 +236,16 @@
     :article "a"
     :preps ["at" "in" "near" "behind" "in front of"]}
 
+   {:name "White Castle" 
+    :preps ["at" "in" "near" "behind" "in front of"]}
+
+   {:name "Taco Bell" 
+    :article "a"
+    :preps ["at" "in" "near" "behind" "in front of"]}
+
    {:name "dark area" 
     :article "a"
-    :preps ["in" "near" "in front of"]}
+    :preps ["in"]}
 
    {:name "breezy cave" 
     :article "a"
@@ -317,6 +326,30 @@
    {:name "mumbles, 'You can't go up against city hall.'"}
    {:name "mumbles, 'One day I'm going to burn this place to the ground.'"}
    {:name "asks, 'Does it smell like {{food}} in here to you?'"}])
+
+(def intonations
+  [{:name "Toast goes in the toaster."}
+   {:name "For those who can make the journey, there is a place."}
+   {:name "Plough."}
+   {:name "Your pilikia is all pau."}
+   {:name "The owls are not what they seem."}
+   {:name "Puch."}
+   {:name "Guch."}
+   {:name "Porluch."}
+   {:name "What?"}
+   {:name "Sorry but it couldn't be helped."}
+   {:name "Clean up in aisle 8A."}
+   {:name "Rabbit feces."}
+   {:name "Consider deeply the baked ham."}
+   {:name "You can't go up against city hall."}])
+
+(def signs
+  [{:name "Burma shave!"}
+   {:name "For those who can make the journey, there is a place."}
+   {:name "Here lies Hammerdog, a dog made of hammers."}
+   {:name "Here lies Knifekitten, a kitten made of knives."}
+   {:name "When you're not reading this, it's written in Spanish."}
+   {:name "Now you know how hard it is to say 'Irish wristwatch'."}])
 
 (def books
   [{:name "the Bible"
@@ -420,6 +453,9 @@
     :gender :male}
 
    {:name "Louis Gray"
+    :gender :male}
+   
+   {:name "Russell Brand"
     :gender :male}
    
    {:name "Brad Pitt"
@@ -580,7 +616,7 @@
    {:name "apple cinnamon Pop Tart"
     :article "an"}
 
-   {:name "wedge of cheese"
+   {:name "block of cheese"
     :article "a"}
 
    {:name "wedge of cheese with some mold on it"
@@ -919,6 +955,7 @@
     "actor-actions"
     "rooms"
     "dialogues"
+    "signs"
     "books"
     "directions"
     "persons"
@@ -944,6 +981,7 @@
     "actor-actions"
     "rooms"
     "dialogues"
+    "intonations"
     "books"
     "directions"
     "persons"
@@ -959,6 +997,8 @@
     "animals"
     "noises"
     "disasters"])
+
+(defn- encode-collection-name [s] (string/replace s #"-" "_"))
 
 (defn clear-db-collection 
   "Empty a collection of its documents."
