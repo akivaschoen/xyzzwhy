@@ -7,7 +7,7 @@
                  [environ "1.0.0"]
                  [com.novemberain/monger "2.0.0"]
                  [twitter-api "0.7.7"]
-                 [typographer "1.0-SNAPSHOT"]]
+                 [typographer "1.0.0"]]
   :main ^:skip-aot xyzzwhy-bot.core
   :target-path "target/%s"
   :uberjar-name "xyzzwhy-bot-standalone.jar"

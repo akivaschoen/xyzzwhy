@@ -6,944 +6,1062 @@
             [monger.collection :refer [insert-batch remove]]))
 
 (def event-types
-  [{:name "location-event"}
-   {:name "action-event"}])
+  [{:text "location-event"}
+   {:text "action-event"}])
 
 (def location-events
-  [{:name "You have entered {{room}}."}
-   {:name "You are standing {{direction}} of {{room}}."}
-   {:name "You stumble into {{room}}."}
-   {:name "You come across {{room}}."}
-   {:name "You are {{room-with-prep}}."}
-   {:name "This is {{room}}."}
-   {:name "You open the secret door only to see {{room}}."}
-   {:name "You find yourself {{room-with-prep}}."}
-   {:name "You start doing the worm until you find yourself {{room-with-prep}}."}
-   {:name "You wake up from an odd dream unsure of where you are."}
-   {:name "You wake up {{room-with-prep}}."}
-   {:name "You climb down the tree and find yourself {{room-with-prep}}."}
-   {:name "The taxi driver randomly drops you off {{room-with-prep}}."}
-   {:name "The fog clears and you find yourself {{room-with-prep}}."}
-   {:name "You jump out of a moving car, roll down a hill, and find yourself {{room-with-prep}}."}
-   {:name "After walking for a long time, you find yourself {{room-with-prep}}."}
-   {:name "You find your way blindly and end up {{room-with-prep}}."}
-   {:name "No matter how hard you try, you still end up {{room-with-prep}}."}
-   {:name "You climb out of the treasure chest. You are now {{room-with-prep}}."}
-   {:name "You come to {{room-with-prep}}."}
-   {:name "You follow a winding path only to find yourself {{room-with-prep}}."}
-   {:name "The elevator doors open to reveal {{room}}."}
-   {:name "The trapdoor drops open beneath you and you land {{room-with-prep}}."}
-   {:name "You get tangled up in a revolving door. You stumble out into {{room}}."}
-   {:name "After scrambling through some dense underbrush, you find yourself {{room-with-prep}}."}
-   {:name "Hands on your hips, you survey {{room}} {{adverb}}."}
-   {:name "You have reached a dead-end. You moonwalk away."}])
+  [{:text "You have entered {{room}}."}
+   {:text "You are standing {{direction}} of {{room}}."}
+   {:text "You stumble into {{room}}."}
+   {:text "You come across {{room}}."}
+   {:text "You are {{room-with-prep}}."}
+   {:text "You wake up from an odd dream. You are {{room-with-prep}}."}
+   {:text "You open the secret door only to see {{room}}."}
+   {:text "You find yourself {{room-with-prep}}."}
+   {:text "You start doing the worm until you find yourself {{room-with-prep}}."}
+   {:text "You wake up {{room-with-prep}}."}
+   {:text "You climb down the tree and find yourself {{room-with-prep}}."}
+   {:text "The taxi driver randomly drops you off {{room-with-prep}}."}
+   {:text "The fog clears and you find yourself {{room-with-prep}}."}
+   {:text "You jump out of a moving car, roll down a hill, and find yourself {{room-with-prep}}."}
+   {:text "After walking for a long time, you find yourself {{room-with-prep}}."}
+   {:text "You find your way blindly and end up {{room-with-prep}}."}
+   {:text "No matter how hard you try, you still end up {{room-with-prep}}."}
+   {:text "You climb out of the treasure chest. You are now {{room-with-prep}}."}
+   {:text "You come to {{room-with-prep}}."}
+   {:text "You follow a winding path only to find yourself {{room-with-prep}}."}
+   {:text "The elevator doors open to reveal {{room}}."}
+   {:text "The trapdoor drops open beneath you and you land {{room-with-prep}}."}
+   {:text "You get tangled up in a revolving door. You stumble out into {{room}}."}
+   {:text "After scrambling through some dense underbrush, you find yourself {{room-with-prep}}."}
+   {:text "Hands on your hips, you survey {{room}} {{adverb}}."}
+   {:text "You have reached a dead-end. You moonwalk away."}])
 
 (def action-events
-  [{:name "You awake from a nightmare. You saw yourself {{room-with-prep}}. The corpse of {{person}} was there, holding {{item}}."}
-   {:name "You grab {{item}}, hoping {{person}} doesn't notice."}
-   {:name "The radio crackles to life. 'Mayday, mayday, it's {{person}} calling. We're in trouble. We need assistance. Mayday, mayday.'"}
-   {:name "{{actor}} drops {{item}}, looks at you {{adverb}}, then leaves."}
-   {:name "Suddenly, {{actor}} {{action}} you!"}
-   {:name "{{actor}} {{action}} {{actor}}!"}
-   {:name "{{actor}} {{action}} you!"}
-   {:name "{{actor}} drops {{item}} here."}
-   {:name "{{person}} starts breakdancing and won't stop no matter how much you scream."}
-   {:name "{{actor}} attacks you and knocks you out! You awake sometime later {{room-with-prep}}."}
-   {:name "{{person}} appears in a puff of smoke and shouts, 'You will never see your {{item}} again!'"}
-   {:name "You startle {{person}} who drops {{item}} and runs away."}
-   {:name "{{person}} slams down a half-empty empty glass of bourbon. 'All this nonsense about {{item}} needs to stop! I can't take it anymore!'"}
-   {:name "{{person}} suddenly shrieks."}
-   {:name "You get tired of waiting for your Uber and decide to walk to {{room}} instead."}
-   {:name "The phone rings. {{person}} stares at it {{adverb}}. You refuse to answer it. Eventually the ringing stops."}
-   {:name "You start eating {{food}} and don't stop until you're done."}
-   {:name "You start to eat {{food}} but it doesn't taste very good."}
-   {:name "You eat {{food}}. {{actor}} looks on {{adverb}}."}
-   {:name "You feel a little famished so you eat {{food}}."}
-   {:name "You take a sip of {{drink}}."}
-   {:name "You check your inventory. You are empty-handed."}
-   {:name "You check your inventory. You are carrying {{item}}, {{item}}, and {{item}}."}
-   {:name "You check your inventory. You have {{item}} and {{item}}."}
-   {:name "You open up your copy of {{book}}. Someone has scribbled all over the margins. You throw it down on the floor in disgust."}
-   {:name "You open up your copy of {{book}}. Someone has left a recipe for beef stew inside."}
-   {:name "You open up your copy of {{book}}. You read a bit before tossing it over your shoulder and then doing the electric slide."}
-   {:name "{{actor}} suddenly appears out of the shadows, hisses at you, then scrambles away like a spider."}
-   {:name "{{actor}} picks up {{item}}."}
-   {:name "You start spinning around and around while {{person}} claps and cheers."}
-   {:name "{{person}} is calling from {{room}} asking for {{item}}."}
-   {:name "You peek out the window. {{person}} is messing around with your mailbox. You crouch in fear."}
-   {:name "In the distance, you hear {{person}} let the bass drop."}
-   {:name "{{person}} shouts, 'You can't go up against city hall!'"}
-   {:name "You check your health: you are {{diagnose}}."}])
+  [{:text "You awake from a nightmare. You saw yourself {{room-with-prep}}. The corpse of {{person}} was there, holding {{item}}."}
+   {:text "You grab {{item}}, hoping {{person}} doesn't notice."}
+   {:text "The radio crackles to life. 'Mayday, mayday, it's {{person}} calling. We're in trouble. We need assistance. Mayday, mayday.'"}
+   {:text "{{actor}} drops {{item}}, looks at you {{adverb}}, then leaves."}
+   {:text "Suddenly, {{actor}} {{action}} you."}
+   {:text "{{actor}} {{action}} {{actor}}."}
+   {:text "{{actor}} {{action}} you."}
+   {:text "{{actor}} drops {{item}} here."}
+   {:text "{{person}} starts breakdancing and won't stop no matter how much you scream."}
+   {:text "{{actor}} attacks you and knocks you out! You awake sometime later {{room-with-prep}}."}
+   {:text "{{person}} appears in a puff of smoke and shouts, 'You will never see your {{item}} again!'"}
+   {:text "You startle {{person}} who drops {{item}} and runs away."}
+   {:text "{{person}} slams down a half-empty glass of bourbon. 'All this nonsense about {{item}} needs to stop! I can't take it anymore!'"}
+   {:text "{{person}} suddenly shrieks."}
+   {:text "You get tired of waiting for your Uber and decide to walk to {{room}} instead."}
+   {:text "The phone rings. {{person}} stares at it {{adverb}}. You refuse to answer it. Eventually the ringing stops."}
+   {:text "You start eating {{food}} and don't stop until you're done."}
+   {:text "You eat {{food}}."}
+   {:text "You eat {{food}}. {{actor}} looks on {{adverb}}."}
+   {:text "You feel a little famished so you eat {{food}}."}
+   {:text "You take a sip of {{drink}}."}
+   {:text "You check your inventory. You are empty-handed."}
+   {:text "You check your inventory. You are carrying {{item}}, {{item}}, and {{item}}."}
+   {:text "You check your inventory. You have {{item}} and {{item}}."}
+   {:text "You open up {{book}}. Someone has scribbled all over the margins. You throw it down on the floor in disgust."}
+   {:text "You open up {{book}}. Someone has left a recipe for beef stew inside."}
+   {:text "You open up {{book}}. You read a bit before tossing it over your shoulder and then doing the electric slide."}
+   {:text "{{actor}} suddenly appears out of the shadows, hisses at you, then scrambles away like a spider."}
+   {:text "{{actor}} picks up {{item}}."}
+   {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the nearest self-incrimination booth.'"}
+   {:text "You start spinning around and around while {{person}} claps and cheers."}
+   {:text "{{person}} is calling from {{room}} asking for {{item}}."}
+   {:text "You peek out the window. {{person}} is messing around with your mailbox. You crouch in fear."}
+   {:text "In the distance, you hear {{person}} let the bass drop."}
+   {:text "You check your health: you are {{diagnose}}."}])
 
 (def secondary-events 
-  [{:name "You see {{item}} here."}
-   {:name "You see {{item}} here. It looks oddly familiar."}
-   {:name "There is {{item}} here."}
-   {:name "You pick up {{item}}. Was this here before?"}
-   {:name "You pick up {{item}}."}
-   {:name "You drop {{item}}."}
-   {:name "You find {{item}} here but decide to leave it alone."}
-   {:name "{{actor}} is here."}
-   {:name "{{actor}} is here{{actor-action}}"}
-   {:name "You find {{actor}}{{actor-action}}"}
-   {:name "{{person}} {{dialogue}}"}
-   {:name "{{actor}} is here searching for {{item}}."}
-   {:name "{{actor}} is here hoping to run into {{actor}}."}
-   {:name "A hollow voice intones, '{{intonation}}'"}
-   {:name "Something smells {{scent}} here."}
-   {:name "You hear {{noise}} in the distance."}
-   {:name "You hear the sound of {{noise}} nearby."}
-   {:name "The wind howls in the distance."}
-   {:name "It appears abandoned."}
-   {:name "Someone has been here recently."}
-   {:name "There are fresh footprints here."}
-   {:name "It seems that no one has been here for a long time."}
-   {:name "Someone has attached marionnette wires to your hands, feet, and head."}
-   {:name "Someone has left a running bulldozer here."}
-   {:name "The words 'eat dulp' are spray-painted on the wall here.'"}
-   {:name "There has been significant damage from {{disaster}}."}
-   {:name "You see a sign here. On it is written '{{sign}}'"}])
+  [{:text "You see {{item}} here."}
+   {:text "You see {{item}} here. It looks oddly familiar."}
+   {:text "There is {{item}} here."}
+   {:text "You pick up {{item}}. Was this here before?"}
+   {:text "You pick up {{item}}."}
+   {:text "You drop {{item}}."}
+   {:text "You find {{item}} here but decide to leave it alone."}
+   {:text "{{actor}} is here."}
+   {:text "{{actor}} is here{{actor-action}}"}
+   {:text "You find {{actor}}{{actor-action}}"}
+   {:text "{{person}} {{dialogue}}"}
+   {:text "{{person}} {{dialogue}}"}
+   {:text "{{actor}} is here searching for {{item}}."}
+   {:text "{{actor}} is here hoping to run into {{actor}}."}
+   {:text "{{actor}} has been following you."}
+   {:text "A hollow voice intones, '{{intonation}}'"}
+   {:text "A hollow voice intones, '{{intonation}}'"}
+   {:text "Something smells {{scent}} here."}
+   {:text "You hear {{noise}} in the distance."}
+   {:text "You hear the sound of {{noise}} nearby."}
+   {:text "The wind howls in the distance."}
+   {:text "It appears abandoned."}
+   {:text "Someone has been here recently."}
+   {:text "There are fresh footprints here."}
+   {:text "It seems that no one has been here for a long time."}
+   {:text "Someone has attached marionnette wires to your hands, feet, and head."}
+   {:text "Someone has left a running bulldozer here."}
+   {:text "The words 'eat dulp' are spray-painted on the wall here.'"}
+   {:text "There has been significant damage from {{disaster}}."}
+   {:text "You see a sign here. On it is written '{{sign}}'"}])
 
 (def tertiary-events 
-  [{:name "You aren't wearing any clothes."}
-   {:name "Your shoes are on the wrong feet."}
-   {:name "Your tie feels uneven."}
-   {:name "You're not wearing any underwear."}
-   {:name "You do a little jig and then whistle."}
-   {:name "You clap once."}
-   {:name "You have socks on your hands."}
-   {:name "You feel nervous."}
-   {:name "You feel anxious."}
-   {:name "You feel cold."}
-   {:name "You feel warm."}
-   {:name "You blink really slowly."}
-   {:name "You yawn."}
-   {:name "You begin to smile uncontrollably."}
-   {:name "You wish you had your grandpappy's harmonica."}
-   {:name "You are starting to feel sleepy."}
-   {:name "You think about brushing your hair but change your mind."}
-   {:name "You spend a few moments thinking fondly about your teeth."}
-   {:name "You have no idea how these rope burns got on your wrists."}
-   {:name "You feel as if you're being followed."}
-   {:name "A warm breeze blows by."}
-   {:name "A cool breeze blows by."}
-   {:name "It starts to rain."}
-   {:name "A basketball bounces by."}
-   {:name "You spot a balloon stuck in a tree."}
-   {:name "Somehow, you've lost your {{garment}}."}
-   {:name "You hear someone breaking eggs and sobbing nearby."}
-   {:name "You hear someone whisking heavy cream while laughing nearby."}
-   {:name "You are starting to feel hungry."}])
+  [{:text "You aren't wearing any clothes."}
+   {:text "Your shoes are on the wrong feet."}
+   {:text "Your tie feels uneven."}
+   {:text "You're not wearing any underwear."}
+   {:text "You do a little jig and then whistle."}
+   {:text "You clap once."}
+   {:text "You have socks on your hands."}
+   {:text "You feel nervous."}
+   {:text "You feel anxious."}
+   {:text "You feel cold."}
+   {:text "You feel warm."}
+   {:text "You blink really slowly."}
+   {:text "You yawn."}
+   {:text "You begin to smile uncontrollably."}
+   {:text "You wish you had your grandpappy's harmonica."}
+   {:text "You are starting to feel sleepy."}
+   {:text "You think about brushing your hair but change your mind."}
+   {:text "You spend a few moments thinking fondly about your teeth."}
+   {:text "You have no idea how these rope burns got on your wrists."}
+   {:text "You feel as if you're being followed."}
+   {:text "A warm breeze blows by."}
+   {:text "A cool breeze blows by."}
+   {:text "It starts to rain."}
+   {:text "A basketball bounces by."}
+   {:text "You spot a balloon stuck in a tree."}
+   {:text "Somehow, you've lost your {{garment}}."}
+   {:text "You hear someone nearby typing away on a manual typewriter."}
+   {:text "You are starting to feel hungry."}])
 
 (def actor-actions
-  [{:name " looking {{adjective}}."}
-   {:name " dancing furiously."}
-   {:name " shouting at an imaginary helicopter."}
-   {:name " doing the Kenosha Kid."}
-   {:name " thinking {{adverb}} about {{actor}}."}
-   {:name " being chased around by a bee."}
-   {:name " organizing matches."}
-   {:name " juggling some balls."}
-   {:name " dancing in a little circle."}
-   {:name " stooping up and down like a rapper in concert."}
-   {:name " drooling uncontrollably."}
-   {:name ", hiding under a table."}
-   {:name ", hiding under a sofa."}
-   {:name ", munching on {{food}}."}
-   {:name ", pretending to be invisible."}
-   {:name ", having a coughing fit."}
-   {:name ", having a sneezing fit."}
-   {:name ", being menaced by {{animal}}."}
-   {:name ", ready to start some shit."}
-   {:name ", examining {{item}} with great confusion."}])
+  [{:text " looking {{adjective}}."}
+   {:text " dancing furiously."}
+   {:text " shouting at an imaginary helicopter."}
+   {:text " doing the Kenosha Kid."}
+   {:text " thinking {{adverb}} about {{actor}}."}
+   {:text " being chased around by a bee."}
+   {:text " defiantly eating Scrabble tiles, one by one."}
+   {:text " organizing matches."}
+   {:text " juggling some balls."}
+   {:text " dancing in a little circle."}
+   {:text " stooping up and down like a rapper in concert."}
+   {:text " drooling uncontrollably."}
+   {:text ", hiding under a table."}
+   {:text ", hiding under a sofa."}
+   {:text ", hiding in the bushes."}
+   {:text ", munching on {{food}}."}
+   {:text ", pretending to be invisible."}
+   {:text ", having a coughing fit."}
+   {:text ", having a sneezing fit."}
+   {:text ", being menaced by {{animal}}."}
+   {:text ", ready to start some shit."}
+   {:text ", examining {{item}} with great confusion."}])
 
 (def rooms
-  [{:name "tire fire" 
+  [{:text "tire fire" 
+    :type :exterior
     :article "a" 
-    :long_name "{{adverb}} burning tire fire"
-    :preps ["at" "near" "behind" "in front of"] }
+    :preps ["at" "near" "behind" "in front of"]
+    :descriptions ["The air here is black with despair and entropy."
+                   "The sky is darkened by the hellish smoke of the endless burn."
+                   "These tires are no longer the things on your car that make contact with the road."]}
    
-   {:name "dildo bonfire" 
+   {:text "dildo bonfire" 
+    :type :exterior
     :article "a" 
-    :long_name "{{adverb}} burning dildo bonfire"
-    :preps ["at" "near" "behind" "in front of"] }
+    :preps ["at" "near" "behind" "in front of"]
+    :descriptions ["Someone has piled up a collection of pleasuring devices, now ablaze."
+                   "Surely there had to hae been a better way to punish these plastic torpedos."
+                   "The air is dense with the echoes of unreached orgasms and epic frustrations."]}
 
-   {:name "maze of twisty passages, all alike"
+   {:text "maze of twisty passages, all alike"
+    :type :interior
     :article "a"
     :preps ["in"]}
 
-   {:name "Burning Man"
+   {:text "Burning Man"
+    :type :exterior
     :preps ["at"]}
 
-   {:name "Shrim Healing Center"
+   {:text "Shrim Healing Center"
+    :type :exterior
     :article "a"
-    :preps ["in" "at" "in front of" "behind"]}
+    :preps ["in" "at" "in front of" "behind"]
+    :descriptions ["In the store window is an array of old television sets, all blackly inert."
+                   "From somewhere within the building, you hear the sound of repulsed joy."
+                   "The healing center looks like it has been condemned. The door is boarded up."]}
 
-   {:name "quicksand"
-    :long_name "a pool of quicksand"
+   {:text "quicksand"
+    :type :exterior
     :article "some"
-    :preps ["in" "near"]}
+    :preps ["in" "near"]
+    :descriptions ["Briefly, you see a fin rise up and cruise back and forth."
+                   "You see a giant bubble rise up and burst; a fart from the great unknown depths."
+                   "Oddly, this quicksand smells like freshly cooked oatmeal."]}
 
-   {:name "swimming pool" 
+   {:text "swimming pool" 
+    :type :exterior
     :article "a"
-    :preps ["in" "at" "near"]}
+    :preps ["in" "at" "near"]
+    :descriptions ["The surface of the pool is almost entirely still. You are afraid to disturb it."
+                   "The water has turned slightly murky; it does not look inviting."
+                   "An abandoned plastic float with a dinosaur's head floats lonely nearby."]}
 
-   {:name "sauna" 
+   {:text "sauna" 
+    :type :interior
     :article "a" 
-    :preps ["in" "near"]} 
+    :preps ["in" "near"]
+    :descriptions ["The wood paneling sweats sweetly in the oppressive heat."
+                   "Great thunderheads of steam rise up from the rock basin, making it hard to see."
+                   "The room is cold and dark. No one has used this sauna in years."]} 
    
-   {:name "New York Public Library" 
+   {:text "New York Public Library" 
+    :type :exterior
     :article "the"
     :preps ["at" "near" "behind" "in front of"]}
 
-   {:name "ravine" 
+   {:text "ravine" 
+    :type :exterior
     :article "a" 
-    :preps ["in"]}
+    :preps ["in"]
+    :descriptions ["A rocky ravine stretches out in front of you, meandering as if drunk."
+                   "The ravine has been nearly choked to death by an avalanche at the north end."
+                   "The walls of the ravine are treacherous. A trickle of water flows fitfully below."]}
 
-   {:name "ditch" 
+   {:text "ditch" 
+    :type :exterior
     :article "a" 
-    :preps ["in"]}
+    :preps ["in"]
+    :desriptions ["The dusty stench of aged sewage rises up like a stomach-crushing wraith."
+                  "The ditch is completely blocked here by a giant boulder. How did it get here?"
+                  "You are standing straddling a trickle of water running down the middle of the ditch."]}
 
-   {:name "dump" 
+   {:text "dump" 
+    :type :exterior
     :article "the"
-    :preps ["at" "near" "behind" "in front of"]}
+    :preps ["at" "near" "behind" "in front of"]
+    :descriptions ["In the distance, you see women searching through spires of rubbish for treasure."
+                   "You are standing at the crest of hill of trash. It shifts dangerously beneath your feet."
+                   "You are wandering through a labyrinth of stinking garbage."]}
 
-   {:name "dump truck" 
+   {:text "dump truck" 
+    :type :exterior
     :article "a"
-    :preps ["in" "near" "behind" "in front of" "underneath"]}
+    :preps ["in" "near" "behind" "in front of" "underneath"]
+    :descriptions ["It's covered with a patina of black filth and oily washes of grime."
+                   "Fresh off the line, this dump truck is gleaming with clean red paint."
+                   "The engine is rumbling roughly to itself. Both of the doors are locked."]}
 
-   {:name "Starbucks" 
+   {:text "Starbucks" 
+    :type :exterior
     :article "a"
     :preps ["in" "near" "behind" "in front of"]}
 
-   {:name "park restroom stall" 
+   {:text "park restroom stall" 
+    :type :interior
     :article "a"
-    :preps ["in"]}
+    :preps ["in"]
+    :descriptions ["The door has been torn off its hinges and the walls are covered with violent scratches."
+                   "Unfortunately, the toilet recently vomited up at least five gallons of excrement and dreams."
+                   "A lingering scents of lemon and Lysol haunts the air here."
+                   "Someone has scratched your name and phone number above the toilet paper dispenser."]}
 
-   {:name "all-you-can-eat buffet" 
+   {:text "all-you-can-eat buffet" 
+    :type :interior
     :article "an"
-    :preps ["at" "near"]}
+    :preps ["at"]
+    :descriptions ["Before you is a grid of delicious choices, all unhealthy, all alluring. Steam crowds the air."
+                   "You find yourself faced with a dizzying array of gluten-free, vegan choices. You leave immediately."
+                   "It's in complete disarray and hasn't been tended for some time. Most of the trays are empty."]}
 
-   {:name "grotto" 
+   {:text "grotto" 
+    :type :exterior
     :article "a"
-    :preps ["in" "near" "behind" "in front of"]}
+    :preps ["in" "near" "behind" "in front of"]
+    :descriptions ["The ceiling is sparkling with light reflected from the blue-green pool below."
+                   "The water is darkened with greenish-gray algae. There's a foul odor here."
+                   "The pool of water seems unusually deep. A lean, black fish swims in a circle."]}
 
-   {:name "bedroom" 
+   {:text "bedroom" 
+    :type :interior
     :article "your"
-    :preps ["in"]}
+    :preps ["in"]
+    :descriptions ["It hasn't been cleaned in a long time; it's a mess. There's a pleasantly disgusting smell here."
+                   "It's small and lightly furnished. The bed is unmade. Has someone been sleeping here?"
+                   "It's a typical bedroom. There's a pile of laundry in one corner and a computer desk in the other."] }
 
-   {:name "McDonald's" 
+   {:text "McDonald's" 
+    :type :exterior
     :article "a"
     :preps ["at" "in" "near" "behind" "in front of"]}
 
-   {:name "White Castle" 
+   {:text "White Castle" 
+    :type :exterior
     :preps ["at" "in" "near" "behind" "in front of"]}
 
-   {:name "Taco Bell" 
+   {:text "Taco Bell" 
+    :type :exterior
     :article "a"
     :preps ["at" "in" "near" "behind" "in front of"]}
 
-   {:name "dark area" 
+   {:text "dark area" 
+    :type :interior
     :article "a"
-    :preps ["in"]}
+    :preps ["in"]
+    :descriptions ["It is pitch black here. You're likely to be eaten by {{actor}}"]}
 
-   {:name "breezy cave" 
+   {:text "breezy cave" 
+    :type :exterior
     :article "a"
-    :preps ["in" "near" "in front of"]}
+    :preps ["in" "near" "in front of"]
+    :descriptions ["Before you a narrow cave descends into the darkness. There's a constant breeze rising up from the depths."
+                  "A wide and low cave wanders {{direction}}-{{direction}} here."
+                  "Here the cave winds up precariously a natural stair. The cave seems to be breathing rapidly."]}
 
-   {:name "forest" 
+   {:text "forest" 
+    :type :exterior
     :article "a"
-    :preps ["in" "near" "in front of"]}
+    :preps ["in" "near" "in front of"]
+    :descriptions ["It is a dense, dark, and tangled choke of gnarled trees, thorny underbrush, and spiky thickets."
+                   "Shot through with shafts of light, the forest before you looks serene."
+                   "The trees, mostly oak and spruce, sway gently in the occasional breeze."
+                   "Birds are chirping and rodents scamper through the underbrush."]}
 
-   {:name "riverbed" 
+   {:text "riverbed" 
+    :type :exterior
     :article "a"
-    :preps ["in" "near"]}
+    :preps ["in" "near"]
+    :descriptions ["You are standing in a shallow riverbed which has long ago dried up."
+                   "A deep channel runs through the riverbed through which brackish water flows fitfully."
+                   "The riverbed here is mostly dry, the flow of the water almost completely blocked by a beaver dams upstream."]}
    
-   {:name "AT&T Store" 
+   {:text "AT&T Store" 
+    :type :exterior
     :article "an"
     :preps ["at" "in" "near" "behind" "in front of"]}
 
-   {:name "Apple Store" 
+   {:text "Apple Store" 
+    :type :exterior
     :article "an"
     :preps ["at" "in" "near" "behind" "in front of"]}
 
-   {:name "ballpit" 
+   {:text "ballpit" 
+    :type :interior
     :article "a"
-    :preps ["in" "near"]}
+    :preps ["in" "near"]
+    :descriptions ["Oddly, all of the balls here are the same color: orange."
+                   "The ballpit seems unusually deep. You can't feel the bottom."
+                   "You aren't certain but all clues point to there being someone or something in the ballpit."]}
 
-   {:name "airplane" 
+   {:text "airplane" 
+    :type :interior
     :article "an"
     :preps ["in"]}
 
-   {:name "trunk of a car" 
+   {:text "trunk of a car" 
+    :type :interior
     :article "the"
     :preps ["in"]}
 
-   {:name "coffin" 
+   {:text "coffin" 
+    :type :interior
     :article "a"
     :preps ["in" "near" "in front of"]}
 
-   {:name "haunted house" 
+   {:text "haunted house" 
+    :type :exterior
     :article "a"
-    :preps ["at" "in" "near" "behind" "in front of"]}
+    :preps ["at" "in" "near" "behind" "in front of"]
+    :descriptions ["At the top of the hill, the house shrugs under its own entropy."
+                   "An orange light wanders from window to window."
+                   "The antebellum abode, white in its gaudy shame of elegance, has been overgrown by kudzu and rotting vines."]
+    }
 
-   {:name "graveyard" 
+   {:text "graveyard" 
+    :type :exterior
     :article "a"
-    :preps ["at" "in" "near" "behind" "in front of"]}
+    :preps ["at" "in" "near" "behind" "in front of"]
+    :descriptions ["A lazy mist wanders aimlessly amongst the shifted tombstones. A cold light spills down from behind a tree."
+                   "Long ago, the upright tombstones had been replaced by durable plastic bricks to minimize upkeep."
+                   "You see a mausoleum here covered with dark green moss. It looks vaguely familiar."]}
 
-   {:name "playground" 
+   {:text "playground" 
+    :type :exterior
     :article "a"
-    :preps ["in" "near" "behind" "in front of"]}
+    :preps ["in" "near" "behind" "in front of"]
+    :descriptions ["Freshly built, it looks like it has never been used. You see not a scratch or a ding on any of the equipment."
+                   "Most of the equipment is missing or broken. In the distance, swings squeak loneliness in the slight breeze."
+                   "A picnic table is nearby, burdened by a fresh birthday party except no one is around. Someone is turning 6 today... but who?"]}
 
-   {:name "pile of diapers" 
+   {:text "pile of diapers" 
+    :type :exterior
     :article "a"
     :preps ["in" "near" "behind" "in front of" "underneath"] }
 
-   {:name "meeting" 
+   {:text "meeting" 
+    :type :interior
     :article "a"
-    :preps ["in"]}
+    :preps ["in"]
+    :descriptions ["The room is comically overwhelmed by tripod stands crowded with colorful charts."
+                   "The room is empty. The projector is on, showing random photos of cats at play."
+                   "The table is covered, end-to-end, by neat stacks of donuts of various heights."]}
 
-   {:name "Luby's" 
+   {:text "Luby's" 
+    :type :exterior
     :article "a"
     :preps ["at" "in" "near" "behind" "in front of"]}])
 
 (def dialogues
-  [{:name "says, 'I've been waiting for you.'"}
-   {:name "says, 'I can't find my heirloom clown suit."}
-   {:name "says, 'I can't find my {{garment}}.'"}
-   {:name "whispers, 'I've always wanted to be a creepy uncle.'"}
-   {:name "whispers, 'When you hear the circus music, you will know it is time.'"}
-   {:name "asks, 'Have you ever seen an elephant throw up?'"}
-   {:name "asks, 'Why am I holding this pitchfork?'"}
-   {:name "asks, 'How long is a man?'"}
-   {:name "asks, 'Where have you been?'"}
-   {:name "says, 'Took you long enough.'"}
-   {:name "asks, 'Can I have a hug?'"}
-   {:name "says, 'If you asked me to have sex with you, I wouldn't say \"no\"."}
-   {:name "asks, 'Are you following me?'"}
-   {:name "shrieks, 'What's this shit I keep hearing about erections?!'"}
-   {:name "shouts, 'You can't go up against city hall!'"}
-   {:name "mumbles, 'You can't go up against city hall.'"}
-   {:name "mumbles, 'One day I'm going to burn this place to the ground.'"}
-   {:name "asks, 'Does it smell like {{food}} in here to you?'"}])
+  [{:text "chants, 'It's time to pay the price.'"}
+   {:text "says, 'I've been waiting for you.'"}
+   {:text "says, 'I can't find my heirloom clown suit."}
+   {:text "says, 'I can't find my {{garment}}.'"}
+   {:text "says, 'No money? No hamburger!"}
+   {:text "says, 'It's like drinking a meatloaf!'"}
+   {:text "whispers, 'I've always wanted to be a creepy uncle.'"}
+   {:text "whispers, 'When you hear the circus music, you will know it is time.'"}
+   {:text "whispers, 'Shockerrrrrrr...'"}
+   {:text "whispers, 'There squats the brown clown.'"}
+   {:text "asks, 'Have you ever seen an elephant throw up?'"}
+   {:text "asks, 'Why am I holding this pitchfork?'"}
+   {:text "asks, 'How long is a man?'"}
+   {:text "asks, 'Where have you been?'"}
+   {:text "says, 'Took you long enough.'"}
+   {:text "says, 'I'm a brown-belt in speed tai chi."}
+   {:text "asks, 'Can I have a hug?'"}
+   {:text "says, 'If you asked me to have sex with you, I wouldn't say \"no\"."}
+   {:text "asks, 'Are you following me?'"}
+   {:text "shrieks, 'What's this shit I keep hearing about erections?!'"}
+   {:text "shrieks, 'I'm living on the edge!'"}
+   {:text "shrieks, 'Boiled soil!"}
+   {:text "shouts, 'You can't go up against city hall!'"}
+   {:text "shouts, 'You can't fold a cat!'"}
+   {:text "screams, 'They're having a brownout in Lagos!'"}
+   {:text "mumbles, 'You can't go up against city hall.'"}
+   {:text "mumbles, 'One day I'm going to burn this place to the ground.'"}
+   {:text "mumbles, 'Skrillex ruined it all for everybody."}
+   {:text "asks, 'Does it smell like {{food}} in here to you?'"}])
 
 (def intonations
-  [{:name "Toast goes in the toaster."}
-   {:name "For those who can make the journey, there is a place."}
-   {:name "Plough."}
-   {:name "Your pilikia is all pau."}
-   {:name "The owls are not what they seem."}
-   {:name "Puch."}
-   {:name "Guch."}
-   {:name "Porluch."}
-   {:name "What?"}
-   {:name "Sorry but it couldn't be helped."}
-   {:name "Clean up in aisle 8A."}
-   {:name "Rabbit feces."}
-   {:name "Consider deeply the baked ham."}
-   {:name "You can't go up against city hall."}])
+  [{:text "Toast goes in the toaster."}
+   {:text "When you hear the bells, you will know it is time."}
+   {:text "For those who can make the journey, there is a place."}
+   {:text "Plugh."}
+   {:text "Your pilikia is all pau."}
+   {:text "The owls are not what they seem."}
+   {:text "Puch."}
+   {:text "Guch."}
+   {:text "Porluch."}
+   {:text "Sorry but it couldn't be helped."}
+   {:text "Clean up in aisle 8A."}
+   {:text "Rabbit feces."}
+   {:text "Consider deeply the baked ham."}
+   {:text "You can't go up against city hall."}])
 
 (def signs
-  [{:name "Burma shave!"}
-   {:name "For those who can make the journey, there is a place."}
-   {:name "Here lies Hammerdog, a dog made of hammers."}
-   {:name "Here lies Knifekitten, a kitten made of knives."}
-   {:name "When you're not reading this, it's written in Spanish."}
-   {:name "Now you know how hard it is to say 'Irish wristwatch'."}])
+  [{:text "Burma shave!"}
+   {:text "For those who can make the journey, there is a place."}
+   {:text "Here lies Hammerdog, a dog made of hammers."}
+   {:text "Here lies Knifekitten, a kitten made of knives."}
+   {:text "When you're not reading this, it's written in Spanish."}
+   {:text "Now you know how hard it is to say 'Irish wristwatch'."}])
 
 (def books
-  [{:name "the Bible"
+  [{:text "the Bible"
     :article "a copy of"}
 
-   {:name "Catcher in the Rye"
+   {:text "Catcher in the Rye"
     :article "a copy of"}
 
-   {:name "Infinite Jest"
+   {:text "Infinite Jest"
     :article "a copy of"}
 
-   {:name "Gravity's Rainbow"
+   {:text "Gravity's Rainbow"
     :article "a copy of"}
 
-   {:name "A Prayer for Owen Meany"
+   {:text "A Prayer for Owen Meany"
     :article "a copy of"}
 
-   {:name "Hitchhiker's Guide to the Galaxy"
+   {:text "Hitchhiker's Guide to the Galaxy"
     :article "a copy of"}])
 
 (def directions
-  [{:name "north"}
-   {:name "northeast"}
-   {:name "east"}
-   {:name "southeast"}
-   {:name "south"}
-   {:name "southwest"}
-   {:name "west"}
-   {:name "northwest"}])
+  [{:text "north"}
+   {:text "northeast"}
+   {:text "east"}
+   {:text "southeast"}
+   {:text "south"}
+   {:text "southwest"}
+   {:text "west"}
+   {:text "northwest"}])
 
 (def persons
-  [{:name "Samuel L. Jackson"
+  [{:text "Samuel L. Jackson"
     :gender :male}
 
-   {:name "Frances McDormand"
+   {:text "Frances McDormand"
     :gender :female}
 
-   {:name "Whoopi Goldberg"
+   {:text "Whoopi Goldberg"
     :gender :female}
 
-   {:name "Katy Perry"
+   {:text "Katy Perry"
     :gender :female}
 
-   {:name "Lena Horne"
+   {:text "Lena Horne"
     :gender :female}
 
-   {:name "Justin Bieber"
+   {:text "Justin Bieber"
     :gender :male}
 
-   {:name "Neil deGrasse Tyson"
+   {:text "Neil deGrasse Tyson"
     :gender :male}
 
-   {:name "Tim Heidecker"
+   {:text "Tim Heidecker"
     :gender :male}
 
-   {:name "Eric Wareheim"
+   {:text "Eric Wareheim"
     :gender :male}
 
-   {:name "Jim J. Bullock"
+   {:text "Jim J. Bullock"
     :gender :male}
 
-   {:name "Johnny Cash"
+   {:text "Johnny Cash"
     :gender :male}
 
-   {:name "a police officer"}
+   {:text "a police officer"}
 
-   {:name "Alex Trebek"
+   {:text "Alex Trebek"
     :gender :male}
 
-   {:name "Craig Ferguson"
+   {:text "Craig Ferguson"
     :gender :male}
 
-   {:name "Geoff Petersen"
+   {:text "Geoff Petersen"
     :gender :male}
 
-   {:name "Stephen King"
+   {:text "Stephen King"
     :gender :male}
 
-   {:name "Gene Shalit"
+   {:text "Gene Shalit"
     :gender :male}
 
-   {:name "Catmeat Clive"
+   {:text "Catmeat Clive"
     :gender :male}
 
-   {:name "Jorts Morgan"
+   {:text "Jorts Morgan"
     :gender :male}
 
-   {:name "Construction Charles"
+   {:text "Construction Charles"
     :gender :male}
 
-   {:name "Nancy Grace"
+   {:text "Nancy Grace"
     :gender :female}
 
-   {:name "Lindsay Lohan"
+   {:text "Lindsay Lohan"
     :gender :female}
 
-   {:name "Barack Obama"
+   {:text "Barack Obama"
     :gender :male}
 
-   {:name "Abe Vigoda"
+   {:text "Abe Vigoda"
     :gender :male}
 
-   {:name "Louis Gray"
+   {:text "Louis Gray"
     :gender :male}
    
-   {:name "Russell Brand"
+   {:text "Russell Brand"
     :gender :male}
    
-   {:name "Brad Pitt"
+   {:text "Brad Pitt"
     :gender :male}
 
-   {:name "Bill Maher"
+   {:text "Bill Maher"
     :gender :male}
 
-   {:name "Grace Jones"
+   {:text "Grace Jones"
     :gender :female}
 
-   {:name "George W. Bush"
+   {:text "George W. Bush"
     :gender :male}
 
-   {:name "your mom"}
+   {:text "your mom"}
 
-   {:name "a bunch of kids"}
+   {:text "a bunch of kids"}
 
-   {:name "a crowd of Yoga enthusiasts"}
+   {:text "a crowd of Yoga enthusiasts"}
 
-   {:name "George Clooney"
+   {:text "George Clooney"
     :gender :male}
 
-   {:name "James Franco"
+   {:text "James Franco"
     :gender :male}
 
-   {:name "Jonah Hill"
+   {:text "Jonah Hill"
     :gender :male}
 
-   {:name "Scarlet Johansson"
+   {:text "Scarlet Johansson"
     :gender :female}
 
-   {:name "a gas station attendant"}
+   {:text "a gas station attendant"}
 
-   {:name "Lena Dunham"
+   {:text "Lena Dunham"
     :gender :female}
 
-   {:name "Hilary Clinton"
+   {:text "Hilary Clinton"
     :gender :female}
 
-   {:name "Hilary Clinton"
+   {:text "Craig T. Nelson"
+    :gender :male}
+
+   {:text "Thomas Pynchon"
+    :gender :male}
+
+   {:text "@akiva"
+    :gender :male}
+
+   {:text "@vmcny"
+    :gender :male}
+
+   {:text "@wolfpupy"
     :gender :female}
 
-   {:name "Craig T. Nelson"
+   {:text "@KamenPrime"
     :gender :male}
 
-   {:name "Thomas Pynchon"
+   {:text "@neonbubble"
     :gender :male}
 
-   {:name "@akiva"
+   {:text "@micahwittman"
     :gender :male}
 
-   {:name "@vmcny"
+   {:text "@itafroma"
     :gender :male}
 
-   {:name "@wolfpupy"
-    :gender :female}
-
-   {:name "@KamenPrime"
+   {:text "@clive"
     :gender :male}
 
-   {:name "@neonbubble"
-    :gender :male}
-
-   {:name "@micahwittman"
-    :gender :male}
-
-   {:name "@itafroma"
-    :gender :male}
-
-   {:name "@clive"
-    :gender :male}
-
-   {:name "Zombie Carl Sagan"
+   {:text "Zombie Carl Sagan"
     :gender :male}])
 
 (def actions
-  [{:name "attacks"}
-   {:name "ignores"}
-   {:name "tickles"}
-   {:name "stands uncomfortably close to"}
-   {:name "pets"}
-   {:name "flirts with"}])
+  [{:text "attacks"}
+   {:text "ignores"}
+   {:text "tickles"}
+   {:text "stands uncomfortably close to"}
+   {:text "pets"}
+   {:text "examines"}
+   {:text "flirts with"}])
 
 (def adjectives
-  [{:name "worried"}
-   {:name "relieved"}
-   {:name "aroused"}
-   {:name "afraid"}
-   {:name "sleepy"}
-   {:name "hungry"}
-   {:name "thirsty"}
-   {:name "bored"}
-   {:name "hopeful"}
-   {:name "sad"}
-   {:name "happy"}
-   {:name "forlorn"}
-   {:name "angry"}])
+  [{:text "worried"}
+   {:text "relieved"}
+   {:text "aroused"}
+   {:text "afraid"}
+   {:text "sleepy"}
+   {:text "hungry"}
+   {:text "thirsty"}
+   {:text "bored"}
+   {:text "hopeful"}
+   {:text "sad"}
+   {:text "happy"}
+   {:text "forlorn"}
+   {:text "angry"}])
 
 (def adverbs
-  [{:name "carefully"}
-   {:name "wistfully"}
-   {:name "uncertainly"}
-   {:name "willfully"}
-   {:name "lustfully"}
-   {:name "warily"}
-   {:name "bravely"}
-   {:name "sadly"}
-   {:name "happily"}
-   {:name "balefully"}])
+  [{:text "carefully"}
+   {:text "wistfully"}
+   {:text "uncertainly"}
+   {:text "willfully"}
+   {:text "lustfully"}
+   {:text "warily"}
+   {:text "bravely"}
+   {:text "sadly"}
+   {:text "happily"}
+   {:text "balefully"}])
 
 (def scents
-  [{:name "acrid"}
-   {:name "sweet"}
-   {:name "sour"}
-   {:name "rotten"}
-   {:name "nice"}
-   {:name "foul"}
-   {:name "like feet"}
-   {:name "like your grandfather's hair cream"}
-   {:name "bitter"}
-   {:name "smoky"}
-   {:name "gross"}
-   {:name "pleasant"}])
+  [{:text "acrid"}
+   {:text "sweet"}
+   {:text "sour"}
+   {:text "rotten"}
+   {:text "nice"}
+   {:text "foul"}
+   {:text "like feet"}
+   {:text "like your grandfather's hair cream"}
+   {:text "bitter"}
+   {:text "smoky"}
+   {:text "gross"}
+   {:text "pleasant"}])
 
 (def diagnoses
-  [{:name "feeling great"}
-   {:name "lightly wounded"}
-   {:name "moderately wounded"}
-   {:name "heavily wounded"}
-   {:name "near death"}
-   {:name "sleepy"}
-   {:name "drunk"}
-   {:name "stoned"}
-   {:name "confused"}
-   {:name "hungry"}
-   {:name "thirsty"}
-   {:name "temporarily blind"}
-   {:name "temporarily deaf"}
-   {:name "covered in bees"}])
+  [{:text "feeling great"}
+   {:text "feeling gross"}
+   {:text "absurdly sticky"}
+   {:text "lightly wounded"}
+   {:text "moderately wounded"}
+   {:text "heavily wounded"}
+   {:text "near death"}
+   {:text "sleepy"}
+   {:text "drunk"}
+   {:text "stoned"}
+   {:text "confused"}
+   {:text "hungry"}
+   {:text "thirsty"}
+   {:text "temporarily blind"}
+   {:text "temporarily deaf"}
+   {:text "covered in bees"}])
 
 (def foods
-  [{:name "burrito"
+  [{:text "burrito"
     :article "a"}
    
-   {:name "salad"
+   {:text "salad"
     :article "a"}
 
-   {:name "Rice Chex"
+   {:text "Rice Chex"
     :article "a bowl of"}
 
-   {:name "Reese's Peanut Butter Cup"
+   {:text "Reese's Peanut Butter Cup"
     :article "a"}
 
-   {:name "apple pocket"
+   {:text "apple pocket"
     :article "an"}
 
-   {:name "apple cinnamon Pop Tart"
+   {:text "apple cinnamon Pop Tart"
     :article "an"}
 
-   {:name "block of cheese"
+   {:text "block of cheese"
     :article "a"}
 
-   {:name "wedge of cheese with some mold on it"
+   {:text "wedge of cheese with some mold on it"
     :article "a"}
 
-   {:name "slice of fried spam"
+   {:text "slice of fried spam"
     :article "a"}
 
-   {:name "moist churro"
+   {:text "moist churro"
     :article "a"}
 
-   {:name "chocolate bobka"
+   {:text "chocolate bobka"
     :article "a"}
    
-   {:name "Cinnabon"
+   {:text "Cinnabon"
     :article "a"}
    
-   {:name "duck confit"
+   {:text "duck confit"
     :article "some"}
    
-   {:name "pasta"
+   {:text "pasta"
     :article "some"}
    
-   {:name "uncooked rice"
+   {:text "uncooked rice"
     :article "some"}
    
-   {:name "Fritos"
+   {:text "Fritos"
     :article "some"}
    
-   {:name "sushi"
+   {:text "sushi"
     :article "some"}
    
-   {:name "old fruit leather"
+   {:text "old fruit leather"
     :article "some"}])
 
 (def drinks
-  [{:name "cup of steaming gravy"
+  [{:text "cup of steaming gravy"
     :article "a"}
    
-   {:name "milk"
+   {:text "milk"
     :article "a gallon of"}
 
-   {:name "tea"
+   {:text "tea"
     :article "some"}
 
-   {:name "soda"
+   {:text "soda"
     :article "some"}
 
-   {:name "water"
+   {:text "water"
     :article "some"}
 
-   {:name "beef broth"
+   {:text "beef broth"
     :article "some"}
 
-   {:name "scotch"
-    :article "a"}
-   ])
+   {:text "scotch"
+    :article "a"}])
 
 (def garments
-  [{:name "hat"
+  [{:text "hat"
     :article "a"}
    
-   {:name "pants"
+   {:text "pants"
     :article "some"}
    
-   {:name "shirt"
+   {:text "shirt"
     :article "a"}
    
-   {:name "gloves"
+   {:text "gloves"
     :article "some"}
    
-   {:name "shoes"
+   {:text "shoes"
     :article "some"}
    
-   {:name "belt"
+   {:text "belt"
     :article "a"}
    
-   {:name "socks"
+   {:text "socks"
     :article "some"}
    
-   {:name "coat"
+   {:text "coat"
     :article "a"}
    
-   {:name "jacket"
+   {:text "jacket"
     :article "a"}
    
-   {:name "underwear"
+   {:text "underwear"
     :article "some"}
    
-   {:name "dress"
+   {:text "dress"
     :article "a"}
    
-   {:name "skirt"
+   {:text "skirt"
     :article "a"}
    
-   {:name "sweater"
+   {:text "sweater"
     :article "a"}
    
-   {:name "watch"
+   {:text "watch"
     :article "a"}])
 
 (def items
-  [{:name "skinny jeans"
+  [{:text "skinny jeans"
     :article "a pair of"}
    
-   {:name "magic scroll"
+   {:text "magic scroll"
     :article "a"}
 
-   {:name "no tea"}
+   {:text "no tea"}
 
-   {:name "slide rule"
+   {:text "slide rule"
     :article "a"}
 
-   {:name "pinecone"
+   {:text "pinecone"
     :article "a"}
 
-   {:name "sweat-incrusted trilby"
+   {:text "sweat-incrusted trilby"
     :article "a"}
    
-   {:name "vitamins"
+   {:text "vitamins"
+    :plural true
     :article "some"}
    
-   {:name "bucket of corks"
+   {:text "bucket of corks"
     :article "a"}
    
-   {:name "jean shorts"
+   {:text "jean shorts"
     :article "a pair of"}
    
-   {:name "non-Euclidian Lego"
+   {:text "non-Euclidian Lego"
     :article "a"}
    
-   {:name "spray-on bacon"
+   {:text "spray-on bacon"
     :article "a can of"}
    
-   {:name "spackle"
+   {:text "spackle"
     :article "a can of"}
    
-   {:name "unfamiliar briefcase"
+   {:text "unfamiliar briefcase"
     :article "an"}
    
-   {:name "towel from the Las Vegas Radisson"
+   {:text "towel from the Las Vegas Radisson"
     :article "a"}
    
-   {:name "receipt from a bunny outfit rental"
+   {:text "receipt from a bunny outfit rental"
     :article "a"}
    
-   {:name "floppy disk"
+   {:text "floppy disk"
     :article "a"}
    
-   {:name "pencil"
+   {:text "pencil"
     :article "a"}
    
-   {:name "lantern"
+   {:text "lantern"
     :article "a"}
    
-   {:name "elven sword"
+   {:text "elven sword"
     :article "an"}
    
-   {:name "books"
+   {:text "books"
     :article "some"}
    
-   {:name "movie ticket"
+   {:text "movie ticket"
     :article "a"}
    
-   {:name "newspaper"
+   {:text "newspaper"
     :article "a"}
    
-   {:name "kitten"
+   {:text "kitten"
     :article "a"}
    
-   {:name "puppy"
+   {:text "puppy"
     :article "a"}
    
-   {:name "bag of potatoes"
+   {:text "bag of potatoes"
     :article "a"}
    
-   {:name "bag of rice"
+   {:text "bag of rice"
     :article "a"}
    
-   {:name "giant styrofoam peanut"
+   {:text "giant styrofoam peanut"
     :article "a"}
    
-   {:name "phone book"
+   {:text "phone book"
     :article "a"}
    
-   {:name "pyramid of tennis balls"
+   {:text "pyramid of tennis balls"
     :article "a"}
    
-   {:name "deflated soccer ball"
+   {:text "deflated soccer ball"
     :article "a"}
    
-   {:name "fourth grade report card"
+   {:text "fourth grade report card"
     :article "your"}
    
-   {:name "half-eaten sandwich"
+   {:text "half-eaten sandwich"
     :article "a"}
    
-   {:name "signed photograph of Richard Moll"
+   {:text "signed photograph of Richard Moll"
     :article "a"}
    
-   {:name "hipster t-shirt"
+   {:text "hipster t-shirt"
     :article "a"}
    
-   {:name "pile of discarded puppets"
+   {:text "pile of discarded puppets"
     :article "a"}
    
-   {:name "wet Lincoln Log"
+   {:text "wet Lincoln Log"
     :article "a"}
    
-   {:name "VHS tape covered in blood"
+   {:text "VHS tape covered in blood"
     :article "a"}])
 
 (def animals
-  [{:name "kitten"
+  [{:text "kitten"
     :article "a"
     :sounds ["purrs" "meows" "growls"]
     :adjectives ["purring" "meowing" "growling"]}
 
-   {:name "cat"
+   {:text "cat"
     :article "a"
     :sounds ["purrs" "meows" "growls"]
     :adjectives ["purring" "meowing" "growling"]}
 
-   {:name "puppy"
+   {:text "puppy"
     :article "a"
     :sounds ["pants" "barks" "growls" "whimpers"]
     :adjectives ["panting" "barking" "growling" "whimpering"]}
 
-   {:name "duck"
+   {:text "duck"
     :article "a"
     :sounds ["quacks"]
     :adjectives ["quacking"]}
 
-   {:name "marmot"
+   {:text "marmot"
     :article "a"}
 
-   {:name "tiger"
+   {:text "tiger"
     :article "a"
     :sounds ["roars"]
     :adjectives ["roaring"]}
 
-   {:name "hamster"
+   {:text "hamster"
     :article "a"}
 
-   {:name "gerbil"
+   {:text "gerbil"
     :article "a"}
 
-   {:name "hedgehog"
+   {:text "hedgehog"
     :article "a"}])
 
 (def noises 
-  [{:name "foghorn"
+  [{:text "foghorn"
     :article "a"}
 
-   {:name "laughter"
+   {:text "laughter"
     :article "some"}
 
-   {:name "laughing"
+   {:text "laughing"
     :article "somebody"}
 
-   {:name "chuckling"
+   {:text "chuckling"
     :article "someone"}
 
-   {:name "cackling"
+   {:text "cackling"
     :article "someone"}
 
-   {:name "crying"
+   {:text "crying"
     :article "someone"}
 
-   {:name "sobbing"
+   {:text "sobbing"
     :article "someone"}
 
-   {:name "sneeze"
+   {:text "sneeze"
     :article "a"}
 
-   {:name "wolves howling"}
+   {:text "wolves howling"}
 
-   {:name "ice cream truck"
+   {:text "ice cream truck"
     :article "an"}
 
-   {:name "door slam"
+   {:text "door slam"
     :article "a"}
 
-   {:name "sinister chuckle"
+   {:text "sinister chuckle"
     :article "a"}])
 
 (def disasters
-  [{:name "fire"
+  [{:text "fire"
     :article "a"}
 
-   {:name "tornado"
+   {:text "tornado"
     :article "a"}
 
-   {:name "hurricane"
+   {:text "hurricane"
     :article "a"}
 
-   {:name "flood"
+   {:text "flood"
     :article "a"}
 
-   {:name "tsunami"
+   {:text "tsunami"
     :article "a"}
 
-   {:name "landslide"
+   {:text "landslide"
     :article "a"}
 
-   {:name "avalanche"
+   {:text "avalanche"
     :article "an"}
 
-   {:name "radioactive leak"
+   {:text "radioactive leak"
     :article "a"}
 
-   {:name "lava flow"
+   {:text "lava flow"
     :article "a"}
 
-   {:name "sandstorm"
+   {:text "sandstorm"
     :article "a"}
 
-   {:name "lightning strike"
+   {:text "lightning strike"
     :article "a"}
 
-   {:name "plague of locusts"
+   {:text "plague of locusts"
     :article "a"}
 
-   {:name "snowstorm"
+   {:text "snowstorm"
     :article "a"}
 
-   {:name "duststorm"
+   {:text "duststorm"
     :article "a"}])
 
 (def collection-list
