@@ -21,7 +21,7 @@
 (defn- get-collection 
   "Returns a collection from the database."
   [coll]
-  (let [uri (env :mongolab-uri)
+  (let [uri (env :database-uri)
         {:keys [conn db]} (connect-via-uri uri)
         coll (encode-collection-name coll)]
     (with-collection db coll

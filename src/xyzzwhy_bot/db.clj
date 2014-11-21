@@ -11,6 +11,9 @@
 
 (def location-events
   [{:text "You have entered {{room}}."}
+   (:text "You are {{room-with-prep}}.")
+   {:text "The drugs are wearing off. You are {{room-with-prep}}."}
+   {:text "The spell effects are wearing off. You are {{room-with-prep}}."}
    {:text "You are standing {{direction}} of {{room}}."}
    {:text "You stumble into {{room}}."}
    {:text "You come across {{room}}."}
@@ -87,9 +90,11 @@
    {:text "You find {{actor}}{{actor-action}}"}
    {:text "{{person}} {{dialogue}}"}
    {:text "{{person}} {{dialogue}}"}
+   {:text "{{person}} {{dialogue}}"}
+   {:text "{{person}} {{dialogue}}"}
    {:text "{{actor}} is here searching for {{item}}."}
    {:text "{{actor}} is here hoping to run into {{actor}}."}
-   {:text "{{actor}} has been following you."}
+   {:text "{{actor}} follows you."}
    {:text "A hollow voice intones, '{{intonation}}'"}
    {:text "A hollow voice intones, '{{intonation}}'"}
    {:text "Something smells {{scent}} here."}
@@ -264,7 +269,10 @@
    {:text "Starbucks" 
     :type :exterior
     :article "a"
-    :preps ["in" "near" "behind" "in front of"]}
+    :preps ["in" "near" "behind" "in front of"]
+    :descriptions ["It is packed tightly with hipsters."
+                   "There is a surprising lack of hipsters here."
+                   "It reeks of slightly burnt coffee here."]}
 
    {:text "park restroom stall" 
     :type :interior
@@ -379,12 +387,29 @@
    {:text "trunk of a car" 
     :type :interior
     :article "the"
-    :preps ["in"]}
+    :preps ["in"]
+    :descriptions ["It is well upholstered."
+                   "A tire iron is digging into your back a little bit."
+                   "There's a half-eaten bag of Bugles here."
+                   "With all the trash in here, there's barely any room for you."
+                   "It's pitch black. Not enough room for a grue in here, at least."]}
 
    {:text "coffin" 
     :type :interior
     :article "a"
-    :preps ["in" "near" "in front of"]}
+    :preps ["in" "near" "in front of"]
+    :descriptions ["It is well upholstered."
+                   "It smells of cotton candy in here for some reason."
+                   "It smells of Aquanet in here. Makes sense."
+                   "It's pitch black. It probably doesn't matter if there are grues or not."]}
+
+   {:text "hug box"
+    :type interior
+    :article "a"
+    :preps ["in"]
+    :descriptions ["You feel at home again."
+                   "It's very warm in here. Perhaps... too warm."
+                   "It smells of stale urine and lies, lies, lies..."]
 
    {:text "haunted house" 
     :type :exterior
@@ -398,7 +423,12 @@
     :type :exterior
     :article "a"
     :preps ["at" "in" "near" "behind" "in front of"]
-    :descriptions ["A lazy mist wanders aimlessly amongst the shifted tombstones. A cold light spills down from behind a tree."
+    :descriptions ["There is a freshly laid grave nearby."
+                   "There is an open grave nearby. It's empty." 
+                   "There is an open grave nearby. There's a phone book in it." 
+                   "There is an open grave nearby. It's full of {{drink}}."
+                   "There are fresh footprints here."
+                   "A lazy mist wanders aimlessly amongst the shifted tombstones. A cold light spills down from behind a tree."
                    "Long ago, the upright tombstones had been replaced by durable plastic bricks to minimize upkeep."
                    "You see a mausoleum here covered with dark green moss. It looks vaguely familiar."]}
 
@@ -421,7 +451,9 @@
     :preps ["in"]
     :descriptions ["The room is comically overwhelmed by tripod stands crowded with colorful charts."
                    "The room is empty. The projector is on, showing random photos of cats at play."
-                   "The table is covered, end-to-end, by neat stacks of donuts of various heights."]}
+                   "The table is covered, end-to-end, by neat stacks of donuts of various heights."
+                   "The chairs are all occupied by cobweb-encrusted skeletons."
+                   "The room is almost full of balloons."]}
 
    {:text "Luby's" 
     :type :exterior
@@ -443,6 +475,7 @@
    {:text "asks, 'Why am I holding this pitchfork?'"}
    {:text "asks, 'How long is a man?'"}
    {:text "asks, 'Where have you been?'"}
+   {:text "asks, 'Would you like to see my collection of tiny ceiling fans?'"}
    {:text "says, 'Took you long enough.'"}
    {:text "says, 'I'm a brown-belt in speed tai chi."}
    {:text "asks, 'Can I have a hug?'"}
@@ -1127,6 +1160,7 @@
     "diagnoses"
     "foods"
     "drinks"
+    "signs"
     "garments"
     "items"
     "animals"
@@ -1138,7 +1172,7 @@
 (defn clear-db-collection 
   "Empty a collection of its documents."
   [name]
-  (let [{:keys [conn db]} (connect-via-uri (env :mongolab-uri))]
+  (let [{:keys [conn db]} (connect-via-uri (env :database-uri))]
     (remove db (encode-collection-name name))))
 
 (defn clear-db-collections 
@@ -1150,7 +1184,7 @@
 (defn add-db-collection 
   "Adds a collection to the database."
   [name]
-  (let [{:keys [conn db]} (connect-via-uri (env :mongolab-uri))]
+  (let [{:keys [conn db]} (connect-via-uri (env :database-uri))]
     (insert-batch db 
                   (encode-collection-name name) 
                   @(-> name symbol resolve))))
