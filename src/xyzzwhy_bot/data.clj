@@ -66,7 +66,7 @@
   (let [room (get-random-thing "room")
         prep (nth (:preps room) 
                   (rand-int (clojure.core/count (:preps room))))]
-    (assoc room :text (str prep " " (format-word room)))))
+    (assoc room :text (str prep " " (:text room)))))
 
 (defn get-thing 
   "Retrieves a random word from the database. This is called during the interpolation phase."
