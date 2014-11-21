@@ -48,13 +48,13 @@
 
 (defmethod get-random-thing :multi [colls]
   (as-> (get-collections (:colls colls)) c
-         (shuffle-collection c)
-         (nth c (rand-int (clojure.core/count c)))))
+        (shuffle-collection c)
+        (nth c (rand-int (clojure.core/count c)))))
 
 (defmethod get-random-thing :default [coll]
   (as-> (get-collection coll) c
-         (shuffle-collection c)
-         (nth c (rand-int (clojure.core/count c)))))
+        (shuffle-collection c)
+        (nth c (rand-int (clojure.core/count c)))))
 
 (defn- get-room-with-preposition 
   "Some locations don't work logically well with some prepositions. For example, you don't
@@ -66,7 +66,7 @@
   (let [room (get-random-thing "room")
         prep (nth (:preps room) 
                   (rand-int (clojure.core/count (:preps room))))]
-    (assoc room :text (str prep " " (:text room)))))
+    (assoc room :text (str prep " " (format-word room)))))
 
 (defn get-thing 
   "Retrieves a random word from the database. This is called during the interpolation phase."

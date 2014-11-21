@@ -20,11 +20,11 @@
       (if-not match
         tweet
         (let [tweet (as-> tweet t 
-                      (get-thing t (second match))
-                      (assoc t :text (string/replace-first 
-                                      (:text t) 
-                                      (first match) 
-                                      (format-word (:asset t)))))]
+                          (get-thing t (second match))
+                          (assoc t :text (string/replace-first 
+                                         (:text t) 
+                                         (first match) 
+                                         (format-word (:asset t)))))]
               (recur tweet (re-find matcher)))))))
 
 (defn- finalize-tweet
@@ -106,4 +106,4 @@
           (Thread/sleep interval))
         (catch Exception e
           (println "Caught error:" (.getMessage e))))
-    (recur))))
+      (recur))))
