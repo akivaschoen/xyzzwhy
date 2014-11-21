@@ -79,13 +79,12 @@
           (combine-tweets initial-tweet tertiary-tweet))
         initial-tweet)
       (let [follow-up (get-follow-up (:asset initial-tweet) :descriptions)]
-        (println follow-up)
+        (println "("(+ (count (:text initial-tweet)) (count follow-up))") "
+                (:text initial-tweet) follow-up)
         (if (or (empty? follow-up)
-                (> 141 (+ (count (:text initial-tweet)) (count follow-up))))
+                (> (+ (count (:text initial-tweet)) (count follow-up)) 140))
           initial-tweet
-          (do
-            (str (:text initial-tweet) " " follow-up)
-            (assoc initial-tweet :text (str (:text initial-tweet) " " follow-up))))))))
+          (assoc initial-tweet :text (str (:text initial-tweet) " " follow-up)))))))
 
 (defn -main
   "Starts the bot up with an initial tweet and then randomly waits between
@@ -98,9 +97,9 @@
           tweet (-> (create-tweet) finalize-tweet)]
       (try
         (do
-          (post-to-twitter (:text tweet))
+          (post-to-twitter tweet)
 
-          (println "Tweeted:" (:text tweet))
+          (println "Tweeted:" tweet)
           (println "Next tweet in" (int (/ interval 60000)) "minutes")
 
           (Thread/sleep interval))

@@ -192,14 +192,14 @@
     :preps ["in" "at" "in front of" "behind"]
     :descriptions ["In the store window is an array of old television sets, all blackly inert."
                    "From somewhere within the building, you hear the sound of repulsed joy."
-                   "The healing center looks like it has been condemned. The door is boarded up."]}
+                   "The building looks like it has been condemned. The door is boarded up."]}
 
    {:text "quicksand"
     :type :exterior
     :article "some"
     :preps ["in" "near"]
     :descriptions ["Briefly, you see a fin rise up and cruise back and forth."
-                   "You see a giant bubble rise up and burst; a fart from the great unknown depths."
+                   "The surface of the quicksand gently sways, beckoning you..."
                    "Oddly, this quicksand smells like freshly cooked oatmeal."]}
 
    {:text "swimming pool" 
@@ -227,8 +227,8 @@
     :type :exterior
     :article "a" 
     :preps ["in"]
-    :descriptions ["A rocky ravine stretches out in front of you, meandering as if drunk."
-                   "The ravine has been nearly choked to death by an avalanche at the north end."
+    :descriptions ["It stretches out in front of you, meandering as if drunk."
+                   "It has been nearly choked to death by an avalanche at the north end."
                    "The walls of the ravine are treacherous. A trickle of water flows fitfully below."]}
 
    {:text "ditch" 
@@ -236,16 +236,16 @@
     :article "a" 
     :preps ["in"]
     :desriptions ["The dusty stench of aged sewage rises up like a stomach-crushing wraith."
-                  "The ditch is completely blocked here by a giant boulder. How did it get here?"
-                  "You are standing straddling a trickle of water running down the middle of the ditch."]}
+                  "It is completely blocked here by a giant boulder. But how did it get here?"
+                  "A trickle of clear water runs down the middle of it."]}
 
    {:text "dump" 
     :type :exterior
     :article "the"
     :preps ["at" "near" "behind" "in front of"]
     :descriptions ["In the distance, you see women searching through spires of rubbish for treasure."
-                   "You are standing at the crest of hill of trash. It shifts dangerously beneath your feet."
-                   "You are wandering through a labyrinth of stinking garbage."]}
+                   "The hill of trash shifts dangerously beneath your feet."
+                   "The mounds of garbage stretch off into the distant, murky haze."]}
 
    {:text "dump truck" 
     :type :exterior
@@ -266,7 +266,7 @@
     :preps ["in"]
     :descriptions ["The door has been torn off its hinges and the walls are covered with violent scratches."
                    "Unfortunately, the toilet recently vomited up at least five gallons of excrement and dreams."
-                   "A lingering scents of lemon and Lysol haunts the air here."
+                   "A lingering scents of lemon and Lysol haunt the air here."
                    "Someone has scratched your name and phone number above the toilet paper dispenser."]}
 
    {:text "all-you-can-eat buffet" 
@@ -289,7 +289,7 @@
     :type :interior
     :article "your"
     :preps ["in"]
-    :descriptions ["It hasn't been cleaned in a long time; it's a mess. There's a pleasantly disgusting smell here."
+    :descriptions ["It hasn't been cleaned in a long time. There's a pleasantly disgusting smell here."
                    "It's small and lightly furnished. The bed is unmade. Has someone been sleeping here?"
                    "It's a typical bedroom. There's a pile of laundry in one corner and a computer desk in the other."] }
 
@@ -317,9 +317,9 @@
     :type :exterior
     :article "a"
     :preps ["in" "near" "in front of"]
-    :descriptions ["Before you a narrow cave descends into the darkness. There's a constant breeze rising up from the depths."
-                  "A wide and low cave wanders {{direction}}-{{direction}} here."
-                  "Here the cave winds up precariously a natural stair. The cave seems to be breathing rapidly."]}
+    :descriptions ["The rocky throat descends into the darkness. There's a constant breeze rising up from the depths."
+                  "Wide and low, the cave gently slopes {{direction}}-{{direction}} here."
+                  "Here it winds up precariously a natural stair. The cave seems to be breathing rapidly."]}
 
    {:text "forest" 
     :type :exterior
@@ -334,9 +334,9 @@
     :type :exterior
     :article "a"
     :preps ["in" "near"]
-    :descriptions ["You are standing in a shallow riverbed which has long ago dried up."
-                   "A deep channel runs through the riverbed through which brackish water flows fitfully."
-                   "The riverbed here is mostly dry, the flow of the water almost completely blocked by a beaver dams upstream."]}
+    :descriptions ["The shallow expanse is dry as a bone and littered with rocks and branches."
+                   "A deep channel runs centrally through which brackish water flows fitfully."
+                   "It's mostly dry, the flow of the water blocked by a beaver dams upstream."]}
    
    {:text "AT&T Store" 
     :type :exterior
@@ -377,8 +377,7 @@
     :preps ["at" "in" "near" "behind" "in front of"]
     :descriptions ["At the top of the hill, the house shrugs under its own entropy."
                    "An orange light wanders from window to window."
-                   "The antebellum abode, white in its gaudy shame of elegance, has been overgrown by kudzu and rotting vines."]
-    }
+                   "The antebellum abode, white in its gaudy shame of elegance, has been overgrown by kudzu and rotting vines."]}
 
    {:text "graveyard" 
     :type :exterior
@@ -546,9 +545,6 @@
    {:text "Stephen King"
     :gender :male}
 
-   {:text "Gene Shalit"
-    :gender :male}
-
    {:text "Catmeat Clive"
     :gender :male}
 
@@ -576,6 +572,9 @@
    {:text "Russell Brand"
     :gender :male}
    
+   {:text "Gene Shalit"
+    :gender :male}
+
    {:text "Brad Pitt"
     :gender :male}
 
@@ -731,9 +730,6 @@
    {:text "apple pocket"
     :article "an"}
 
-   {:text "apple cinnamon Pop Tart"
-    :article "an"}
-
    {:text "block of cheese"
     :article "a"}
 
@@ -766,6 +762,9 @@
    
    {:text "sushi"
     :article "some"}
+
+   {:text "apple cinnamon Pop Tart"
+    :article "an"}
    
    {:text "old fruit leather"
     :article "some"}])
