@@ -47,14 +47,14 @@
 (defmulti get-random-thing :type)
 
 (defmethod get-random-thing :multi [colls]
-  (-> (get-collections (:colls colls))
-      shuffle-collection
-      first))
+  (as-> (get-collections (:colls colls)) c
+         (shuffle-collection c)
+         (nth c (rand-int (clojure.core/count c)))))
 
 (defmethod get-random-thing :default [coll]
-  (-> (get-collection coll)
-      shuffle-collection
-      first))
+  (as-> (get-collection coll) c
+         (shuffle-collection c)
+         (nth c (rand-int (clojure.core/count c)))))
 
 (defn- get-room-with-preposition 
   "Some locations don't work logically well with some prepositions. For example, you don't

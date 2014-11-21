@@ -73,14 +73,14 @@
               (combine-tweets initial-tweet tertiary-tweet)))
           (combine-tweets initial-tweet secondary-tweet))))
     (if (= (:event-type initial-tweet) :action-event)
-      (if (< (rand-int 100) 25)
+      (if (< (rand-int 100) 25) ; A 25% chance to add a tertiary event to an action event
         (let [tertiary-tweet (-> (initialize-event :tertiary-event)
                                  interpolate-text)]
           (combine-tweets initial-tweet tertiary-tweet))
         initial-tweet)
+      ; The beginnings of the follow-up system where things, such as rooms currently, can
+      ; have specialized texts which can be appended.
       (let [follow-up (get-follow-up (:asset initial-tweet) :descriptions)]
-        (println "("(+ (count (:text initial-tweet)) (count follow-up))") "
-                (:text initial-tweet) follow-up)
         (if (or (empty? follow-up)
                 (> (+ (count (:text initial-tweet)) (count follow-up)) 140))
           initial-tweet
@@ -93,12 +93,13 @@
   ; This is all extremely ugly but is good enough for now.
   (println "xyzzwhy is ready for some magical adventures!")
   (loop []
-    (let [interval (+ 300000 (rand-int 1500000))
+    (let [interval (+ 300000 (rand-int 1500000)) ; Tweet once every 5-30 minutes
           tweet (-> (create-tweet) finalize-tweet)]
       (try
         (do
           (post-to-twitter tweet)
 
+          ; Logging
           (println "Tweeted:" tweet)
           (println "Next tweet in" (int (/ interval 60000)) "minutes")
 

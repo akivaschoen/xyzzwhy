@@ -165,7 +165,9 @@
     :type :exterior
     :article "a" 
     :preps ["at" "near" "behind" "in front of"]
-    :descriptions ["The air here is black with despair and entropy."
+    :descriptions ["It is warm and welcoming."
+                   "Someone had been roasting marshmallows here."
+                   "The air here is black with despair and entropy."
                    "The sky is darkened by the hellish smoke of the endless burn."
                    "These tires are no longer the things on your car that make contact with the road."]}
    
@@ -173,7 +175,9 @@
     :type :exterior
     :article "a" 
     :preps ["at" "near" "behind" "in front of"]
-    :descriptions ["Someone has piled up a collection of pleasuring devices, now ablaze."
+    :descriptions ["You look closely but don't recognize any of them."
+                   "The plastic hisses and creaks in the blaze."
+                   "Someone has piled up a collection of pleasuring devices, now ablaze."
                    "Surely there had to hae been a better way to punish these plastic torpedos."
                    "The air is dense with the echoes of unreached orgasms and epic frustrations."]}
 
@@ -191,6 +195,7 @@
     :article "a"
     :preps ["in" "at" "in front of" "behind"]
     :descriptions ["In the store window is an array of old television sets, all blackly inert."
+                   "Someone has spray-painted 'I crave brown baths' here."
                    "From somewhere within the building, you hear the sound of repulsed joy."
                    "The building looks like it has been condemned. The door is boarded up."]}
 
@@ -208,6 +213,7 @@
     :preps ["in" "at" "near"]
     :descriptions ["The surface of the pool is almost entirely still. You are afraid to disturb it."
                    "The water has turned slightly murky; it does not look inviting."
+                   "The surface of the pool is littered with leaves."
                    "An abandoned plastic float with a dinosaur's head floats lonely nearby."]}
 
    {:text "sauna" 
@@ -266,6 +272,8 @@
     :preps ["in"]
     :descriptions ["The door has been torn off its hinges and the walls are covered with violent scratches."
                    "Unfortunately, the toilet recently vomited up at least five gallons of excrement and dreams."
+                   "You feel a sense of deja vu."
+                   "You whisper to yourself, 'Home again, home again, jiggity jig.'"
                    "A lingering scents of lemon and Lysol haunt the air here."
                    "Someone has scratched your name and phone number above the toilet paper dispenser."]}
 
@@ -273,9 +281,13 @@
     :type :interior
     :article "an"
     :preps ["at"]
-    :descriptions ["Before you is a grid of delicious choices, all unhealthy, all alluring. Steam crowds the air."
-                   "You find yourself faced with a dizzying array of gluten-free, vegan choices. You leave immediately."
-                   "It's in complete disarray and hasn't been tended for some time. Most of the trays are empty."]}
+    :descriptions ["It is a grid of delicious choices, all unhealthy, all alluring."
+                   "Steam crowds the air."
+                   "There is a dizzying array of gluten-free, vegan choices. You leave immediately."
+                   "It looks abandoned."
+                   "It smells of freedom and gluttony."
+                   "All of the food has been replaced with wax replicas."
+                   "It's in complete disarray and hasn't been tended for some time."]}
 
    {:text "grotto" 
     :type :exterior
@@ -291,6 +303,9 @@
     :preps ["in"]
     :descriptions ["It hasn't been cleaned in a long time. There's a pleasantly disgusting smell here."
                    "It's small and lightly furnished. The bed is unmade. Has someone been sleeping here?"
+                   "There is nothing special about it."
+                   "You notice an unusual stain in the carpet."
+                   "You notice an unusual stain in the carpet next to a usual stain. So it goes."
                    "It's a typical bedroom. There's a pile of laundry in one corner and a computer desk in the other."] }
 
    {:text "McDonald's" 
@@ -317,9 +332,9 @@
     :type :exterior
     :article "a"
     :preps ["in" "near" "in front of"]
-    :descriptions ["The rocky throat descends into the darkness. There's a constant breeze rising up from the depths."
+    :descriptions ["There's a constant breeze rising up from the depths."
                   "Wide and low, the cave gently slopes {{direction}}-{{direction}} here."
-                  "Here it winds up precariously a natural stair. The cave seems to be breathing rapidly."]}
+                  "Here it winds up precariously. The cave seems to be breathing rapidly."]}
 
    {:text "forest" 
     :type :exterior
@@ -335,7 +350,7 @@
     :article "a"
     :preps ["in" "near"]
     :descriptions ["The shallow expanse is dry as a bone and littered with rocks and branches."
-                   "A deep channel runs centrally through which brackish water flows fitfully."
+                   "Here is a shallow channel through which brackish water flows fitfully."
                    "It's mostly dry, the flow of the water blocked by a beaver dams upstream."]}
    
    {:text "AT&T Store" 
@@ -499,6 +514,9 @@
 
 (def persons
   [{:text "Samuel L. Jackson"
+    :gender :male}
+
+   {:text "Chris Makepeace"
     :gender :male}
 
    {:text "Frances McDormand"
