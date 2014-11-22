@@ -11,7 +11,7 @@
 
 (def location-events
   [{:text "You have entered {{room}}."}
-   (:text "You are {{room-with-prep}}.")
+   {:text "You are {{room-with-prep}}."}
    {:text "The drugs are wearing off. You are {{room-with-prep}}."}
    {:text "The spell effects are wearing off. You are {{room-with-prep}}."}
    {:text "You are standing {{direction}} of {{room}}."}
@@ -403,13 +403,13 @@
                    "It smells of Aquanet in here. Makes sense."
                    "It's pitch black. It probably doesn't matter if there are grues or not."]}
 
-   {:text "hug box"
-    :type interior
+   {:text "hugbox"
+    :type :interior
     :article "a"
     :preps ["in"]
     :descriptions ["You feel at home again."
                    "It's very warm in here. Perhaps... too warm."
-                   "It smells of stale urine and lies, lies, lies..."]
+                   "It smells of stale urine and lies, lies, lies..."]}
 
    {:text "haunted house" 
     :type :exterior
@@ -443,7 +443,7 @@
    {:text "pile of diapers" 
     :type :exterior
     :article "a"
-    :preps ["in" "near" "behind" "in front of" "underneath"] }
+    :preps ["in" "near" "behind" "in front of" "underneath"]}
 
    {:text "meeting" 
     :type :interior
@@ -489,7 +489,7 @@
    {:text "screams, 'They're having a brownout in Lagos!'"}
    {:text "mumbles, 'You can't go up against city hall.'"}
    {:text "mumbles, 'One day I'm going to burn this place to the ground.'"}
-   {:text "mumbles, 'Skrillex ruined it all for everybody."}
+   {:text "mumbles, 'Skrillex ruined it all for everybody.'"}
    {:text "asks, 'Does it smell like {{food}} in here to you?'"}])
 
 (def intonations
@@ -1114,58 +1114,32 @@
    {:text "duststorm"
     :article "a"}])
 
-(def collection-list
-  (list
-    "event-types"
-    "location-events"
-    "secondary-events"
-    "tertiary-events"
-    "actor-actions"
-    "rooms"
-    "dialogues"
-    "signs"
-    "books"
-    "directions"
-    "persons"
-    "actions"
-    "adjectives"
-    "adverbs"
-    "scents"
-    "diagnoses"
-    "foods"
-    "drinks"
-    "garments"
-    "items"
-    "animals"
-    "noises"
-    "disasters"))
-
 (def collections
   ["event-types"
    "location-events"
-    "action-events"
-    "secondary-events"
-    "tertiary-events"
-    "actor-actions"
-    "rooms"
-    "dialogues"
-    "intonations"
-    "books"
-    "directions"
-    "persons"
-    "actions"
-    "adjectives"
-    "adverbs"
-    "scents"
-    "diagnoses"
-    "foods"
-    "drinks"
-    "signs"
-    "garments"
-    "items"
-    "animals"
-    "noises"
-    "disasters"])
+   "action-events"
+   "secondary-events"
+   "tertiary-events"
+   "actor-actions"
+   "rooms"
+   "dialogues"
+   "intonations"
+   "books"
+   "directions"
+   "persons"
+   "actions"
+   "adjectives"
+   "adverbs"
+   "scents"
+   "diagnoses"
+   "foods"
+   "drinks"
+   "signs"
+   "garments"
+   "items"
+   "animals"
+   "noises"
+   "disasters"])
 
 (defn- encode-collection-name [s] (string/replace s #"-" "_"))
 
