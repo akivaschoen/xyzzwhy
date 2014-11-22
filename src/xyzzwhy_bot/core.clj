@@ -7,6 +7,7 @@
   (:gen-class))
 
 (defn- combine-tweets
+  "Merges the text values of two tweets."
   [first-tweet second-tweet]
   (assoc first-tweet :text (str (:text first-tweet) " " (:text second-tweet))))
 
@@ -41,39 +42,48 @@
                                                 (string/capitalize (nth %1 2)))))))
 
 (defn- get-follow-up
+  "Retrieves follow-up data from a thing. It currently returns a string but it should
+  return a thing. 
+  
+  Currently, only rooms have follow-up data: descriptions."
   [thing k]
   (nth (k thing) (rand-int (count (k thing)))))
 
+; This is gross, ugly, embarassing, non-standard, brutally dumb, etc. But it gets 
+; the job done for now. Throw some shade but it will be refactored very soon now.
 (defn create-tweet
+  "Creates a tweet by combining up to three events in various combinations and/or any
+  follow-ups."
   []
   (let [initial-tweet (-> (initialize-tweet)
                           interpolate-text)]
     (if (= (:event-type initial-tweet) :location-event) 
+      ; 75% chance of a location event having a secondary event
       (if (<= (rand-int 100) 75)
         (let [secondary-tweet (-> (initialize-event :secondary-event) interpolate-text)]
+          ; 50% chance of that secondary event having a tertiary event
           (if (<= (rand-int 100) 50)
             (let [tertiary-tweet (-> (initialize-event :tertiary-event) interpolate-text)]
+              ; 80% of merging all three events into one
+              ; 20% of the teriary event replacing the secondary event
               (if (<= (rand-int 100) 80)
-                (do (println "sec+tert")
-                    (let [output (combine-tweets initial-tweet secondary-tweet)]
-                      (combine-tweets output tertiary-tweet)))
-                (do (println "tert")
-                (combine-tweets initial-tweet tertiary-tweet))))
-            (do (println "sec")
-              (combine-tweets initial-tweet secondary-tweet))))
+                (let [output (combine-tweets initial-tweet secondary-tweet)]
+                  (combine-tweets output tertiary-tweet))
+                  (combine-tweets initial-tweet tertiary-tweet)))
+            ; If no tertiary event, just use the secondary
+            (combine-tweets initial-tweet secondary-tweet)))
+        ; The beginnings of the follow-up system. Hooray and stuff.
         (let [follow-up (get-follow-up (:asset initial-tweet) :descriptions)]
           (if (or (empty? follow-up)
                   (> (+ (count (:text initial-tweet)) (count follow-up) 140)))
-            (do (println "init-follow")
-            initial-tweet)
-            (do (println "init+follow")
-            (assoc initial-tweet :text (str (:text initial-tweet) " " follow-up))))))
+            initial-tweet
+            (assoc initial-tweet :text (str (:text initial-tweet) " " follow-up)))))
+      ; 25% chance of an action event having its own teriary event
       (if (<= (rand-int 100) 25)
         (let [tertiary-tweet (-> (initialize-event :tertiary-event)
                                  interpolate-text)]
-          (do (println "init+tert")
-          (combine-tweets initial-tweet tertiary-tweet)))
-        (do (println "init") initial-tweet)))))
+          (combine-tweets initial-tweet tertiary-tweet))
+        initial-tweet))))
 
 (defn -main
   "Starts the bot up with an initial tweet and then randomly waits between
