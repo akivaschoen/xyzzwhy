@@ -32,59 +32,48 @@
   throughout the final tweet and, if the tweet starts with an @mention, puts a dot up 
   front so everyone can see it."
   [tweet]
-  (let [tweet (-> tweet interpolate-text)])
-  (-> (:text tweet)
-      smarten
-      (string/replace #"^(@\w+)"        ".$1")
-      (string/replace #"^[a-z]+"        #(string/capitalize %1))
-      (string/replace #"(\.\s)([a-z]+)" #(str (second %1)
-                                              (string/capitalize (nth %1 2))))))
+  (let [tweet (-> tweet interpolate-text)]
+    (-> (:text tweet)
+        smarten
+        (string/replace #"^(@\w+)"        ".$1")
+        (string/replace #"^[a-z]+"        #(string/capitalize %1))
+        (string/replace #"(\.\s)([a-z]+)" #(str (second %1)
+                                                (string/capitalize (nth %1 2)))))))
 
 (defn- get-follow-up
   [thing k]
   (nth (k thing) (rand-int (count (k thing)))))
 
-; Yes. The size of this thing is ridiculous. It's highly non-idiomatic. Refactoring
-; this baby is going to be fun. And I mean that with zero sarcasm or irony.
-(defn create-tweet 
-  "Construct the tweet segment by segment."
+(defn create-tweet
   []
   (let [initial-tweet (-> (initialize-tweet)
                           interpolate-text)]
-
-    ; Here we want to randomize how the events get put together.
-    ; There's a 75% chance that a location event will have a secondary event.
-    (if (and (= (:event-type initial-tweet) :location-event)
-             (< (rand-int 100) 75))
-
-      (let [secondary-tweet (-> (initialize-event :secondary-event) 
-                                interpolate-text)]
-
-        ; if there is a secondary event, there's a 50% chance that there
-        ; will be a tertiary event.
-        (if (< (rand-int 100) 50)
-          (let [tertiary-tweet (-> (initialize-event :tertiary-event) 
-                                   interpolate-text)]
-
-            ; And if there is a tertiary event, there's a 20% chance it
-            ; will replace the secondary segment rather than append it.
-            (if (< (rand-int 100) 80)
-              (combine-tweets (combine-tweets initial-tweet secondary-tweet) tertiary-tweet)
-              (combine-tweets initial-tweet tertiary-tweet)))
-          (combine-tweets initial-tweet secondary-tweet))))
-    (if (= (:event-type initial-tweet) :action-event)
-      (if (< (rand-int 100) 25) ; A 25% chance to add a tertiary event to an action event
+    (if (= (:event-type initial-tweet) :location-event) 
+      (if (<= (rand-int 100) 75)
+        (let [secondary-tweet (-> (initialize-event :secondary-event) interpolate-text)]
+          (if (<= (rand-int 100) 50)
+            (let [tertiary-tweet (-> (initialize-event :tertiary-event) interpolate-text)]
+              (if (<= (rand-int 100) 80)
+                (do (println "sec+tert")
+                    (let [output (combine-tweets initial-tweet secondary-tweet)]
+                      (combine-tweets output tertiary-tweet)))
+                (do (println "tert")
+                (combine-tweets initial-tweet tertiary-tweet))))
+            (do (println "sec")
+              (combine-tweets initial-tweet secondary-tweet))))
+        (let [follow-up (get-follow-up (:asset initial-tweet) :descriptions)]
+          (if (or (empty? follow-up)
+                  (> (+ (count (:text initial-tweet)) (count follow-up) 140)))
+            (do (println "init-follow")
+            initial-tweet)
+            (do (println "init+follow")
+            (assoc initial-tweet :text (str (:text initial-tweet) " " follow-up))))))
+      (if (<= (rand-int 100) 25)
         (let [tertiary-tweet (-> (initialize-event :tertiary-event)
                                  interpolate-text)]
-          (combine-tweets initial-tweet tertiary-tweet))
-        initial-tweet)
-      ; The beginnings of the follow-up system where things, such as rooms currently, can
-      ; have specialized texts which can be appended.
-      (let [follow-up (get-follow-up (:asset initial-tweet) :descriptions)]
-        (if (or (empty? follow-up)
-                (> (+ (count (:text initial-tweet)) (count follow-up)) 140))
-          initial-tweet
-          (assoc initial-tweet :text (str (:text initial-tweet) " " follow-up)))))))
+          (do (println "init+tert")
+          (combine-tweets initial-tweet tertiary-tweet)))
+        (do (println "init") initial-tweet)))))
 
 (defn -main
   "Starts the bot up with an initial tweet and then randomly waits between
