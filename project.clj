@@ -1,4 +1,4 @@
-(defproject xyzzwhy-bot "0.5.1-SNAPSHOT"
+(defproject xyzzwhy-bot "0.6.0-SNAPSHOT"
   :description "A Twitter bot who takes you on surreal adventures."
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"

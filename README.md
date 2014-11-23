@@ -13,8 +13,6 @@ from xyzzwhy-bot.db (and possibly an authorized Twitter account if you want to a
 Very basic and completely random for now. Future plans (roughly in order):
 
 - Refactor the data functions to allow xyzzwhy-bot to get its data from xyzzwhy-bot.db rather than assuming a populated database.
-- Swap out braces for Clojure data structures that can be interpreted directly.
-- Increase flexibility of segments by adding keyword arguments.
 - Add more depth and branches. Things should be able to have potential follow-up segments.
 - Maintain xyzzwhy's state: health, inventory, and so forth.
 - Create consistency in the adventure.

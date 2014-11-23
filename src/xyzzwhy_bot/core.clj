@@ -9,24 +9,25 @@
 (defn- combine-tweets
   "Merges the text values of two tweets."
   [first-tweet second-tweet]
-  (assoc first-tweet :text (str (:text first-tweet) " " (:text second-tweet))))
+  (as-> (assoc first-tweet :asset second-tweet) t
+        (assoc t :text (str (:text t) " " (read-asset t)))))
 
 (defn- interpolate-text 
-  "Searches text for {{word}} and {{word-modifier}} combinations and replaces them
-  with appropriate things from the database. The 'word' represents a class of possible
-  responses such as {{person}} and {{garment}}."
+  "Searches text for placeholder maps replaces them with appropriate things from the 
+  database." 
   [tweet]
-  (let [matcher (re-matcher #"\{\{(\w+(\-\w+)*)\}\}" (:text tweet))]
+  (let [matcher (re-matcher #"\{(?::\w+|\s|:\w+-\w+|\[:.+])+\}" (:text tweet))]
     (loop [tweet tweet match (re-find matcher)]
       (if-not match
         tweet
         (let [tweet (as-> tweet t 
-                          (get-thing t (second match))
-                          (assoc t :text (string/replace-first 
-                                         (:text t) 
-                                         (first match) 
-                                         (format-word (:asset t)))))]
-              (recur tweet (re-find matcher)))))))
+                          (assoc t :asset (get-thing (read-string match)))
+                          (assoc-in t [:asset :config] (:config (read-string match)))
+                          (assoc t :text (string/trim (string/replace-first 
+                                           (:text t) 
+                                           match
+                                           (string/trim (format-text (:asset t)))))))] 
+          (recur tweet (re-find matcher)))))))
 
 (defn- finalize-tweet
   "Verifies there are no remaining uninterpolated words, ensures proper capitalization 
@@ -55,15 +56,15 @@
   "Creates a tweet by combining up to three events in various combinations and/or any
   follow-ups."
   []
-  (let [initial-tweet (-> (initialize-tweet)
+  (let [initial-tweet (-> (initialize-tweet :event-type)
                           interpolate-text)]
     (if (= (:event-type initial-tweet) :location-event) 
       ; 75% chance of a location event having a secondary event
       (if (<= (rand-int 100) 75)
-        (let [secondary-tweet (-> (initialize-event :secondary-event) interpolate-text)]
+        (let [secondary-tweet (-> (initialize-tweet :secondary-event) interpolate-text)]
           ; 50% chance of that secondary event having a tertiary event
           (if (<= (rand-int 100) 50)
-            (let [tertiary-tweet (-> (initialize-event :tertiary-event) interpolate-text)]
+            (let [tertiary-tweet (-> (initialize-tweet :tertiary-event) interpolate-text)]
               ; 80% of merging all three events into one
               ; 20% of the teriary event replacing the secondary event
               (if (<= (rand-int 100) 80)
@@ -80,7 +81,7 @@
             (assoc initial-tweet :text (str (:text initial-tweet) " " follow-up)))))
       ; 25% chance of an action event having its own teriary event
       (if (<= (rand-int 100) 25)
-        (let [tertiary-tweet (-> (initialize-event :tertiary-event)
+        (let [tertiary-tweet (-> (initialize-tweet :tertiary-event)
                                  interpolate-text)]
           (combine-tweets initial-tweet tertiary-tweet))
         initial-tweet))))
@@ -94,6 +95,7 @@
   (loop []
     (let [interval (+ 300000 (rand-int 1500000)) ; Tweet once every 5-30 minutes
           tweet (-> (create-tweet) finalize-tweet)]
+
       (try
         (do
           (post-to-twitter tweet)

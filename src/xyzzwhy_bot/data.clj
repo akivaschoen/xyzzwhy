@@ -8,52 +8,33 @@
             [monger.collection :refer [count]])
   (:import (java.util ArrayList Collections)))
 
-(defn- encode-collection-name 
-  "Makes the collection name compatible with MongoDB. All placeholders are singular while
-  the collections are pluralized so this is handled along with converting dashes to
-  underscores."
-  [s]
-  (-> s
+(def ^:private db (:db (connect-via-uri (env :database-uri))))
+
+(defn- encode-classname 
+  "Takes a placeholder's keyword classname and makes it compatible with MongoDB's 
+  collection naming scheme."
+  [classname]
+  (-> classname 
       name
       (string/replace #"-" "_")
       (str "s")))
 
-(defn- get-collection 
-  "Returns a collection from the database."
-  [coll]
-  (let [uri (env :database-uri)
-        {:keys [conn db]} (connect-via-uri uri)
-        coll (encode-collection-name coll)]
-    (with-collection db coll
-      (find {}))))
+(defn- get-classes 
+  "Returns a merged sequence of classes from the database."
+  [classes]
+  (letfn [(get-class [c] 
+            (with-collection db (encode-classname c)
+              (find {})))]
+    (loop [classes classes result {}]
+      (if (empty? classes)
+        result
+        (recur (rest classes)
+               (concat result (get-class (first classes))))))))
 
-(defn- get-collections 
-  "Returns a sequence of collections from the database."
-  [colls]
-  (loop [coll colls result {}]
-    (if (empty? coll)
-      result
-      (recur (rest coll)
-             (concat result (get-collection (first coll)))))))
-
-(defn- shuffle-collection
-  "Since the built in (rand) function isn't nearly random enough, go ahead and shuffle the
-  collection before selecting a random thing from it."
-  [coll]
-  (let [array (ArrayList. coll)]
-    (Collections/shuffle array)
-    (vec array)))
-
-(defmulti get-random-thing :type)
-
-(defmethod get-random-thing :multi [colls]
-  (as-> (get-collections (:colls colls)) c
-        (shuffle-collection c)
-        (nth c (rand-int (clojure.core/count c)))))
-
-(defmethod get-random-thing :default [coll]
-  (as-> (get-collection coll) c
-        (shuffle-collection c)
+(defn- get-random-thing
+  [classes]
+  (as-> (get-classes classes) c
+        (shuffle c)
         (nth c (rand-int (clojure.core/count c)))))
 
 (defn- get-room-with-preposition 
@@ -66,30 +47,31 @@
   (let [room (get-random-thing "room")
         prep (nth (:preps room) 
                   (rand-int (clojure.core/count (:preps room))))]
-    (assoc room :text (str prep " " (format-word room)))))
+    (assoc room :text (str prep " " (format-text room)))))
 
 (defn get-thing 
   "Retrieves a random word from the database. This is called during the interpolation phase."
-  [tweet coll]
-  (condp = coll
-    ; Handle special situations. The first two aggregate collections which qualify for the
-    ; asking placeholder. The third handles the situation when a segment requires a room
-    ; specify how it can be used (can you be in it? can you be near it? under it? etc.))
-    "actor" (assoc tweet :asset (get-random-thing 
-                                  {:type :multi :colls [:person :animal]}))
-    "item" (assoc tweet :asset (get-random-thing 
-                                 {:type :multi :colls [:item :food :book :garment :drink]}))
-    "room-with-prep" (assoc tweet :asset (get-room-with-preposition))
-    (assoc tweet :asset (get-random-thing coll))))
-
-(defn initialize-event
-  [event-type]
-  (as-> {:text "" :asset (get-random-thing event-type)} t 
-                         (assoc t :text (read-asset t))))
+  [placeholder]
+  (let [class (:class placeholder)]
+  (condp = class
+    :actor (get-random-thing [:person :animal])
+    :item (get-random-thing [:item :food :book :garment :drink])
+    (get-random-thing [class]))))
 
 (defn initialize-tweet
-  []
-  (as-> {:text "" :asset (get-random-thing :event-type)} t 
-                         (assoc t :event-type (keyword (read-asset t)))
-                         (get-thing t (read-asset t))
-                         (assoc t :text (read-asset t))))
+  "Creates a new tweet object.
+  
+  If the type is of :event-type, caches that information for later use."
+  [type]
+  (let [tweet {:asset (get-random-thing [type])}]
+    (if (= type :event-type)
+      ; This is why I need better comments: this code is as clear as things which are
+      ; not very clear at all in any way, form, or fashion whatsoever and then some.
+      (as-> tweet t
+            (assoc t :event-type (keyword (read-asset t)))
+            (assoc t :asset (get-random-thing (-> t
+                                                  read-asset
+                                                  keyword
+                                                  vector))) 
+            (assoc t :text (read-asset t)))
+      (assoc tweet :text (read-asset tweet)))))
