@@ -63,7 +63,7 @@
       (if (<= (rand-int 100) 75)
         (let [secondary-tweet (-> (initialize-tweet :secondary-event) interpolate-text)]
           ; 50% chance of that secondary event having a tertiary event
-          (if (<= (rand-int 100) 50)
+          (if (<= (rand-int 100) 35)
             (let [tertiary-tweet (-> (initialize-tweet :tertiary-event) interpolate-text)]
               ; 80% of merging all three events into one
               ; 20% of the teriary event replacing the secondary event
@@ -76,7 +76,7 @@
         ; The beginnings of the follow-up system. Hooray and stuff.
         (let [follow-up (get-follow-up (:asset initial-tweet) :descriptions)]
           (if (or (empty? follow-up)
-                  (> (+ (count (:text initial-tweet)) (count follow-up) 140)))
+                  (> (+ (count (:text initial-tweet)) (count follow-up)) 140))
             initial-tweet
             (assoc initial-tweet :text (str (:text initial-tweet) " " follow-up)))))
       ; 25% chance of an action event having its own teriary event
