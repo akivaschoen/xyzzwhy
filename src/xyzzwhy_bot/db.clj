@@ -6,8 +6,6 @@
             [monger.core :refer [connect-via-uri]]
             [monger.collection :refer [insert-batch remove]]))
 
-(def ^:private ^:private db (:db (connect-via-uri (env :database-uri))))
-
 (def event-types
   [{:text :location-event}
    {:text :action-event}])
@@ -1240,7 +1238,8 @@
 (defn clear-db-collection 
   "Empty a collection of its documents."
   [name]
-  (remove db (encode-collection-name name)))
+  (let [db (:db (connect-via-uri (env :database-uri)))]
+    (remove db (encode-collection-name name))))
 
 (defn clear-db-collections 
   "Empty a set of collections of their documents."
@@ -1252,9 +1251,10 @@
 (defn add-db-collection 
   "Adds a collection to the database."
   [name]
-  (insert-batch db 
-                (encode-collection-name name) 
-                @(-> name symbol resolve)))
+  (let [db (:db (connect-via-uri (env :database-uri)))]
+    (insert-batch db 
+                  (encode-collection-name name) 
+                  @(-> name symbol resolve))))
 
 (defn add-db-collections 
   "Adds a set of collections to the database."
@@ -1277,5 +1277,6 @@
 
 (defn read-collection
   [name]
-  (with-collection db name
-    (find {})))
+  (let [db (:db (connect-via-uri (env :database-uri)))]
+    (with-collection db name
+      (find {}))))
