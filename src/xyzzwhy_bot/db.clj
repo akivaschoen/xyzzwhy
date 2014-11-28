@@ -1272,7 +1272,7 @@
    "games"
    "disasters"])
 
-(defn- encode-classname 
+(defn encode-classname 
   [classname] 
   (string/replace classname #"-" "_"))
 
@@ -1295,7 +1295,7 @@
   (let [db (:db (connect-via-uri (env :database-uri)))]
     (insert-batch db 
                   (encode-classname classname) 
-                  classname)))
+                  @(-> classname symbol resolve))))
 
 (defn populate-classes
   "Adds a set of classes to the database."
@@ -1304,7 +1304,7 @@
     (println "Populating" c "...")
     (populate-class c)))
 
-(defn rerepopulate-class 
+(defn repopulate-class 
   "Clears out the class and adds all new entries."
   [classname]
   (depopulate-class classname)
