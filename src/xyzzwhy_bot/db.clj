@@ -83,13 +83,24 @@
 ;   {:text "You open up {:class :book}. Someone has left a recipe for beef stew inside."}
 ;   {:text "You open up {:class :book}. You read a bit before tossing it over your shoulder and then doing the electric slide."}
    {:text "{:class :actor} suddenly appears out of the shadows, hisses at you, then scrambles away like a spider."}
+   {:text "{:class :actor} suddenly appears out of the shadows, stares blankly, then retreats back into the shadows."}
    {:text "{:class :actor} picks up {:class :item}."}
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the nearest self-incrimination booth.'"}
+   {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the nearest {:class :location}.'"}
+   {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the nearest certified manhole.'"}
    {:text "You start spinning around and around while {:class :person} claps and cheers."}
+   {:text "You start spinning around and around while {:class :person} writes furiously on a clipboard."}
+   {:text "You start spinning around and around while {:class :person} beams with pride."}
    {:text "{:class :person} is calling from {:class :location :config [:no-prep]} asking for {:class :item}."}
+   {:text "{:class :person} is calling from {:class :location :config [:no-prep]} asking if {:class :person} can come out and play."}
    {:text "You peek out the window. {:class :person} is messing around with your mailbox. You crouch in fear."}
+   {:text "You peek out the window. {:class :person} is laying facedown in your flowerbed. You sink to your knees with worry."}
+   {:text "You peek out the window. {:class :person} has set up a lemonade stand in your yard. It's on fire."}
+   {:text "You peek out the window. {:class :person} is struggling to start a chainsaw while staring at you. You bite your knuckle."}
    {:text "In the distance, you hear {:class :person} let the bass drop."}
    {:text "With a wide grin, @clive logs into Admiral Krag."}
+   {:text "With a knowing smile, @clive logs into Admiral Krag."}
+   {:text "With a corn dog in one hand, @clive logs into Admiral Krag with the other."}
    {:text "You check your health: you are {:class :diagnose}."}])
 
 (def secondary-events 
@@ -840,6 +851,12 @@
 
 (def foods
   [{:text "burrito"
+    :article "a"}
+   
+   {:text "bouquet of corndogs"
+    :article "a"}
+   
+   {:text "corndog"
     :article "a"}
    
    {:text "pancakes"
