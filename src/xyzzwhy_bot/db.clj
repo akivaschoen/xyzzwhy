@@ -12,10 +12,14 @@
 
 (def location-events
   [{:text "You have entered {:class :location :config [:no-prep]}."}
+   {:text "You go {:class :direction} and find yourself at {:class :location :config [:no-prep]}."}
+   {:text "You head {:class :direction} and arrive at {:class :location :config [:no-prep]}."}
+   {:text "Hey! It's {:class :location :config [:no-prep]}."}
    {:text "You are {:class :location}."}
    {:text "You are {:class :location}."}
    {:text "You are {:class :location}."}
-   {:text "You are {:class :location}."}
+   {:text "You're {:class :location}."}
+   {:text "You're {:class :location}."}
    {:text "The drugs are wearing off. You are {:class :location}."}
    {:text "The spell effects are wearing off. You are {:class :location}."}
    {:text "You are standing {:class :direction} of {:class :location :config [:no-prep]}."}
@@ -56,10 +60,11 @@
    {:text "{:class :actor} {:class :action} {:class :actor}."}
    {:text "{:class :actor} {:class :action} you."}
    {:text "{:class :actor} drops {:class :item} here."}
+   {:text "{:class :actor} does a little jig. 'Bidibidibidi, wanna dance?'"}
    {:text "{:class :person} marches up to you and says, 'Hello please.'"}
    {:text "{:class :person} starts breakdancing and won't stop no matter how much you scream."}
    {:text "{:class :actor} attacks you and knocks you out! You awake sometime later {:class :location}."}
-   {:text "{:class :person} appears in a puff of smoke and shouts, 'You will never see your {:class :item :config [:no-prep]} again!'"}
+   {:text "{:class :person} appears in a puff of smoke and shouts, 'You will never see your {:class :item :config [:no-prep :no-article]} again!'"}
    {:text "You startle {:class :person} who drops {:class :item} and runs away."}
    {:text "{:class :person} slams down a half-empty glass of bourbon. 'All this nonsense about {:class :item} needs to stop! I can't take it anymore!'"}
    {:text "{:class :person} suddenly shrieks."}
@@ -73,9 +78,9 @@
    {:text "You check your inventory. You are empty-handed."}
    {:text "You check your inventory. You are carrying {:class :item}, {:class :item}, and {:class :item}."}
    {:text "You check your inventory. You have {:class :item} and {:class :item}."}
-   {:text "You open up {:class :book}. Someone has scribbled all over the margins. You throw it down on the floor in disgust."}
-   {:text "You open up {:class :book}. Someone has left a recipe for beef stew inside."}
-   {:text "You open up {:class :book}. You read a bit before tossing it over your shoulder and then doing the electric slide."}
+;   {:text "You open up {:class :book}. Someone has scribbled all over the margins. You throw it down on the floor in disgust."}
+;   {:text "You open up {:class :book}. Someone has left a recipe for beef stew inside."}
+;   {:text "You open up {:class :book}. You read a bit before tossing it over your shoulder and then doing the electric slide."}
    {:text "{:class :actor} suddenly appears out of the shadows, hisses at you, then scrambles away like a spider."}
    {:text "{:class :actor} picks up {:class :item}."}
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the nearest self-incrimination booth.'"}
@@ -106,6 +111,7 @@
    {:text "{:class :actor} is here searching for {:class :item}."}
    {:text "{:class :actor} is here hoping to run into {:class :actor}."}
    {:text "{:class :actor} follows you."}
+   {:text "{:class :actor} wanders by, playing a recorder."}
    {:text "A hollow voice intones, '{:class :intonation}'"}
    {:text "A hollow voice intones, '{:class :intonation}'"}
    {:text "Something smells {:class :scent} here."}
@@ -118,7 +124,7 @@
    {:text "It seems that no one has been here for a long time."}
    {:text "Someone has attached marionnette wires to your hands, feet, and head."}
    {:text "Someone has left a running bulldozer here."}
-   {:text "The words 'eat dulp' are spray-painted on the wall here.'"}
+   {:text "The words 'eat dulp' are spray-painted on the wall here."}
    {:text "There has been significant damage from {:class :disaster}."}
    {:text "You see a sign here. On it is written '{:class :sign}'"}])
 
@@ -154,7 +160,9 @@
    {:text "A cool breeze blows by."}
    {:text "It starts to rain."}
    {:text "A basketball bounces by."}
+   {:text "You look around nervously."}
    {:text "You spot a balloon stuck in a tree."}
+   {:text "Someone nearby is repeatedly zipping and unzipping a duffel bag."}
    {:text "Somehow, you've lost your {:class :garment :config [:no-article]}."}
    {:text "You hear someone nearby typing away on a manual typewriter."}
    {:text "You are starting to feel hungry."}])
@@ -169,6 +177,7 @@
    {:text "defiantly eating Scrabble tiles, one by one."}
    {:text "{:class :adverb} playing the organ."}
    {:text "organizing matches."}
+   {:text "having a Guru Meditation Error."}
    {:text "juggling some balls."}
    {:text "dancing in a little circle."}
    {:text "stooping up and down like a rapper in concert."}
@@ -308,7 +317,7 @@
                    "Unfortunately, the toilet recently vomited up at least five gallons of excrement and dreams."
                    "You feel a sense of deja vu."
                    "You whisper to yourself, 'Home again, home again, jiggity jig.'"
-                   "A lingering scents of lemon and Lysol haunt the air here."
+                   "The lingering scents of lemon and Lysol haunt the air here."
                    "Someone has scratched your name and phone number above the toilet paper dispenser."]}
 
    {:text "all-you-can-eat buffet" 
@@ -361,7 +370,9 @@
     :type :interior
     :article "a"
     :preps ["in"]
-    :descriptions ["It is pitch black here. You're likely to be eaten by {:class :actor}"]}
+    :descriptions ["It is pitch black here. You're likely to be eaten by {:class :actor}."
+                   "It's really dark here. Like... REALLY dark."
+                   "It's dark here. DARK AS YOUR SOUL."]}
 
    {:text "breezy cave" 
     :type :exterior
@@ -504,6 +515,7 @@
    {:text "asks, 'Can I have a hug?'"}
    {:text "asks, 'Are you following me?'"}
    {:text "asks, 'Does it smell like {:class :food} in here to you?'"}
+   {:text "asks, 'Have you got a flag?'"}
    {:text "chants, 'It's time to pay the price.'"} 
    {:text "mumbles, 'You can't go up against city hall.'"}
    {:text "mumbles, 'One day I'm going to burn this place to the ground.'"}
@@ -530,21 +542,25 @@
    {:text "whispers, 'I've always wanted to be a creepy uncle.'"}
    {:text "whispers, 'Fee was a Buddhist prodigy.'"}
    {:text "whispers, 'There squats the brown clown.'"}
+   {:text "whispers, 'Sleep is unproductive and a waste of time.'"}
    {:text "whispers, 'You just lost the game.'"}])
 
 (def intonations
   [{:text "Toast goes in the toaster."}
    {:text "For those who can make the journey, there is a place."}
-   {:text "Plugh."}
+   {:text "It puts the lotion on its skin..."}
    {:text "Slightly uncomfortable pleasures."}
    {:text "POKE 1024,0"}
    {:text "Your pilikia is all pau."}
    {:text "The owls are not what they seem."}
+   {:text "Plugh."}
+   {:text "Zzyzx."}
    {:text "Puch."}
    {:text "Guch."}
    {:text "Porluch."}
    {:text "Spigot."}
    {:text "Bloyoy."}
+   {:text "Louch."}
    {:text "You sank my battleship."}
    {:text "Sorry, but it couldn't be helped."}
    {:text "Clean up in aisle 8A."}
@@ -563,28 +579,22 @@
    {:text "Now you know how hard it is to say 'Irish wristwatch'."}])
 
 (def books
-  [{:text "Bible"
-    :article "the"
+  [{:text "the Bible"
     :preps ["copy of"]}
 
    {:text "Catcher in the Rye"
-    :article "a"
     :preps ["copy of"]}
 
    {:text "Infinite Jest"
-    :article "a"
     :preps ["copy of"]}
 
    {:text "Gravity's Rainbow"
-    :article "a"
     :preps ["copy of"]}
 
    {:text "A Prayer for Owen Meany"
-    :article "a"
     :preps ["copy of"]}
 
    {:text "Hitchhiker's Guide to the Galaxy"
-    :article "a"
     :preps ["copy of"]}])
 
 (def directions
@@ -750,9 +760,6 @@
     :gender :male}
 
    {:text "@mokargas"
-    :gender :male}
-
-   {:text "@feelingmean"
     :gender :male}
 
    {:text "Zombie Carl Sagan"
