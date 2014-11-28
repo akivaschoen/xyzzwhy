@@ -1,7 +1,8 @@
 (ns xyzzwhy-bot.db
   (:refer-clojure :exclude [remove sort find])
   (:use [monger.query])
-  (:require [clojure.string :as string]
+  (:require [clojure.pprint :refer [pprint]]
+            [clojure.string :as string]
             [environ.core :refer [env]]
             [monger.core :refer [connect-via-uri]]
             [monger.collection :refer [insert-batch remove]]))
@@ -1226,7 +1227,7 @@
    {:text "Grand Theft Auto V"
     :type :video}])
 
-(def collections
+(def classes
   ["event-types"
    "location-events"
    "action-events"
@@ -1254,50 +1255,52 @@
    "games"
    "disasters"])
 
-(defn- encode-collection-name [s] (string/replace s #"-" "_"))
+(defn- encode-classname 
+  [classname] 
+  (string/replace classname #"-" "_"))
 
-(defn clear-db-collection 
-  "Empty a collection of its documents."
-  [name]
+(defn depopulate-class
+  "Empty a class of its entries."
+  [classname]
   (let [db (:db (connect-via-uri (env :database-uri)))]
-    (remove db (encode-collection-name name))))
+    (remove db (encode-classname classname))))
 
-(defn clear-db-collections 
-  "Empty a set of collections of their documents."
+(defn depopulate-classes
+  "Empty a set of classes of their documents."
   []
-  (doseq [c collections] 
+  (doseq [c classes] 
     (println "Removing" c "...")
-    (clear-db-collection c)))
+    (depopulate-class c)))
 
-(defn add-db-collection 
-  "Adds a collection to the database."
-  [name]
+(defn populate-class
+  "Adds a class to the database."
+  [classname]
   (let [db (:db (connect-via-uri (env :database-uri)))]
     (insert-batch db 
-                  (encode-collection-name name) 
-                  @(-> name symbol resolve))))
+                  (encode-classname classname) 
+                  classname)))
 
-(defn add-db-collections 
-  "Adds a set of collections to the database."
+(defn populate-classes
+  "Adds a set of classes to the database."
   []
-  (doseq [c collections]
-    (println "Adding" c "...")
-    (add-db-collection c)))
+  (doseq [c classes]
+    (println "Populating" c "...")
+    (populate-class c)))
 
-(defn refresh-collection 
-  "Clears out the collection and adds all new entries."
-  [name]
-  (clear-db-collection name)
-  (add-db-collection name))
+(defn rerepopulate-class 
+  "Clears out the class and adds all new entries."
+  [classname]
+  (depopulate-class classname)
+  (populate-class classname))
 
-(defn rebuild-database 
-  "Empties the database and adds again all of the collections."
+(defn repopulate-classes 
+  "Empties the database and adds again all of the classes."
   []
-  (clear-db-collections)
-  (add-db-collections))
+  (depopulate-classes)
+  (populate-classes))
 
-(defn read-collection
-  [name]
+(defn read-class-from-db
+  [classname]
   (let [db (:db (connect-via-uri (env :database-uri)))]
-    (with-collection db name
-      (find {}))))
+    (pprint (with-collection db (encode-classname classname)
+      (find {})))))
