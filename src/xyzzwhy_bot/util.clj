@@ -14,8 +14,10 @@
         preps   (:preps thing)
         config  (:config thing)]
     (cond->> text
-      (not (some #(= :no-article %) config))  (str article " ")
-      (not (some #(= :no-prep %) config))     (str (nth preps (randomize preps)) " "))))
+      (and (not (empty? article))
+           (not (some #(= :no-article %) config)))  (str article " ")
+      (and (not (empty? preps))
+           (not (some #(= :no-prep %) config)))     (str (nth preps (randomize preps)) " "))))
 
 (defn read-asset
   ([tweet]    (get-in tweet [:asset :text]))
