@@ -31,13 +31,14 @@
                  (concat result (get-class (first classes)))))))))
 
 (defn- get-random-thing
+  "Chooses one random item from a class."
   [classes]
   (as-> (get-classes classes) c
         (shuffle c)
-        (nth c (rand-int (clojure.core/count c)))))
+        (nth c (randomize c))))
 
 (defn get-thing 
-  "Retrieves a random word from the database. This is called during the interpolation phase."
+  "Retrieves a random thing from the database. This is called during the interpolation phase."
   [placeholder]
   (let [class (:class placeholder)]
   (condp = class
@@ -52,13 +53,14 @@
   [type]
   (let [tweet {:asset (get-random-thing [type])}]
     (if (= type :event-type)
-      ; This is why I need better comments: this code is as clear as things which are
-      ; not very clear at all in any way, form, or fashion whatsoever and then some.
       (as-> tweet t
+            ; Store the overall event type for later reference.
             (assoc t :event-type (keyword (read-asset t)))
+            ; Grab a random thing of the event type and cache it as the current asset...
             (assoc t :asset (get-random-thing (-> t
                                                   read-asset
                                                   keyword
                                                   vector))) 
+            ; ... and tehn store its text in as the initial text of the tweet.
             (assoc t :text (read-asset t)))
       (assoc tweet :text (read-asset tweet)))))

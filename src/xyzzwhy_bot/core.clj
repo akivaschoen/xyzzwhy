@@ -21,11 +21,14 @@
       (if-not match
         tweet
         (let [tweet (as-> tweet t 
+                          ; The new thing is stored as the current asset for later reference...
                           (assoc t :asset (get-thing (read-string match)))
+                          ; ...along with its configuration...
                           (assoc-in t [:asset :config] (:config (read-string match)))
                           (assoc t :text (string/trim (string/replace-first 
                                            (:text t) 
                                            match
+                                                         ; ...which is used here.
                                            (string/trim (format-text (:asset t)))))))] 
           (recur tweet (re-find matcher)))))))
 
@@ -88,9 +91,8 @@
 
 (defn -main
   "Starts the bot up with an initial tweet and then randomly waits between
-  5 and 30 minutes before tweeting again."
+  10 and 30 minutes before tweeting again."
   [& args]
-  ; This is all extremely ugly but is good enough for now.
   (println "xyzzwhy is ready for some magical adventures!")
   (loop []
     (let [interval (+ 900000 (rand-int 1500000)) ; Tweet once every 15-30 minutes

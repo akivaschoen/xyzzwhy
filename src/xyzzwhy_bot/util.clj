@@ -2,6 +2,7 @@
   (:require [clojure.string :as string]))
 
 (defn randomize
+  "Produces a random number within the bounds of a given collection."
   [collection]
   (rand-int (count collection)))
 
@@ -20,5 +21,6 @@
            (not (some #(= :no-prep %) config)))     (str (nth preps (randomize preps)) " "))))
 
 (defn read-asset
+  "Eases the syntax required to read information from the current asset."
   ([tweet]    (get-in tweet [:asset :text]))
   ([tweet k]  (get-in tweet [:asset (keyword k)])))
