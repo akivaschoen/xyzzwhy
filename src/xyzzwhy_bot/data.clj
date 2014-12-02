@@ -61,6 +61,6 @@
                                                   read-asset
                                                   keyword
                                                   vector))) 
-            ; ... and tehn store its text in as the initial text of the tweet.
+            ; ... and then store its text as the initial text of the tweet.
             (assoc t :text (read-asset t)))
       (assoc tweet :text (read-asset tweet)))))

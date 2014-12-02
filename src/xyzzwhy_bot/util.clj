@@ -15,10 +15,10 @@
         preps   (:preps thing)
         config  (:config thing)]
     (cond->> text
-      (and (not (empty? article))
-           (not (some #(= :no-article %) config)))  (str article " ")
-      (and (not (empty? preps))
-           (not (some #(= :no-prep %) config)))     (str (nth preps (randomize preps)) " "))))
+      (and (not-empty article)
+           (not-any? #(= :no-article %) config))  (str article " ")
+      (and (not-empty preps)
+           (not-any? #(= :no-prep %) config))     (str (nth preps (randomize preps)) " "))))
 
 (defn read-asset
   "Eases the syntax required to read information from the current asset."
