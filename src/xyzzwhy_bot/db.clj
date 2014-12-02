@@ -21,6 +21,7 @@
    {:text "You are {:class :location}."}
    {:text "You're {:class :location}."}
    {:text "You're {:class :location}."}
+   {:text "You are magically teleported to {:class :location}!"}
    {:text "The drugs are wearing off. You are {:class :location}."}
    {:text "The spell effects are wearing off. You are {:class :location}."}
    {:text "You are standing {:class :direction} of {:class :location :config [:no-prep]}."}
@@ -29,11 +30,12 @@
    {:text "You wake up from an odd dream. You are {:class :location}."}
    {:text "You open the secret door only to see {:class :location :config [:no-prep]}."}
    {:text "You find yourself {:class :location}."}
-   {:text "You start doing the worm until you find yourself {:class :location}."}
+;   {:text "You start doing the worm until you find yourself {:class :location}."}
    {:text "You wake up {:class :location}."}
    {:text "You climb down the tree and find yourself {:class :location}."}
    {:text "The taxi driver randomly drops you off {:class :location}."}
    {:text "The fog clears and you find yourself {:class :location}."}
+   {:text "Your parachute gently plops you {:class :location}."}
    {:text "You jump out of a moving car, roll down a hill, and find yourself {:class :location}."}
    {:text "After walking for a long time, you find yourself {:class :location}."}
    {:text "You find your way blindly and end up {:class :location}."}
@@ -45,18 +47,20 @@
    {:text "The trapdoor drops open beneath you and you land {:class :location}."}
    {:text "You get tangled up in a revolving door. You stumble out into {:class :location :config [:no-prep]}."}
    {:text "After scrambling through some dense underbrush, you find yourself {:class :location}."}
+   {:text "After pushing your way through a dense crowd, you arrive {:class :location}."}
    {:text "You squeeze out of the sewage outflow and tumble into {:class :location :config [:no-prep]}."}
+   {:text "You fall down a flight of stairs. You are now {:class :location}."}
    {:text "The tornado deposits you {:class :location}."}
    {:text "After being shot out of a cannon, you land {:class :location}."}
-   {:text "Hands on your hips, you survey {:class :location :config [:no-prep]} {:class :adverb}."}
-   {:text "You have reached a dead-end. You start moonwalking away."}])
+   {:text "Hands on your hips, you survey {:class :location :config [:no-prep]} {:class :adverb}."}])
+;   {:text "You have reached a dead-end. You start moonwalking away."}])
 
 (def action-events
   [{:text "You awake from a nightmare. You saw yourself {:class :location}. The corpse of {:class :person} was there, holding {:class :item}."}
    {:text "You grab {:class :item}, hoping {:class :person} doesn't notice."}
    {:text "The radio crackles to life. 'Mayday, mayday, it's {:class :person} calling. We're in trouble. We need assistance. Mayday, mayday.'"}
    {:text "{:class :actor} drops {:class :item}, looks at you {:class :adverb}, then leaves."}
-   {:text "{:class :actor} gently places {:class :item} on the ground and backs away slowly."}
+   {:text "{:class :actor} gently places {:class :item} on the ground and then backs away slowly."}
    {:text "Suddenly, {:class :actor} {:class :action} you."}
    {:text "{:class :actor} {:class :action} {:class :actor}."}
    {:text "{:class :actor} {:class :action} you."}
@@ -67,15 +71,17 @@
    {:text "{:class :actor} attacks you and knocks you out! You awake sometime later {:class :location}."}
    {:text "{:class :person} appears in a puff of smoke and shouts, 'You will never see your {:class :item :config [:no-prep :no-article]} again!'"}
    {:text "You startle {:class :person} who drops {:class :item} and runs away."}
-   {:text "{:class :person} slams down a half-empty glass of bourbon. 'All this nonsense about {:class :item} needs to stop! I can't take it anymore!'"}
+   {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'All this nonsense about {:class :item} needs to stop! I can't take it anymore!'"}
    {:text "{:class :person} suddenly shrieks."}
    {:text "You get tired of waiting for your Uber and decide to walk to {:class :location :config [:no-prep]} instead."}
-   {:text "The phone rings. {:class :person} stares at it {:class :adverb}. You refuse to answer it. Eventually the ringing stops."}
+   {:text "The phone rings. {:class :person} stares at it {:class :adverb}. Eventually the ringing stops."}
+   {:text "The phone rings. {:class :person} watches as it starts to melt, the sound of the ring slowing and burbling to a stop."}
+   {:text "The phone rings. {:class :person} picks it up, listens a moment, shrieks, and slams the phone down again.."}
    {:text "You start eating {:class :food} and don't stop until you're done."}
    {:text "You eat {:class :food}."}
    {:text "You eat {:class :food}. {:class :actor} looks on {:class :adverb}."}
    {:text "You feel a little famished so you eat {:class :food}."}
-   {:text "You take a sip of {:class :drink}."}
+   {:text "You take a sip of {:class :drink :config [:no-article]}."}
    {:text "You check your inventory. You are empty-handed."}
    {:text "You check your inventory. You are carrying {:class :item}, {:class :item}, and {:class :item}."}
    {:text "You check your inventory. You have {:class :item} and {:class :item}."}
@@ -84,10 +90,18 @@
 ;   {:text "You open up {:class :book}. You read a bit before tossing it over your shoulder and then doing the electric slide."}
    {:text "{:class :actor} suddenly appears out of the shadows, hisses at you, then scrambles away like a spider."}
    {:text "{:class :actor} suddenly appears out of the shadows, stares blankly, then retreats back into the shadows."}
+   {:text "{:class :actor} suddenly appears out of the shadows, says, 'Oh, sorry about that,' then retreats back into the shadows."}
    {:text "{:class :actor} picks up {:class :item}."}
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the nearest self-incrimination booth.'"}
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the nearest {:class :location}.'"}
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the nearest certified manhole.'"}
+   {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the nearest mandatory prison hug.'"}
+   {:text "An overhead loudspeaker crackles to life. The announcement is completely garbled. The loudspeaker switches off with a squawk."}
+   {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the nearest sanctioned dogpile.'"}
+   {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the nearest full-contact Bible study group.'"}
+   {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the mannequin factory.'"}
+   {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to The Garbagerie.'"}
+   {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to Stall #3.'"}
    {:text "You start spinning around and around while {:class :person} claps and cheers."}
    {:text "You start spinning around and around while {:class :person} writes furiously on a clipboard."}
    {:text "You start spinning around and around while {:class :person} beams with pride."}
@@ -96,10 +110,15 @@
    {:text "You peek out the window. {:class :person} is messing around with your mailbox. You crouch in fear."}
    {:text "You peek out the window. {:class :person} is laying facedown in your flowerbed. You sink to your knees with worry."}
    {:text "You peek out the window. {:class :person} has set up a lemonade stand in your yard. It's on fire."}
+   {:text "You peek out the window. {:class :person} has set up a lemonade stand in your yard. It's covered in bees."}
    {:text "You peek out the window. {:class :person} is struggling to start a chainsaw while staring at you. You bite your knuckle."}
    {:text "In the distance, you hear {:class :person} let the bass drop."}
+   {:text "In the distance, you hear {:class :person} drop the mic."}
+   {:text "In the distance, you hear {:class :person} get wicked."}
    {:text "With a wide grin, @clive logs into Admiral Krag."}
    {:text "With a knowing smile, @clive logs into Admiral Krag."}
+   {:text "With a look of terror, @clive logs into Admiral Krag."}
+   {:text "With a look of grim joy, @clive logs into Admiral Krag."}
    {:text "With a corn dog in one hand, @clive logs into Admiral Krag with the other."}
    {:text "You check your health: you are {:class :diagnose}."}])
 
@@ -142,6 +161,8 @@
 
 (def tertiary-events 
   [{:text "You aren't wearing any clothes."}
+   {:text "Your clothes feel too small."}
+   {:text "Your clothes feel too loose."}
    {:text "Your shoes are on the wrong feet."}
    {:text "Your tie feels uneven."}
    {:text "You're not wearing any underwear."}
@@ -149,6 +170,7 @@
    {:text "You do a little jig and then whistle."}
    {:text "You clap once."}
    {:text "You have socks on your hands."}
+   {:text "You feel serene."}
    {:text "You feel nervous."}
    {:text "You feel anxious."}
    {:text "You feel cold."}
@@ -164,19 +186,25 @@
    {:text "You begin to smile uncontrollably."}
    {:text "You wish you had your grandpappy's harmonica."}
    {:text "You are starting to feel sleepy."}
-   {:text "You think about brushing your hair but change your mind."}
+   {:text "You glance at your watch; you're still 15 minutes late."}
+   {:text "You glance at your watch; somehow, you're still on time."}
+   {:text "You glance at your watch; you're a little ahead of schedule."}
    {:text "You spend a few moments thinking fondly about your teeth."}
    {:text "You have rope burns got on your wrists... but from where?"}
    {:text "You feel as if you're being followed."}
    {:text "A warm breeze blows by."}
    {:text "A cool breeze blows by."}
    {:text "It starts to rain."}
+   {:text "Thunder coughs gently in the distance."}
    {:text "A basketball bounces by."}
    {:text "You look around nervously."}
    {:text "You spot a balloon stuck in a tree."}
+   {:text "You see a pair of sneakers dangling on a utility line overhead."}
    {:text "Someone nearby is repeatedly zipping and unzipping a duffel bag."}
    {:text "Somehow, you've lost your {:class :garment :config [:no-article]}."}
    {:text "You hear someone nearby typing away on a manual typewriter."}
+   {:text "You're catching your second wind."}
+   {:text "You are starting to feel thirsty."}
    {:text "You are starting to feel hungry."}])
 
 (def actor-actions
@@ -208,7 +236,14 @@
    {:text "examining {:class :item} with great confusion."}])
 
 (def locations
-  [{:text "tire fire" 
+  [{:text "dead-end"
+    :type :interior
+    :article "a"
+    :preps ["at" "in front of"]
+    :descriptions ["You start to moonwalk away."
+                   "Someone has painted a giant sad face here."]}
+  
+   {:text "tire fire" 
     :type :exterior
     :article "a" 
     :preps ["at" "near" "behind" "in front of"]
@@ -465,8 +500,8 @@
     :article "a"
     :preps ["in"]
     :descriptions ["You feel at home again."
-                   "It's very warm in here. Perhaps... too warm."
-                   "It smells of stale urine and lies, lies, lies..."]}
+                   "It's very warm in here. Perhaps too warm."
+                   "It smells of stale sweat and lies, lies, lies..."]}
 
    {:text "haunted house" 
     :type :exterior
@@ -533,6 +568,7 @@
    {:text "mumbles, 'One day I'm going to burn this place to the ground.'"}
    {:text "mumbles, 'Skrillex ruined it all for everybody.'"}
    {:text "mumbles, 'I've never been to Beliza.'"}
+   {:text "says, 'Wrong answer, chief."}
    {:text "says, 'I've been waiting for you.'"}
    {:text "says, 'I can't find my heirloom clown suit.'"}
    {:text "says, 'I can't find my {:class :garment :config [:no-article]}.'"}
@@ -551,6 +587,7 @@
    {:text "shrieks, 'Boiled soil!'"}
    {:text "sighs, 'I liked you better before the hip-replacement surgery.'"}
    {:text "snarls, 'Siddown before ya fall down!'"}
+   {:text "whispers, 'It puts the lotion on its skin...'"}
    {:text "whispers, 'I've always wanted to be a creepy uncle.'"}
    {:text "whispers, 'Fee was a Buddhist prodigy.'"}
    {:text "whispers, 'There squats the brown clown.'"}
@@ -559,8 +596,8 @@
 
 (def intonations
   [{:text "Toast goes in the toaster."}
+   {:text "Wrong answer, chief."}
    {:text "For those who can make the journey, there is a place."}
-   {:text "It puts the lotion on its skin..."}
    {:text "Slightly uncomfortable pleasures."}
    {:text "POKE 1024,0"}
    {:text "Your pilikia is all pau."}
@@ -588,26 +625,26 @@
    {:text "Here lies Hammerdog, a dog made of hammers."}
    {:text "Here lies Knifekitten, a kitten made of knives."}
    {:text "When you're not reading this, it's written in Spanish."}
-   {:text "Now you know how hard it is to say 'Irish wristwatch'."}])
+   {:text "Now you know how hard it is to say \"Irish wristwatch\"."}])
 
 (def books
   [{:text "the Bible"
-    :preps ["copy of"]}
+    :preps ["a copy of"]}
 
    {:text "Catcher in the Rye"
-    :preps ["copy of"]}
+    :preps ["a copy of"]}
 
    {:text "Infinite Jest"
-    :preps ["copy of"]}
+    :preps ["a copy of"]}
 
    {:text "Gravity's Rainbow"
-    :preps ["copy of"]}
+    :preps ["a copy of"]}
 
    {:text "A Prayer for Owen Meany"
-    :preps ["copy of"]}
+    :preps ["a copy of"]}
 
-   {:text "Hitchhiker's Guide to the Galaxy"
-    :preps ["copy of"]}])
+   {:text "The Hitchhiker's Guide to the Galaxy"
+    :preps ["a copy of"]}])
 
 (def directions
   [{:text "north"}
@@ -691,13 +728,13 @@
    {:text "Abe Vigoda"
     :gender :male}
 
-   {:text "Louis Gray"
-    :gender :male}
+   {:text "Tilda Swinton"
+    :gender :female}
    
    {:text "Russell Brand"
     :gender :male}
    
-   {:text "Gene Shalit"
+   {:text "Peter Dinklage"
     :gender :male}
 
    {:text "Brad Pitt"
@@ -752,9 +789,6 @@
 
    {:text "@vmcny"
     :gender :male}
-
-   {:text "@wolfpupy"
-    :gender :female}
 
    {:text "@KamenPrime"
     :gender :male}
