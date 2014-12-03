@@ -95,7 +95,7 @@
   [& args]
   (println "xyzzwhy is ready for some magical adventures!")
   (loop []
-    (let [interval (+ 900000 (rand-int 180000)) ; Tweet once every 15-30 minutes
+    (let [interval (+ 900000 (rand-int 900000)) ; Tweet once every 15-30 minutes
           tweet (-> (create-tweet) finalize-tweet)]
 
       (try
