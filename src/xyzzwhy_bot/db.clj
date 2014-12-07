@@ -55,7 +55,7 @@
    {:text "You climb up a flight of stairs. You are now {:class :location}."}
    {:text "You shuffle down a flight of stairs and enter {:class :location :config [:no-prep]}."}
    {:text "The elevator doors open to reveal {:class :location :config [:no-prep]}."}
-   {:text "Using a vine to swing across the pit, you land {:class :location}"}
+   {:text "Using a vine to swing across the pit, you land {:class :location}."}
    {:text "The trapdoor drops open beneath you and you land {:class :location}."}
    {:text "You step through the magic mirror and end up {:class :location}."}
    {:text "You get tangled up in a revolving door. You stumble out into {:class :location :config [:no-prep]}."}
@@ -95,6 +95,7 @@
    {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'All this nonsense about {:class :item} needs to stop! I can't take it anymore!'"}
    {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'They're making plans for Nigel! They want what's best for him!'"}
    {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'You can't go up against city hall!'"}
+   {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'I just can't take you seriously anymore!'"}
    {:text "{:class :person} suddenly shrieks."}
    {:text "{:class :person} makes a rude noise, points surreptitiously to {:class :animal} nearby."}
    {:text "You get tired of waiting for your Uber and decide to walk to {:class :location :config [:no-prep]} instead."}
@@ -188,6 +189,7 @@
    {:text "{:class :actor} follows you."}
    {:text "{:class :actor} slinks up behind you."}
    {:text "{:class :actor} wanders by, playing a recorder."}
+   {:text "{:class :actor} wanders by, jamming on a mouth organ."}
    {:text "{:class :actor} wanders by, whistling the theme to the Andy Griffith Show."}
    {:text "{:class :actor} wanders by, whistling the theme to the Garry Shandling Show."}
    {:text "A hollow voice intones, '{:class :intonation}'"}
@@ -235,6 +237,7 @@
    {:text "You feel anxious."}
    {:text "You feel cold."}
    {:text "You feel warm."}
+   {:text "You aren't alone."}
    {:text "You blink really slowly."}
    {:text "You find yourself humming the theme to Too Many Cooks."}
    {:text "You hear gunfire in the distance."}
@@ -261,6 +264,8 @@
    {:text "It starts to snow."}
    {:text "Thunder coughs gently in the distance."}
    {:text "A basketball bounces by."}
+   {:text "Something nearby is on fire."}
+   {:text "You can smell something burning in the distance."}
    {:text "You look around nervously."}
    {:text "You spot a balloon stuck in a tree."}
    {:text "You spot a kitten stuck in a tree."}
@@ -644,7 +649,7 @@
    {:text "mumbles, 'Skrillex ruined it all for everybody.'"}
    {:text "mumbles, 'I've never been to Belize.'"}
    {:text "says, 'It's true: the boot is the best McNugget shape.'"}
-   {:text "says, 'Wrong answer, chief."}
+   {:text "says, 'Wrong answer, chief.'"}
    {:text "says, 'How unfortunate.'"}
    {:text "says, 'I've been waiting for you.'"}
    {:text "says, 'I can't find my heirloom clown suit.'"}
@@ -652,8 +657,11 @@
    {:text "says, 'No money? No hamburger!'"}
    {:text "says, 'It's like drinking a meatloaf!'"}
    {:text "says, 'Took you long enough.'"}
+   {:text "says, 'I'm addicted to Kitty Lick III.'"}
+   {:text "says, 'Looks like I'm not having any mayonnaise.'"}
    {:text "says, 'I'm a brown-belt in speed tai chi.'"}
    {:text "says, 'I'm stuck in a poo loop.'"}
+   {:text "says, 'Well, that's a dead give away.'"}
    {:text "says, 'If you asked me to have sex with you, I wouldn't say \"no\".'"}
    {:text "shouts, 'You can't go up against city hall!'"}
    {:text "shouts, 'You can't fold a cat!'"}
@@ -748,6 +756,9 @@
 
 (def persons
   [{:text "Samuel L. Jackson"
+    :gender :male}
+
+   {:text "David Lynch"
     :gender :male}
 
    {:text "Stephen Fry"

@@ -103,8 +103,9 @@
           (post-to-twitter tweet)
 
           ; Logging
-          (println "Tweeted:" tweet)
-          (println "Next tweet in" (int (/ interval 60000)) "minutes")
+          (do
+            (println "Tweeted:" tweet)
+            (println "Next tweet in" (int (/ interval 60000)) "minutes"))
 
           (Thread/sleep interval))
         (catch Exception e
