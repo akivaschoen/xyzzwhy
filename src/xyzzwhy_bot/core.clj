@@ -91,11 +91,11 @@
 
 (defn -main
   "Starts the bot up with an initial tweet and then randomly waits between
-  10 and 30 minutes before tweeting again."
+  20 and 40 minutes before tweeting again."
   [& args]
   (println "xyzzwhy is ready for some magical adventures!")
   (loop []
-    (let [interval (+ 900000 (rand-int 900000)) ; Tweet once every 15-30 minutes
+    (let [interval (+ 1200000 (rand-int 1200000)) ; Tweet once every 20-40 minutes
           tweet (-> (create-tweet) finalize-tweet)]
 
       (try
