@@ -98,16 +98,19 @@
     (let [interval (+ 1200000 (rand-int 1200000)) ; Tweet once every 20-40 minutes
           tweet (-> (compile-tweet) finalize-tweet)]
 
-      (try
-        (do
-          (post-to-twitter tweet)
+      (println tweet)
 
-          ; Logging
+      (comment
+        (try
           (do
-            (println "Tweeted:" tweet)
-            (println "Next tweet in" (int (/ interval 60000)) "minutes"))
+            (post-to-twitter tweet)
 
-          (Thread/sleep interval))
-        (catch Exception e
-          (println "Caught error:" (.getMessage e))))
+            ; Logging
+            (do
+              (println "Tweeted:" tweet)
+              (println "Next tweet in" (int (/ interval 60000)) "minutes"))
+
+            (Thread/sleep interval))
+          (catch Exception e
+            (println "Caught error:" (.getMessage e)))))
       (recur))))
