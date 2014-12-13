@@ -1,7 +1,7 @@
 (ns xyzzwhy.core
   (:use [typographer.core]
         [xyzzwhy.twitter]
-        [xyzzwhy.data]
+        [xyzzwhy.factory]
         [xyzzwhy.util])
   (:require [clojure.string :as string])
   (:gen-class))
@@ -55,7 +55,7 @@
 
 (defn get-segment
   [type]
-  (-> (initialize-segment type)
+  (-> (create-segment type)
       interpolate-text))
 
 (defn compile-tweet
