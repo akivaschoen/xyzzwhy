@@ -1,7 +1,7 @@
-(ns xyzzwhy-bot.data
+(ns xyzzwhy.data
   (:refer-clojure :exclude [count sort find])
   (:use [monger.query]
-        [xyzzwhy-bot.util])
+        [xyzzwhy.util])
   (:require [clojure.string :as string]
             [environ.core :refer [env]]
             [monger.core :refer [connect-via-uri]]
@@ -46,21 +46,21 @@
     :item (get-random-thing [:item :food :book :garment :drink])
     (get-random-thing [class]))))
 
-(defn initialize-tweet
-  "Creates a new tweet object.
+(defn create-segment
+  "Creates a new segment object.
   
   If the type is of :event-type, caches that information for later use."
   [type]
-  (let [tweet {:asset (get-random-thing [type])}]
+  (let [segment {:asset (get-random-thing [type])}]
     (if (= type :event-type)
-      (as-> tweet t
+      (as-> segment st
             ; Store the overall event type for later reference.
-            (assoc t :event-type (keyword (read-asset t)))
+            (assoc s :event-type (keyword (read-asset s)))
             ; Grab a random thing of the event type and cache it as the current asset...
-            (assoc t :asset (get-random-thing (-> t
+            (assoc s :asset (get-random-thing (-> s
                                                   read-asset
                                                   keyword
                                                   vector))) 
-            ; ... and then store its text as the initial text of the tweet.
-            (assoc t :text (read-asset t)))
-      (assoc tweet :text (read-asset tweet)))))
+            ; ... and then store its text as the initial text of the segment.
+            (assoc s :text (read-asset s)))
+      (assoc segment :text (read-asset segment)))))

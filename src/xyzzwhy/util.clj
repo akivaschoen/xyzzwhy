@@ -1,4 +1,4 @@
-(ns xyzzwhy-bot.util
+(ns xyzzwhy.util
   (:require [clojure.string :as string]))
 
 (defn randomize
@@ -7,8 +7,7 @@
   (rand-int (count collection)))
 
 (defn format-text 
-  "Applies an article to a word if it has one. For example, 'falafel' becomes 'a falafel' while
-  'rice' becomes 'some rice'. Each word specifies its preferred articles."
+  "Applies a preposition and/or an article to a given thing."
   [thing]
   (let [text    (:text thing)
         article (:article thing)
@@ -22,5 +21,5 @@
 
 (defn read-asset
   "Eases the syntax required to read information from the current asset."
-  ([tweet]    (get-in tweet [:asset :text]))
-  ([tweet k]  (get-in tweet [:asset (keyword k)])))
+  ([segment]    (get-in segment [:asset :text]))
+  ([segment k]  (get-in segment [:asset (keyword k)])))

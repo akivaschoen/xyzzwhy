@@ -1,4 +1,4 @@
-(ns xyzzwhy-bot.db
+(ns xyzzwhy.db
   (:refer-clojure :exclude [remove sort find])
   (:use [monger.query])
   (:require [clojure.pprint :refer [pprint]]

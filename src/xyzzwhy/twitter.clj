@@ -1,4 +1,4 @@
-(ns xyzzwhy-bot.twitter
+(ns xyzzwhy.twitter
   (:use 
     [twitter.oauth]
     [twitter.api.restful])
