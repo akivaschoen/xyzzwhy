@@ -13,6 +13,11 @@
 
 (def location-events
   [{:text "You have entered {:class :location :config [:no-prep]}."}
+   {:text "You try to go {:class :direction} but your way is blocked by {:class :obstacle}."}
+   {:text "You try to go {:class :direction} but your way is blocked by {:class :obstacle}."}
+   {:text "You try to go {:class :direction} but your way is blocked by {:class :obstacle}."}
+   {:text "You try to go {:class :direction} but your way is blocked by {:class :obstacle}."}
+   {:text "You try to go {:class :direction} but your way is blocked because reasons."}
    {:text "You go {:class :direction} and find yourself at {:class :location :config [:no-prep]}."}
    {:text "You go {:class :direction} and emerge {:class :location}."}
    {:text "You walk {:class :direction} and arrive at {:class :location :config [:no-prep]}."}
@@ -35,8 +40,8 @@
    {:text "You wake up from an odd dream. You are {:class :location}."}
    {:text "You open the secret door only to see {:class :location :config [:no-prep]}."}
    {:text "You find yourself {:class :location}."}
-   {:text "During the shoot-out, you make your escape to {:class :location :config [:no-prep]."}
-;   {:text "You start doing the worm until you find yourself {:class :location}."}
+   {:text "During the shoot-out, you make your escape to {:class :location :config [:no-prep]}."}
+   {:text "You start doing the worm until you find yourself {:class :location}."}
    {:text "You wake up {:class :location}."}
    {:text "You climb down a tree and find yourself {:class :location}."}
    {:text "You climb up a tree and find yourself {:class :location}."}
@@ -64,7 +69,9 @@
    {:text "You squeeze out of the sewage outflow and tumble into {:class :location :config [:no-prep]}."}
    {:text "You fall down a flight of stairs. You are now {:class :location}."}
    {:text "A tornado deposits you {:class :location}."}
+   {:text "Right on cue, you pop up out of the jack-in-the-box. You're {:class :location}."}
    {:text "After being shot out of a cannon, you land {:class :location}."}
+   {:text "You slide down the fireman's pole and land {:class :location}."}
    {:text "Hands on your hips, you survey {:class :location :config [:no-prep]} {:class :adverb}."}])
 ;   {:text "You have reached a dead-end. You start moonwalking away."}])
 
@@ -77,9 +84,9 @@
    {:text "The radio crackles to life. It sounds like someone with a cold is eating Rice Krispies."}
    {:text "The radio crackles to life. It's {:class :person} singing American Pie."}
    {:text "The radio crackles to life. It's {:class :person} singing Closer, repeating only the chorus for some reason."}
-   {:text "The radio crackles to life. It's {:class :person} doing an advertisement for Pocky."}
-   {:text "The radio crackles to life. It's {:class :person} doing an advertisement for Depends."}
-   {:text "The radio crackles to life. It's {:class :person} doing an advertisement for Spotted Dick."}
+   {:text "The radio crackles to life. It's {:class :person} doing an advertisement for Soylent."}
+   {:text "The radio crackles to life. It's {:class :person} doing an advertisement for Duff's."}
+   {:text "The radio crackles to life. It's {:class :person} doing an advertisement for Slurm."}
    {:text "{:class :actor} drops {:class :item}, looks at you {:class :adverb}, then leaves."}
    {:text "{:class :actor} gently places {:class :item} on the ground and then backs away slowly."}
    {:text "Suddenly, {:class :actor} {:class :action} you."}
@@ -119,14 +126,11 @@
 ;   {:text "You open up {:class :book}. Someone has left a recipe for beef stew inside."}
 ;   {:text "You open up {:class :book}. You read a bit before tossing it over your shoulder and then doing the electric slide."}
    {:text "{:class :actor} suddenly appears out of the shadows, hisses at you, then scrambles away like a spider."}
-   {:text "{:class :actor} suddenly appears out of the shadows, stares blankly, then slowly retreats back into the shadows."}
-   {:text "{:class :actor} suddenly appears out of the shadows, says, 'Oh, sorry about that,' then slowly retreats back into the shadows."}
-   {:text "{:class :actor} suddenly appears out of the shadows, says, 'Oh, wrong location,' then slowly retreats back into the shadows."}
+   {:text "{:class :actor} suddenly appears out of the shadows, says, 'Oh, sorry about that,' then retreats back into the shadows."}
    {:text "{:class :actor} suddenly appears out of the shadows, says, '{:class :actor} will see you now,' then slowly retreats back into the shadows."}
    {:text "{:class :actor} picks up {:class :item}."}
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the nearest self-incrimination booth.'"}
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the bean simulator.'"}
-   {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the nearest {:class :location}.'"}
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the nearest certified manhole.'"}
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the National Baby Oil Slip-n-Slide.'"}
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the Hall of Uncomfortable Touching.'"}
@@ -143,7 +147,11 @@
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Just shut up already.'"}
    {:text "You start spinning around and around. {:class :person} looks unimpressed."}
    {:text "You start spinning around and around. {:class :person} faints."}
-   {:text "You start spinning around and around while {:class :person} claps and cheers."}
+   {:text "You start spinning around and around. You drill straight into the crust of the earth."}
+   {:text "You start spinning around and around. You gracefully lift off into a blue sky."}
+   {:text "You start spinning around and around. You gracefully lift off into a blue sky never to be seen again."}
+   {:text "You start spinning around and around. You gracefully lift off, go sideways, and crash into a building."}
+;   {:text "You start spinning around and around while {:class :person} claps and cheers."}
    {:text "You start spinning around and around while {:class :person} cries and points."}
    {:text "You start spinning around and around while {:class :person} writes furiously on a clipboard."}
    {:text "You start spinning around and around while {:class :person} beams with pride."}
@@ -156,9 +164,11 @@
    {:text "You peek out the window. {:class :person} has set up a lemonade stand in your yard. The line stretches around the block."}
    {:text "You peek out the window. {:class :person} has set up a lemonade stand across the street. You feel oddly jealous."}
    {:text "You peek out the window. {:class :person} is struggling to start a chainsaw while staring at you. You bite your knuckle."}
-   {:text "In the distance, you hear {:class :person} let the bass drop."}
-   {:text "In the distance, you hear {:class :person} drop the mic."}
-   {:text "In the distance, you hear {:class :person} get wicked."}
+   {:text "You peek out the window. {:class :person} is standing in your yard, painting a portrait of you peeking out the window."}
+   {:text "You peek out the window. Your entire house has been encased in a giant stone column."}
+;   {:text "In the distance, you hear {:class :person} let the bass drop."}
+;   {:text "In the distance, you hear {:class :person} drop the mic."}
+;   {:text "In the distance, you hear {:class :person} get wicked."}
    {:text "With a knowing smile, @clive logs into Admiral Krag."}
    {:text "With a look of terror, @clive logs into Admiral Krag."}
    {:text "With a look of grim joy, @clive logs into Admiral Krag."}
@@ -209,9 +219,9 @@
    {:text "It seems that no one has been here for a long time."}
    {:text "Someone has attached marionnette wires to your hands, feet, and head."}
    {:text "Someone has left a running bulldozer here."}
-   {:text "The words 'eat dulp' are spray-painted on the wall here."}
-   {:text "The words 'Knifekitten lives!' are spray-painted on the wall here."}
-   {:text "The words 'Hammerdog lives!' are spray-painted on the wall here."}
+   {:text "The words 'eat dulp' are spray-painted on a wall here."}
+   {:text "The words 'Knifekitten lives!' are spray-painted on a wall here."}
+   {:text "The words 'Hammerdog lives!' are spray-painted on a wall here."}
    {:text "Spray-painted on the wall here are the words 'Alice?! Alice?! Who the f...'. The rest is illegible."}
    {:text "There has been significant damage from {:class :disaster}."}
    {:text "You see a sign here. On it is written '{:class :sign}'"}
@@ -256,7 +266,7 @@
    {:text "You glance at your watch; somehow, you're still on time."}
    {:text "You glance at your watch; you're a little ahead of schedule."}
    {:text "You spend a few moments thinking fondly about your teeth."}
-   {:text "You have rope burns got on your wrists... but from where?"}
+   {:text "You have rope burns on your wrists... but from where?"}
    {:text "You feel as if you're being followed."}
    {:text "A warm breeze blows by."}
    {:text "A cool breeze blows by."}
@@ -340,6 +350,14 @@
                    "Someone has piled up a collection of pleasuring devices, now ablaze."
                    "Surely there had to hae been a better way to punish these plastic torpedos."
                    "The air is dense with the echoes of unreached orgasms and epic frustrations."]}
+
+   {:text "hot tub"
+    :type :interior
+    :article "a"
+    :preps ["in near"]
+    :descriptions ["The water roils and steams like water roils and steams."
+                   "Someone has put blue coloring into the water. It looks like the future." 
+                   "It smells delicious because someone filled it with chicken soup." ]}
 
    {:text "maze of twisty little passages, all alike"
     :type :interior
@@ -650,6 +668,7 @@
    {:text "mumbles, 'I've never been to Belize.'"}
    {:text "says, 'It's true: the boot is the best McNugget shape.'"}
    {:text "says, 'Wrong answer, chief.'"}
+   {:text "says, 'This is giving me the freak-out.'"}
    {:text "says, 'How unfortunate.'"}
    {:text "says, 'I've been waiting for you.'"}
    {:text "says, 'I can't find my heirloom clown suit.'"}
@@ -683,7 +702,7 @@
   [{:text "Why don't they put mayo in the can with the tuna?"}
    {:text "{:class :person} never has a second cup of coffee at home..."}
    {:text "You can't go up against city hall."}
-   {:text "I may have made a giant mistake."}
+   {:text "I've made a huge mistake."}
    {:text "It's time to pay the price."}
    {:text "It'll all end in tears."}
    {:text "But I didn't eat the mousse!"}
@@ -702,12 +721,8 @@
    {:text "The owls are not what they seem."}
    {:text "Plugh."}
    {:text "Zzyzx."}
-   {:text "Puch."}
    {:text "Guch."}
-   {:text "Porluch."}
    {:text "Spigot."}
-   {:text "Bloyoy."}
-   {:text "Louch."}
    {:text "You sank my battleship."}
    {:text "Sorry, but it couldn't be helped."}
    {:text "Clean up in aisle 8A."}
@@ -758,6 +773,9 @@
   [{:text "Samuel L. Jackson"
     :gender :male}
 
+   {:text "Lloyd Braun"
+    :gender :male}
+
    {:text "David Lynch"
     :gender :male}
 
@@ -767,7 +785,7 @@
    {:text "Hugh Laurie"
     :gender :male}
 
-   {:text "Chris Makepeace"
+   {:text "Stephen Colbert"
     :gender :male}
 
    {:text "Frances McDormand"
@@ -777,9 +795,6 @@
     :gender :female}
 
    {:text "Katy Perry"
-    :gender :female}
-
-   {:text "Lena Horne"
     :gender :female}
 
    {:text "Justin Bieber"
@@ -811,25 +826,10 @@
    {:text "Geoff Petersen"
     :gender :male}
 
-   {:text "Stephen King"
-    :gender :male}
-
-   {:text "Jorts Morgan"
-    :gender :male}
-
-   {:text "Construction Charles"
-    :gender :male}
-
    {:text "Nancy Grace"
     :gender :female}
 
    {:text "Lindsay Lohan"
-    :gender :female}
-
-   {:text "Barack Obama"
-    :gender :male}
-
-   {:text "Condoleeza Rice"
     :gender :female}
 
    {:text "Ruth Buzzi"
@@ -840,9 +840,6 @@
 
    {:text "Tilda Swinton"
     :gender :female}
-   
-   {:text "Russell Brand"
-    :gender :male}
    
    {:text "Peter Dinklage"
     :gender :male}
@@ -856,7 +853,7 @@
    {:text "Grace Jones"
     :gender :female}
 
-   {:text "George W. Bush"
+   {:text "Bill Murray"
     :gender :male}
 
    {:text "your mom"}
@@ -874,16 +871,7 @@
    {:text "Jonah Hill"
     :gender :male}
 
-   {:text "Scarlet Johansson"
-    :gender :female}
-
    {:text "a gas station attendant"}
-
-   {:text "Lena Dunham"
-    :gender :female}
-
-   {:text "Hillary Clinton"
-    :gender :female}
 
    {:text "Craig T. Nelson"
     :gender :male}
@@ -1080,10 +1068,7 @@
     :article "some"}
 
    {:text "apple cinnamon Pop Tart"
-    :article "an"}
-   
-   {:text "old fruit leather"
-    :article "some"}])
+    :article "an"}])
 
 (def drinks
   [{:text "steaming gravy"
@@ -1147,6 +1132,9 @@
    {:text "skirt"
     :article "a"}
    
+   {:text "schizophrenic mood ring"
+    :article "a"}
+   
    {:text "sweater"
     :article "a"}
    
@@ -1156,6 +1144,9 @@
 (def items
   [{:text "skinny jeans"
     :article "a pair of"}
+
+   {:text "llama treats"
+    :article "a bag of"}
 
    {:text "parachute pants"
     :article "a pair of"}
@@ -1391,6 +1382,40 @@
    {:text "duststorm"
     :article "a"}])
 
+(def obstacles
+  [{:text "a black comb on the ground"}
+   {:text "a stack of dogs going all the way to the moon"}
+   {:text "a pile of corroded Ewoks"}
+   {:text "a horrible taste in your mouth"}
+   {:text "a movie being shown in the wrong aspect ratio"}
+   {:text "someone who has never listened to Neutral Milk Hotel"}
+   {:text "the thing your aunt gave you which you don't know what it is"}
+   {:text "an aquarium full of milk"}
+   {:text "dubstep"}
+   {:text "a 404 error"}
+   {:text "Adam Sandler's career"}
+   {:text "that awful man"}
+   {:text "a dude who insists on putting his hand in his girlfriend's back pocket"}
+   {:text "a maelstrom of hipster beards"}
+   {:text "a wall of tepid soup"}
+   {:text "a giant cat tongue"}
+   {:text "George Lucas' neck"}
+   {:text "Ruby On Rails"}
+   {:text "someone who takes too many selfies"}
+   {:text "a cat who has been pet against the grain"}
+   {:text "substandard prequels"}
+   {:text "the Scut Farkus Affair"}
+   {:text "a lack of retweets"}
+   {:text "a sweaty 486DX4 chip"}
+   {:text "a convenient reclosing tab"}
+   {:text "a lengthy German noun"}
+   {:text "your own unwillingness to improve yourself"}
+   {:text "{:class :person}'s sheer force of will"}
+   {:text "{:class :person}'s birthday party"}
+   {:text "a delicious Nutter Butter"}
+   {:text "double-double Animal style"}
+   {:text "someone who doesn’t know how to eat a goddamned Oreo properly"}])
+
 (def games
   [{:text "Agricola"
     :type :tabletop}
@@ -1437,6 +1462,7 @@
    "foods"
    "drinks"
    "signs"
+   "obstacles"
    "garments"
    "items"
    "animals"
