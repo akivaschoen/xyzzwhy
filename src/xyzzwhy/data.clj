@@ -695,7 +695,7 @@
   [{:text "Why don't they put mayo in the can with the tuna?"}
    {:text "{:class :person} never has a second cup of coffee at home..."}
    {:text "You can't go up against city hall."}
-   {:text "I may have made a giant mistake."}
+   {:text "I've made a huge mistake."}
    {:text "It's time to pay the price."}
    {:text "It'll all end in tears."}
    {:text "But I didn't eat the mousse!"}
