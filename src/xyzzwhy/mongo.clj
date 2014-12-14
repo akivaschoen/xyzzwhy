@@ -22,7 +22,6 @@
   "Empty a set of classes of their documents."
   []
   (doseq [c classes] 
-    (println "Removing" c "...")
     (depopulate-class c)))
 
 (defn populate-class
@@ -38,7 +37,6 @@
   "Adds a set of classes to the database."
   []
   (doseq [c classes]
-    (println "Populating" c "...")
     (populate-class c)))
 
 (defn repopulate-class 
