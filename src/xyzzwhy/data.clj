@@ -1,6 +1,6 @@
 (ns xyzzwhy.data)
 
-(def event-types
+(def events
   [{:text :location-event}
    {:text :action-event}])
 
@@ -1378,6 +1378,7 @@
 (def obstacles
   [{:text "a black comb on the ground"}
    {:text "a stack of dogs going all the way to the moon"}
+   {:text "an obstinant balloon expert"}
    {:text "a pile of corroded Ewoks"}
    {:text "a horrible taste in your mouth"}
    {:text "a movie being shown in the wrong aspect ratio"}
@@ -1435,7 +1436,7 @@
     :type :video}])
 
 (def classes
-  ["event-types"
+  ["events"
    "location-events"
    "action-events"
    "secondary-events"
@@ -1463,3 +1464,7 @@
    "games"
    "thoughts"
    "disasters"])
+
+(defn get-class
+  [class]
+  @(-> (str "xyzzwhy.data/" class) symbol resolve))

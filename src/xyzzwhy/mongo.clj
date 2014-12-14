@@ -29,7 +29,7 @@
   "Adds a class to the database."
   [classname]
   (let [db (:db (connect-via-uri (env :database-uri)))
-        coll @(-> classname symbol resolve)]
+        coll (get-class classname)]
     (insert-batch db 
                   (encode-classname classname) 
                   (shuffle coll))))

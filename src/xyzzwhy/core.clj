@@ -1,7 +1,9 @@
 (ns xyzzwhy.core
   (:use [typographer.core]
-        [xyzzwhy.twitter]
         [xyzzwhy.factory]
+        [xyzzwhy.mongo]
+        [xyzzwhy.state]
+        [xyzzwhy.twitter]
         [xyzzwhy.util])
   (:require [clojure.string :as string])
   (:gen-class))
@@ -54,15 +56,15 @@
   (nth (k thing) (rand-int (count (k thing)))))
 
 (defn get-segment
-  [type]
-  (-> (create-segment type)
+  [class]
+  (-> (create-segment class)
       interpolate-text))
 
 (defn compile-tweet
   "Creates a tweet by combining segments in various combinations."
   []
-  (let [initial-segment (get-segment :event-type)]
-    (if (= (:event-type initial-segment) :location-event) 
+  (let [initial-segment (get-segment :event)]
+    (if (= (:event initial-segment) :location-event) 
       ; 75% chance of a location event having a secondary event
       (if (<= (rand-int 100) 75)
         (let [secondary-segment (get-segment :secondary-event)]
@@ -89,28 +91,36 @@
           (combine-segments initial-segment tertiary-segment))
         initial-segment))))
 
+(defn- initialize-bot
+  "Refreshes the database, resets the state object, thus getting xyzzwhy
+  ready."
+  []
+  (repopulate-classes)
+  (initialize-state))
+
 (defn -main
   "Starts the bot up with an initial tweet and then randomly waits between
   20 and 40 minutes before tweeting again."
   [& args]
-  (println "xyzzwhy is ready for some magical adventures!")
-  (loop []
-    (let [interval (+ 1200000 (rand-int 1200000)) ; Tweet once every 20-40 minutes
-          tweet (-> (compile-tweet) finalize-tweet)]
+  (let [state (initialize-bot)]
+    (println "xyzzwhy is ready for some magical adventures!")
+    (loop []
+      (let [interval (+ 1200000 (rand-int 1200000)) ; Tweet once every 20-40 minutes
+            tweet (-> (compile-tweet) finalize-tweet)]
 
-      (println tweet)
+        (println tweet)
 
-      (comment
-        (try
-          (do
-            (post-to-twitter tweet)
-
-            ; Logging
+        (comment
+          (try
             (do
-              (println "Tweeted:" tweet)
-              (println "Next tweet in" (int (/ interval 60000)) "minutes"))
+              (post-to-twitter tweet)
 
-            (Thread/sleep interval))
-          (catch Exception e
-            (println "Caught error:" (.getMessage e)))))
-      (recur))))
+              ; Logging
+              (do
+                (println "Tweeted:" tweet)
+                (println "Next tweet in" (int (/ interval 60000)) "minutes"))
+
+              (Thread/sleep interval))
+            (catch Exception e
+              (println "Caught error:" (.getMessage e)))))
+        (recur)))))
