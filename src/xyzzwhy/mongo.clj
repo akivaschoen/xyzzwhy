@@ -5,9 +5,11 @@
   (:require [clojure.pprint :refer [pprint]]
             [clojure.string :as string]
             [environ.core :refer [env]]
-            [monger.core :refer [connect-via-uri disconnect]]
+            [monger.core :refer [connect-via-uri]]
             [monger.collection :refer [insert-batch remove]])
   (:import (java.lang String)))
+
+(def db (atom nil))
 
 (defn- mongoize 
   "Takes a placeholder's keyword classname and makes it compatible with MongoDB's 
@@ -22,9 +24,7 @@
 (defn depopulate-class
   "Empty a class of its entries."
   [classname]
-  (let [{:keys [conn db]} (connect-via-uri (env :database-uri))]
-    (remove db (mongoize classname))
-    (disconnect conn)))
+  (remove @db (mongoize classname)))
 
 (defn depopulate-classes
   "Empty a set of classes of their documents."
@@ -35,12 +35,10 @@
 (defn populate-class
   "Adds a class to the database."
   [classname]
-  (let [{:keys [conn db]} (connect-via-uri (env :database-uri))
-        coll (get-class classname)]
-    (insert-batch db 
+  (let [coll (get-class classname)]
+    (insert-batch @db 
                   (mongoize classname) 
-                  (shuffle coll))
-    (disconnect conn)))
+                  (shuffle coll))))
 
 (defn populate-classes
   "Adds a set of classes to the database."
@@ -63,12 +61,14 @@
 
 (defn get-class-from-db
   [classname]
-  (let [{:keys [conn db]} (connect-via-uri (env :database-uri))]
-    (with-collection db (mongoize classname)
-      (find {}))))
+  (with-collection @db (mongoize classname)
+    (find {})))
 
 (defn read-class-from-db
   [classname]
-  (let [{:keys [conn db]} (connect-via-uri (env :database-uri))]
-    (pprint (with-collection db (mongoize classname)
-      (find {})))))
+  (pprint (with-collection @db (mongoize classname)
+            (find {}))))
+
+(defn init-db-connection
+  []
+  (reset! db (:db (connect-via-uri (env :database-uri)))))

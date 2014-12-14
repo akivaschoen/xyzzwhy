@@ -95,6 +95,7 @@
   "Refreshes the database, resets the state object, thus getting xyzzwhy
   ready."
   []
+  (init-db-connection)
   (repopulate-classes)
   (initialize-state))
 
@@ -107,20 +108,16 @@
   (loop []
     (let [interval (+ 1200000 (rand-int 1200000)) ; Tweet once every 20-40 minutes
           tweet (-> (compile-tweet) finalize-tweet)]
-      
-      (println tweet)
+      (try
+        (do
+          (post-to-twitter tweet)
 
-      (comment
-        (try
+          ; Logging
           (do
-            ;(post-to-twitter tweet)
+            (println "Tweeted:" tweet)
+            (println "Next tweet in" (int (/ interval 60000)) "minutes"))
 
-            ; Logging
-            (do
-              (println "Tweeted:" tweet)
-              (println "Next tweet in" (int (/ interval 60000)) "minutes"))
-
-            (Thread/sleep interval))
-          (catch Exception e
-            (println "Caught error:" (.getMessage e))))))
+          (Thread/sleep interval))
+        (catch Exception e
+          (println "Caught error:" (.getMessage e)))))
       (recur)))
