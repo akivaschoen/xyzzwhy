@@ -4,8 +4,7 @@
         [xyzzwhy.mongo]
         [xyzzwhy.state]
         [xyzzwhy.util])
-  (:require [clojure.string :as string])
-  (:import (java.util ArrayList Collections)))
+  (:require [clojure.string :as string]))
 
 (defn- get-classes 
   "Returns a merged sequence of classes from the database."
