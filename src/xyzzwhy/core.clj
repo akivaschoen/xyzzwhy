@@ -55,7 +55,7 @@
   [thing k]
   (nth (k thing) (rand-int (count (k thing)))))
 
-(defn get-segment
+(defn- get-segment
   [class]
   (-> (create-segment class)
       interpolate-text))
@@ -102,14 +102,18 @@
   "Starts the bot up with an initial tweet and then randomly waits between
   20 and 40 minutes before tweeting again."
   [& args]
-  (let [state (initialize-bot)]
-    (println "xyzzwhy is ready for some magical adventures!")
-    (loop []
-      (let [interval (+ 1200000 (rand-int 1200000)) ; Tweet once every 20-40 minutes
-            tweet (-> (compile-tweet) finalize-tweet)]
+  (initialize-bot)
+  (println "xyzzwhy is ready for some magical adventures!")
+  (loop []
+    (let [interval (+ 1200000 (rand-int 1200000)) ; Tweet once every 20-40 minutes
+          tweet (-> (compile-tweet) finalize-tweet)]
+      
+      (println tweet)
+
+      (comment
         (try
           (do
-            (post-to-twitter tweet)
+            ;(post-to-twitter tweet)
 
             ; Logging
             (do
@@ -118,5 +122,5 @@
 
             (Thread/sleep interval))
           (catch Exception e
-            (println "Caught error:" (.getMessage e)))))
-        (recur))))
+            (println "Caught error:" (.getMessage e))))))
+      (recur)))

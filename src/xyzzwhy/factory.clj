@@ -1,47 +1,31 @@
 (ns xyzzwhy.factory
   (:refer-clojure :exclude [sort find])
-  (:use [monger.query]
-        [xyzzwhy.data]
+  (:use [xyzzwhy.data]
+        [xyzzwhy.mongo]
         [xyzzwhy.state]
         [xyzzwhy.util])
-  (:require [clojure.string :as string]
-            [environ.core :refer [env]]
-            [monger.core :refer [connect-via-uri]])
-            ;[monger.collection :refer [count]])
+  (:require [clojure.string :as string])
   (:import (java.util ArrayList Collections)))
-
-(defn- encode-classname 
-  "Takes a placeholder's keyword classname and makes it compatible with MongoDB's 
-  collection naming scheme."
-  [classname]
-  (-> classname 
-      name
-      (string/replace #"-" "_")
-      (str "s")))
 
 (defn- get-classes 
   "Returns a merged sequence of classes from the database."
   [classes]
-  (let [db (:db (connect-via-uri (env :database-uri)))]
-    (letfn [(get-class [c] 
-              (with-collection db (encode-classname c)
-                (find {})))]
-      (loop [classes classes result {}]
-        (if (empty? classes)
-          result
-          (recur (rest classes)
-                 (concat result (get-class (first classes)))))))))
+  (loop [classes classes result {}]
+    (if (empty? classes)
+      result
+      (recur (rest classes)
+             (concat result (get-class-from-db (first classes)))))))
 
 (defn- get-next-thing
   "Chooses the next thing from a shuffled class or classes."
   [classes]
-  (let [class (if (> (count classes) 1)
-                [(nth classes (randomize classes))]
-                classes)
-        idx (:nth (get-class-state (first class)))
-        thing (nth (get-classes class) idx)]
-    (update-state class)
-    (check-class-threshold class)
+  (let [classname (if (> (count classes) 1)
+                     [(nth classes (randomize classes))]
+                     classes)
+        idx (:nth (get-class-state (first classname)))
+        thing (nth (get-classes classname) idx)]
+    (update-state classname)
+    (check-class-threshold classname)
     thing))
 
 (defn- get-random-thing

@@ -1465,6 +1465,14 @@
    "thoughts"
    "disasters"])
 
+(defn dataize
+  [classname]
+  (let [classname 
+        (cond-> classname
+          (keyword? classname) name
+          (not (.endsWith (name classname) "s")) (str "s"))]
+  (str "xyzzwhy.data/" classname)))
+
 (defn get-class
-  [class]
-  @(-> (str "xyzzwhy.data/" class) symbol resolve))
+  [classname]
+  @(-> (dataize classname) symbol resolve))
