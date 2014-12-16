@@ -16,6 +16,8 @@
    {:text "You walk {:class :direction} and arrive at {:class :location :config [:no-prep]}."}
    {:text "You head {:class :direction} and arrive at {:class :location :config [:no-prep]}."}
    {:text "Hey! It's {:class :location :config [:no-prep]}."}
+   {:text "You follow {:class :actor} to {:class :location :config [:no-prep]}."}
+   {:text "You follow {:class :animal} to {:class :location :config [:no-prep]}."}
    {:text "You are {:class :location}."}
    {:text "You are {:class :location}."}
    {:text "You are {:class :location}."}
@@ -24,7 +26,7 @@
    {:text "You tunnel through the soil and pop up {:class :location}."}
    {:text "You emerge {:class :location}."}
    {:text "You arrive {:class :location}."}
-   {:text "You are magically teleported to {:class :location}!"}
+   {:text "You are magically teleported to {:class :location :config [:no-prep]}!"}
    {:text "The drugs are wearing off. You are {:class :location}."}
    {:text "The spell effects are wearing off. You are {:class :location}."}
    {:text "You are standing {:class :direction} of {:class :location :config [:no-prep]}."}
@@ -55,7 +57,7 @@
    {:text "The elevator doors open to reveal {:class :location :config [:no-prep]}."}
    {:text "Using a vine to swing across the pit, you land {:class :location}."}
    {:text "The trapdoor drops open beneath you and you land {:class :location}."}
-   {:text "You step through the magic mirror and end up {:class :location}."}
+   {:text "You step through a magic mirror and end up {:class :location}."}
    {:text "You get tangled up in a revolving door. You stumble out into {:class :location :config [:no-prep]}."}
    {:text "After scrambling through some dense underbrush, you find yourself {:class :location}."}
    {:text "After pushing your way through a dense crowd, you arrive {:class :location}."}
@@ -64,9 +66,8 @@
    {:text "A tornado deposits you {:class :location}."}
    {:text "Right on cue, you pop up out of the jack-in-the-box. You're {:class :location}."}
    {:text "After being shot out of a cannon, you land {:class :location}."}
-   {:text "You slide down the fireman's pole and land {:class :location}."}
+   {:text "You slide down a fireman's pole and land {:class :location}."}
    {:text "Hands on your hips, you survey {:class :location :config [:no-prep]} {:class :adverb}."}])
-;   {:text "You have reached a dead-end. You start moonwalking away."}])
 
 (def action-events
   [{:text "You awake from a nightmare. You saw yourself {:class :location}. The corpse of {:class :person} was there, holding {:class :item}."}
@@ -90,12 +91,13 @@
    {:text "{:class :person} marches up to you and says, 'Hello please.'"}
    {:text "{:class :person} starts breakdancing and won't stop no matter how much you scream."}
    {:text "{:class :actor} attacks you and knocks you out! You awake sometime later {:class :location}."}
-   {:text "{:class :person} appears in a puff of smoke and shouts, 'You will never see your {:class :item :config [:no-prep :no-article]} again!'"}
+   {:text "{:class :person} appears in a puff of smoke, {:class :actor-action}."}
    {:text "You startle {:class :person} who drops {:class :item} and runs away."}
    {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'All this nonsense about {:class :item} needs to stop! I can't take it anymore!'"}
    {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'They're making plans for Nigel! They want what's best for him!'"}
    {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'You can't go up against city hall!'"}
    {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'I just can't take you seriously anymore!'"}
+   {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'MOM?!'"}
    {:text "{:class :person} suddenly shrieks."}
    {:text "{:class :person} makes a rude noise, points surreptitiously to {:class :animal} nearby."}
    {:text "You get tired of waiting for your Uber and decide to walk to {:class :location :config [:no-prep]} instead."}
@@ -129,6 +131,7 @@
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the Hall of Uncomfortable Touching.'"}
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Stop that.'"}
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the Readers' Digest Condensation Camp.'"}
+   {:text "An overhead loudspeaker crackles to life, 'Citizen! Open up your textbook and turn to the chapter concerning your death.'"}
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the Out-of-Control Rototiller Museum.'"}
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the nearest mandatory prison hug.'"}
    {:text "An overhead loudspeaker crackles to life. The announcement is completely garbled. The loudspeaker switches off with a squawk."}
@@ -216,6 +219,7 @@
    {:text "The words 'Knifekitten lives!' are spray-painted on a wall here."}
    {:text "The words 'Hammerdog lives!' are spray-painted on a wall here."}
    {:text "Spray-painted on the wall here are the words 'Alice?! Alice?! Who the f...'. The rest is illegible."}
+   {:text "An ice cream truck goes by. It's on fire."}
    {:text "There has been significant damage from {:class :disaster}."}
    {:text "You see a sign here. On it is written '{:class :sign}'"}
    {:text "You see a sign here. On it is written '{:class :sign}'"}])
@@ -259,7 +263,6 @@
    {:text "You glance at your watch; somehow, you're still on time."}
    {:text "You glance at your watch; you're a little ahead of schedule."}
    {:text "You spend a few moments thinking fondly about your teeth."}
-   {:text "You have rope burns on your wrists... but from where?"}
    {:text "You feel as if you're being followed."}
    {:text "A warm breeze blows by."}
    {:text "A cool breeze blows by."}
@@ -395,10 +398,11 @@
    {:text "sauna" 
     :type :interior
     :article "a" 
-    :preps ["in" "near"]
+    :preps ["in"]
     :descriptions ["The wood paneling sweats sweetly in the oppressive heat."
                    "Great thunderheads of steam rise up from the rock basin, making it hard to see."
-                   "The room is cold and dark. No one has used this sauna in years."]} 
+                   "The room is cold and dark. No one has used this sauna in years."
+                   "The floor is covered with cute little mushrooms."]} 
    
    {:text "New York Public Library" 
     :type :exterior
@@ -496,7 +500,8 @@
     :type :exterior
     :article "a"
     :preps ["at" "in" "near" "behind" "in front of"]
-    :descriptions ["It's white and vaguely castle-shaped."]}
+    :descriptions ["It's white and vaguely castle-shaped."
+                   "It smells squarely delicious."]}
 
    {:text "Taco Bell" 
     :type :exterior
@@ -675,8 +680,10 @@
    {:text "says, 'I'm stuck in a poo loop.'"}
    {:text "says, 'Well, that's a dead give away.'"}
    {:text "says, 'If you asked me to have sex with you, I wouldn't say \"no\".'"}
+   {:text "says, 'I'm not an actor but I play one on television.'"}
    {:text "shouts, 'You can't go up against city hall!'"}
    {:text "shouts, 'You can't fold a cat!'"}
+   {:text "shouts, 'It keeps happening!'"}
    {:text "shouts, 'They're having a brownout in Lagos!'"}
    {:text "shouts, 'Don Quixote! Swingin' from a pipe!'"}
    {:text "shrieks, 'What's this shit I keep hearing about erections?!'"}
@@ -689,7 +696,8 @@
    {:text "whispers, 'Fee was a Buddhist prodigy.'"}
    {:text "whispers, 'There squats the brown clown.'"}
    {:text "whispers, 'Sleep is unproductive and a waste of time.'"}
-   {:text "whispers, 'You just lost the game.'"}])
+   {:text "whispers, 'You just lost the game.'"}
+   {:text "yells, 'I warned you about stairs, bro! I told ya, dawg!'"}])
 
 (def thoughts
   [{:text "Why don't they put mayo in the can with the tuna?"}
@@ -697,19 +705,21 @@
    {:text "You can't go up against city hall."}
    {:text "I've made a huge mistake."}
    {:text "It's time to pay the price."}
-   {:text "It'll all end in tears."}
-   {:text "But I didn't eat the mousse!"}
+   {:text "Why don't they have Double Stuf Nutter Butters?"}
+   {:text "This'll all end in tears."}
+   {:text "Hey! But I didn't eat the mousse!"}
    {:text "{:class :person} still owes me a backrub."}
    {:text "I wonder if I could forge us a Group 6 Access..."}])
 
 (def intonations
   [{:text "Toast goes in the toaster."}
    {:text "These pretzels are making me thirsty."}
-   {:text "Wrong answer, chief."}
    {:text "For those who can make the journey, there is a place."}
    {:text "Slightly uncomfortable pleasures."}
    {:text "It is a winning cake."}
-   {:text "POKE 1024,0"}
+   {:text "POKE 1024,0."}
+   {:text "Coitus?"}
+   {:text "Pave Canada."}
    {:text "Your pilikia is all pau."}
    {:text "The owls are not what they seem."}
    {:text "Plugh."}
@@ -720,6 +730,8 @@
    {:text "Sorry, but it couldn't be helped."}
    {:text "Clean up in aisle 8A."}
    {:text "Rabbit feces."}
+   {:text "Don't panic."}
+   {:text "Don't panic. Oh, all right. You can panic a little bit."}
    {:text "Consider deeply the baked ham."}
    {:text "You can't go up against city hall."}])
 
@@ -766,11 +778,23 @@
   [{:text "Samuel L. Jackson"
     :gender :male}
 
+   {:text "Rob Lowe"
+    :gender :male}
+
    {:text "Lloyd Braun"
+    :gender :male}
+
+   {:text "Bradley Whitford"
+    :gender :male}
+
+   {:text "Josh Malina"
     :gender :male}
 
    {:text "David Lynch"
     :gender :male}
+
+   {:text "Allison Janney"
+    :gender :female}
 
    {:text "Stephen Fry"
     :gender :male}
@@ -808,7 +832,8 @@
    {:text "Johnny Cash"
     :gender :male}
 
-   {:text "a police officer"}
+   {:text "a police officer"
+    :gender :group}
 
    {:text "Alex Trebek"
     :gender :male}
@@ -849,11 +874,14 @@
    {:text "Bill Murray"
     :gender :male}
 
-   {:text "your mom"}
+   {:text "your mom"
+    :gender :female}
 
-   {:text "a bunch of kids"}
+   {:text "a bunch of kids"
+    :gender :group}
 
-   {:text "a crowd of Yoga enthusiasts"}
+   {:text "a crowd of Yoga enthusiasts"
+    :gender :group}
 
    {:text "George Clooney"
     :gender :male}
@@ -864,7 +892,8 @@
    {:text "Jonah Hill"
     :gender :male}
 
-   {:text "a gas station attendant"}
+   {:text "a gas station attendant"
+    :gender :male}
 
    {:text "Craig T. Nelson"
     :gender :male}
@@ -881,6 +910,9 @@
    {:text "@akiva"
     :gender :male}
 
+   {:text "@jimminy"
+    :gender :male}
+
    {:text "@veo_"
     :gender :male}
 
@@ -888,6 +920,9 @@
     :gender :male}
 
    {:text "@KamenPrime"
+    :gender :male}
+
+   {:text "@ActuallySparky"
     :gender :male}
 
    {:text "@neonbubble"
@@ -951,7 +986,7 @@
    {:text "warily"}
    {:text "solemnly"}
    {:text "mournfully"}
-   {:text "haphazardly"}
+   {:text "proudly"}
    {:text "bravely"}
    {:text "sadly"}
    {:text "happily"}
