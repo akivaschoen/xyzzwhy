@@ -27,12 +27,13 @@
 (defn reset-class-state
   [classname]
   (swap! state assoc-in [:classes (keywordize classname) :nth] 0)
-  (repopulate-class classname))
+  (repopulate-class classname)
+  (println "!!" classname " reset."))
 
 (defn check-class-threshold
   [classname]
   (let [class (get-class-state (first classname))]
-    (if (> (:nth class) (* (:count class) 0.75))
+    (if (> (:nth class) (* (:count class) 0.90))
       (reset-class-state (first classname)))))
 
 (defn update-state
