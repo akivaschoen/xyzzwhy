@@ -103,7 +103,7 @@
    {:text "{:class :actor} attacks with {:class :attack}. You with {:class :attack}. You are victorious!"}
    {:text "{:class :actor} attacks with {:class :attack}. You with {:class :attack}. Your enemy is a bloodstain."}
    {:text "Suddenly you're in freeze-frame as the credits roll."}
-   {:text "{:class :person} appears in a puff of smoke, {:class :actor-action}."}
+   {:text "{:class :person} appears in a puff of smoke, {:class :actor-action}"}
    {:text "You startle {:class :person} who drops {:class :item} and runs away."}
 ;   {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'All this nonsense about {:class :item} needs to stop! I can't take it anymore!'"}
 ;   {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'They're making plans for Nigel! They want what's best for him!'"}
@@ -137,7 +137,9 @@
    {:text "{:class :actor} suddenly appears out of the shadows, says, 'Oh, sorry about that,' then retreats back into the shadows."}
    {:text "{:class :actor} suddenly appears out of the shadows, says, '{:class :actor} will see you now,' then slowly retreats back into the shadows."}
    {:text "{:class :actor} picks up {:class :item}."}
+   {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the nearest oddly-angled inner tube.'"}
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the nearest self-incrimination booth.'"}
+   {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the nearest Java stacktrace.'"}
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the bean simulator.'"}
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the nearest certified manhole.'"}
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to the National Baby Oil Slip-n-Slide.'"}
@@ -361,25 +363,47 @@
     :descriptions ["You start to moonwalk away."
                    "Someone has painted a giant sad face here."]}
   
-   {:text "tire fire" 
+   {:text "ice skating rink"
     :type :exterior
-    :article "a" 
-    :preps ["at" "near" "behind" "in front of"]
-    :descriptions ["It is warm and welcoming."
-                   "Someone had been roasting marshmallows here."
-                   "The air here is black with despair and entropy."
-                   "The sky is darkened by the hellish smoke of the endless burn."
-                   "These tires are no longer the things on your car that make contact with the road."]}
-   
-   {:text "dildo bonfire" 
+    :article "an"
+    :preps ["at" "in front of" "on"]
+    :descriptions ["It's currently on fire."
+                   "Unfortunately, it's made of dry ice."
+                   "A solid-gold curling stone is nearby."
+                   "There are three hungry-looking zambonies here."]}
+
+   {:text "movie set"
     :type :exterior
-    :article "a" 
-    :preps ["at" "near" "behind" "in front of"]
-    :descriptions ["You look closely but don't recognize any of them."
-                   "The plastic hisses and creaks in the blaze."
-                   "Someone has piled up a collection of pleasuring devices, now ablaze."
-                   "Surely there had to hae been a better way to punish these plastic torpedos."
-                   "The air is dense with the echoes of unreached orgasms and epic frustrations."]}
+    :article "a"
+    :preps ["on"]
+    :descriptions ["The crafts table is covered with another, smaller crafts table."
+                   "A nude man strolls by."
+                   "A hundred tiny dogs are here, looking menacing."]}
+
+   {:text "particle board storage facility"
+    :type :interior
+    :article "a"
+    :preps ["at" "near" "in front of" "behind" "inside"]}
+
+;   {:text "tire fire" 
+;    :type :exterior
+;    :article "a" 
+;    :preps ["at" "near" "behind" "in front of"]
+;    :descriptions ["It is warm and welcoming."
+;                   "Someone had been roasting marshmallows here."
+;                   "The air here is black with despair and entropy."
+;                   "The sky is darkened by the hellish smoke of the endless burn."
+;                   "These tires are no longer the things on your car that make contact with the road."]}
+
+;   {:text "dildo bonfire" 
+;    :type :exterior
+;    :article "a" 
+;    :preps ["at" "near" "behind" "in front of"]
+;    :descriptions ["You look closely but don't recognize any of them."
+;                   "The plastic hisses and creaks in the blaze."
+;                   "Someone has piled up a collection of pleasuring devices, now ablaze."
+;                   "Surely there had to hae been a better way to punish these plastic torpedos."
+;                   "The air is dense with the echoes of unreached orgasms and epic frustrations."]}
 
    {:text "hot tub"
     :type :interior
@@ -703,6 +727,7 @@
    {:text "says, 'Wrong answer, chief.'"}
    {:text "says, 'This is giving me the freak-out.'"}
    {:text "says, 'How unfortunate.'"}
+   {:text "says, 'Well that really scrambles my eggs.'"}
    {:text "says, 'I've been waiting for you.'"}
    {:text "says, 'I can't find my heirloom clown suit.'"}
    {:text "says, 'I can't find my {:class :garment :config [:no-article]}.'"}
@@ -1519,6 +1544,7 @@
 (def obstacles
   [{:text "a black comb on the ground"}
    {:text "a stack of dogs going all the way to the moon"}
+   {:text "Steve Buscemi's grin"}
    {:text "an obstinant balloon expert"}
    {:text "a pile of corroded Ewoks"}
    {:text "a horrible taste in your mouth"}
@@ -1526,7 +1552,7 @@
    {:text "someone who has never listened to Neutral Milk Hotel"}
    {:text "the thing your aunt gave you which you don't know what it is"}
    {:text "an aquarium full of milk"}
-   {:text "dubstep"}
+   ;{:text "dubstep"}
    {:text "a 404 error"}
    {:text "Adam Sandler's career"}
    {:text "that awful man"}
@@ -1535,7 +1561,7 @@
    {:text "a wall of tepid soup"}
    {:text "a giant cat tongue"}
    {:text "George Lucas' neck"}
-   {:text "Ruby On Rails"}
+   ;{:text "Ruby On Rails"}
    {:text "someone who takes too many selfies"}
    {:text "a cat who has been pet against the grain"}
    {:text "substandard prequels"}
