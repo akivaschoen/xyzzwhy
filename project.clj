@@ -1,4 +1,4 @@
-(defproject xyzzwhy-bot "0.7.0-SNAPSHOT"
+(defproject xyzzwhy "0.7.0-SNAPSHOT"
   :description "A Twitter bot who takes you on surreal adventures."
   :url "http://example.com/FIXME"
   :license {:name "Eclipse Public License"
@@ -11,6 +11,5 @@
   :plugins [[lein-environ "1.0.0"]]
   :main ^:skip-aot xyzzwhy.core
   :target-path "target/%s"
-  :uberjar-name "xyzzwhy-standalone.jar"
   :profiles {:uberjar {:aot :all}}
   :min-lein-version "2.0.0")
