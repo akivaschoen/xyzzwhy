@@ -1,5 +1,5 @@
 (ns xyzzwhy.twitter
-  (:use 
+  (:use
     [twitter.oauth]
     [twitter.api.restful])
   (:require [environ.core :refer [env]])
@@ -7,10 +7,10 @@
 
 (def credentials
   (make-oauth-creds
-    (env :twitter-consumer-key)
-    (env :twitter-consumer-secret)
-    (env :twitter-user-access-token)
-    (env :twitter-user-access-token-secret)))
+    (env :xyzzwhy-twitter-consumer-key)
+    (env :xyzzwhy-twitter-consumer-secret)
+    (env :xyzzwhy-twitter-user-access-token)
+    (env :xyzzwhy-twitter-user-access-token-secret)))
 
 (defn post-to-twitter 
   "This, uh, posts to Twitter."
