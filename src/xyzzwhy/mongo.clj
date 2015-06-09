@@ -71,4 +71,4 @@
 
 (defn init-db-connection
   []
-  (reset! db (:db (connect-via-uri (env :database-uri)))))
+  (reset! db (:db (connect-via-uri (env :xyzzwhy-database-uri)))))
