@@ -1,10 +1,10 @@
-(ns xyzzwhy.data)
+(ns xyzzwhy.text)
 
-(def events
+(defonce events
   [{:text :location-event}
    {:text :action-event}])
 
-(def location-events
+(defonce location-events
   [{:text "You have entered {:class :location :config [:no-prep]}."}
    {:text "You try to go {:class :direction} but your way is blocked by {:class :obstacle}."}
    {:text "You try to go {:class :direction} but your way is blocked by {:class :obstacle}."}
@@ -78,7 +78,7 @@
    {:text "Hands on your hips, you survey {:class :location :config [:no-prep]} {:class :adverb}."}
    {:text "You wake up in front of {:class :person}'s house. You have no clue how you got there."}])
 
-(def action-events
+(defonce action-events
   [{:text "You awake from a nightmare. You saw yourself {:class :location}. The corpse of {:class :person} was there, holding {:class :item}."}
    {:text "You pick up {:class :item}."}
    {:text "You pick up {:class :item} and hold it close to your chest."}
@@ -91,8 +91,8 @@
    {:text "{:class :actor} {:class :action} you."}
    {:text "{:class :actor} drops {:class :item} here."}
    {:text "{:class :actor} does a little jig. 'Bidibidibidi, wanna dance?'"}
-   ;{:text "{:class :person} marches up to you and says, 'Hello please.'"}
-   ;{:text "{:class :person} starts breakdancing and won't stop no matter how much you scream."}
+   {:text "{:class :person} marches up to you and says, 'Hello please.'"}
+   {:text "{:class :person} starts breakdancing and won't stop no matter how much you scream."}
    {:text "{:class :actor} attacks you and knocks you out. You awake sometime later {:class :location}."}
    {:text "{:class :actor} attacks you but you fight back with {:class :attack}, winning the battle."}
    {:text "{:class :actor} attacks you but you fight back with {:class :attack}. It isn't enough: you lose."}
@@ -105,13 +105,13 @@
    {:text "Suddenly you're in freeze-frame as the credits roll."}
    {:text "{:class :person} appears in a puff of smoke, {:class :actor-action}"}
    {:text "You startle {:class :person} who drops {:class :item} and runs away."}
-;   {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'All this nonsense about {:class :item} needs to stop! I can't take it anymore!'"}
-;   {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'They're making plans for Nigel! They want what's best for him!'"}
-;   {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'You can't go up against city hall!'"}
-;   {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'I just can't take you seriously anymore!'"}
-;   {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'MOM?!'"}
-;   {:text "{:class :person} suddenly shrieks."}
-;   {:text "{:class :person} makes a rude noise, points surreptitiously to {:class :animal} nearby."}
+   {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'All this nonsense about {:class :item} needs to stop! I can't take it anymore!'"}
+   {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'They're making plans for Nigel! They want what's best for him!'"}
+   {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'You can't go up against city hall!'"}
+   {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'I just can't take you seriously anymore!'"}
+   {:text "{:class :person} slams down a half-empty glass of {:class :drink :config [:no-prep :no-article]}. 'MOM?!'"}
+   {:text "{:class :person} suddenly shrieks."}
+   {:text "{:class :person} makes a rude noise, points surreptitiously to {:class :animal} nearby."}
    {:text "You get tired of waiting for your Uber and decide to walk to {:class :location :config [:no-prep]} instead."}
    {:text "You get tired of waiting for your private jet so you decide to walk to {:class :location :config [:no-prep]} instead."}
    {:text "You get tired of waiting for the all-you-can-eat-buffet to open so you walk to {:class :location :config [:no-prep]} instead."}
@@ -119,7 +119,7 @@
    {:text "The phone rings. {:class :person} watches as it starts to melt, the sound of the ring slowing and burbling to a stop."}
    {:text "The phone rings. {:class :person} picks it up, listens a moment, shrieks, and slams the phone down again."}
    {:text "The phone rings. {:class :person} picks it up, says, 'It's for you,' but you're longer there."}
-   ;{:text "You start eating {:class :food} and don't stop until you're done."}
+   {:text "You start eating {:class :food} and don't stop until you're done."}
    {:text "You eat {:class :food}."}
    {:text "You eat {:class :food}. {:class :actor} looks on {:class :adverb}."}
    {:text "You think to yourself, '{:class :thought}'"}
@@ -130,9 +130,9 @@
    {:text "You check your inventory. You are empty-handed."}
    {:text "You check your inventory. You are carrying {:class :item}, {:class :item}, and {:class :item}."}
    {:text "You check your inventory. You have {:class :item} and {:class :item}."}
-;   {:text "You open up {:class :book}. Someone has scribbled all over the margins. You throw it down on the floor in disgust."}
-;   {:text "You open up {:class :book}. Someone has left a recipe for beef stew inside."}
-;   {:text "You open up {:class :book}. You read a bit before tossing it over your shoulder and then doing the electric slide."}
+   {:text "You open up {:class :book}. Someone has scribbled all over the margins. You throw it down on the floor in disgust."}
+   {:text "You open up {:class :book}. Someone has left a recipe for beef stew inside."}
+   {:text "You open up {:class :book}. You read a bit before tossing it over your shoulder and then doing the electric slide."}
    {:text "{:class :actor} suddenly appears out of the shadows, hisses at you, then scrambles away like a spider."}
    {:text "{:class :actor} suddenly appears out of the shadows, says, 'Oh, sorry about that,' then retreats back into the shadows."}
    {:text "{:class :actor} suddenly appears out of the shadows, says, '{:class :actor} will see you now,' then slowly retreats back into the shadows."}
@@ -157,16 +157,16 @@
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to The Garbagerie.'"}
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Report immediately to Stall #3.'"}
    {:text "An overhead loudspeaker crackles to life, 'Citizen! Just shut up already.'"}
-;   {:text "You start spinning around and around. {:class :person} looks unimpressed."}
-;   {:text "You start spinning around and around. {:class :person} faints."}
-;   {:text "You start spinning around and around. You drill straight into the crust of the earth."}
-;   {:text "You start spinning around and around. You gracefully lift off into a blue sky."}
-;   {:text "You start spinning around and around. You gracefully lift off into a blue sky never to be seen again."}
-;   {:text "You start spinning around and around. You gracefully lift off, go sideways, and crash into a building."}
-;   {:text "You start spinning around and around while {:class :person} claps and cheers."}
-;   {:text "You start spinning around and around while {:class :person} cries and points."}
-;   {:text "You start spinning around and around while {:class :person} writes furiously on a clipboard."}
-;   {:text "You start spinning around and around while {:class :person} beams with pride."}
+   {:text "You start spinning around and around. {:class :person} looks unimpressed."}
+   {:text "You start spinning around and around. {:class :person} faints."}
+   {:text "You start spinning around and around. You drill straight into the crust of the earth."}
+   {:text "You start spinning around and around. You gracefully lift off into a blue sky."}
+   {:text "You start spinning around and around. You gracefully lift off into a blue sky never to be seen again."}
+   {:text "You start spinning around and around. You gracefully lift off, go sideways, and crash into a building."}
+   {:text "You start spinning around and around while {:class :person} claps and cheers."}
+   {:text "You start spinning around and around while {:class :person} cries and points."}
+   {:text "You start spinning around and around while {:class :person} writes furiously on a clipboard."}
+   {:text "You start spinning around and around while {:class :person} beams with pride."}
    {:text "{:class :person} is calling from {:class :location :config [:no-prep]} asking for {:class :item}."}
    {:text "{:class :person} is calling from {:class :location :config [:no-prep]} asking if {:class :person} can come out and play."}
    {:text "{:class :person} is calling from {:class :location :config [:no-prep]} asking if {:class :person} can come out and play."}
@@ -186,7 +186,7 @@
    {:text "A magician saws you in half... lengthwise."}
    {:text "You check your health: you are {:class :diagnose}."}])
 
-(def secondary-events 
+(defonce secondary-events 
   [{:text "You see {:class :item} here."}
    {:text "You see {:class :item} here. It looks oddly familiar."}
    {:text "There is {:class :item} here."}
@@ -241,7 +241,7 @@
    {:text "Someone has been here recently."}
    {:text "There are fresh footprints here."}
    {:text "It seems that no one has been here for a long time."}
-;   {:text "Someone has attached marionnette wires to your hands, feet, and head."}
+   {:text "Someone has attached marionnette wires to your hands, feet, and head."}
    {:text "Someone has left a running bulldozer here."}
    {:text "The words 'eat dulp' are spray-painted on a wall here."}
    {:text "The words 'Knifekitten lives!' are spray-painted on a wall here."}
@@ -253,7 +253,7 @@
    {:text "You see a sign here. On it is written '{:class :sign}'"}
    {:text "You see a sign here. On it is written '{:class :sign}'"}])
 
-(def tertiary-events 
+(defonce tertiary-events 
   [{:text "You aren't wearing any clothes."}
    {:text "Your clothes feel too small."}
    {:text "Your clothes feel too loose."}
@@ -307,7 +307,7 @@
    {:text "You spot an office desk in a tree."}
    {:text "You spot a bonsai tree stuck in a regular tree."}
    {:text "You see a pair of sneakers dangling on a utility line overhead."}
-   ;{:text "Someone nearby is repeatedly zipping and unzipping a duffel bag."}
+   {:text "Someone nearby is repeatedly zipping and unzipping a duffel bag."}
    {:text "Somehow, you've lost your {:class :garment :config [:no-article]}."}
    {:text "You hear someone nearby typing away on a manual typewriter."}
    {:text "You're catching your second wind."}
@@ -321,7 +321,7 @@
    {:text "You have died."}
    {:text "You are starting to feel hungry."}])
 
-(def actor-actions
+(defonce actor-actions
   [{:text "looking {:class :adjective}."}
    {:text "being chased by a swarm of balloon animals."}
    {:text "being chased by {:class :person}."}
@@ -355,14 +355,14 @@
    {:text "ready to start some shit."}
    {:text "examining {:class :item} with great confusion."}])
 
-(def locations
+(defonce locations
   [{:text "dead-end"
     :type :interior
     :article "a"
     :preps ["at" "in front of"]
     :descriptions ["You start to moonwalk away."
                    "Someone has painted a giant sad face here."]}
-  
+
    {:text "ice skating rink"
     :type :exterior
     :article "an"
@@ -385,25 +385,25 @@
     :article "a"
     :preps ["at" "near" "in front of" "behind" "inside"]}
 
-;   {:text "tire fire" 
-;    :type :exterior
-;    :article "a" 
-;    :preps ["at" "near" "behind" "in front of"]
-;    :descriptions ["It is warm and welcoming."
-;                   "Someone had been roasting marshmallows here."
-;                   "The air here is black with despair and entropy."
-;                   "The sky is darkened by the hellish smoke of the endless burn."
-;                   "These tires are no longer the things on your car that make contact with the road."]}
+   {:text "tire fire"
+    :type :exterior
+    :article "a"
+    :preps ["at" "near" "behind" "in front of"]
+    :descriptions ["It is warm and welcoming."
+                   "Someone had been roasting marshmallows here."
+                   "The air here is black with despair and entropy."
+                   "The sky is darkened by the hellish smoke of the endless burn."
+                   "These tires are no longer the things on your car that make contact with the road."]}
 
-;   {:text "dildo bonfire" 
-;    :type :exterior
-;    :article "a" 
-;    :preps ["at" "near" "behind" "in front of"]
-;    :descriptions ["You look closely but don't recognize any of them."
-;                   "The plastic hisses and creaks in the blaze."
-;                   "Someone has piled up a collection of pleasuring devices, now ablaze."
-;                   "Surely there had to hae been a better way to punish these plastic torpedos."
-;                   "The air is dense with the echoes of unreached orgasms and epic frustrations."]}
+   {:text "dildo bonfire"
+    :type :exterior
+    :article "a"
+    :preps ["at" "near" "behind" "in front of"]
+    :descriptions ["You look closely but don't recognize any of them."
+                   "The plastic hisses and creaks in the blaze."
+                   "Someone has piled up a collection of pleasuring devices, now ablaze."
+                   "Surely there had to hae been a better way to punish these plastic torpedos."
+                   "The air is dense with the echoes of unreached orgasms and epic frustrations."]}
 
    {:text "hot tub"
     :type :interior
@@ -460,30 +460,30 @@
     :descriptions ["The wood paneling sweats sweetly in the oppressive heat."
                    "Great thunderheads of steam rise up from the rock basin, making it hard to see."
                    "The room is cold and dark. No one has used this sauna in years."
-                   "The floor is covered with cute little mushrooms."]} 
-   
-   {:text "New York Public Library" 
+                   "The floor is covered with cute little mushrooms."]}
+
+   {:text "New York Public Library"
     :type :exterior
     :article "the"
     :preps ["at" "near" "behind" "in front of"]}
 
-   {:text "ravine" 
+   {:text "ravine"
     :type :exterior
-    :article "a" 
+    :article "a"
     :preps ["in"]
     :descriptions ["It stretches out in front of you, meandering as if drunk."
                    "It has been nearly choked to death by an avalanche at the north end."
                    "The walls of the ravine are treacherous. A trickle of water flows fitfully below."]}
 
-   {:text "ditch" 
+   {:text "ditch"
     :type :exterior
-    :article "a" 
+    :article "a"
     :preps ["in"]
     :descriptions ["The dusty stench of aged sewage rises up like a stomach-crushing wraith."
                   "It is completely blocked here by a giant boulder. But how did it get here?"
                   "A trickle of clear water runs down the middle of it."]}
 
-   {:text "dump" 
+   {:text "dump"
     :type :exterior
     :article "the"
     :preps ["at" "near" "behind" "in front of"]
@@ -491,7 +491,7 @@
                    "The hill of trash shifts dangerously beneath your feet."
                    "The mounds of garbage stretch off into the distant, murky haze."]}
 
-   {:text "dump truck" 
+   {:text "dump truck"
     :type :exterior
     :article "a"
     :preps ["in" "near" "behind" "in front of" "underneath"]
@@ -499,7 +499,7 @@
                    "Fresh off the line, this dump truck is gleaming with clean red paint."
                    "The engine is rumbling roughly to itself. Both of the doors are locked."]}
 
-   {:text "Starbucks" 
+   {:text "Starbucks"
     :type :exterior
     :article "a"
     :preps ["in" "near" "behind" "in front of"]
@@ -507,7 +507,7 @@
                    "There is a surprising lack of hipsters here."
                    "It reeks of slightly burnt coffee here."]}
 
-   {:text "park restroom stall" 
+   {:text "park restroom stall"
     :type :interior
     :article "a"
     :preps ["in"]
@@ -518,7 +518,7 @@
                    "The lingering scents of lemon and Lysol haunt the air here."
                    "Someone has scratched your name and phone number above the toilet paper dispenser."]}
 
-   {:text "all-you-can-eat buffet" 
+   {:text "all-you-can-eat buffet"
     :type :interior
     :article "an"
     :preps ["at"]
@@ -530,7 +530,7 @@
                    "All of the food has been replaced with wax replicas."
                    "It's in complete disarray and hasn't been tended for some time."]}
 
-   {:text "grotto" 
+   {:text "grotto"
     :type :exterior
     :article "a"
     :preps ["in" "near" "behind" "in front of"]
@@ -538,7 +538,7 @@
                    "The water is darkened with greenish-gray algae. There's a foul odor here."
                    "The pool of water seems unusually deep. A lean, black fish swims in a circle."]}
 
-   {:text "bedroom" 
+   {:text "bedroom"
     :type :interior
     :article "your"
     :preps ["in"]
@@ -549,24 +549,24 @@
                    "You notice an unusual stain in the carpet next to a usual stain. So it goes."
                    "It's a typical bedroom. There's a pile of laundry in one corner and a computer desk in the other."] }
 
-   {:text "McDonald's" 
+   {:text "McDonald's"
     :type :exterior
     :article "a"
     :preps ["at" "in" "near" "behind" "in front of"]}
 
-   {:text "White Castle" 
+   {:text "White Castle"
     :type :exterior
     :article "a"
     :preps ["at" "in" "near" "behind" "in front of"]
     :descriptions ["It's white and vaguely castle-shaped."
                    "It smells squarely delicious."]}
 
-   {:text "Taco Bell" 
+   {:text "Taco Bell"
     :type :exterior
     :article "a"
     :preps ["at" "in" "near" "behind" "in front of"]}
 
-   {:text "dark area" 
+   {:text "dark area"
     :type :interior
     :article "a"
     :preps ["in"]
@@ -574,7 +574,7 @@
                    "It's really dark here. Like... REALLY dark."
                    "It's dark here. DARK AS YOUR SOUL."]}
 
-   {:text "breezy cave" 
+   {:text "breezy cave"
     :type :exterior
     :article "a"
     :preps ["in" "near" "in front of"]
@@ -582,7 +582,7 @@
                   "Wide and low, the cave gently slopes {:class :direction}-{:class :direction} here."
                   "Here it winds up precariously. The cave seems to be breathing rapidly."]}
 
-   {:text "forest" 
+   {:text "forest"
     :type :exterior
     :article "a"
     :preps ["in" "near" "in front of"]
@@ -591,25 +591,25 @@
                    "The trees, mostly oak and spruce, sway gently in the occasional breeze."
                    "Birds are chirping and rodents scamper through the underbrush."]}
 
-   {:text "riverbed" 
+   {:text "riverbed"
     :type :exterior
     :article "a"
     :preps ["in" "near"]
     :descriptions ["The shallow expanse is dry as a bone and littered with rocks and branches."
                    "Here is a shallow channel through which brackish water flows fitfully."
                    "It's mostly dry, the flow of the water blocked by a beaver dams upstream."]}
-   
-   {:text "AT&T Store" 
+ 
+   {:text "AT&T Store"
     :type :exterior
     :article "an"
     :preps ["at" "in" "near" "behind" "in front of"]}
 
-   {:text "Apple Store" 
+   {:text "Apple Store"
     :type :exterior
     :article "an"
     :preps ["at" "in" "near" "behind" "in front of"]}
 
-   {:text "ballpit" 
+   {:text "ballpit"
     :type :interior
     :article "a"
     :preps ["in" "near"]
@@ -617,7 +617,7 @@
                    "The ballpit seems unusually deep. You can't feel the bottom."
                    "You aren't certain but all clues point to there being someone or something lurking in there."]}
 
-   {:text "airplane" 
+   {:text "airplane"
     :type :interior
     :article "an"
     :preps ["in"]
@@ -629,7 +629,7 @@
                    "The pilot says, 'We've reached our cruising altitude of 30 feet.'"
                    "The plane has been going straight up for hours now."]}
 
-   {:text "trunk of a car" 
+   {:text "trunk of a car"
     :type :interior
     :article "the"
     :preps ["in"]
@@ -639,7 +639,7 @@
                    "With all the trash in here, there's barely any room for you."
                    "It's pitch black. Not enough room for a grue in here, at least."]}
 
-   {:text "coffin" 
+   {:text "coffin"
     :type :interior
     :article "a"
     :preps ["in" "near" "in front of"]
@@ -656,7 +656,7 @@
                    "It's very warm in here. Perhaps too warm."
                    "It smells of stale sweat and lies, lies, lies..."]}
 
-   {:text "haunted house" 
+   {:text "haunted house"
     :type :exterior
     :article "a"
     :preps ["at" "in" "near" "behind" "in front of"]
@@ -664,20 +664,20 @@
                    "An orange light wanders from window to window."
                    "The antebellum abode, white in its gaudy shame of elegance, has been overgrown by kudzu and rotting vines."]}
 
-   {:text "graveyard" 
+   {:text "graveyard"
     :type :exterior
     :article "a"
     :preps ["at" "in" "near" "behind" "in front of"]
     :descriptions ["There is a freshly laid grave nearby."
-                   "There is an open grave nearby. It's empty." 
-                   "There is an open grave nearby. There's a phone book in it." 
+                   "There is an open grave nearby. It's empty."
+                   "There is an open grave nearby. There's a phone book in it."
                    "There is an open grave nearby. It's full of {:class :drink :config [:no-article]}."
                    "There are fresh footprints here."
                    "A lazy mist wanders aimlessly amongst the shifted tombstones. A cold light spills down from behind a tree."
                    "Long ago, the upright tombstones had been replaced by durable plastic bricks to minimize upkeep."
                    "You see a mausoleum here covered with dark green moss. It looks vaguely familiar."]}
 
-   {:text "playground" 
+   {:text "playground"
     :type :exterior
     :article "a"
     :preps ["in" "near" "behind" "in front of"]
@@ -685,12 +685,12 @@
                    "Most of the equipment is missing or broken. In the distance, swings squeak loneliness in the slight breeze."
                    "A picnic table is nearby, burdened by a fresh birthday party except no one is around. Someone is turning 6 today... but who?"]}
 
-   {:text "pile of diapers" 
+   {:text "pile of diapers"
     :type :exterior
     :article "a"
     :preps ["in" "near" "behind" "in front of" "underneath"]}
 
-   {:text "meeting" 
+   {:text "meeting"
     :type :interior
     :article "a"
     :preps ["in"]
@@ -700,12 +700,12 @@
                    "The chairs are all occupied by cobweb-encrusted skeletons."
                    "The room is almost full of balloons."]}
 
-   {:text "Luby's" 
+   {:text "Luby's"
     :type :exterior
     :article "a"
     :preps ["at" "in" "near" "behind" "in front of"]}])
 
-(def dialogues
+(defonce dialogues
   [{:text "asks, 'Have you ever seen an elephant throw up?'"}
    {:text "asks, 'Why am I holding this pitchfork?'"}
    {:text "asks, 'How long is a man?'"}
@@ -718,7 +718,7 @@
    {:text "asks, 'Have you got a flag?'"}
    {:text "asks, 'Have you ever seen a grown man naked?'"}
    {:text "asks, 'May I use your FAX machine?'"}
-   {:text "chants, 'It's time to pay the price.'"} 
+   {:text "chants, 'It's time to pay the price.'"}
    {:text "mumbles, 'You can't go up against city hall.'"}
    {:text "mumbles, 'One day I'm going to burn this place to the ground.'"}
    {:text "mumbles, 'Skrillex ruined it all for everybody.'"}
@@ -773,7 +773,7 @@
    {:text "whispers, 'You just lost the game.'"}
    {:text "yells, 'I warned you about stairs, bro! I told ya, dawg!'"}])
 
-(def thoughts
+(defonce thoughts
   [{:text "Why don't they put mayo in the can with the tuna?"}
    {:text "{:class :person} never has a second cup of coffee at home..."}
    {:text "You can't go up against city hall."}
@@ -785,7 +785,7 @@
    {:text "{:class :person} still owes me a backrub."}
    {:text "I wonder if I could forge us a Group 6 Access..."}])
 
-(def intonations
+(defonce intonations
   [{:text "Toast goes in the toaster."}
    {:text "These pretzels are making me thirsty."}
    {:text "For those who can make the journey, there is a place."}
@@ -809,7 +809,7 @@
    {:text "Consider deeply the baked ham."}
    {:text "You can't go up against city hall."}])
 
-(def signs
+(defonce signs
   [{:text "Burma shave!"}
    {:text "It's time to pay the price."}
    {:text "You can't go up against city hall."}
@@ -819,7 +819,7 @@
    {:text "When you're not reading this, it's written in Spanish."}
    {:text "Now you know how hard it is to say \"Irish wristwatch\"."}])
 
-(def books
+(defonce books
   [{:text "the Bible"
     :preps ["a copy of"]}
 
@@ -838,7 +838,7 @@
    {:text "The Hitchhiker's Guide to the Galaxy"
     :preps ["a copy of"]}])
 
-(def attacks
+(defonce attacks
   [{:text "{:class :actor}"}
    {:text "{:class :item}"}
    {:text "a judo chop"}
@@ -877,7 +877,7 @@
    {:text "a weaponized beard"}
    {:text "an apathetic hipster"}])
 
-(def directions
+(defonce directions
   [{:text "north"}
    {:text "northeast"}
    {:text "east"}
@@ -887,7 +887,7 @@
    {:text "west"}
    {:text "northwest"}])
 
-(def persons
+(defonce persons
   [{:text "Samuel L. Jackson"
     :gender :male}
 
@@ -971,7 +971,7 @@
 
    {:text "Tilda Swinton"
     :gender :female}
-   
+
    {:text "Peter Dinklage"
     :gender :male}
 
@@ -1065,7 +1065,7 @@
    {:text "Zombie Carl Sagan"
     :gender :male}])
 
-(def actions
+(defonce actions
   [{:text "attacks"}
    {:text "sneezes on"}
    {:text "ignores"}
@@ -1077,7 +1077,7 @@
    {:text "examines"}
    {:text "flirts with"}])
 
-(def adjectives
+(defonce adjectives
   [{:text "worried"}
    {:text "relieved"}
    {:text "aroused"}
@@ -1093,7 +1093,7 @@
    {:text "forlorn"}
    {:text "angry"}])
 
-(def adverbs
+(defonce adverbs
   [{:text "carefully"}
    {:text "wistfully"}
    {:text "uncertainly"}
@@ -1108,7 +1108,7 @@
    {:text "happily"}
    {:text "balefully"}])
 
-(def scents
+(defonce scents
   [{:text "acrid"}
    {:text "sweet"}
    {:text "sour"}
@@ -1123,7 +1123,7 @@
    {:text "gross"}
    {:text "pleasant"}])
 
-(def diagnoses
+(defonce diagnoses
   [{:text "feeling great"}
    {:text "feeling gross"}
    {:text "absurdly sticky"}
@@ -1141,10 +1141,10 @@
    {:text "temporarily deaf"}
    {:text "covered in bees"}])
 
-(def foods
+(defonce foods
   [{:text "burrito"
     :article "a"}
-   
+
    {:text "weaponized cornbread"
     :article "some"}
 
@@ -1156,22 +1156,22 @@
 
    {:text "bouquet of corndogs"
     :article "a"}
-   
+
    {:text "corndog"
     :article "a"}
-   
+
    {:text "pancakes"
     :article "some"}
 
    {:text "cake"
     :article "a"}
-   
+
    {:text "cake"
     :article "a slice of"}
 
    {:text "kumquat"
     :article "a"}
-   
+
    {:text "salad"
     :article "a"}
 
@@ -1198,35 +1198,35 @@
 
    {:text "chocolate bobka"
     :article "a"}
-   
+
    {:text "sweetroll"
     :article "a"}
-   
+
    {:text "Cinnabon"
     :article "a"}
-   
+
    {:text "duck confit"
     :article "some"}
-   
+
    {:text "pasta"
     :article "some"}
-   
+
    {:text "uncooked rice"
     :article "some"}
-   
+
    {:text "Fritos"
     :article "some"}
-   
+
    {:text "sushi"
     :article "some"}
 
    {:text "apple cinnamon Pop Tart"
     :article "an"}])
 
-(def drinks
+(defonce drinks
   [{:text "steaming gravy"
     :article "a cup of"}
-   
+
    {:text "milk"
     :article "a gallon of"}
 
@@ -1248,53 +1248,53 @@
    {:text "scotch"
     :article "a"}])
 
-(def garments
+(defonce garments
   [{:text "hat"
     :article "a"}
-   
+
    {:text "pants"
     :article "some"}
-   
+
    {:text "shirt"
     :article "a"}
-   
+
    {:text "gloves"
     :article "some"}
-   
+
    {:text "shoes"
     :article "some"}
-   
+
    {:text "belt"
     :article "a"}
-   
+
    {:text "socks"
     :article "some"}
-   
+
    {:text "coat"
     :article "a"}
-   
+
    {:text "jacket"
     :article "a"}
-   
+
    {:text "underwear"
     :article "some"}
-   
+
    {:text "dress"
     :article "a"}
-   
+
    {:text "skirt"
     :article "a"}
-   
+
    {:text "schizophrenic mood ring"
     :article "a"}
-   
+
    {:text "sweater"
     :article "a"}
-   
+
    {:text "watch"
     :article "a"}])
 
-(def items
+(defonce items
   [{:text "skinny jeans"
     :article "a pair of"}
 
@@ -1306,7 +1306,6 @@
 
    {:text "llama treats"
     :article "a bag of"}
-
    {:text "parachute pants"
     :article "a pair of"}
 
@@ -1329,102 +1328,102 @@
 
    {:text "sweat-incrusted trilby"
     :article "a"}
-   
+
    {:text "vitamins"
     :plural true
     :article "some"}
-   
+
    {:text "bucket of corks"
     :article "a"}
-   
+
    {:text "jean shorts"
     :article "a pair of"}
-   
+
    {:text "non-Euclidian Lego"
     :article "a"}
-   
+
    {:text "spray-on bacon"
     :article "a can of"}
-   
+
    {:text "spackle"
     :article "a can of"}
-   
+
    {:text "unfamiliar briefcase"
     :article "an"}
-   
+
    {:text "towel from the Las Vegas Radisson"
     :article "a"}
-   
+
    {:text "receipt from a bunny outfit rental"
     :article "a"}
-   
+
    {:text "floppy disk"
     :article "a"}
-   
+
    {:text "pencil"
     :article "a"}
-   
+
    {:text "lantern"
     :article "a"}
-   
+
    {:text "elven sword"
     :article "an"}
-   
+
    {:text "books"
     :article "some"}
-   
+
    {:text "movie ticket"
     :article "a"}
-   
+
    {:text "newspaper"
     :article "a"}
-   
+
    {:text "kitten"
     :article "a"}
-   
+
    {:text "puppy"
     :article "a"}
-   
+
    {:text "bag of potatoes"
     :article "a"}
-   
+
    {:text "bag of rice"
     :article "a"}
-   
+
    {:text "giant styrofoam peanut"
     :article "a"}
-   
+
    {:text "phone book"
     :article "a"}
-   
+
    {:text "pyramid of tennis balls"
     :article "a"}
-   
+
    {:text "deflated soccer ball"
     :article "a"}
-   
+
    {:text "fourth grade report card"
     :article "your"}
-   
+
    {:text "half-eaten sandwich"
     :article "a"}
-   
+
    {:text "signed photograph of Richard Moll"
     :article "a"}
-   
+
    {:text "hipster t-shirt"
     :article "a"}
-   
+
    {:text "pile of discarded puppets"
     :article "a"}
-   
+
    {:text "wet Lincoln Log"
     :article "a"}
-   
+
    {:text "VHS tape covered in blood"
     :article "a"}])
 
-(def animals
+(defonce animals
   [{:text "kitten"
     :article "a"
     :sounds ["purrs" "meows" "growls"]
@@ -1462,7 +1461,7 @@
    {:text "hedgehog"
     :article "a"}])
 
-(def noises 
+(defonce noises
   [{:text "foghorn"
     :article "a"}
 
@@ -1498,7 +1497,7 @@
    {:text "sinister chuckle"
     :article "a"}])
 
-(def disasters
+(defonce disasters
   [{:text "fire"
     :article "a"}
 
@@ -1541,7 +1540,7 @@
    {:text "duststorm"
     :article "a"}])
 
-(def obstacles
+(defonce obstacles
   [{:text "a black comb on the ground"}
    {:text "a stack of dogs going all the way to the moon"}
    {:text "Steve Buscemi's grin"}
@@ -1552,7 +1551,7 @@
    {:text "someone who has never listened to Neutral Milk Hotel"}
    {:text "the thing your aunt gave you which you don't know what it is"}
    {:text "an aquarium full of milk"}
-   ;{:text "dubstep"}
+   {:text "dubstep"}
    {:text "a 404 error"}
    {:text "Adam Sandler's career"}
    {:text "that awful man"}
@@ -1561,7 +1560,7 @@
    {:text "a wall of tepid soup"}
    {:text "a giant cat tongue"}
    {:text "George Lucas' neck"}
-   ;{:text "Ruby On Rails"}
+   {:text "Ruby On Rails"}
    {:text "someone who takes too many selfies"}
    {:text "a cat who has been pet against the grain"}
    {:text "substandard prequels"}
@@ -1577,10 +1576,10 @@
    {:text "double-double Animal style"}
    {:text "someone who doesn’t know how to eat a goddamned Oreo properly"}])
 
-(def games
+(defonce games
   [{:text "Agricola"
     :type :tabletop}
-   
+
    {:text "Advanced Squad Leader"
     :type :tabletop}
 
@@ -1602,7 +1601,7 @@
    {:text "Grand Theft Auto V"
     :type :video}])
 
-(def classes
+(defonce classes
   ["events"
    "location-events"
    "action-events"
@@ -1632,15 +1631,3 @@
    "games"
    "thoughts"
    "disasters"])
-
-(defn dataize
-  [classname]
-  (let [classname 
-        (cond-> classname
-          (keyword? classname) name
-          (not (.endsWith (name classname) "s")) (str "s"))]
-  (str "xyzzwhy.data/" classname)))
-
-(defn get-class
-  [classname]
-  @(-> (dataize classname) symbol resolve))
