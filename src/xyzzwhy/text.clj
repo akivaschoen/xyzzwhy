@@ -7,78 +7,157 @@
 
 (def location-events
   {:location-events
-   [{:text "You have entered {:class :location :config [:no-prep]}."}
-    {:text "You try to go {:class :direction} but your way is blocked by {:class :obstacle}."}
-    {:text "You try to go {:class :direction} but your way is blocked by {:class :obstacle}."}
-    {:text "You try to go {:class :direction} but your way is blocked by {:class :obstacle}."}
-    {:text "You try to go {:class :direction} but your way is blocked by {:class :obstacle}."}
-    {:text "You try to go {:class :direction} but your way is blocked because reasons."}
-    {:text "You go {:class :direction} and find yourself at {:class :location :config [:no-prep]}."}
-    {:text "You go {:class :direction} and emerge {:class :location}."}
-    {:text "You walk {:class :direction} and arrive at {:class :location :config [:no-prep]}."}
-    {:text "You cripwalk {:class :direction} to {:class :location}."}
-    {:text "A double bounce on a trampoline lands you {:class :location}."}
-    {:text "You head {:class :direction} and arrive at {:class :location :config [:no-prep]}."}
-    {:text "Google Maps leads you to {:class :location :config [:no-prep]}."}
-    {:text "You follow {:class :actor} to {:class :location :config [:no-prep]}."}
-    {:text "You follow {:class :animal} to {:class :location :config [:no-prep]}."}
-    {:text "You are {:class :location}."}
-    {:text "You are {:class :location}."}
-    {:text "You are {:class :location}."}
-    {:text "You're {:class :location}."}
-    {:text "You're {:class :location}."}
-    {:text "You run screaming into {:class :location :config [:no-prep]}."}
-    {:text "You tunnel through the soil and pop up {:class :location}."}
-    {:text "You emerge {:class :location}."}
-    {:text "You arrive {:class :location}."}
-    {:text "You are magically teleported to {:class :location :config [:no-prep]}!"}
-    {:text "The drugs are wearing off. You are {:class :location}."}
-    {:text "The spell effects are wearing off. You are {:class :location}."}
-    {:text "You are standing {:class :direction} of {:class :location :config [:no-prep]}."}
-    {:text "You stumble into {:class :location :config [:no-prep]}."}
-    {:text "You come across {:class :location :config [:no-prep]}."}
-    {:text "You follow the treasure map to {:class :location :config [:no-prep]}."}
-    {:text "You wake up from an odd dream. You are {:class :location}."}
-    {:text "You open the secret door only to see {:class :location :config [:no-prep]}."}
-    {:text "You find yourself {:class :location}."}
-    {:text "Dazed, you climb out of the dryer. You are {:class :location}."}
-    {:text "During the shoot-out, you make your escape to {:class :location :config [:no-prep]}."}
-    {:text "The bridge game turned violent so you went to {:class :location :config [:no-prep]}."}
-    {:text "You start doing the worm until you find yourself {:class :location}."}
-    {:text "You wake up {:class :location}."}
-    {:text "You climb down a tree and find yourself {:class :location}."}
-    {:text "You climb up a tree and find yourself {:class :location}."}
-    {:text "The taxi driver randomly drops you off {:class :location}."}
-    {:text "The metro bus unceremoniously dumps you {:class :location}."}
-    {:text "The fog clears and you find yourself {:class :location}."}
-    {:text "Your parachute gently plops you {:class :location}."}
-    {:text "You jump out of a moving car, roll down a hill, and find yourself {:class :location}."}
-    {:text "After walking for a long time, you find yourself {:class :location}."}
-    {:text "You find your way blindly and end up {:class :location}."}
-    {:text "No matter how hard you try, you still end up {:class :location}."}
-    {:text "You climb out of the treasure chest. You are now {:class :location}."}
-    {:text "You come to {:class :location}."}
-    {:text "You follow a winding path only to find yourself {:class :location}."}
-    {:text "You follow a sloping path. You find yourself {:class :location}."}
-    {:text "You climb up a flight of stairs. You are now {:class :location}."}
-    {:text "You shuffle down a flight of stairs and enter {:class :location :config [:no-prep]}."}
-    {:text "You fall down a flight of stairs and into {:class :location :config [:no-prep]}."}
-    {:text "The elevator doors open to reveal {:class :location :config [:no-prep]}."}
-    {:text "Using a vine to swing across the pit, you land {:class :location}."}
-    {:text "The trapdoor drops open beneath you and you land {:class :location}."}
-    {:text "You flip the Game Select selector and find yourself {:class :location}."}
-    {:text "You blow into the cartridge to hard and are banished to {:class :location}."}
-    {:text "You step through a magic mirror and end up {:class :location}."}
-    {:text "You get tangled up in a revolving door. You stumble out into {:class :location :config [:no-prep]}."}
-    {:text "After scrambling through some dense underbrush, you find yourself {:class :location}."}
-    {:text "After pushing your way through a dense crowd, you arrive {:class :location}."}
-    {:text "You squeeze out of the sewage outflow and tumble into {:class :location :config [:no-prep]}."}
-    {:text "A tornado deposits you {:class :location}."}
-    {:text "Right on cue, you pop up out of the jack-in-the-box. You're {:class :location}."}
-    {:text "After being shot out of a cannon, you land {:class :location}."}
-    {:text "You slide down a fireman's pole and land {:class :location}."}
-    {:text "Hands on your hips, you survey {:class :location :config [:no-prep]} {:class :adverb}."}
-    {:text "You wake up in front of {:class :person}'s house. You have no clue how you got there."}]})
+   [{:text "You have entered %0."
+     :subs {0 {:class :location
+               :config #{:no-prep}}}}
+    {:text "You try to go %0 but your way is blocked by %1."
+     :subs {0 {:class :direction}
+            1 {:class :obstacle}}}
+    {:text "You try to go %0 but your way is blocked because reasons."
+     :subs {0 {:class :direction}}}
+    {:text "You go %0 and find yourself at %1."
+     :subs {0 {:class :direction}
+            1 {:class :location :config #{:no-prep}}}}
+    {:text "You go %0 and emerge %1."
+     :subs {0 {:class :direction}
+            1 {:class :location}}}
+    {:text "You walk %0 and arrive at %1."
+     :subs {0 {:class :direction}
+            1 {:class :location :config #{:no-prep}}}}
+    {:text "You cripwalk %0 to %1."
+     :subs {0 {:class :direction}
+            1 {:class :location}}}
+    {:text "A double bounce on a trampoline lands you %0."
+     :subs {0 {:class :location}}}
+    {:text "You head %0 and arrive at %1."
+     :subs {0 {:class :direction}
+            1 {:class :location :config #{:no-prep}}}}
+    {:text "Google Maps leads you to %0."
+     :subs {0 {:class :location :config #{:no-prep}}}}
+    {:text "You follow %0 to %1."
+     :subs {0 {:class :actor}
+            1 {:class :location :config #{:no-prep}}}}
+    {:text "You are %0."
+     :subs {0 {:class :location}}}
+    {:text "You're %0."
+     :subs {0 {:class :location}}}
+    {:text "You run screaming into %0."
+     :subs {0 {:class :location :config #{:no-prep}}}}
+    {:text "You tunnel through the soil and pop up %0."
+     :subs {0 {:class :location}}}
+    {:text "You emerge %0."
+     :subs {0 {:class :location}}}
+    {:text "You arrive %0."
+     :subs {0 {:class :location}}}
+    {:text "You are magically teleported to %0!"
+     :subs {0 {:class :location :config #{:no-prep}}}}
+    {:text "The drugs are wearing off. You are %0."
+     :subs {0 {:class :location}}}
+    {:text "The spell effects are wearing off. You are %0."
+     :subs {0 {:class :location}}}
+    {:text "You are standing %0 of %1."
+     :subs {0 {:class :direction}
+            1 {:class :location :config #{:no-prep}}}}
+    {:text "You stumble into %0."
+     :subs {0 {:class :location :config #{:no-prep}}}}
+    {:text "You come across %0."
+     :subs {0 {:class :location :config #{:no-prep}}}}
+    {:text "You follow the treasure map to %0."
+     :subs {0 {:class :location :config #{:no-prep}}}}
+    {:text "You wake up from an odd dream. You are %0."
+     :subs {0 {:class :location}}}
+    {:text "You open the secret door only to see %0."
+     :subs {0 {:class :location :config #{:no-prep}}}}
+    {:text "You find yourself %0."
+     :subs {0 {:class :location}}}
+    {:text "Dazed, you climb out of the dryer. You are %0."
+     :subs {0 {:class :location}}}
+    {:text "After the shoot-out, you make your escape to %0."
+     :subs {0 {:class :location :config #{:no-prep}}}}
+    {:text "The bridge game turned violent so you went to %0."
+     :subs {0 {:class :location :config #{:no-prep}}}}
+    {:text "You start doing the worm until you find yourself %0."
+     :subs {0 {:class :location}}}
+    {:text "You wake up %0."
+     :subs {0 {:class :location}}}
+    {:text "You climb down a tree and find yourself %0."
+     :subs {0 {:class :location}}}
+    {:text "You climb up a tree and find yourself %0."
+     :subs {0 {:class :location}}}
+    {:text "The taxi driver randomly drops you off %0."
+     :subs {0 {:class :location}}}
+    {:text "The metro bus unceremoniously dumps you %0."
+     :subs {0 {:class :location}}}
+    {:text "The fog clears and you find yourself %0."
+     :subs {0 {:class :location}}}
+    {:text "Your parachute gently plops you %0."
+     :subs {0 {:class :location}}}
+    {:text "You jump out of a moving car, roll down a hill, and find yourself %0."
+     :subs {0 {:class :location}}}
+    {:text "After walking for a long time, you find yourself %0."
+     :subs {0 {:class :location}}}
+    {:text "You find your way blindly and end up %0."
+     :subs {0 {:class :location}}}
+    {:text "No matter how hard you try, you still end up %0."
+     :subs {0 {:class :location}}}
+    {:text "You climb out of the treasure chest. You are now %0."
+     :subs {0 {:class :location}}}
+    {:text "You come to %0."
+     :subs {0 {:class :location}}}
+    {:text "You follow a winding path %0 only to find yourself %1."
+     :subs {0 {:class :direction}
+            1 {:class :location}}}
+    {:text "You follow a sloping path %0. You find yourself %1."
+     :subs {0 {:class :direction}
+            1 {:class :location}}}
+    {:text "You climb up a flight of stairs. You are now %0."
+     :subs {0 {:class :location}}}
+    {:text "You shuffle down a flight of stairs and enter %0."
+     :subs {0 {:class :location :config #{:no-prep}}}}
+    {:text "You fall down a flight of stairs and into %0."
+     :subs {0 {:class :location :config #{:no-prep}}}}
+    {:text "The elevator doors open to reveal %0."
+     :subs {0 {:class :location :config #{:no-prep}}}}
+    {:text "Using a vine to swing across the pit, you land %0."
+     :subs {0 {:class :location}}}
+    {:text "The trapdoor drops open beneath you and you land %0."
+     :subs {0 {:class :location}}}
+    {:text "You flip the Game Select selector and find yourself %0."
+     :subs {0 {:class :location}}}
+    {:text "You blow into the cartridge to hard and are teleported to %0."
+     :subs {0 {:class :location}}}
+    {:text "You step through a magic mirror and end up %0."
+     :subs {0 {:class :location}}}
+    {:text "You get tangled up in a revolving door. You stumble out into %0."
+     :subs {0 {:class :location :config #{:no-prep}}}}
+    {:text "After scrambling through some dense underbrush, you find yourself %0."
+     :subs {0 {:class :location}}}
+    {:text "After pushing your way through a dense crowd, you arrive %0."
+     :subs {0 {:class :location}}}
+    {:text "You squeeze out of the sewage outflow and tumble into %0."
+     :subs {0 {:class :location :config #{:no-prep}}}}
+    {:text "A tornado deposits you %0."
+     :subs {0 {:class :location}}}
+    {:text "Right on cue, you pop up out of the jack-in-the-box. You're %0."
+     :subs {0 {:class :location}}}
+    {:text "After being shot out of a cannon, you land %0."
+     :subs {0 {:class :location}}}
+    {:text "You slide down a fireman's pole and land %0."
+     :subs {0 {:class :location}}}
+    {:text "Hands on your hips, you survey %0 %1."
+     :subs {0 {:class :location :config #{:no-prep}}
+            1 {:class :adverb}}}
+    {:text "You wake up in front of %0's house. You have no clue how you got there."
+     :subs {0 {:class :person}}}
+    {:text "Your ride %0 to %1."
+     :subs {0 {:class :animal}
+            1 {:class :location :config #{:no-prep}}}}
+    {:text "You fall through the ceiling and land %0."
+     :subs {0 {:class :location}}}
+    {:text "The drugs are starting to take hold. Casually you sunter over to %0."
+     :subs {0 {:class :location :config #{:no-prep}}}}
+    {:text "The merry-go-round spins faster and faster until you're flung off and land %0."
+     :subs {0 {:class :location}}}]})
 
 (def action-events
   {:action-events
@@ -187,7 +266,8 @@
     {:text "In the distance, you hear {:class :person} get wicked."}
     {:text "In the distance, you hear {:class :person} shake it off."}
     {:text "A magician saws you in half... lengthwise."}
-    {:text "You check your health: you are {:class :diagnose}."}]})
+    {:text "You check your health: you are {:class :diagnose}."}
+    {:text "You find yourself being slowly teleported away. Very slowly. People are beginning to stare."}]})
 
 (def secondary-events 
   {:secondary-events
@@ -605,7 +685,7 @@
      :descriptions ["The shallow expanse is dry as a bone and littered with rocks and branches."
                     "Here is a shallow channel through which brackish water flows fitfully."
                     "It's mostly dry, the flow of the water blocked by a beaver dams upstream."]}
-    
+
     {:text "AT&T Store"
      :type :exterior
      :article "an"
@@ -710,7 +790,12 @@
     {:text "Luby's"
      :type :exterior
      :article "a"
-     :preps ["at" "in" "near" "behind" "in front of"]}]})
+     :preps ["at" "in" "near" "behind" "in front of"]}
+
+    {:text "full-contact Bible study group"
+     :type :interior
+     :article "a"
+     :preps ["near" "behind" "in front of" "in"]}]})
 
 (def dialogues
   {:dialogues
