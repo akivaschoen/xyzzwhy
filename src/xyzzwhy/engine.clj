@@ -24,19 +24,44 @@
   [fragment]
   (-> (:preps fragment) random-pick pad))
 
+(defn no-groups?
+  [config]
+  (contains? config :no-groups))
+
 (defn defcorpus
   [classes]
   (reduce #(conj %1 @(-> %2 symbol resolve)) {} classes))
 
-(defn get-fragment
+(defn get-class
   [corpus class]
-  (let [class' (-> class name (str "s") keyword corpus)]
-    (random-pick class')))
+  (-> class name (str "s") keyword corpus))
+
+(defmulti get-fragment* (fn [_ class _] class))
+
+(defmethod get-fragment* :actor
+  [corpus class config]
+  (let [persons (->> :person (get-class corpus))
+        animals (->> :animal (get-class corpus))
+        actors (apply merge persons animals)
+        actors (if (no-groups? config)
+                 (filter #(not= :group (-> % :gender)) actors)
+                 actors)]
+    (-> actors random-pick)))
+
+(defmethod get-fragment* :default
+  [corpus class config]
+  (->> class (get-class corpus) random-pick))
+
+(defn get-fragment
+  ([corpus class]
+   (get-fragment* corpus class nil))
+  ([corpus class config]
+   (get-fragment* corpus class config)))
 
 (defn get-sub
   [corpus sub]
   (let [sub' (val sub)]
-    {(key sub) (assoc sub' :source (get-text corpus (-> sub' :class)))}))
+    {(key sub) (assoc sub' :source (get-fragment corpus (-> sub' :class)))}))
 
 (defn get-subs
   [corpus fragment]
