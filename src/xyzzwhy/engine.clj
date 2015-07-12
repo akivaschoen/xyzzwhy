@@ -10,7 +10,11 @@
 (defn- append
   "Adds text to fragment's :text and returns fragment."
   [fragment text]
-  (update fragment :text #(str %1 text)))
+  (if (< (+ (-> fragment :text count)
+            (count text))
+         140)
+    (update fragment :text #(str %1 text))
+    fragment))
 
 (defn capitalize*
   "Capitalizes fragment's sentences."
@@ -209,8 +213,7 @@
 ;; Follow-Ups
 (defmulti ^:private get-follow-up*
   "Appends fragment's follow up to its :text. If follow-up
-  has substitutions, those are handled first. The :default
-  is follow-up not optional."
+  has substitutions, those are handled first."
   (fn [_ follow-up _] (contains? follow-up :subs)))
 
 (defmethod get-follow-up* true
@@ -220,7 +223,7 @@
         fragment (append fragment (:text option))]
     (assoc-in fragment [:follow-ups :options index] option)))
 
-(defmethod get-follow-up* :default
+(defmethod get-follow-up* false
   [fragment follow-up _]
   (append fragment (:text follow-up)))
 
