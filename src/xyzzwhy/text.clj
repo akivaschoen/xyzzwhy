@@ -232,7 +232,7 @@
   {:action-events
    [{:text "You awake from a nightmare. You saw yourself %0. The corpse of %1 was there, holding %2."
      :subs {0 {:class :location}
-            1 {:class :person :config [:no-groups]}
+            1 {:class :person :config #{:no-groups}}
             2 {:class :item}}}
 
     {:text "You pick up %0."
@@ -348,7 +348,7 @@
 
     {:text "%0 slams down a half-empty glass of %1."
      :subs {0 {:class :person}
-            1 {:class :drink :config [:no-prep :no-article]}}
+            1 {:class :drink :config #{:no-prep :no-article}}}
      :follow-ups {:optional? false
                   :options [{:text "'All this nonsense about {:class :item} needs to stop! I can't take it anymore!'"}
                             {:text "'They're making plans for Nigel! They want what's best for him!'"}
@@ -366,11 +366,11 @@
     {:text "You get tired of waiting for";
      :follow-ups {:optional? false
                   :options [{:text "your Uber and decide to walk to %0 instead."
-                             :subs {0 {:class :location :config [:no-prep]}}}
+                             :subs {0 {:class :location :config #{:no-prep}}}}
                             {:text "your private jet so you decide to walk to %0 instead."
-                             :subs {0 {:class :location :config [:no-prep]}}}
+                             :subs {0 {:class :location :config #{:no-prep}}}}
                             {:text "the all-you-can-eat-buffet to open so you walk to %0 instead."
-                             :subs {0 {:class :location :config [:no-prep]}}}]}}
+                             :subs {0 {:class :location :config #{:no-prep}}}}]}}
 
     {:text "The phone rings."
      :follow-ups {:optional? false
@@ -404,7 +404,7 @@
      :subs {0 {:class :food}}}
 
     {:text "You take a sip of %0."
-     :subs {0 {:class :drink :config [:no-article]}}}
+     :subs {0 {:class :drink :config #{:no-article}}}}
 
     {:text "You check your inventory."
      :follow-ups {:optional? true
@@ -484,12 +484,12 @@
 
     {:text "%0 is calling from %1 asking for %2."
      :subs {0 {:class :person}
-            1 {:class :location :config [:no-prep]}
+            1 {:class :location :config #{:no-prep}}
             2 {:class :item}}}
 
     {:text "%0 is calling from %1"
      :subs {0 {:class :person}
-            1 {:class :location :config [:no-prep]}}
+            1 {:class :location :config #{:no-prep}}}
      :follow-ups {:optional? false
                   :options [{:text "asking if %2 can come out and play."
                              :subs {2 {:class :person}}}]}}
@@ -696,33 +696,45 @@
     {:text "You spot a bonsai tree stuck in a regular tree."}
     {:text "You see a pair of sneakers dangling on a utility line overhead."}
     {:text "Someone nearby is repeatedly zipping and unzipping a duffel bag."}
-    {:text "Somehow, you've lost your {:class :garment :config [:no-article]}."}
+
+    {:text "Somehow, you've lost your %0."
+     :subs {0 {:class :garment :config #{:no-article}}}}
+
     {:text "You hear someone nearby typing away on a manual typewriter."}
     {:text "You're catching your second wind."}
     {:text "You are starting to feel thirsty."}
     {:text "You feel better."}
     {:text "You have died."}
-    {:text "You have died."}
-    {:text "You have died."}
-    {:text "You have died."}
-    {:text "You have died."}
-    {:text "You have died."}
     {:text "You are starting to feel hungry."}]})
 
 (def actor-actions
   {:actor-actions
-   [{:text "looking {:class :adjective}."}
+   [{:text "looking %0."
+     :subs {0 {:class :adjective}}}
+
     {:text "being chased by a swarm of balloon animals."}
-    {:text "being chased by {:class :person}."}
-    {:text "being chased by {:class :item} which is attached to them by a string."}
+
+    {:text "being chased by %0."
+     :subs {0 {:class :person}}}
+
+    {:text "being chased by %0 which is attached to them by a string."
+     :subs {0 {:class :item}}}
+
     {:text "dancing furiously."}
     {:text "dancing extremely slowly."}
     {:text "shouting at an imaginary helicopter."}
     {:text "doing the Kenosha Kid."}
-    {:text "thinking {:class :adverb} about {:class :actor}."}
+
+    {:text "thinking %0 about %1."
+     :subs {0 {:class :adverb}
+            1 {:class :actor}}}
+
     {:text "being chased around by a bee."}
     {:text "defiantly eating Scrabble tiles, one by one."}
-    {:text "{:class :adverb} playing the organ."}
+
+    {:text "%0 playing the organ."
+     :subs {0 {:class :adverb}}}
+
     {:text "organizing matches."}
     {:text "having a Guru Meditation Error."}
     {:text "juggling some balls."}
@@ -736,13 +748,21 @@
     {:text "hiding under a table."}
     {:text "hiding under a sofa."}
     {:text "hiding in the bushes."}
-    {:text "munching on {:class :food}."}
+
+    {:text "munching on %0."
+     :subs {0 {:class :food}}}
+
     {:text "pretending to be invisible."}
     {:text "having a coughing fit."}
     {:text "having a sneezing fit."}
-    {:text "being menaced by {:class :animal}."}
+
+    {:text "being menaced by %0."
+     :subs {0 {:class :animal}}}
+
     {:text "ready to start some shit."}
-    {:text "examining {:class :item} with great confusion."}]})
+
+    {:text "examining %0 with great confusion."
+     :subs {0 {:class :item}}}]})
 
 (def locations
   {:locations
@@ -1061,7 +1081,7 @@
      :descriptions ["There is a freshly laid grave nearby."
                     "There is an open grave nearby. It's empty."
                     "There is an open grave nearby. There's a phone book in it."
-                    "There is an open grave nearby. It's full of {:class :drink :config [:no-article]}."
+                    "There is an open grave nearby. It's full of {:class :drink :config ${:no-article}}."
                     "There are fresh footprints here."
                     "A lazy mist wanders aimlessly amongst the shifted tombstones. A cold light spills down from behind a tree."
                     "Long ago, the upright tombstones had been replaced by durable plastic bricks to minimize upkeep."
@@ -1126,7 +1146,7 @@
     {:text "says, 'Well that really scrambles my eggs.'"}
     {:text "says, 'I've been waiting for you.'"}
     {:text "says, 'I can't find my heirloom clown suit.'"}
-    {:text "says, 'I can't find my {:class :garment :config [:no-article]}.'"}
+    {:text "says, 'I can't find my {:class :garment :config ${:no-article}}.'"}
     {:text "says, 'No money? No hamburger!'"}
     {:text "says, 'It's like drinking a meatloaf!'"}
     {:text "says, 'Took you long enough.'"}
