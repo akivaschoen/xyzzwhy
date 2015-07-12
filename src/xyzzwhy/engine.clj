@@ -36,6 +36,14 @@
   [corpus class]
   (-> class name (str "s") keyword corpus))
 
+(defn follow-up
+  [fragment]
+  (let [follow-ups (:follow-ups fragment)]
+    (if (and (:optional? follow-ups)
+             (< 49 (rand-int 100)))
+      nil
+      (update fragment :text #(str %1 " " (-> follow-ups :options random-pick :text))))))
+
 (defmulti get-fragment* (fn [_ class _] class))
 
 (defmethod get-fragment* :actor
@@ -69,11 +77,15 @@
     (assoc fragment :subs subs)))
 
 (defn interpolate
-  [fragment sub]
+  ([fragment]
+   (reduce #(interpolate %1 %2) fragment (:subs fragment)))
+  ([fragment sub]
   (let [sub' (val sub)
         prep' (when (prep? (:config sub'))
                 (-> sub' :source :prep random-pick))
         article' (-> sub' :source article)
         text (str prep' article' (-> sub' :source :text))]
     (assoc fragment :text
-           (str/replace (:text fragment) (str "%" (key sub)) text))))
+           (str/replace (:text fragment) (str "%" (key sub)) text)))))
+
+(def construct-tweet (comp follow-up interpolate))
