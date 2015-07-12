@@ -820,7 +820,7 @@
      :article "a"
      :preps ["in near"]
      :descriptions ["The water roils and steams like water roils and steams."
-                    "Someone has put blue coloring into the water. It looks like the future." 
+                    "Someone has put blue coloring into the water. It looks like the future."
                     "It smells delicious because someone filled it with chicken soup." ]}
 
     {:text "maze of twisty little passages, all alike"
@@ -1146,7 +1146,10 @@
     {:text "says, 'Well that really scrambles my eggs.'"}
     {:text "says, 'I've been waiting for you.'"}
     {:text "says, 'I can't find my heirloom clown suit.'"}
-    {:text "says, 'I can't find my {:class :garment :config ${:no-article}}.'"}
+
+    {:text "says, 'I can't find my %0.'"
+     :subs {0 {:class :garment :config #{:no-article}}}}
+
     {:text "says, 'No money? No hamburger!'"}
     {:text "says, 'It's like drinking a meatloaf!'"}
     {:text "says, 'Took you long enough.'"}
