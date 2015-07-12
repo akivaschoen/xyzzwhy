@@ -28,6 +28,40 @@
   [config]
   (contains? config :no-groups))
 
+(defmulti gender (fn [gender _] gender))
+
+(defmethod gender :male
+  [_ c]
+  (case c
+    :subjective "he"
+    :objective "him"
+    :possessive "his"))
+
+(defmethod gender :female
+  [_ c]
+  (case c
+    :subjective "she"
+    :objective "her"
+    :possessive "hers"))
+
+(defmethod gender :neutral
+  [_ c]
+  (case c
+    :subjective "it"
+    :objective "it"
+    :possessive "its"))
+
+(defmethod gender :group
+  [_ c]
+  (case c
+    :subjective "they"
+    :objective "them"
+    :possessive "theirs"))
+
+(defn append
+  [fragment text]
+  (update fragment :text #(str %1 " " text)))
+
 (defn defcorpus
   [classes]
   (reduce #(conj %1 @(-> %2 symbol resolve)) {} classes))
@@ -35,14 +69,6 @@
 (defn get-class
   [corpus class]
   (-> class name (str "s") keyword corpus))
-
-(defn follow-up
-  [fragment]
-  (let [follow-ups (:follow-ups fragment)]
-    (if (and (:optional? follow-ups)
-             (< 49 (rand-int 100)))
-      nil
-      (update fragment :text #(str %1 " " (-> follow-ups :options random-pick :text))))))
 
 (defmulti get-fragment* (fn [_ class _] class))
 
@@ -66,15 +92,47 @@
   ([corpus class config]
    (get-fragment* corpus class config)))
 
-(defn get-sub
-  [corpus sub]
+(defmulti get-sub (fn [_ _ sub] (-> sub val :class)))
+
+(defmethod get-sub :gender
+  [_ fragment sub]
+  (let [sub' (val sub)
+        sex (-> fragment :subs (find (key sub)) val :source :gender)]
+    {(key sub) (assoc-in sub' [:source :text] (gender sex (:case sub')))}))
+
+(defmethod get-sub :default
+  [corpus fragment sub]
   (let [sub' (val sub)]
     {(key sub) (assoc sub' :source (get-fragment corpus (-> sub' :class)))}))
 
 (defn get-subs
+  ([corpus fragment]
+   (let [subs (reduce #(conj %1 (get-sub corpus fragment %2)) {} (:subs fragment))]
+     (assoc fragment :subs subs)))
+  ([corpus fragment follow-up]
+   (let [subs (reduce #(conj %1 (get-sub corpus fragment %2)) {} (:subs follow-up))
+         follow-up' (assoc follow-up :subs subs)]
+     follow-up')))
+
+(defmulti get-follow-up* (fn [_ _ follow-up _] (contains? follow-up :subs)))
+
+(defmethod get-follow-up* false
+  [corpus fragment follow-up _]
+  (append fragment (:text follow-up)))
+
+(defmethod get-follow-up* true
+  [corpus fragment follow-up index]
+  (let [option (get-subs corpus fragment follow-up)
+        option (interpolate option)
+        fragment (append fragment (:text option))]
+    (assoc-in fragment [:follow-ups :options index] option)))
+
+(defn follow-up
   [corpus fragment]
-  (let [subs (reduce #(conj %1 (get-sub corpus %2)) {} (:subs fragment))]
-    (assoc fragment :subs subs)))
+  (let [options (-> fragment :follow-ups :options)
+        follow-up (-> options random-pick)
+        index (.indexOf options follow-up)]
+    (get-follow-up* corpus fragment follow-up index)))
 
 (defn interpolate
   ([fragment]
@@ -88,4 +146,4 @@
     (assoc fragment :text
            (str/replace (:text fragment) (str "%" (key sub)) text)))))
 
-(def construct-tweet (comp follow-up interpolate))
+(def construct-tweet (comp interpolate follow-up))
