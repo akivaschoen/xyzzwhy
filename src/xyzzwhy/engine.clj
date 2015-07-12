@@ -38,6 +38,10 @@
   [fragment]
   (update fragment :text #(str/replace % #"^(@\w+)" ".$1")))
 
+(defn- optional?
+  [follow-up]
+  (-> follow-up :optional? true?))
+
 (defn- pad
   [text]
   (str text " "))
@@ -229,15 +233,28 @@
 
 (defn- follow-ups
   [fragment]
-  (if (contains? fragment :follow-ups)
-    (let [options (-> fragment :follow-ups :options)
-          follow-up (-> options random-pick)
-          index (.indexOf options follow-up)]
-      (get-follow-up* fragment follow-up index))
-    fragment))
+  (let [fragment' (if (contains? fragment :follow-ups)
+                    (let [options (-> fragment :follow-ups :options)
+                          follow-up (-> options random-pick)
+                          index (.indexOf options follow-up)]
+                      (get-follow-up* fragment follow-up index))
+                    fragment)]
+    fragment'))
 
+(defn- sub-follow-ups
+  [fragment]
+  (if (contains? fragment :subs)
+    (reduce (fn [a s]
+              (when-let [follow-up (-> s val :source :follow-ups)]
+                (if (and (true? (:optional? follow-up))
+                         (< 50 (+ 1 (rand-int 99))))
+                  a
+                  (reduced (append fragment
+                                   (str " " (-> follow-up :options random-pick :text)))))))
+            fragment
+            (:subs fragment))))
 
 ;; Actions
 (def initialize-tweet (comp get-fragment classname choose-event))
-(def process-tweet (comp interpolate follow-ups subs))
+(def process-tweet (comp follow-ups interpolate subs))
 (def finalize-tweet (comp smarten* dot-prefix capitalize*))
