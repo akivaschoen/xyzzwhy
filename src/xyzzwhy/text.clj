@@ -534,55 +534,91 @@
 
 (def secondary-events
   {:secondary-events
-   [{:text "You see {:class :item} here."}
-    {:text "You see {:class :item} here. It looks oddly familiar."}
-    {:text "There is {:class :item} here."}
-    {:text "You pick up {:class :item}. It's covered in dust."}
-    {:text "You pick up {:class :item}."}
-    {:text "You drop {:class :item}."}
-    {:text "You drop {:class :item}. It bursts into flames."}
-    {:text "You drop {:class :item} here. It turns into a wisp of smoke."}
-    {:text "You drop {:class :item} here. And then some really bad CGI happens."}
-    {:text "You drop {:class :item} here. It pierces the crust of the Earth."}
-    {:text "You drop {:class :item} here. It bounces right back into your hand."}
-    {:text "You find {:class :item} here. You back away {:class :adjective}."}
-    {:text "{:class :actor} is here."}
-    {:text "{:class :actor} is here {:class :actor-action}"}
-    {:text "{:class :actor} is here {:class :actor-action}"}
-    {:text "You find {:class :actor} {:class :actor-action}"}
-    {:text "You find {:class :actor} {:class :actor-action}"}
-    {:text "{:class :person} {:class :dialogue}"}
-    {:text "{:class :person} {:class :dialogue}"}
-    {:text "{:class :person} {:class :dialogue}"}
-    {:text "{:class :person} {:class :dialogue}"}
-    {:text "{:class :person} {:class :dialogue}"}
-    {:text "{:class :person} {:class :dialogue}"}
-    {:text "{:class :person} {:class :dialogue}"}
-    {:text "{:class :person} {:class :dialogue}"}
-    {:text "{:class :person} {:class :dialogue}"}
-    {:text "{:class :person} {:class :dialogue}"}
-    {:text "{:class :actor} is here searching for {:class :item}."}
-    {:text "{:class :actor} is here with {:class :actor}. They look {:class :adjective}."}
-    {:text "{:class :actor} follows you."}
-    {:text "{:class :actor} slinks up behind you."}
-    {:text "{:class :actor} wanders by, doing algebra and shit."}
-    {:text "{:class :actor} wanders by, playing a recorder."}
-    {:text "{:class :actor} wanders by, jamming on a mouth organ."}
-    {:text "{:class :actor} wanders by, wearing a cape."}
-    {:text "{:class :actor} wanders by, casually on fire."}
-    {:text "{:class :actor} wanders by, followed by a classy balloon."}
-    {:text "{:class :actor} wanders by, whistling the theme to the Andy Griffith Show."}
-    {:text "{:class :actor} wanders by, whistling the theme to the Garry Shandling Show."}
-    {:text "A hollow voice intones, '{:class :intonation}'"}
-    {:text "A hollow voice intones, '{:class :intonation}'"}
-    {:text "A hollow voice intones, '{:class :intonation}'"}
-    {:text "A hollow voice intones, '{:class :intonation}'"}
-    {:text "Something smells {:class :scent} here."}
-    {:text "It smells {:class :scent}."}
-    {:text "It smells {:class :scent}."}
-    {:text "It smells {:class :scent}."}
-    {:text "You hear {:class :noise} in the distance."}
-    {:text "You hear the sound of {:class :noise} nearby."}
+   [{:text "You see %0 here."
+     :subs {0 {:class :item}}}
+
+    {:text "You see %0 here. It looks oddly familiar."
+     :subs {0 {:class :item}}}
+
+    {:text "There is %0 here."
+     :subs {0 {:class :item}}}
+
+    {:text "You pick up %0. It's covered in dust."
+     :subs {0 {:class :item}}}
+
+    {:text "You pick up %0."
+     :subs {0 {:class :item}}}
+
+    {:text "You drop %0 here."
+     :subs {0 {:class :item}}
+     :follow-ups {:optional? true
+                  :options [{:text "It bursts into flames."}
+                            {:text "It turns into a wisp of smoke."}
+                            {:text "And then some really bad CGI happens."}
+                            {:text "It pierces the crust of the Earth."}
+                            {:text "It bounces right back into your hand."}]}}
+
+    {:text "You find %0 here. You back away %1."
+     :subs {0 {:class :item}
+            1 {:class :adjective}}}
+
+    {:text "%0 is here."
+     :subs {0 {:class :actor}}}
+
+    {:text "%0 is here %1"
+     :subs {0 {:class :actor}
+            1 {:class :actor-action}}}
+
+    {:text "You find %0 here %1"
+     :subs {0 {:class :actor}
+            1 {:class :actor-action}}}
+
+    {:text "%0 %1"
+     :subs {0 {:class :person}
+            1 {:class :dialogue}}}
+
+    {:text "%0 is here searching for %1."
+     :subs {0 {:class :actor}
+            1 {:class :item}}}
+
+    {:text "%0 is here with %1. They look %2."
+     :subs {0 {:class :actor}
+            1 {:class :actor}
+            2 {:class :adjective}}}
+
+    {:text "%0 follows you."
+     :subs {0 {:class :actor}}}
+
+    {:text "%0 slinks up behind you."
+     :subs {0 {:class :actor}}}
+
+    {:text "%0 wanders by,"
+     :subs {0 {:class :actor}}
+     :follow-ups {:optional? false
+                  :options [{:text "doing algebra and shit."}
+                            {:text "playing a recorder."}
+                            {:text "jamming on a mouth organ."}
+                            {:text "wearing a cape."}
+                            {:text "casually on fire."}
+                            {:text "followed by a classy balloon."}
+                            {:text "whistling the theme to the Andy Griffith Show."}
+                            {:text "whistling the theme to the Garry Shandling Show."}]}}
+
+    {:text "A hollow voice intones, '%0'"
+     :subs {0 {:class :intonation}}}
+
+    {:text "Something smells %0 here."
+     :subs {0 {:class :scent}}}
+
+    {:text "It smells %0."
+     :subs {0 {:class :scent}}}
+
+    {:text "You hear %0 in the distance."
+     :subs {0 {:class :noise}}}
+
+    {:text "You hear the sound of %0 nearby."
+     :subs {0 {:class :noise}}}
+
     {:text "The wind howls in the distance."}
     {:text "It appears abandoned."}
     {:text "Someone has been here recently."}
@@ -596,11 +632,15 @@
     {:text "Spray-painted on the wall here are the words 'Alice?! Alice?! Who the f...'. The rest is illegible."}
     {:text "An ice cream truck goes by. It's on fire."}
     {:text "A fire truck goes by. It's covered in ice."}
-    {:text "There has been significant damage from {:class :disaster}."}
-    {:text "You see a sign here. On it is written '{:class :sign}'"}
-    {:text "You see a sign here. On it is written '{:class :sign}'"}]})
 
-(def tertiary-events 
+    {:text "There has been significant damage from %0."
+     :subs {0 {:class :disaster}}}
+
+    {:text "You see a sign here. On it is written '%0'"
+     :subs {0 {:class :sign}}}]})
+
+
+(def tertiary-events
   {:tertiary-events
    [{:text "You aren't wearing any clothes."}
     {:text "Your clothes feel too small."}
