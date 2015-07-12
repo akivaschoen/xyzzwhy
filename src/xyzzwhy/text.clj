@@ -1,9 +1,7 @@
 (ns xyzzwhy.text)
 
 (def events
-  {:events
-   [{:text :location-event}
-    {:text :action-event}]})
+  {:events [:location-event :action-event]})
 
 (def location-events
   {:location-events
@@ -331,10 +329,10 @@
             1 {:class :attack}
             2 {:class :attack}}
      :follow-ups {:optional? false
-                  :options [{:text "Look at you what with the killing and all."
+                  :options [{:text "Look at you what with the killing and all."}
                             {:text "%0 is a bloodstain."
                              :subs {0 {:class :gender
-                                       :case :subjective}}}}]}}
+                                       :case :subjective}}}]}}
 
     {:text "Suddenly you're in freeze-frame as the credits roll."}
 
