@@ -702,27 +702,36 @@
     {:text "You are starting to feel thirsty."}
     {:text "You feel better."}
     {:text "You have died."}
-    {:text "You have died."}
-    {:text "You have died."}
-    {:text "You have died."}
-    {:text "You have died."}
-    {:text "You have died."}
     {:text "You are starting to feel hungry."}]})
 
 (def actor-actions
   {:actor-actions
-   [{:text "looking {:class :adjective}."}
+   [{:text "looking %0."
+     :subs {0 {:class :adjective}}}
+
     {:text "being chased by a swarm of balloon animals."}
-    {:text "being chased by {:class :person}."}
-    {:text "being chased by {:class :item} which is attached to them by a string."}
+
+    {:text "being chased by %0."
+     :subs {0 {:class :person}}}
+
+    {:text "being chased by %0 which is attached to them by a string."
+     :subs {0 {:class :item}}}
+
     {:text "dancing furiously."}
     {:text "dancing extremely slowly."}
     {:text "shouting at an imaginary helicopter."}
     {:text "doing the Kenosha Kid."}
-    {:text "thinking {:class :adverb} about {:class :actor}."}
+
+    {:text "thinking %0 about %1."
+     :subs {0 {:class :adverb}
+            1 {:class :actor}}}
+
     {:text "being chased around by a bee."}
     {:text "defiantly eating Scrabble tiles, one by one."}
-    {:text "{:class :adverb} playing the organ."}
+
+    {:text "%0 playing the organ."
+     :subs {0 {:class :adverb}}}
+
     {:text "organizing matches."}
     {:text "having a Guru Meditation Error."}
     {:text "juggling some balls."}
@@ -736,13 +745,21 @@
     {:text "hiding under a table."}
     {:text "hiding under a sofa."}
     {:text "hiding in the bushes."}
-    {:text "munching on {:class :food}."}
+
+    {:text "munching on %0."
+     :subs {0 {:class :food}}}
+
     {:text "pretending to be invisible."}
     {:text "having a coughing fit."}
     {:text "having a sneezing fit."}
-    {:text "being menaced by {:class :animal}."}
+
+    {:text "being menaced by %0."
+     :subs {0 {:class :animal}}}
+
     {:text "ready to start some shit."}
-    {:text "examining {:class :item} with great confusion."}]})
+
+    {:text "examining %0 with great confusion."
+     :subs {0 {:class :item}}}]})
 
 (def locations
   {:locations
