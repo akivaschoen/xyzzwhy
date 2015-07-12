@@ -73,9 +73,8 @@
 (defn- article
   "Returns a fragment's article."
   [fragment]
-  (if (contains? fragment :article)
-    (pad (:article fragment))
-    nil))
+  (when-let [article (:article fragment)]
+    (-> fragment :article pad)))
 
 (defn- prep?
   [config]
