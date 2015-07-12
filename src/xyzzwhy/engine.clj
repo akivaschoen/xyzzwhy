@@ -10,6 +10,10 @@
   [text]
   (str text " "))
 
+(defn article?
+  [config]
+  (not (contains? config :no-article)))
+
 (defn article
   [fragment]
   (if (contains? fragment :article)
@@ -145,7 +149,8 @@
   (let [sub' (val sub)
         prep' (when (prep? (:config sub'))
                 (-> sub' :source :prep random-pick))
-        article' (-> sub' :source article)
+        article' (when (article? (:config sub'))
+                   (-> sub' :source article))
         text (str prep' article' (-> sub' :source :text))]
     (assoc fragment :text
            (str/replace (:text fragment) (str "%" (key sub)) text)))))
