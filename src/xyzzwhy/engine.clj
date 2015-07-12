@@ -84,7 +84,7 @@
 (defn- prep
   "Returns a fragment's preposition, randomly chosen."
   [fragment]
-  (if-let [preps (contains? fragment :preps)]
+  (when-let [preps (:preps fragment)]
     (-> preps random-pick pad)))
 
 (defn- no-groups?
