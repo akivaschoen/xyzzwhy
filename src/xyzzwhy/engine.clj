@@ -105,12 +105,16 @@
   (let [sub' (val sub)]
     {(key sub) (assoc sub' :source (get-fragment corpus (-> sub' :class)))}))
 
+(defn get-subs*
+  [corpus fragment subs]
+  (reduce #(conj %1 (get-sub corpus fragment %2)) {} subs))
+
 (defn get-subs
   ([corpus fragment]
-   (let [subs (reduce #(conj %1 (get-sub corpus fragment %2)) {} (:subs fragment))]
+   (let [subs (get-subs* corpus fragment (:subs fragment))]
      (assoc fragment :subs subs)))
   ([corpus fragment follow-up]
-   (let [subs (reduce #(conj %1 (get-sub corpus fragment %2)) {} (:subs follow-up))
+   (let [subs (get-subs* corpus fragment (:subs follow-up))
          follow-up' (assoc follow-up :subs subs)]
      follow-up')))
 
