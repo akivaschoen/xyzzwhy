@@ -10,7 +10,11 @@
 (defn- append
   "Adds text to fragment's :text and returns fragment."
   [fragment text]
-  (update fragment :text #(str %1 text)))
+  (if (< (+ (-> fragment :text count)
+            (count text))
+         140)
+    (update fragment :text #(str %1 text))
+    fragment))
 
 (defn capitalize*
   "Capitalizes fragment's sentences."
@@ -33,6 +37,10 @@
   an @mention."
   [fragment]
   (update fragment :text #(str/replace % #"^(@\w+)" ".$1")))
+
+(defn- optional?
+  [follow-up]
+  (-> follow-up :optional? true?))
 
 (defn- pad
   [text]
@@ -209,8 +217,7 @@
 ;; Follow-Ups
 (defmulti ^:private get-follow-up*
   "Appends fragment's follow up to its :text. If follow-up
-  has substitutions, those are handled first. The :default
-  is follow-up not optional."
+  has substitutions, those are handled first."
   (fn [_ follow-up _] (contains? follow-up :subs)))
 
 (defmethod get-follow-up* true
@@ -220,21 +227,34 @@
         fragment (append fragment (:text option))]
     (assoc-in fragment [:follow-ups :options index] option)))
 
-(defmethod get-follow-up* :default
+(defmethod get-follow-up* false
   [fragment follow-up _]
   (append fragment (:text follow-up)))
 
 (defn- follow-ups
   [fragment]
-  (if (contains? fragment :follow-ups)
-    (let [options (-> fragment :follow-ups :options)
-          follow-up (-> options random-pick)
-          index (.indexOf options follow-up)]
-      (get-follow-up* fragment follow-up index))
-    fragment))
+  (let [fragment' (if (contains? fragment :follow-ups)
+                    (let [options (-> fragment :follow-ups :options)
+                          follow-up (-> options random-pick)
+                          index (.indexOf options follow-up)]
+                      (get-follow-up* fragment follow-up index))
+                    fragment)]
+    fragment'))
 
+(defn- sub-follow-ups
+  [fragment]
+  (if (contains? fragment :subs)
+    (reduce (fn [a s]
+              (when-let [follow-up (-> s val :source :follow-ups)]
+                (if (and (true? (:optional? follow-up))
+                         (< 50 (+ 1 (rand-int 99))))
+                  a
+                  (reduced (append fragment
+                                   (str " " (-> follow-up :options random-pick :text)))))))
+            fragment
+            (:subs fragment))))
 
 ;; Actions
 (def initialize-tweet (comp get-fragment classname choose-event))
-(def process-tweet (comp interpolate follow-ups subs))
+(def process-tweet (comp follow-ups interpolate subs))
 (def finalize-tweet (comp smarten* dot-prefix capitalize*))
