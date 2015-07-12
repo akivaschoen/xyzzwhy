@@ -209,12 +209,9 @@
 ;; Follow-Ups
 (defmulti ^:private get-follow-up*
   "Appends fragment's follow up to its :text. If follow-up
-  has substitutions, those are handled first."
+  has substitutions, those are handled first. The :default
+  is follow-up not optional."
   (fn [_ follow-up _] (contains? follow-up :subs)))
-
-(defmethod get-follow-up* false
-  [fragment follow-up _]
-  (append fragment (:text follow-up)))
 
 (defmethod get-follow-up* true
   [fragment follow-up index]
@@ -222,6 +219,10 @@
         option (interpolate option)
         fragment (append fragment (:text option))]
     (assoc-in fragment [:follow-ups :options index] option)))
+
+(defmethod get-follow-up* :default
+  [fragment follow-up _]
+  (append fragment (:text follow-up)))
 
 (defn- follow-ups
   [fragment]
