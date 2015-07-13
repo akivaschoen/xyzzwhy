@@ -984,7 +984,7 @@
                             {:text "There's an unusual stain in the carpet next to a usual stain."}
                             {:text "The ceiling fan is spinning dangerously fast."}
                             {:text "The walls are covered with %0 posters."
-                             :subs {0 {:class :person :config #{has-name}}}}
+                             :subs {0 {:class :person :config #{:has-name}}}}
                             {:text "There's a pile of clothes nearby."}]}}
 
     {:text "McDonald's"
@@ -1023,8 +1023,8 @@
      :follow-ups {:optional? true
                   :options [{:text "There's a constant breeze rising up from the depths."}
                             {:text "Wide and low, the cave gently slopes %0-%1 here."
-                             {:subs {0 {:class :direction}
-                                     1 {:class :direction}}}}
+                             :subs {0 {:class :direction}
+                                    1 {:class :direction}}}
                             {:text "It smells of warm packing peanuts."}
                             {:text "It's really breezy. Gale-force breezy."}
                             {:text "It's seems over-oxygenated. You get light-headed."}
