@@ -244,11 +244,11 @@
 (defn- sub-follow-ups
   [fragment]
   (if (contains? fragment :subs)
-    (reduce (fn [a s]
+    (reduce (fn [_ s]
               (when-let [follow-up (-> s val :source :follow-ups)]
                 (if (and (true? (:optional? follow-up))
                          (< 50 (+ 1 (rand-int 99))))
-                  a
+                  fragment
                   (reduced (append fragment
                                    (str " " (-> follow-up :options random-pick :text)))))))
             fragment
