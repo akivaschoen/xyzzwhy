@@ -804,8 +804,7 @@
                   :options [{:text "It is warm and welcoming."}
                             {:text "Someone had been roasting marshmallows here."}
                             {:text "The air here is black with despair and entropy."}
-                            {:text "The sky is darkened by the hellish smoke of the endless burn."}
-                            {:text "These tires are no longer the things on your car that make contact with the road."}]}}
+                            {:text "The sky is darkened by the hellish smoke."}]}}
 
     {:text "dildo bonfire"
      :type :exterior
@@ -814,9 +813,8 @@
      :follow-ups {:optional? true
                   :options [{:text "You look closely but don't recognize any of them."}
                             {:text "The plastic hisses and creaks in the blaze."}
-                            {:text "Someone has piled up a collection of pleasuring devices, now ablaze."}
-                            {:text "Surely there had to hae been a better way to punish these plastic torpedos."}
-                            {:text "The air is dense with the echoes of unreached orgasms and epic frustrations."}]}}
+                            {:text "The smoke smells of vanilla."}
+                            {:text "The air is dense with the echoes of unreached orgasms."}]}}
 
     {:text "hot tub"
      :type :interior
@@ -824,7 +822,10 @@
      :preps ["in near"]
      :follow-ups {:optional? true
                   :options [{:text "The water roils and steams like water roils and steams."}
-                            {:text "Someone has put blue coloring into the water. It looks like the future."}
+                            {:text "It's frozen solid."}
+                            {:text "A basketball dances on the bubbles."}
+                            {:text "You see a staircase beneath the water."}
+                            {:text "Is it water or is it hydrocarbons?"}
                             {:text "It smells delicious because someone filled it with chicken soup."} ]}}
 
     {:text "maze of twisty little passages, all alike"
@@ -847,10 +848,11 @@
      :article "a"
      :preps ["in" "at" "in front of" "behind"]
      :follow-ups {:optional? true
-                  :options [{:text "In the store window is an array of old television sets, all blackly inert."}
+                  :options [{:text "There are TVs in the window, all turned off."}
                             {:text "Someone has spray-painted 'I crave brown baths' here."}
-                            {:text "From somewhere within the building, you hear the sound of repulsed joy."}
-                            {:text "The building looks like it has been condemned. The door is boarded up."}]}}
+                            {:text "Inside you hear the sound of repulsed joy."}
+                            {:text "The door has been boarded up."}
+                            {:text "The building looks like it has been condemned."}]}}
 
     {:text "quicksand"
      :type :exterior
@@ -869,6 +871,9 @@
                   :options [{:text "The surface of the pool is almost entirely still. You are afraid to disturb it."}
                             {:text "The water has turned slightly murky; it does not look inviting."}
                             {:text "The surface of the pool is littered with leaves."}
+                            {:text "The pool is empty."}
+                            {:text "The pool is empty. A broken skateboard is nearby."}
+                            {:text "A dead bird floats by."}
                             {:text "An abandoned plastic float with a dinosaur's head floats lonely nearby."}]}}
 
     {:text "sauna" 
@@ -878,7 +883,7 @@
      :follow-ups {:optional? true
                   :options [{:text "The wood paneling sweats sweetly in the oppressive heat."}
                             {:text "Great thunderheads of steam rise up from the rock basin, making it hard to see."}
-                            {:text "The room is cold and dark. No one has used this sauna in years."}
+                            {:text "The room is cold and dark. No one has been here in years."}
                             {:text "The floor is covered with cute little mushrooms."}]}}
 
     {:text "New York Public Library"
@@ -892,16 +897,16 @@
      :preps ["in"]
      :follow-ups {:optional? true
                   :options [{:text "It stretches out in front of you, meandering as if drunk."}
-                            {:text "It has been nearly choked to death by an avalanche at the north end."}
-                            {:text "The walls of the ravine are treacherous. A trickle of water flows fitfully below."}]}}
+                            {:text "A giant marshmallow avalanche blocks the way ahead."}
+                            {:text "A small trickle of spaghetti sauce runs down the middle."}]}}
 
     {:text "ditch"
      :type :exterior
      :article "a"
      :preps ["in"]
      :follow-ups {:optional? true
-                  :options [{:text "The dusty stench of aged sewage rises up like a stomach-crushing wraith."}
-                            {:text "It is completely blocked here by a giant boulder. But how did it get here?"}
+                  :options [{:text "The dusty stench of aged sewage gives you a hug."}
+                            {:text "It is completely blocked here by a giant boulder."}
                             {:text "A trickle of clear water runs down the middle of it."}]}}
 
     {:text "dump"
@@ -909,18 +914,17 @@
      :article "the"
      :preps ["at" "near" "behind" "in front of"]
      :follow-ups {:optional? true
-                  :options [{:text "In the distance, you see women searching through spires of rubbish for treasure."}
-                            {:text "The hill of trash shifts dangerously beneath your feet."}
-                            {:text "The mounds of garbage stretch off into the distant, murky haze."}]}}
+                  :options [{:text "In the distance, you see a hazy castle."}
+                            {:text "The hill of trash shifts dangerously beneath your feet."}]}}
 
     {:text "dump truck"
      :type :exterior
      :article "a"
      :preps ["in" "near" "behind" "in front of" "underneath"]
      :follow-ups {:optional? true
-                  :options [{:text "It's covered with a patina of black filth and oily washes of grime."}
-                            {:text "Fresh off the line, this dump truck is gleaming with clean red paint."}
-                            {:text "The engine is rumbling roughly to itself. Both of the doors are locked."}]}}
+                  :options [{:text "It's covered with a patina of black filth."}
+                            {:text "Fresh off the line, it gleams bright red."}
+                            {:text "The engine rumbles roughly to itself. The doors are locked."}]}}
 
     {:text "Starbucks"
      :type :exterior
@@ -936,22 +940,24 @@
      :article "a"
      :preps ["in"]
      :follow-ups {:optional? true
-                  :options [{:text "The door has been torn off its hinges and the walls are covered with violent scratches."}
-                            {:text "Unfortunately, the toilet recently vomited up at least five gallons of excrement and dreams."}
-                            {:text "You feel a sense of deja vu."}
-                            {:text "You whisper to yourself, 'Home again, home again, jiggity jig.'"}
-                            {:text "The lingering scents of lemon and Lysol haunt the air here."}
-                            {:text "Someone has scratched your name and phone number above the toilet paper dispenser."}]}}
+                  :options [{:text "The door has been torn off its hingest."}
+                            {:text "The walls are covered with violent scratches."}
+                            {:text "The toilet is made of solid gold."}
+                            {:text "A garden gnome greets you from the bowl."}
+                            {:text "The toilet is missing."}
+                            {:text "There's a basketball in the bowl."}
+                            {:text "Suddenly the lights go out."}
+                            {:text "The lingering scents of lemon and Lysol haunt the air."}
+                            {:text "Someone has scratched your name and number on the wall."}]}}
 
     {:text "all-you-can-eat buffet"
      :type :interior
      :article "an"
      :preps ["at"]
      :follow-ups {:optional? true
-                  :options [{:text "It is a grid of delicious choices, all unhealthy, all alluring."}
+                  :options [{:text "It looks abandoned."}
                             {:text "Steam crowds the air."}
-                            {:text "There is a dizzying array of gluten-free, vegan choices. You leave immediately."}
-                            {:text "It looks abandoned."}
+                            {:text "It's all gluten-free and vegan. You leave immediately."}
                             {:text "It smells of freedom and gluttony."}
                             {:text "All of the food has been replaced with wax replicas."}
                             {:text "It's in complete disarray and hasn't been tended for some time."}]}}
@@ -961,8 +967,8 @@
      :article "a"
      :preps ["in" "near" "behind" "in front of"]
      :follow-ups {:optional? true
-                  :options [{:text "The ceiling is sparkling with light reflected from the blue-green pool below."}
-                            {:text "The water is darkened with greenish-gray algae. There's a foul odor here."}
+                  :options [{:text "The ceiling is sparkling with reflected light."}
+                            {:text "The water is darkened with greenish-gray algae.."}
                             {:text "The pool of water seems unusually deep. A lean, black fish swims in a circle."}]}}
 
     {:text "bedroom"
@@ -970,12 +976,16 @@
      :article "your"
      :preps ["in"]
      :follow-ups {:optional? true
-                  :options [{:text "It hasn't been cleaned in a long time. There's a pleasantly disgusting smell here."}
-                            {:text "It's small and lightly furnished. The bed is unmade. Has someone been sleeping here?"}
+                  :options [{:text "It hasn't been cleaned in a long time."}
+                            {:text "There's a pleasantly disgusting smell here."}
+                            {:text "It's small and lightly furnished. The bed is unmade."}
                             {:text "There is nothing special about it."}
                             {:text "You notice an unusual stain in the carpet."}
-                            {:text "You notice an unusual stain in the carpet next to a usual stain. So it goes."}
-                            {:text "It's a typical bedroom. There's a pile of laundry in one corner and a computer desk in the other."}]}}
+                            {:text "There's an unusual stain in the carpet next to a usual stain."}
+                            {:text "The ceiling fan is spinning dangerously fast."}
+                            {:text "The walls are covered with %0 posters."
+                             :subs {0 {:class :person :config #{has-name}}}}
+                            {:text "There's a pile of clothes nearby."}]}}
 
     {:text "McDonald's"
      :type :exterior
@@ -1002,6 +1012,8 @@
      :follow-ups {:optional? true
                   :options [{:text "It is pitch black here. You're likely to be eaten by {:class :actor}."}
                             {:text "It's really dark here. Like... REALLY dark."}
+                            {:text "It just got slightly darker somehow."}
+                            {:text "It's so dark you can taste it. Tastes like dark."}
                             {:text "It's dark here. DARK AS YOUR SOUL."}]}}
 
     {:text "breezy cave"
@@ -1010,8 +1022,13 @@
      :preps ["in" "near" "in front of"]
      :follow-ups {:optional? true
                   :options [{:text "There's a constant breeze rising up from the depths."}
-                            {:text "Wide and low, the cave gently slopes {:class :direction}-{:class :direction} here."}
-                            {:text "Here it winds up precariously. The cave seems to be breathing rapidly."}]}}
+                            {:text "Wide and low, the cave gently slopes %0-%1 here."
+                             {:subs {0 {:class :direction}
+                                     1 {:class :direction}}}}
+                            {:text "It smells of warm packing peanuts."}
+                            {:text "It's really breezy. Gale-force breezy."}
+                            {:text "It's seems over-oxygenated. You get light-headed."}
+                            {:text "The cave seems to be breathing rapidly."}]}}
 
     {:text "forest"
      :type :exterior
@@ -1021,6 +1038,9 @@
                   :options [{:text "It is a dense, dark, and tangled choke of gnarled trees, thorny underbrush, and spiky thickets."}
                             {:text "Shot through with shafts of light, the forest before you looks serene."}
                             {:text "The trees, mostly oak and spruce, sway gently in the occasional breeze."}
+                            {:text "It's currently on fire."}
+                            {:text "The trees are all inflated plastic."}
+                            {:text "The trees ignore your incessant crying."}
                             {:text "Birds are chirping and rodents scamper through the underbrush."}]}}
 
     {:text "riverbed"
@@ -1028,8 +1048,10 @@
      :article "a"
      :preps ["in" "near"]
      :follow-ups {:optional? true
-                  :options [{:text "The shallow expanse is dry as a bone and littered with rocks and branches."}
-                            {:text "Here is a shallow channel through which brackish water flows fitfully."}
+                  :options [{:text "It's dry and littered with rocks and branches."}
+                            {:text "The water steadfastedly refuses to flow. It just sits there."}
+                            {:text "Nearby two bears are standing on the water, defiantly."}
+                            {:text "The river immediately parts and just keeps on parting."}
                             {:text "It's mostly dry, the flow of the water blocked by a beaver dams upstream."}]}}
 
     {:text "AT&T Store"
@@ -1049,7 +1071,10 @@
      :follow-ups {:optional? true
                   :options [{:text "Oddly, all of the balls here are the same color: orange."}
                             {:text "The ballpit seems unusually deep. You can't feel the bottom."}
-                            {:text "You aren't certain but all clues point to there being someone or something lurking in there."}]}}
+                            {:text "It's been filled with Rubik's Cubes."}
+                            {:text "It's empty except for one orange ball at the bottom."}
+                            {:text "It contains only one ball: orange and 12' across."}
+                            {:text "You get the feeling someone is swimming around in there."}]}}
 
     {:text "airplane"
      :type :interior
@@ -1073,7 +1098,7 @@
                             {:text "A tire iron is digging into your back a little bit."}
                             {:text "There's a half-eaten bag of Bugles here."}
                             {:text "With all the trash in here, there's barely any room for you."}
-                            {:text "It's pitch black. Not enough room for a grue in here, at least."}]}}
+                            {:text "It's pitch black. No room for a grue, luckily."}]}}
 
     {:text "coffin"
      :type :interior
@@ -1083,7 +1108,7 @@
                   :options [{:text "It is well upholstered."}
                             {:text "It smells of cotton candy in here for some reason."}
                             {:text "It smells of Aquanet in here. Makes sense."}
-                            {:text "It's pitch black. It probably doesn't matter if there are grues or not."}]}}
+                            {:text "It's pitch black. It probably doesn't matter if ther's a grue here."}]}}
 
     {:text "hugbox"
      :type :interior
@@ -1099,9 +1124,11 @@
      :article "a"
      :preps ["at" "in" "near" "behind" "in front of"]
      :follow-ups {:optional? true
-                  :options [{:text "At the top of the hill, the house shrugs under its own entropy."}
+                  :options [{:text "The house shrugs under its own entropy."}
                             {:text "An orange light wanders from window to window."}
-                            {:text "The antebellum abode, white in its gaudy shame of elegance, has been overgrown by kudzu and rotting vines."}]}}
+                            {:text "A sign here reads: 'As seen on TV."}
+                            {:text "Endless amounts of blood pour from the windows."}
+                            {:text "Looks inviting except for the corpses littering the lawn."}]}}
 
     {:text "graveyard"
      :type :exterior
@@ -1111,34 +1138,39 @@
                   :options [{:text "There is a freshly laid grave nearby."}
                             {:text "There is an open grave nearby. It's empty."}
                             {:text "There is an open grave nearby. There's a phone book in it."}
-                            {:text "There is an open grave nearby. It's full of {:class :drink :config ${:no-article}}."}
+                            {:text "There is an open grave nearby. It's full of %0."
+                             :subs {0 {:class :drink :config #{:no-article}}}}
                             {:text "There are fresh footprints here."}
-                            {:text "A lazy mist wanders aimlessly amongst the shifted tombstones. A cold light spills down from behind a tree."}
-                            {:text "Long ago, the upright tombstones had been replaced by durable plastic bricks to minimize upkeep."}
-                            {:text "You see a mausoleum here covered with dark green moss. It looks vaguely familiar."}]}}
+                            {:text "A lazy mist drifts amongst the tombstones."}
+                            {:text "The tombstones have been replaced by durable plastic bricks."}
+                            {:text "All the graves are filled with Mr. Bubbles."}
+                            {:text "The Christmas lights sure make it look festive."}
+                            {:text "A disco ball spins lonely from a gnarled tree."}]}}
 
     {:text "playground"
      :type :exterior
      :article "a"
      :preps ["in" "near" "behind" "in front of"]
      :follow-ups {:optional? true
-                  :options [{:text "Freshly built, it looks like it has never been used. You see not a scratch or a ding on any of the equipment."}
-                            {:text "Most of the equipment is missing or broken. In the distance, swings squeak loneliness in the slight breeze."}
-                            {:text "A picnic table is nearby, burdened by a fresh birthday party except no one is around. Someone is turning 6 today... but who?"}]}}
+                  :options [{:text "The equipment looks like it's never been used."}
+                            {:text "Most of the equipment is missing or broken."}
+                            {:text "You hear the sound of children laughing but no one else is here."}]}}
 
     {:text "pile of diapers"
      :type :exterior
      :article "a"
-     :preps ["in" "near" "behind" "in front of" "underneath"]}
+     :preps ["in" "near" "behind" "in front of" "underneath"]
+     :follow-ups {:optional? true
+                  :options [{:text "Some of these look awfully familiar."}]}}
 
     {:text "meeting"
      :type :interior
      :article "a"
      :preps ["in"]
      :follow-ups {:optional? true
-                  :options [{:text "The room is comically overwhelmed by tripod stands crowded with colorful charts."}
-                            {:text "The room is empty. The projector is on, showing random photos of cats at play."}
-                            {:text "The table is covered, end-to-end, by neat stacks of donuts of various heights."}
+                  :options [{:text "The room is crowded by tripods holding colorful charts."}
+                            {:text "The projector is on, showing random photos of cats at play."}
+                            {:text "The table is covered with a chalk outline."}
                             {:text "The chairs are all occupied by cobweb-encrusted skeletons."}
                             {:text "The room is almost full of balloons."}]}}
 
@@ -1150,7 +1182,12 @@
     {:text "full-contact Bible study group"
      :type :interior
      :article "a"
-     :preps ["near" "behind" "in front of" "in"]}]})
+     :preps ["near" "behind" "in front of" "in"]
+     :follow-ups {:optional? true
+                  :options [{:text "No one is here."}
+                            {:text "They stare at you and begin to crowl."}
+                            {:text "They're all covered with cuts and bruises."}
+                            {:text "They're currently scrumming over a Bible."}]}}]})
 
 (def dialogues
   {:dialogues
