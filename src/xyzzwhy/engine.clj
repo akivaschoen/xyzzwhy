@@ -13,7 +13,7 @@
   (if (< (+ (-> fragment :text count)
             (count text))
          140)
-    (update fragment :text #(str %1 text))
+    (update fragment :text #(str %1 " " text))
     fragment))
 
 (defn capitalize*
@@ -25,12 +25,12 @@
                                          #(str (second %1)
                                                (str/capitalize (nth %1 2)))))))
 
-(defn- classname
+(defn- pluralize
   [c]
   (let [c' (name c)]
     (if (.endsWith c' "s")
-      (keyword c')
-      (keyword (str c' "s")))))
+      c'
+      (str c' "s"))))
 
 (defn dot-prefix
   "Prefix's fragment's :text with a period of it begins with
@@ -68,7 +68,7 @@
 
 (defn- get-class
   [c]
-  (-> c classname corpus))
+  (-> c pluralize keyword corpus))
 
 
 ;;
@@ -175,7 +175,7 @@
 
 (defmethod get-fragment* :default
   [c config]
-  (->> c classname corpus random-pick))
+  (->> c pluralize keyword corpus random-pick))
 
 (defn- get-fragment
   ([c]
@@ -209,9 +209,8 @@
      (let [subs (subs* fragment (:subs fragment))]
        (assoc fragment :subs subs)))
     ([fragment follow-up]
-     (let [subs (subs* fragment (:subs follow-up))
-           follow-up' (assoc follow-up :subs subs)]
-       follow-up'))))
+     (let [subs (subs* fragment (:subs follow-up))]
+       (assoc follow-up :subs subs)))))
 
 
 ;; Follow-Ups
@@ -233,13 +232,12 @@
 
 (defn- follow-ups
   [fragment]
-  (let [fragment' (if (contains? fragment :follow-ups)
-                    (let [options (-> fragment :follow-ups :options)
-                          follow-up (-> options random-pick)
-                          index (.indexOf options follow-up)]
-                      (get-follow-up* fragment follow-up index))
-                    fragment)]
-    fragment'))
+  (if (contains? fragment :follow-ups)
+    (let [options (-> fragment :follow-ups :options)
+          follow-up (-> options random-pick)
+          index (.indexOf options follow-up)]
+      (get-follow-up* fragment follow-up index))
+    fragment))
 
 (defn- sub-follow-ups
   [fragment]
@@ -250,11 +248,11 @@
                          (< 50 (+ 1 (rand-int 99))))
                   fragment
                   (reduced (append fragment
-                                   (str " " (-> follow-up :options random-pick :text)))))))
+                                   (-> follow-up :options random-pick :text))))))
             fragment
             (:subs fragment))))
 
 ;; Actions
-(def initialize-tweet (comp get-fragment classname choose-event))
-(def process-tweet (comp follow-ups interpolate subs))
+(def initialize-tweet (comp get-fragment keyword pluralize choose-event))
+(def process-tweet (comp sub-follow-ups follow-ups interpolate subs))
 (def finalize-tweet (comp smarten* dot-prefix capitalize*))
