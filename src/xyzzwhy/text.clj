@@ -212,7 +212,7 @@
     {:text "You wake up in front of %0's house. You have no clue how you got there."
      :subs {0 {:class :person}}}
 
-    {:text "Your ride %0 to %1."
+    {:text "You ride %0 to %1."
      :subs {0 {:class :animal}
             1 {:class :location :config #{:no-prep}}}}
 
@@ -305,7 +305,7 @@
                   :options [{:text "You are victorious!"}
                             {:text "You have been slain!"}]}}
 
-    {:text "%0 attacks with %1. You execute %2. You have been killed."
+    {:text "%0 attacks with %1. You execute %2."
      :subs {0 {:class :actor}
             1 {:class :attack}
             2 {:class :attack}}
@@ -860,8 +860,8 @@
      :preps ["in" "near"]
      :follow-ups {:optional? true
                   :options [{:text "Briefly, you see a fin rise up and cruise back and forth."}
-                            {:text "The surface of the quicksand gently sways, beckoning you..."}
-                            {:text "Oddly, this quicksand smells like freshly cooked oatmeal."}]}}
+                            {:text "The surface quicksand gently sways, beckoning you..."}
+                            {:text "Oddly, it smells like freshly cooked oatmeal."}]}}
 
     {:text "swimming pool"
      :type :exterior
