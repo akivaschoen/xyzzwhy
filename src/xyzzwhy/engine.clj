@@ -10,10 +10,10 @@
 (defn- append
   "Adds text to fragment's :text and returns fragment."
   [fragment text]
-  (if (< (+ (-> fragment :text count)
+  (if (< (+ (-> fragment :tweet :text count)
             (count text))
          140)
-    (update fragment :text #(str %1 " " text))
+    (update-in fragment [:tweet :text] #(str %1 " " text))
     fragment))
 
 (defn capitalize*
@@ -55,6 +55,28 @@
   "Converts fragment's text to use typographer's quotes."
   [fragment]
   (update fragment :text #(typo/smarten %)))
+
+(defn chance
+  "Returns true if a randomly chosen percentile is less
+  than c."
+  [c]
+  (if (<= (+ 1 (rand-int 100)) c)
+    true
+    false))
+
+(defn- secondary?
+  "Returns true if a secondary fragment will be added."
+  ([]
+   (chance 75))
+  ([c]
+   (chance c)))
+
+(defn- tertiary?
+  "Returns true if a tertiary fragment will be added."
+  ([]
+   (chance 35))
+  ([c]
+   (chance c)))
 
 
 ;;
@@ -140,16 +162,16 @@
   "Replaces all substitution markers with matching text,
   returning fragment."
   ([fragment]
-   (reduce #(interpolate %1 %2) fragment (:subs fragment)))
+   (reduce #(interpolate %1 %2) fragment (-> fragment :tweet :subs)))
   ([fragment sub]
    (let [sub' (val sub)
          prep' (when (prep? (:config sub'))
-                 (-> sub' :source prep))
+                 (-> sub' :source :tweet prep))
          article' (when (article? (:config sub'))
-                    (-> sub' :source article))
-         text (str prep' article' (-> sub' :source :text))]
-     (assoc fragment :text
-            (str/replace (:text fragment) (str "%" (key sub)) text)))))
+                    (-> sub' :source :tweet article))
+         text (str prep' article' (-> sub' :source :tweet :text))]
+     (update-in fragment [:tweet :text]
+            str/replace (str "%" (key sub)) text))))
 
 (defn- choose-event
   "Returns a random event type on which a tweet is built."
@@ -181,7 +203,8 @@
   ([c]
    (get-fragment c nil))
   ([c config]
-   (get-fragment* c config)))
+   {:event c
+    :tweet (get-fragment* c config)}))
 
 
 ;; Substitutions
@@ -206,11 +229,16 @@
     "Populates fragment's possible substitutions which
     appropriate fragments."
     ([fragment]
-     (let [subs (subs* fragment (:subs fragment))]
-       (assoc fragment :subs subs)))
+     (let [subs (subs* fragment (-> fragment :tweet :subs))]
+       (if (empty? subs)
+         fragment
+         (assoc-in fragment [:tweet :subs] subs))))
     ([fragment follow-up]
+     (println "subs w/follow-up:" follow-up)
      (let [subs (subs* fragment (:subs follow-up))]
-       (assoc follow-up :subs subs)))))
+       (if (empty? subs)
+         follow-up
+         (assoc follow-up :subs subs))))))
 
 
 ;; Follow-Ups
@@ -224,7 +252,7 @@
   (let [option (subs fragment follow-up)
         option (interpolate option)
         fragment (append fragment (:text option))]
-    (assoc-in fragment [:follow-ups :options index] option)))
+    (assoc-in fragment [:tweet :follow-ups :options index] option)))
 
 (defmethod get-follow-up* false
   [fragment follow-up _]
@@ -232,16 +260,18 @@
 
 (defn- follow-ups
   [fragment]
-  (if (contains? fragment :follow-ups)
-    (let [options (-> fragment :follow-ups :options)
+  (if (contains? (-> fragment :tweet) :follow-ups)
+    (let [options (-> fragment :tweet :follow-ups :options)
           follow-up (-> options random-pick)
           index (.indexOf options follow-up)]
+      (println "follow-ups:" follow-up)
       (get-follow-up* fragment follow-up index))
     fragment))
 
 (defn- sub-follow-ups
   [fragment]
-  (if (contains? fragment :subs)
+  (println "sub-follow-ups:" fragment)
+  (if (contains? (-> fragment :tweet) :subs)
     (reduce (fn [_ s]
               (when-let [follow-up (-> s val :source :follow-ups)]
                 (if (and (true? (:optional? follow-up))
