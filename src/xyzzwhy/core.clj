@@ -14,9 +14,9 @@
   (as-> (assoc first-segment :asset second-segment) s
         (assoc s :text (str (:text s) " " (read-asset s)))))
 
-(defn- interpolate-text 
-  "Searches text for placeholder maps replaces them with appropriate things from the 
-  database." 
+(defn- interpolate-text
+  "Searches text for placeholder maps replaces them with appropriate things from the
+  database."
   [segment]
   (let [matcher (re-matcher #"\{(?::\w+|\s|:\w+-\w+|\[:.+])+\}" (:text segment))]
     (loop [segment segment match (re-find matcher)]
@@ -27,16 +27,16 @@
                           (assoc s :asset (get-thing (read-string match)))
                           ; ...along with its configuration...
                           (assoc-in s [:asset :config] (:config (read-string match)))
-                          (assoc s :text (string/trim (string/replace-first 
-                                           (:text s) 
+                          (assoc s :text (string/trim (string/replace-first
+                                           (:text s)
                                            match
                                                          ; ...which is used here.
-                                           (string/trim (format-text (:asset s)))))))] 
+                                           (string/trim (format-text (:asset s)))))))]
           (recur segment (re-find matcher)))))))
 
 (defn- finalize-tweet
-  "Verifies there are no remaining uninterpolated words, ensures proper capitalization 
-  throughout the final tweet and, if the tweet starts with an @mention, puts a dot up 
+  "Verifies there are no remaining uninterpolated words, ensures proper capitalization
+  throughout the final tweet and, if the tweet starts with an @mention, puts a dot up
   front so everyone can see it."
   [segment]
   (let [segment (interpolate-text segment)]
@@ -49,8 +49,8 @@
 
 (defn- get-follow-up
   "Retrieves follow-up data from a thing. It currently returns a string but it should
-  return a thing. 
-  
+  return a thing.
+
   Currently, only rooms have follow-up data: descriptions."
   [thing k]
   (nth (k thing) (rand-int (count (k thing)))))
@@ -64,7 +64,7 @@
   "Creates a tweet by combining segments in various combinations."
   []
   (let [initial-segment (get-segment :event)]
-    (if (= (:event initial-segment) :location-event) 
+    (if (= (:event initial-segment) :location-event)
       ; 75% chance of a location event having a secondary event
       (if (<= (rand-int 100) 75)
         (let [secondary-segment (get-segment :secondary-event)]

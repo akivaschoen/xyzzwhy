@@ -293,9 +293,12 @@
             1 {:class :attack}}
      :follow-ups {:optional? false
                   :options [{:text "It isn't enough: you lose."}
-                            {:text "This scares the shit out of %0 who runs away."
-                             :subs {0 {:class :gender
-                                       :case :objective}}}]}}
+                            {:text "This scares the shit out of %2. 3% runs away."
+                             :subs {2 {:ref 0
+                                       :class :gender
+                                       :case :objective}
+                                    3 {:ref 0
+                                       :class :name}}}]}}
 
     {:text "%0 attacks with %1. You execute %2."
      :subs {0 {:class :actor}
@@ -940,7 +943,7 @@
      :article "a"
      :preps ["in"]
      :follow-ups {:optional? true
-                  :options [{:text "The door has been torn off its hingest."}
+                  :options [{:text "The door has been torn off its hinges."}
                             {:text "The walls are covered with violent scratches."}
                             {:text "The toilet is made of solid gold."}
                             {:text "A garden gnome greets you from the bowl."}
