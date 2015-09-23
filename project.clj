@@ -4,12 +4,12 @@
   :license {:name "Eclipse Public License"
             :url "http://www.eclipse.org/legal/epl-v10.html"}
 
-  :min-lein-version "2.5.0"
+  :min-lein-version "2.5.2"
 
   :dependencies
   [[org.clojure/clojure "1.7.0"]
-   [environ "1.0.0"]
-   [com.novemberain/monger "3.0.0-rc2"]
+   [environ "1.0.1"]
+   [com.novemberain/monger "3.0.0"]
    [twitter-api "0.7.8"]
    [typographer "1.1.0"]]
 
