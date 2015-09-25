@@ -248,8 +248,6 @@
 
 (defmethod get-follow-up* true
   [fragment follow-up index]
-  (println fragment)
-  (println follow-up)
   (let [option (get-subs fragment follow-up)
         option (interpolate option)
         fragment (append fragment (:text option))]
