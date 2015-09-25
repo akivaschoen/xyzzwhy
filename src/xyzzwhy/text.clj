@@ -175,7 +175,7 @@
     {:text "You flip the Game Select selector and find yourself %0."
      :subs {0 {:class :location}}}
 
-    {:text "You blow into the cartridge to hard and are teleported to %0."
+    {:text "You blow into the cartridge too hard and are teleported to %0."
      :subs {0 {:class :location}}}
 
     {:text "You step through a magic mirror and end up %0."
@@ -425,12 +425,12 @@
                             {:text "Someone has left a recipe for beef stew inside."}
                             {:text "You read a bit before tossing it over your shoulder and then doing the electric slide."}]}}
 
-    {:text "%0 suddenly appears out of the shadows"
+    {:text "%0 suddenly appears out of the shadows and"
      :subs {0 {:class :actor}}
      :follow-ups {:optional? false
-                  :options [{:text ", hisses at you, then scrambles away like a spider."}
-                            {:text ", says, 'Oh, sorry about that,' then retreats back into the shadows."}
-                            {:text ", says, '%0 will see you now,' then slowly retreats back into the shadows."
+                  :options [{:text "hisses at you, then scrambles away like a spider."}
+                            {:text "says, 'Oh, sorry about that,' then retreats back into the shadows."}
+                            {:text "says, '%0 will see you now,' then slowly retreats back into the shadows."
                              :subs {0 {:class :actor}}}]}}
 
     {:text "%0 picks up %1."
