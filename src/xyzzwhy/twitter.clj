@@ -1,8 +1,7 @@
 (ns xyzzwhy.twitter
-  (:use
-    [twitter.oauth]
-    [twitter.api.restful])
-  (:require [environ.core :refer [env]])
+  (:require [environ.core :refer [env]]
+            [twitter.api.restful :refer :all]
+            [twitter.oauth :refer :all])
   (:import (twitter.callbacks.protocols SyncSingleCallback)))
 
 (def credentials
@@ -12,7 +11,7 @@
     (env :xyzzwhy-twitter-user-access-token)
     (env :xyzzwhy-twitter-user-access-token-secret)))
 
-(defn post-to-twitter 
+(defn post-to-twitter
   "This, uh, posts to Twitter."
   [status-text]
   (statuses-update :oauth-creds credentials :params {:status status-text}))
