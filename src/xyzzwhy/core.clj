@@ -1,5 +1,6 @@
 (ns xyzzwhy.core
   (:require [xyzzwhy.engine :as e]
+            [xyzzwhy.text]
             [xyzzwhy.twitter :as t])
   (:gen-class))
 
