@@ -25,6 +25,8 @@
                                          #(str (second %1)
                                                (str/capitalize (nth %1 2)))))))
 
+
+
 (defn- pluralize
   [c]
   (let [c' (name c)]
@@ -46,7 +48,7 @@
   [text]
   (str text " "))
 
-(defn- random-pick
+(defn- pick
   "Chooses a random item from coll."
   [coll]
   (nth coll (rand-int (count coll))))
@@ -84,10 +86,11 @@
 ;;
 (def corpus)
 
-(defn defcorpus
-  [classes]
-  (reduce #(conj %1 @(-> %2 symbol resolve)) {} classes))
-
+(defn initialize-corpus-from-namespace
+  [c n]
+  (reduce #(conj %1 @(-> (ns-resolve n (symbol %2)) deref future))
+          c
+          (-> (ns-resolve n 'classes) deref)))
 (defn- get-class
   [c]
   (-> c pluralize keyword corpus))
@@ -106,6 +109,10 @@
   (when-let [article (:article fragment)]
     (-> fragment :article pad)))
 
+(defn- follow-ups?
+  [fragment]
+  (contains? fragment :follow-ups))
+
 (defn- prep?
   [config]
   (not (contains? config :no-prep)))
@@ -114,11 +121,15 @@
   "Returns a fragment's preposition, randomly chosen."
   [fragment]
   (when-let [preps (:preps fragment)]
-    (-> preps random-pick pad)))
+    (-> preps pick pad)))
 
 (defn- no-groups?
   [config]
   (contains? config :no-groups))
+
+(defn- subs?
+  [fragment]
+  (contains? fragment :subs))
 
 
 ;;
@@ -154,6 +165,7 @@
     :objective "it"
     :possessive "its"))
 
+
 ;;
 ;; Main Engine
 ;;
@@ -175,8 +187,7 @@
 (defn- choose-event
   "Returns a random event type on which a tweet is built."
   []
-  (-> corpus :events random-pick))
-
+  (-> corpus :events pick))
 
 ;; Fragments
 (defmulti ^:private get-fragment*
@@ -192,18 +203,17 @@
         actors (if (no-groups? config)
                  (filter #(not= :group (-> % :gender)) actors)
                  actors)]
-    (-> actors random-pick)))
+    (-> actors pick)))
 
 (defmethod get-fragment* :default
   [c config]
-  (->> c pluralize keyword corpus random-pick))
+  (->> c pluralize keyword corpus pick))
 
 (defn- get-fragment
   ([c]
    (get-fragment c nil))
   ([c config]
    (get-fragment* c config)))
-
 
 ;; Substitutions
 (defn- get-sub
@@ -230,28 +240,27 @@
   (let [sub' (val sub)]
     {(key sub) (assoc sub' :source (get-fragment (-> sub' :class)))}))
 
-(letfn [(subs* [fragment subs]
+(letfn [(subs [fragment subs]
           (reduce #(conj %1 (substitute fragment %2)) {} subs))]
-  (defn- subs
+  (defn- get-subs
     "Populates fragment's possible substitutions with
     appropriate fragments."
     ([fragment]
-     (let [subs (subs* fragment (:subs fragment))]
+     (let [subs (subs fragment (:subs fragment))]
        (if (empty? subs)
          fragment
          (assoc fragment :subs subs))))
     ([fragment follow-up]
-     (let [subs (subs* follow-up (:subs follow-up))]
+     (let [subs (subs follow-up (:subs follow-up))]
        (if (empty? subs)
          follow-up
          (assoc follow-up :subs subs))))))
-
 
 ;; Follow-Ups
 (defmulti ^:private get-follow-up*
   "Appends fragment's follow up to its :text. If follow-up
   has substitutions, those are handled first."
-  (fn [_ follow-up _] (contains? follow-up :subs)))
+  (fn [_ follow-up _] (subs? follow-up)))
 
 (defmethod get-follow-up* true
   [fragment follow-up index]
@@ -264,31 +273,52 @@
   [fragment follow-up _]
   (append fragment (:text follow-up)))
 
-(defn- follow-ups
+(defn- add-follow-up
   [fragment]
-  (if (contains? fragment :follow-ups)
+  (if (follow-ups? fragment)
     (let [options (-> fragment :follow-ups :options)
-          follow-up (-> options random-pick)
+          follow-up (-> options pick)
           index (.indexOf options follow-up)]
       (get-follow-up* fragment follow-up index))
     fragment))
 
-(defn- sub-follow-ups
+(defn- get-follow-up-subs
   [fragment]
-  (if (contains? fragment :subs)
+  (if (subs? fragment)
     (reduce (fn [_ s]
               (if-let [follow-up (-> s val :source :follow-ups)]
                 (if (and (true? (:optional? follow-up))
                          (< 50 (+ 1 (rand-int 99))))
                   fragment
                   (reduced (append fragment
-                                   (-> follow-up :options random-pick :text))))
+                                   (-> follow-up :options pick :text))))
                 fragment))
             fragment
             (:subs fragment))
     fragment))
 
-;; Actions
-(def initialize-tweet (comp get-fragment keyword pluralize choose-event))
-(def process-tweet (comp sub-follow-ups follow-ups interpolate subs))
-(def finalize-tweet (comp smarten* dot-prefix capitalize*))
+
+;;
+;; API
+;;
+(defn assign-corpus
+  "Sets the corpus from a properly formatted source.
+
+  See xyzzwhy.text."
+  [source]
+  (alter-var-root #'corpus initialize-corpus-from-namespace source))
+
+(defn get-tweet
+  "Returns a randomly generated tweet."
+  []
+  (-> (choose-event)
+      pluralize
+      keyword
+      get-fragment       ;; Gets a random event fragment
+      get-subs           ;; Chooses the fragment's subs
+      interpolate        ;; Interpolates subs into fragment's text
+      add-follow-up      ;; Adds a follow-up (optionally)
+      get-follow-up-subs ;; Handles a follow-up's subs
+      capitalize*
+      dot-prefix
+      smarten*))

@@ -35,6 +35,4 @@
 
           :dependencies
           [[expectations "2.0.16"]
-           [leiningen "2.5.1"]]
-
-          :jvm-opts ^:replace ["-XX:-OmitStackTraceInFastThrow"]}]})
+           [leiningen "2.5.1"]]}]})
