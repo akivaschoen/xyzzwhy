@@ -1,22 +1,25 @@
 (ns xyzzwhy.engine
   (:require [clojure.string :as str]
-            [typographer.core :as typo]
-            [xyzzwhy.text :refer :all]))
+            [typographer.core :as typo]))
 
 
 ;;
 ;; Utilities
 ;;
+(defn- pad
+  [text]
+  (str text " "))
+
 (defn- append
   "Adds text to fragment's :text and returns fragment."
   [fragment text]
   (if (< (+ (-> fragment :text count)
             (count text))
-         140)
-    (update fragment :text #(str %1 " " text))
+         139)
+    (update fragment :text #(str (pad %1) text))
     fragment))
 
-(defn capitalize*
+(defn- capitalize*
   "Capitalizes fragment's sentences."
   [fragment]
   (assoc fragment :text (-> (:text fragment)
@@ -25,8 +28,6 @@
                                          #(str (second %1)
                                                (str/capitalize (nth %1 2)))))))
 
-
-
 (defn- pluralize
   [c]
   (let [c' (name c)]
@@ -34,7 +35,7 @@
       c'
       (str c' "s"))))
 
-(defn dot-prefix
+(defn- dot-prefix
   "Prefix's fragment's :text with a period of it begins with
   an @mention."
   [fragment]
@@ -44,21 +45,17 @@
   [follow-up]
   (-> follow-up :optional? true?))
 
-(defn- pad
-  [text]
-  (str text " "))
-
 (defn- pick
   "Chooses a random item from coll."
   [coll]
   (nth coll (rand-int (count coll))))
 
-(defn smarten*
+(defn- smarten*
   "Converts fragment's text to use typographer's quotes."
   [fragment]
   (update fragment :text #(typo/smarten %)))
 
-(defn chance
+(defn- chance
   "Returns true if a randomly chosen percentile is less
   than c."
   [c]
@@ -66,31 +63,18 @@
     true
     false))
 
-(defn- secondary?
-  "Returns true if a secondary fragment will be added."
-  ([]
-   (chance 75))
-  ([c]
-   (chance c)))
-
-(defn- tertiary?
-  "Returns true if a tertiary fragment will be added."
-  ([]
-   (chance 35))
-  ([c]
-   (chance c)))
-
 
 ;;
 ;; Corpus
 ;;
-(def corpus)
+(def ^:private corpus {})
 
-(defn initialize-corpus-from-namespace
+(defn- initialize-corpus-from-namespace
   [c n]
   (reduce #(conj %1 @(-> (ns-resolve n (symbol %2)) deref future))
           c
           (-> (ns-resolve n 'classes) deref)))
+
 (defn- get-class
   [c]
   (-> c pluralize keyword corpus))
@@ -182,7 +166,7 @@
                     (-> sub' :source article))
          text (str prep' article' (-> sub' :source :text))]
      (update fragment :text
-            str/replace (str "%" (key sub)) text))))
+             str/replace (str "%" (key sub)) text))))
 
 (defn- choose-event
   "Returns a random event type on which a tweet is built."
@@ -264,7 +248,9 @@
 
 (defmethod get-follow-up* true
   [fragment follow-up index]
-  (let [option (subs fragment follow-up)
+  (println fragment)
+  (println follow-up)
+  (let [option (get-subs fragment follow-up)
         option (interpolate option)
         fragment (append fragment (:text option))]
     (assoc fragment [:follow-ups :options index] option)))
@@ -288,7 +274,7 @@
     (reduce (fn [_ s]
               (if-let [follow-up (-> s val :source :follow-ups)]
                 (if (and (true? (:optional? follow-up))
-                         (< 50 (+ 1 (rand-int 99))))
+                         (chance 50))
                   fragment
                   (reduced (append fragment
                                    (-> follow-up :options pick :text))))
@@ -296,6 +282,36 @@
             fragment
             (:subs fragment))
     fragment))
+
+(def ^:private process-fragment (comp get-follow-up-subs
+                                      add-follow-up
+                                      interpolate
+                                      get-subs))
+
+;; Secondary and Tertiary Events
+(defn- get-tertiary
+  []
+  (-> (get-fragment :tertiary-event)
+      process-fragment))
+
+(defn- get-secondary
+  []
+  (let [s (-> (get-fragment :secondary-event)
+              process-fragment)]
+    (if (chance 35)
+      (append s (:text (get-tertiary)))
+      s)))
+
+(defn- get-extras
+  [tweet event]
+  (case event
+    :location-event (if (chance 75)
+                      (append tweet (:text (get-secondary)))
+                      tweet)
+    :action-event (if (chance 25)
+                    (append tweet (:text (get-tertiary)))
+                    tweet)
+    "default" tweet))
 
 
 ;;
@@ -311,14 +327,13 @@
 (defn get-tweet
   "Returns a randomly generated tweet."
   []
-  (-> (choose-event)
-      pluralize
-      keyword
-      get-fragment       ;; Gets a random event fragment
-      get-subs           ;; Chooses the fragment's subs
-      interpolate        ;; Interpolates subs into fragment's text
-      add-follow-up      ;; Adds a follow-up (optionally)
-      get-follow-up-subs ;; Handles a follow-up's subs
-      capitalize*
-      dot-prefix
-      smarten*))
+  (let [event (choose-event)]
+    (-> event
+        pluralize
+        keyword
+        get-fragment
+        process-fragment
+        (get-extras event)
+        capitalize*
+        dot-prefix
+        smarten*)))
