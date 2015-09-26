@@ -6,14 +6,13 @@
 
   :min-lein-version "2.5.2"
 
-  :dependencies
-  [[org.clojure/clojure "1.7.0"]
-   [environ "1.0.1"]
-   [com.novemberain/monger "3.0.0"]
-   [twitter-api "0.7.8"]
-   [typographer "1.1.0"]
-   [com.stuartsierra/component "0.3.0"]
-   [reloaded.repl "0.2.0"]]
+  :dependencies [[org.clojure/clojure "1.7.0"]
+                 [environ "1.0.1"]
+                 [com.novemberain/monger "3.0.0"]
+                 [twitter-api "0.7.8"]
+                 [typographer "1.1.0"]
+                 [com.stuartsierra/component "0.3.0"]
+                 [reloaded.repl "0.2.0"]]
 
   :plugins [[lein-autoexpect "1.6.0"]
             [lein-environ "1.0.0"]]
@@ -30,8 +29,7 @@
    :dev [:twitter
          {:env {:dev true}
 
-          :source-dirs ["dev"]
+          :source-paths ["dev"]
 
-          :dependencies
-          [[expectations "2.0.16"]
-           [leiningen "2.5.1"]]}]})
+          :dependencies [[expectations "2.0.16"]
+                         [leiningen "2.5.1"]]}]})

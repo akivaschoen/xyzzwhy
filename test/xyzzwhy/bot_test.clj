@@ -1,6 +1,6 @@
-(ns xyzzwhy.core-test
+(ns xyzzwhy.bot-test
   (:require [clojure.test :refer :all]
-            [xyzzwhy.core :refer :all]))
+            [xyzzwhy.bot :refer :all]))
 
 (deftest a-test
   (testing "FIXME, I fail."
