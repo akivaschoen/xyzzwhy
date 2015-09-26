@@ -14,4 +14,7 @@
 (defn post-to-twitter
   "This, uh, posts to Twitter."
   [status-text]
-  (statuses-update :oauth-creds credentials :params {:status status-text}))
+  (try
+    (statuses-update :oauth-creds credentials :params {:status status-text})
+    (catch Throwable t
+      (println "Something went wrong when tweeting:" t))))
