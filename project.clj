@@ -12,7 +12,8 @@
    [com.novemberain/monger "3.0.0"]
    [twitter-api "0.7.8"]
    [typographer "1.1.0"]
-   [com.stuartsierra/component "0.3.0"]]
+   [com.stuartsierra/component "0.3.0"]
+   [reloaded.repl "0.2.0"]]
 
   :plugins [[lein-autoexpect "1.6.0"]
             [lein-environ "1.0.0"]]
@@ -26,13 +27,10 @@
              :omit-source true
              :aot :all}
 
-   :prod [:prod-config :twitter
-          {:env {:production true}
-           :omit-source true
-           :aot :all}]
-
-   :dev [:dev-config :twitter
+   :dev [:twitter
          {:env {:dev true}
+
+          :source-dirs ["dev"]
 
           :dependencies
           [[expectations "2.0.16"]
