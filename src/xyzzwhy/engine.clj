@@ -2,7 +2,6 @@
   (:require [clojure.string :as str]
             [typographer.core :as typo]))
 
-
 ;;
 ;; Utilities
 ;;
@@ -36,12 +35,13 @@
       (str c' "s"))))
 
 (defn- dot-prefix
-  "Prefix's fragment's :text with a period of it begins with
+  "Prefix's fragment's :text with a period if it begins with
   an @mention."
   [fragment]
   (update fragment :text #(str/replace % #"^(@\w+)" ".$1")))
 
 (defn- optional?
+  "Returns true if a follow-up is optional."
   [follow-up]
   (-> follow-up :optional? true?))
 
@@ -57,7 +57,7 @@
 
 (defn- chance
   "Returns true if a randomly chosen percentile is less
-  than c."
+  than or equal toc."
   [c]
   (if (<= (+ 1 (rand-int 100)) c)
     true
@@ -67,6 +67,9 @@
 ;;
 ;; Corpus
 ;;
+;; Future plan is to allow the corpus to come from any source as
+;; long as it can be mapped as it is here based on how each fragment
+;; is formatted xyzzwhy.text.
 (def ^:private corpus {})
 
 (defn- initialize-corpus-from-namespace
