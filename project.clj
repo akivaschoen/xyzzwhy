@@ -11,7 +11,8 @@
    [environ "1.0.1"]
    [com.novemberain/monger "3.0.0"]
    [twitter-api "0.7.8"]
-   [typographer "1.1.0"]]
+   [typographer "1.1.0"]
+   [com.stuartsierra/component "0.3.0"]]
 
   :plugins [[lein-autoexpect "1.6.0"]
             [lein-environ "1.0.0"]]
