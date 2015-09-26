@@ -2081,8 +2081,10 @@
     {:text "a convenient reclosing tab"}
     {:text "a lengthy German noun"}
     {:text "your own unwillingness to improve yourself"}
-    {:text "{:class :person}'s sheer force of will"}
-    {:text "{:class :person}'s birthday party"}
+    {:text "%0's sheer force of will"
+     :subs {0 {:class :person}}}
+    {:text "%0's birthday party"
+     :subs {0 {:class :person}}}
     {:text "a delicious Nutter Butter"}
     {:text "double-double Animal style"}
     {:text "someone who doesn’t know how to eat a goddamned Oreo properly"}]})
