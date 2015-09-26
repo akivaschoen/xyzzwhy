@@ -17,7 +17,7 @@
   :plugins [[lein-autoexpect "1.6.0"]
             [lein-environ "1.0.0"]]
 
-  :main xyzzwhy.core
+  :main xyzzwhy.bot
 
   :target-path "target/%s"
 

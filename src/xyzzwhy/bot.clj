@@ -1,4 +1,4 @@
-(ns xyzzwhy.core
+(ns xyzzwhy.bot
   (:require [xyzzwhy.engine :as e]
             [xyzzwhy.text]
             [xyzzwhy.twitter :as t])
