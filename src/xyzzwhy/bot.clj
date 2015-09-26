@@ -13,14 +13,14 @@
                     (while (not @interrupt)
                       (let [interval (+ 1200000 (rand-int 1200000))
                             tweet (-> (e/get-tweet) :text)]
-                        #_(t/post-to-twitter tweet)
+                        (t/post-to-twitter tweet)
 
                         ;; Logging
                         (println "Tweeted:" tweet)
-                        #_(println "Next tweet in" (int (/ interval 60000)) "minutes")
+                        (println "Next tweet in" (int (/ interval 60000)) "minutes")
 
                         (try
-                          (Thread/sleep 30000)
+                          (Thread/sleep interval)
                           (catch InterruptedException e
                             (reset! interrupt true))))))]
     (println "xyzzwhy is ready for some magical adventures!")
@@ -38,10 +38,13 @@
       component)))
 
 (defn new-bot
+  "Initializes an instance of an Xyzzwhy record."
   [source]
   (map->Xyzzwhy {:source source}))
 
 (defn xyzzwhy
+  "System-level controller for xyzzwhy for use with
+  Component."
   ([]
    (xyzzwhy []))
   ([config]
