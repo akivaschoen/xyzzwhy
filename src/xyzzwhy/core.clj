@@ -26,6 +26,6 @@
 
         (catch Exception e
           (println "Caught error:" e)
-          (Thread/sleep 30000))))
+          (Thread/sleep 60000))))
 
     (recur)))
