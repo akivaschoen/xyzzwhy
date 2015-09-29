@@ -7,6 +7,7 @@
   :min-lein-version "2.5.2"
 
   :dependencies [[org.clojure/clojure "1.7.0"]
+                 [org.clojure/core.async "0.1.346.0-17112a-alpha"]
                  [environ "1.0.1"]
                  [com.novemberain/monger "3.0.0"]
                  [twitter-api "0.7.8"]
