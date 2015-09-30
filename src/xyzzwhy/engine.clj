@@ -230,7 +230,7 @@
 (defmethod substitute :gender
   [fragment sub]
   (let [sub' (val sub)
-        gender' (-> fragment :subs (find (key sub)) val :source :gender)]
+        gender' (-> fragment :subs (find (:ref sub')) val :source :gender)]
     {(key sub) (assoc-in sub' [:source :text] (gender gender' (:case sub')))}))
 
 (defmethod substitute :default
@@ -249,7 +249,7 @@
          fragment
          (assoc fragment :subs subs))))
     ([fragment follow-up]
-     (let [subs (subs follow-up (:subs follow-up))]
+     (let [subs (subs fragment (:subs follow-up))]
        (if (empty? subs)
          follow-up
          (assoc follow-up :subs subs))))))
