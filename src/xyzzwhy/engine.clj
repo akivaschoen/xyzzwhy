@@ -129,28 +129,32 @@
   (case c
     :subjective "he"
     :objective "him"
-    :possessive "his"))
+    :possessive "his"
+    :compound "himself"))
 
 (defmethod gender :female
   [_ c]
   (case c
     :subjective "she"
     :objective "her"
-    :possessive "hers"))
+    :possessive "hers"
+    :compound "herself"))
 
 (defmethod gender :group
   [_ c]
   (case c
     :subjective "they"
     :objective "them"
-    :possessive "theirs"))
+    :possessive "theirs"
+    :compound "themselves"))
 
 (defmethod gender :default
   [_ c]
   (case c
     :subjective "it"
     :objective "it"
-    :possessive "its"))
+    :possessive "its"
+    :compound "itself"))
 
 
 ;;
@@ -291,6 +295,7 @@
             (:subs fragment))
     fragment))
 
+;; Helper functions
 (def ^:private process-fragment (comp get-follow-up-subs
                                       add-follow-up
                                       interpolate
@@ -314,10 +319,10 @@
   [tweet event]
   (case event
     :location-event (if (chance 75)
-                      (append tweet (:text (process-fragment (get-secondary))))
+                      (append tweet (:text (get-secondary)))
                       tweet)
     :action-event (if (chance 25)
-                    (append tweet (:text (process-fragment (get-tertiary))))
+                    (append tweet (:text (get-tertiary)))
                     tweet)
     "default" tweet))
 
