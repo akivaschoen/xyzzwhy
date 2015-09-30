@@ -38,12 +38,30 @@
      :subs {0 {:class :location
                :config #{:no-prep}}}}
 
+    {:text "You are serving jury duty."
+     :follow-ups {:optional? false
+                  :options [{:text "The prosecuting attorney insists on speaking through a broken bullhorn."}
+                            {:text "They hand out Chicken McNuggets but they're stone cold."}
+                            {:text "The judge is dressed like Dr. Frankenfurter."}
+                            {:text "You're unsure why they insist the jury sit in a vat of carbonated %0."
+                             :subs {0 {:class :drink :config #{:no-article}}}}]}}
+
+    {:text "After %0 at your %1, you are relocated by FEMA to %2."
+     :subs {0 {:class :disaster}
+            1 {:class :location :config #{:no-prep}}
+            2 {:class :location :config #{:no-prep}}}}
+
+    {:text "You arrive for your first day at college only to find your roommate is %0."
+     :subs {0 {:class :actor}}}
+
     {:text "You try to go %0 but your way is blocked by %1."
      :subs {0 {:class :direction}
             1 {:class :obstacle}}}
 
-    {:text "You try to go %0 but your way is blocked because reasons."
-     :subs {0 {:class :direction}}}
+    {:text "%0 prevents you from going %1 to %2."
+     :subs {0 {:class :obstacle}
+            1 {:class :direction}
+            2 {:class :location :config #{:no-prep}}}}
 
     {:text "You go %0 and find yourself at %1."
      :subs {0 {:class :direction}
@@ -58,6 +76,10 @@
             1 {:class :location :config #{:no-prep}}}}
 
     {:text "You cripwalk %0 to %1."
+     :subs {0 {:class :direction}
+            1 {:class :location}}}
+
+    {:text "You strut %0 and end up %1."
      :subs {0 {:class :direction}
             1 {:class :location}}}
 
@@ -262,23 +284,45 @@
             1 {:class :person :config #{:no-groups}}
             2 {:class :item}}}
 
+    {:text "%0 arrives from the %1, carrying %2."
+     :subs {0 {:class :actor :config #{:no-groups}}
+            1 {:class :direction}
+            2 {:class :item}}}
+
     {:text "You pick up %0."
      :subs {0 {:class :item}}}
 
     {:text "You pick up %0 and hold it close to your chest."
      :subs {0 {:class :item}}}
 
-    {:text "The radio crackles to life. It sounds like someone with a cold is eating Rice Krispies."}
-
-    {:text "The radio crackles to life. A hollow voice intones, '%0'"
-     :subs {0 {:class :intonation}}}
-
-    {:text "The radio crackles to life. Ketchup begins seeping through the speaker holes."}
+    {:text "The radio crackles to life."
+     :follow-ups {:optional? false
+                  :options [{:text "It sounds like someone with a cold is eating Rice Krispies." }
+                            {:text "A hollow voice intones, '%0'"
+                             :subs {0 {:class :intonation}}}
+                            {:text "Ketchup begins seeping through the speaker holes."}
+                            {:text "It continues to crackle to life. It's still crackling. It's on fire."}
+                            {:text "An announcer shouts, 'They found rice on Mars!"}
+                            {:text "A news report is on about %0 %1."
+                             :subs {0 {:class :disaster}
+                                    1 {:class :location :config #{:no-prep}}}}
+                            {:text "%0 solemnly '%1'"}]}}
 
     {:text "%0 drops %1, looks at you %2, then leaves."
      :subs {0 {:class :actor}
             1 {:class :item}
             2 {:class :adverb}}}
+
+    {:text "You check your messages."
+     :follow-ups {:optional? false
+                  :options [{:text "%0 %1"
+                             :subs {0 {:class :person :config #{:no-groups}}
+                                    1 {:class :dialogue}}}]}}
+
+    {:text "You read morning paper."
+     :follow-ups {:optional? false
+                  :options {:text "%0"
+                            :subs {0 {:class :news}}}}}
 
     {:text "%0 gently places %1 on the ground and then backs away slowly."
      :subs {0 {:class :actor}
@@ -380,7 +424,8 @@
      :subs {0 {:class :person}
             1 {:class :drink :config #{:no-prep :no-article}}}
      :follow-ups {:optional? false
-                  :options [{:text "'All this nonsense about {:class :item} needs to stop! I can't take it anymore!'"}
+                  :options [{:text "'All this nonsense about %0 needs to stop! I can't take it anymore!'"
+                             :subs {0 {:class :item}}}
                             {:text "'They're making plans for Nigel! They want what's best for him!'"}
                             {:text "'You can't go up against city hall!'"}
                             {:text "'I just can't take you seriously anymore!'"}
@@ -988,6 +1033,7 @@
      :preps ["at"]
      :follow-ups {:optional? true
                   :options [{:text "It looks abandoned."}
+                            {:text "Bullet time means more eggrolls."}
                             {:text "Steam crowds the air."}
                             {:text "It's all gluten-free and vegan. You leave immediately."}
                             {:text "It smells of freedom and gluttony."}
@@ -1282,6 +1328,7 @@
     {:text "shrieks, 'What's this shit I keep hearing about erections?!'"}
     {:text "shrieks, 'I'm living on the edge!'"}
     {:text "shrieks, 'Boiled soil!'"}
+    {:text "shriefs, 'Baby-oil covered balloon animals for all!"}
     {:text "sighs, 'I liked you better before the hip-replacement surgery.'"}
     {:text "snarls, 'Siddown before ya fall down!'"}
     {:text "whispers, 'Why are you talking in all lowercase?'"}
@@ -2118,6 +2165,10 @@
     {:text "double-double Animal style"}
     {:text "someone who doesn’t know how to eat a goddamned Oreo properly"}]})
 
+(def news
+  {:news
+   [{:text "Shamer Claims Bullying from Shame Shamers"}]})
+
 (def games
   {:games
    [{:text "Agricola"
@@ -2173,4 +2224,5 @@
    "attacks"
    "games"
    "thoughts"
+   "news"
    "disasters"])
