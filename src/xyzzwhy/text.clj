@@ -48,7 +48,7 @@
 
     {:text "After %0 at your %1, you are relocated by FEMA to %2."
      :subs {0 {:class :disaster}
-            1 {:class :location :config #{:no-prep}}
+            1 {:class :location :config #{:no-prep :no-article}}
             2 {:class :location :config #{:no-prep}}}}
 
     {:text "You arrive for your first day at college only to find your roommate is %0."
@@ -227,7 +227,7 @@
      :subs {0 {:class :location}}}
 
     {:text "You blow into the cartridge too hard and are teleported to %0."
-     :subs {0 {:class :location}}}
+     :subs {0 {:class :location :config #{:no-prep}}}}
 
     {:text "You step through a magic mirror and end up %0."
      :subs {0 {:class :location}}}
@@ -270,7 +270,7 @@
     {:text "You fall through the ceiling and land %0."
      :subs {0 {:class :location}}}
 
-    {:text "The drugs are starting to take hold. Casually you sunter over to %0."
+    {:text "The drugs are starting to take hold. Casually you saunter over to %0."
      :subs {0 {:class :location :config #{:no-prep}}}}
 
     {:text "The merry-go-round spins faster and faster until you're flung off and land %0."
@@ -366,12 +366,13 @@
             1 {:class :attack}}
      :follow-ups {:optional? false
                   :options [{:text "It isn't enough: you lose."}
-                            {:text "This scares the shit out of %2. 3% runs away."
+                            {:text "This scares the shit out of %2. %3 runs away."
                              :subs {2 {:ref 0
                                        :class :gender
                                        :case :objective}
                                     3 {:ref 0
-                                       :class :name}}}]}}
+                                       :class :gender
+                                       :case :subjective}}}]}}
 
     {:text "%0 attacks with %1. You execute %2."
      :subs {0 {:class :actor}
@@ -379,14 +380,8 @@
             2 {:class :attack}}
      :follow-ups {:optional? false
                   :options [{:text "You are victorious!"}
-                            {:text "You have been slain!"}]}}
-
-    {:text "%0 attacks with %1. You execute %2."
-     :subs {0 {:class :actor}
-            1 {:class :attack}
-            2 {:class :attack}}
-     :follow-ups {:optional? false
-                  :options [{:text "You have been killed."}
+                            {:text "You have been killed."}
+                            {:text "You have been slain!"}
                             {:text "%0 keels over all dead and stuff."
                              :subs {0 {:class :gender
                                        :case :subjective}}}]}}
@@ -929,6 +924,10 @@
                             {:text "Someone has spray-painted 'I crave brown baths' here."}
                             {:text "Inside you hear the sound of repulsed joy."}
                             {:text "The door has been boarded up."}
+                            {:text "%0 is patiently waiting in line by %1."
+                             :subs {0 {:class :person}
+                                    1 {:class :gender
+                                       :case :compound}}}
                             {:text "The building looks like it has been condemned."}]}}
 
     {:text "quicksand"
@@ -1046,7 +1045,7 @@
      :preps ["in" "near" "behind" "in front of"]
      :follow-ups {:optional? true
                   :options [{:text "The ceiling is sparkling with reflected light."}
-                            {:text "The water is darkened with greenish-gray algae.."}
+                            {:text "The water is darkened with greenish-gray algae."}
                             {:text "The pool of water seems unusually deep. A lean, black fish swims in a circle."}]}}
 
     {:text "bedroom"
@@ -1062,7 +1061,7 @@
                             {:text "There's an unusual stain in the carpet next to a usual stain."}
                             {:text "The ceiling fan is spinning dangerously fast."}
                             {:text "The walls are covered with %0 posters."
-                             :subs {0 {:class :person :config #{:has-name}}}}
+                             :subs {0 {:class :person}}}
                             {:text "There's a pile of clothes nearby."}]}}
 
     {:text "McDonald's"
@@ -1088,7 +1087,8 @@
      :article "a"
      :preps ["in"]
      :follow-ups {:optional? true
-                  :options [{:text "It is pitch black here. You're likely to be eaten by {:class :actor}."}
+                  :options [{:text "It is pitch black here. You're likely to be eaten by %0."
+                             :subs {0 {:class :actor}}}
                             {:text "It's really dark here. Like... REALLY dark."}
                             {:text "It just got slightly darker somehow."}
                             {:text "It's so dark you can taste it. Tastes like dark."}
@@ -1277,7 +1277,8 @@
     {:text "asks, 'Which one are you?'"}
     {:text "asks, 'Can I have a hug?'"}
     {:text "asks, 'Are you following me?'"}
-    {:text "asks, 'Does it smell like {:class :food} in here to you?'"}
+    {:text "asks, 'Does it smell like %0 in here to you?'"
+     :subs {0 {:class :food}}}
     {:text "asks, 'Have you got a flag?'"}
     {:text "asks, 'Have you ever seen a grown man naked?'"}
     {:text "asks, 'May I use your FAX machine?'"}
@@ -1411,8 +1412,10 @@
 
 (def attacks
   {:attacks
-   [{:text "{:class :actor}"}
-    {:text "{:class :item}"}
+   [{:text "%0"
+     :subs {0 {:class :actor}}}
+    {:text "%0"
+     :subs {0 {:class :item}}}
     {:text "a judo chop"}
     {:text "a Judeo chop"}
     {:text "a filthy soap slap"}
