@@ -1,4 +1,4 @@
-(defproject xyzzwhy "2.0.1"
+(defproject xyzzwhy "1.0.0"
   :description "A Twitter bot who takes you on surreal adventures."
   :url "https://github.com/akivaschoen/xyzzwhy"
   :license {:name "Eclipse Public License"

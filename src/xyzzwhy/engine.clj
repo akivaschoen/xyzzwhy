@@ -280,7 +280,7 @@
       (get-follow-up* fragment follow-up index))
     fragment))
 
-(defn- get-follow-up-subs
+(defn- add-follow-up-subs
   [fragment]
   (if (subs? fragment)
     (reduce (fn [_ s]
@@ -288,15 +288,19 @@
                 (if (and (true? (:optional? follow-up))
                          (chance 50))
                   fragment
-                  (reduced (append fragment
-                                   (-> follow-up :options pick :text))))
+                  (reduced (append fragment (-> follow-up
+                                                :options
+                                                pick
+                                                get-subs
+                                                interpolate
+                                                :text))))
                 fragment))
             fragment
             (:subs fragment))
     fragment))
 
 ;; Helper functions
-(def ^:private process-fragment (comp get-follow-up-subs
+(def ^:private process-fragment (comp add-follow-up-subs
                                       add-follow-up
                                       interpolate
                                       get-subs))
