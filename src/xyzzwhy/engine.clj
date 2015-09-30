@@ -192,6 +192,13 @@
                  actors)]
     (-> actors pick)))
 
+(defmethod get-fragment* :person
+  [c config]
+  (let [persons (if (no-groups? config)
+                  (filter #(not= :group (-> % :gender)) (get-class :persons))
+                  (get-class :persons))]
+    (-> persons pick)))
+
 (defmethod get-fragment* :default
   [c config]
   (->> c pluralize keyword corpus pick))
