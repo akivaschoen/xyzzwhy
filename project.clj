@@ -1,4 +1,4 @@
-(defproject xyzzwhy "2.0.0"
+(defproject xyzzwhy "2.0.1"
   :description "A Twitter bot who takes you on surreal adventures."
   :url "https://github.com/akivaschoen/xyzzwhy"
   :license {:name "Eclipse Public License"
@@ -8,6 +8,7 @@
 
   :dependencies [[org.clojure/clojure "1.7.0"]
                  [org.clojure/core.async "0.1.346.0-17112a-alpha"]
+                 [clj-time "0.11.0"]
                  [environ "1.0.1"]
                  [com.novemberain/monger "3.0.0"]
                  [twitter-api "0.7.8"]

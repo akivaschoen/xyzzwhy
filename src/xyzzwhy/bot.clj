@@ -1,9 +1,11 @@
 (ns xyzzwhy.bot
-  (:require [com.stuartsierra.component :as component]
-            [xyzzwhy.engine :as e]
-            [xyzzwhy.text]
-            [xyzzwhy.twitter :as t])
-  (:gen-class))
+  (:gen-class)
+  (:require [clj-time.local :as local]
+            [com.stuartsierra.component :as component]
+            [xyzzwhy
+             [engine :as e]
+             [text :refer :all]
+             [twitter :as t]]))
 
 (defn- start-bot
   "Initializes Xyzzwhy and starts the bot tweeting."
@@ -15,15 +17,18 @@
                             tweet (-> (e/get-tweet) :text)]
                         (t/post-to-twitter tweet)
 
-                        ;; Logging
-                        (println "Tweeted:" tweet)
-                        (println "Next tweet in" (int (/ interval 60000)) "minutes")
+                        (println "--")
+                        (println tweet)
+                        (println "On:" (local/format-local-time (local/local-now) :rfc822))
+                        (println "Pausing:" (int (/ interval 60000)) "minutes")
+                        (println "--")
 
                         (try
                           (Thread/sleep interval)
                           (catch InterruptedException e
                             (reset! interrupt true))))))]
     (println "xyzzwhy is ready for some magical adventures!")
+    (println "Started at:" (local/format-local-time (local/local-now) :rfc822))
     bot))
 
 (defrecord Xyzzwhy [source]
@@ -51,12 +56,12 @@
    (let [{:keys [source kind]
           :or {source 'xyzzwhy.text
                kind :namespace}} config]
-     (-> (component/system-map
-          :source source
-          :kind type
-          :app (component/using
-                (new-bot source)
-                [:source :kind]))))))
+     (component/system-map
+      :source source
+      :kind type
+      :app (component/using
+            (new-bot source)
+            [:source :kind])))))
 
 (defn -main
   [& args]
