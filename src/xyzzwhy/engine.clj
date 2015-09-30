@@ -314,10 +314,10 @@
   [tweet event]
   (case event
     :location-event (if (chance 75)
-                      (append tweet (:text (get-secondary)))
+                      (append tweet (:text (process-fragment (get-secondary))))
                       tweet)
     :action-event (if (chance 25)
-                    (append tweet (:text (get-tertiary)))
+                    (append tweet (:text (process-fragment (get-tertiary))))
                     tweet)
     "default" tweet))
 
