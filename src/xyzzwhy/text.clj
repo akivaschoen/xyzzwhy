@@ -913,6 +913,10 @@
                             {:text "A tumbleweed made out of human hair stumbles by."}
                             {:text "A dust storm is approaching."}
                             {:text "It looks like it might rain soon."}
+                            {:text "Snow is gently falling."}
+                            {:text "%0 is here, looking %1."
+                             :subs {0 {:class :person}
+                                    1 {:class :adjective}}}
                             {:text "Clearly the drugs have begun to take hold."}]}}
 
     {:text "Shrim Healing Center"
@@ -952,9 +956,9 @@
                             {:text "A dead bird floats by."}
                             {:text "An abandoned plastic float with a dinosaur's head floats lonely nearby."}]}}
 
-    {:text "sauna" 
+    {:text "sauna"
      :type :interior
-     :article "a" 
+     :article "a"
      :preps ["in"]
      :follow-ups {:optional? true
                   :options [{:text "The wood paneling sweats sweetly in the oppressive heat."}
@@ -1344,14 +1348,16 @@
 (def thoughts
   {:thoughts
    [{:text "Why don't they put mayo in the can with the tuna?"}
-    {:text "{:class :person} never has a second cup of coffee at home..."}
+    {:text "%0 never has a second cup of coffee at home..."
+     :subs {0 {:class :person}}}
     {:text "You can't go up against city hall."}
     {:text "I've made a huge mistake."}
     {:text "It's time to pay the price."}
     {:text "Why don't they have Double Stuf Nutter Butters?"}
     {:text "This'll all end in tears."}
     {:text "Hey! But I didn't eat the mousse!"}
-    {:text "{:class :person} still owes me a backrub."}
+    {:text "%0 still owes me a backrub."
+     :subs {0 {:class :person}}}
     {:text "I wonder if I could forge us a Group 6 Access..."}]})
 
 (def intonations
