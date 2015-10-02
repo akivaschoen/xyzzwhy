@@ -293,7 +293,11 @@
      :subs {0 {:class :item}}}
 
     {:text "You pick up %0 and hold it close to your chest."
-     :subs {0 {:class :item}}}
+     :subs {0 {:class :item}}
+     :follow-ups {:optional? false
+                  :options [{:text "hold it close to your chest."}
+                            {:text "hold it up to %1's face."
+                             :subs {0 {:class :person}}}]}}
 
     {:text "The radio crackles to life."
      :follow-ups {:optional? false
@@ -393,7 +397,8 @@
 
     {:text "%0 attacks with %1. You strike back with %2. FATALITY. But who?!"
      :subs {0 {:class :actor}
-            1 {:class :attack}}}
+            1 {:class :attack}
+            2 {:class :attack}}}
 
     {:text "%0 attacks with %1. You with %2."
      :subs {0 {:class :actor}
@@ -1222,12 +1227,12 @@
                             {:text "There is an open grave nearby. There's a phone book in it."}
                             {:text "There is an open grave nearby. It's full of %0."
                              :subs {0 {:class :drink :config #{:no-article}}}}
+                            {:text "There is an open grave nearby. It's full of molten peanut butter."}
                             {:text "There are fresh footprints here."}
                             {:text "A lazy mist drifts amongst the tombstones."}
                             {:text "The tombstones have been replaced by durable plastic bricks."}
-                            {:text "All the graves are filled with Mr. Bubbles."}
                             {:text "The Christmas lights sure make it look festive."}
-                            {:text "A disco ball spins lonely from a gnarled tree."}]}}
+                            {:text "A disco ball spins sadly from a gnarled tree."}]}}
 
     {:text "playground"
      :type :exterior
