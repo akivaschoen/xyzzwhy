@@ -7,6 +7,14 @@
              [text :refer :all]
              [twitter :as t]]))
 
+(defn- log-tweet
+  [tweet interval]
+  (println "--")
+  (println tweet)
+  (println "On:" (local/format-local-time (local/local-now) :rfc822))
+  (println "Pausing:" (int (/ interval 60000)) "minutes")
+  (println "--"))
+
 (defn- start-bot
   "Initializes Xyzzwhy and starts the bot tweeting."
   [source]
@@ -17,11 +25,7 @@
                             tweet (-> (e/get-tweet) :text)]
                         (t/post-to-twitter tweet)
 
-                        (println "--")
-                        (println tweet)
-                        (println "On:" (local/format-local-time (local/local-now) :rfc822))
-                        (println "Pausing:" (int (/ interval 60000)) "minutes")
-                        (println "--")
+                        (log-tweet tweet interval)
 
                         (try
                           (Thread/sleep interval)
