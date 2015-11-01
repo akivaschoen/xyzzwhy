@@ -306,7 +306,7 @@
                              :subs {0 {:class :intonation}}}
                             {:text "Ketchup begins seeping through the speaker holes."}
                             {:text "It continues to crackle to life. It's still crackling. It's on fire."}
-                            {:text "An announcer shouts, 'They found rice on Mars!"}
+                            {:text "An announcer shouts, 'They found rice on Mars!'"}
                             {:text "A news report is on about %0 %1."
                              :subs {0 {:class :disaster}
                                     1 {:class :location :config #{:no-prep}}}}
@@ -705,8 +705,14 @@
     {:text "The words 'Knifekitten lives!' are spray-painted on a wall here."}
     {:text "The words 'Hammerdog lives!' are spray-painted on a wall here."}
     {:text "Spray-painted on the wall here are the words 'Alice?! Alice?! Who the f...'. The rest is illegible."}
-    {:text "An ice cream truck goes by. It's on fire."}
-    {:text "A fire truck goes by. It's covered in ice."}
+    {:text "An ice cream truck goes by."
+     :follow-ups {:optional? false
+                  :options [{:text "It's on fire."}
+                            {:text "It's going by at nearly 100 mph. Somehow, a group of children are managing to keep up."}]}}
+    {:text "A fire truck goes by."
+     :follow-ups {:optional? false
+                  :options [{:text "It's covered in ice."}
+                             {:text "It's playing a funeral dirge."}]}}
 
     {:text "There has been significant damage from %0."
      :subs {0 {:class :disaster}}}
@@ -1278,7 +1284,8 @@
 
 (def dialogues
   {:dialogues
-   [{:text "asks, 'Have you ever seen an elephant throw up?'"}
+   [
+    {:text "asks, 'Have you ever seen an elephant throw up?'"}
     {:text "asks, 'Why am I holding this pitchfork?'"}
     {:text "asks, 'How long is a man?'"}
     {:text "asks, 'Where have you been?'"}
@@ -1330,6 +1337,7 @@
     {:text "says, 'The Swanson TV Dinner heard 'round the world.'"}
     {:text "says, 'The membership card is edible.'"}
     {:text "says, 'That bisexual really jazzed up my latte.'"}
+    {:text "says, 'Bye, Felicia."}
     {:text "shouts, 'You can't go up against city hall!'"}
     {:text "shouts, 'You can't fold a cat!'"}
     {:text "shouts, 'It keeps happening!'"}
@@ -1348,7 +1356,8 @@
     {:text "whispers, 'There squats the brown clown.'"}
     {:text "whispers, 'Sleep is unproductive and a waste of time.'"}
     {:text "whispers, 'You just lost the game.'"}
-    {:text "yells, 'I warned you about stairs, bro! I told ya, dawg!'"}]})
+    {:text "yells, 'I warned you about stairs, bro! I told ya, dawg!'"}
+    ]})
 
 (def thoughts
   {:thoughts
@@ -1651,96 +1660,116 @@
      :gender :male}
 
     {:text "Zombie Carl Sagan"
-     :gender :male}]})
+     :gender :male}
+    ]})
 
 (def actions
   {:actions
    [{:text "attacks"}
-    {:text "sneezes on"}
+    {:text "examines"}
+    {:text "flirts with"}
     {:text "ignores"}
-    {:text "tickles"}
-    {:text "stands uncomfortably close to"}
-    {:text "violently points at"}
     {:text "imitates"}
     {:text "pets"}
-    {:text "examines"}
-    {:text "flirts with"}]})
+    {:text "sneezes on"}
+    {:text "stands uncomfortably close to"}
+    {:text "tickles"}
+    {:text "violently points at"}
+    ]})
 
 (def adjectives
   {:adjectives
-   [{:text "worried"}
-    {:text "relieved"}
+   [{:text "afraid"}
+    {:text "angry"}
     {:text "aroused"}
-    {:text "afraid"}
-    {:text "nonplussed"}
-    {:text "sleepy"}
-    {:text "hungry"}
-    {:text "thirsty"}
     {:text "bored"}
-    {:text "hopeful"}
-    {:text "sad"}
-    {:text "happy"}
+    {:text "distracted"}
     {:text "forlorn"}
-    {:text "angry"}]})
+    {:text "fussy"}
+    {:text "happy"}
+    {:text "hopeful"}
+    {:text "hungry"}
+    {:text "isolated"}
+    {:text "nonplussed"}
+    {:text "relieved"}
+    {:text "sad"}
+    {:text "sleepy"}
+    {:text "stinky"}
+    {:text "thirsty"}
+    {:text "uncertain"}
+    {:text "worried"}
+    {:text "vexed"}
+    ]})
 
 (def adverbs
   {:adverbs
-   [{:text "carefully"}
-    {:text "wistfully"}
-    {:text "uncertainly"}
-    {:text "willfully"}
+   [
+    {:text "balefully"}
+    {:text "bravely"}
+    {:text "carefully"}
+    {:text "happily"}
     {:text "lustfully"}
-    {:text "warily"}
-    {:text "solemnly"}
     {:text "mournfully"}
     {:text "proudly"}
-    {:text "bravely"}
     {:text "sadly"}
-    {:text "happily"}
-    {:text "balefully"}]})
+    {:text "solemnly"}
+    {:text "uncertainly"}
+    {:text "warily"}
+    {:text "willfully"}
+    {:text "wistfully"}
+    ]})
 
 (def scents
   {:scents
-   [{:text "acrid"}
-    {:text "sweet"}
-    {:text "sour"}
-    {:text "rotten"}
-    {:text "nice"}
+   [
+    {:text "acrid"}
+    {:text "bitter"}
     {:text "foul"}
+    {:text "gross"}
     {:text "of feet"}
     {:text "of your grandfather's hair cream"}
     {:text "of warm peanut butter"}
-    {:text "bitter"}
+    {:text "pleasant"}
+    {:text "nice"}
+    {:text "rotten"}
+    {:text "sweet"}
+    {:text "sour"}
     {:text "smoky"}
-    {:text "gross"}
-    {:text "pleasant"}]})
+    ]})
 
 (def diagnoses
   {:diagnoses
-   [{:text "feeling great"}
-    {:text "feeling gross"}
+   [
     {:text "absurdly sticky"}
+    {:text "drunk"}
+    {:text "confused"}
+    {:text "covered in bees"}
+    {:text "feeling great"}
+    {:text "feeling gross"}
+    {:text "heavily wounded"}
+    {:text "hungry"}
     {:text "lightly wounded"}
     {:text "moderately wounded"}
-    {:text "heavily wounded"}
     {:text "near death"}
     {:text "sleepy"}
-    {:text "drunk"}
+    {:text "spaghettified"}
     {:text "stoned"}
-    {:text "confused"}
-    {:text "hungry"}
-    {:text "thirsty"}
     {:text "temporarily blind"}
     {:text "temporarily deaf"}
-    {:text "covered in bees"}]})
+    {:text "thirsty"}
+    ]})
 
 (def foods
   {:foods
-   [{:text "burrito"
+   [
+    {:text "bouquet of corndogs"
      :article "a"}
 
-    {:text "weaponized cornbread"
-     :article "some"}
+    {:text "burrito"
+     :article "a"}
+
+    {:text "corndog"
+     :article "a"}
 
     {:text "persecution sandwich"
      :article "a"}
@@ -1748,11 +1777,8 @@
     {:text "tooth burger"
      :article "a"}
 
-    {:text "bouquet of corndogs"
-     :article "a"}
-
-    {:text "corndog"
-     :article "a"}
+    {:text "weaponized cornbread"
+     :article "some"}
 
     {:text "pancakes"
      :article "some"}
@@ -2022,27 +2048,390 @@
 
 (def animals
   {:animals
-   [{:text "kitten"
+   [{:text "aardvark"
+     :article "an"}
+
+    {:text "alligator"
+     :article "an"}
+
+    {:text "alpaca"
+     :article "an"}
+
+    {:text "antelope"
+     :article "an"}
+
+    {:text "ape"
+     :article "an"}
+
+    {:text "armadillo"
+     :article "an"}
+
+    {:text "baboon"
+     :article "a"}
+
+    {:text "badger"
+     :article "a"}
+
+    {:text "bat"
+     :article "a"}
+
+    {:text "bear"
      :article "a"
-     :sounds ["purrs" "meows" "growls"]
-     :adjectives ["purring" "meowing" "growling"]}
+     :adjectives ["grizzly" "brown" "teddy"]}
+
+    {:text "beaver"
+     :article "a"}
+
+    {:text "bison"
+     :article "a"}
+
+    {:text "boar"
+     :article "a"}
+
+    {:text "buffalo"
+     :article "a"}
+
+    {:text "bull"
+     :article "a"}
+
+    {:text "bunny"
+     :article "a"}
+
+    {:text "buzzard"
+     :article "a"}
+
+    {:text "camel"
+     :article "a"}
+
+    {:text "canary"
+     :article "a"}
+
+    {:text "capybara"
+     :article "a"}
 
     {:text "cat"
      :article "a"
      :sounds ["purrs" "meows" "growls"]
      :adjectives ["purring" "meowing" "growling"]}
 
-    {:text "puppy"
+    {:text "chameleon"
+     :article "a"}
+
+    {:text "cheetah"
+     :article "a"}
+
+    {:text "chicken"
+     :article "a"}
+
+    {:text "chimpanzee"
+     :article "a"}
+
+    {:text "chinchilla"
+     :article "a"}
+
+    {:text "chipmunk"
+     :article "a"}
+
+    {:text "cougar"
+     :article "a"}
+
+    {:text "cow"
+     :article "a"}
+
+    {:text "coyote"
+     :article "a"}
+
+    {:text "crocodile"
+     :article "a"}
+
+    {:text "crow"
+     :article "a"
+     :sounds ["caw"]}
+
+    {:text "dingo"
+     :article "a"}
+
+    {:text "dog"
      :article "a"
      :sounds ["pants" "barks" "growls" "whimpers"]
      :adjectives ["panting" "barking" "growling" "whimpering"]}
+
+    {:text "dolphin"
+     :article "a"}
+
+    {:text "donkey"
+     :article "a"}
 
     {:text "duck"
      :article "a"
      :sounds ["quacks"]
      :adjectives ["quacking"]}
 
+    {:text "eagle"
+     :article "an"}
+
+    {:text "elephant"
+     :article "an"}
+
+    {:text "ewe"
+     :article "an"}
+
+    {:text "hawk"
+     :article "a"}
+
+    {:text "ferret"
+     :article "a"}
+
+    {:text "finch"
+     :article "a"
+     :sounds ["chirps"]}
+
+    {:text "fox"
+     :article "a"}
+
+    {:text "gazelle"
+     :article "a"}
+
+    {:text "gerbil"
+     :article "a"}
+
+    {:text "gila monster"
+     :article "a"}
+
+    {:text "giraffe"
+     :article "a"}
+
+    {:text "gnu"
+     :article "a"}
+
+    {:text "goat"
+     :article "a"}
+
+    {:text "gopher"
+     :article "a"}
+
+    {:text "gorilla"
+     :article "a"}
+
+    {:text "groundhog"
+     :article "a"
+     :adjectives ["repeating" "familiar"]}
+
+    {:text "guinea pig"
+     :article "a"}
+
+    {:text "hamster"
+     :article "a"}
+
+    {:text "hawk"
+     :article "a"}
+
+    {:text "hedgehog"
+     :article "a"
+     :adjectives ["prickly"]}
+
+    {:text "hippopotamus"
+     :article "a"}
+
+    {:text "hog"
+     :article "a"
+     :sounds ["snorts" "oinks"]
+     :adjuective ["snorting" "oinking"]}
+
+    {:text "horse"
+     :article "a"}
+
+    {:text "hyena"
+     :article "a"}
+
+    {:text "ibex"
+     :article "an"}
+
+    {:text "iguana"
+     :article "an"}
+
+    {:text "impala"
+     :article "an"}
+
+    {:text "jackal"
+     :article "a"}
+
+    {:text "jaguar"
+     :article "a"}
+
+    {:text "kangaroo"
+     :article "a"}
+
+    {:text "kitten"
+     :article "a"
+     :sounds ["purrs" "meows" "growls"]
+     :adjectives ["purring" "meowing" "growling"]}
+
+    {:text "koala"
+     :article "a"}
+
+    {:text "lamb"
+     :article "a"}
+
+    {:text "lemur"
+     :article "a"}
+
+    {:text "leopard"
+     :article "a"}
+
+    {:text "lion"
+     :article "a"}
+
+    {:text "lizard"
+     :article "a"}
+
+    {:text "llama"
+     :article "a"}
+
+    {:text "lynx"
+     :article "a"}
+
+    {:text "magpie"
+     :article "a"}
+
     {:text "marmot"
+     :article "a"}
+
+    {:text "mink"
+     :article "a"}
+
+    {:text "mole"
+     :article "a"}
+
+    {:text "mongoose"
+     :article "a"}
+
+    {:text "monkey"
+     :article "a"}
+
+    {:text "moose"
+     :article "a"}
+
+    {:text "mule"
+     :article "a"}
+
+    {:text "muskrat"
+     :article "a"}
+
+    {:text "moose"
+     :article "a"}
+
+    {:text "mountain goat"
+     :article "a"}
+
+    {:text "mouse"
+     :article "a"}
+
+    {:text "mule"
+     :article "a"}
+
+    {:text "muskrat"
+     :article "a"}
+
+    {:text "mynah bird"
+     :article "a"}
+
+    {:text "newt"
+     :article "a"}
+
+    {:text "ocelot"
+     :article "an"}
+
+    {:text "opossum"
+     :article "an"}
+
+    {:text "orangutan"
+     :article "an"}
+
+    {:text "otter"
+     :article "an"}
+
+    {:text "ox"
+     :article "an"}
+
+    {:text "panda"
+     :article "a"}
+
+    {:text "panther"
+     :article "a"}
+
+    {:text "parakeet"
+     :article "a"}
+
+    {:text "parrot"
+     :article "a"}
+
+    {:text "pig"
+     :article "a"}
+
+    {:text "pigeon"
+     :article "a"}
+
+    {:text "platypus"
+     :article "a"}
+
+    {:text "polar bear"
+     :article "a"}
+
+    {:text "porcupine"
+     :article "a"}
+
+    {:text "porpoise"
+     :article "a"}
+
+    {:text "prairie dog"
+     :article "a"}
+
+    {:text "puppy"
+     :article "a"
+     :sounds ["pants" "barks" "growls" "whimpers"]
+     :adjectives ["panting" "barking" "growling" "whimpering"]}
+
+    {:text "rabbit"
+     :article "a"}
+
+    {:text "raccoon"
+     :article "a"}
+
+    {:text "reindeer"
+     :article "a"}
+
+    {:text "rhinoceros"
+     :article "a"}
+
+    {:text "salamander"
+     :article "a"}
+
+    {:text "seal"
+     :article "a"}
+
+    {:text "serpent"
+     :article "a"}
+
+    {:text "sheep"
+     :article "a"}
+
+    {:text "shrew"
+     :article "a"}
+
+    {:text "skink"
+     :article "a"}
+
+    {:text "skunk"
+     :article "a"}
+
+    {:text "sloth"
+     :article "a"}
+
+    {:text "snake"
+     :article "a"}
+
+    {:text "squirrel"
      :article "a"}
 
     {:text "tiger"
@@ -2050,14 +2439,40 @@
      :sounds ["roars"]
      :adjectives ["roaring"]}
 
-    {:text "hamster"
+    {:text "tortoise"
      :article "a"}
 
-    {:text "gerbil"
+    {:text "turtle"
      :article "a"}
 
-    {:text "hedgehog"
-     :article "a"}]})
+    {:text "walrus"
+     :article "a"}
+
+    {:text "warthog"
+     :article "a"}
+
+    {:text "weasel"
+     :article "a"}
+
+    {:text "wildcat"
+     :article "a"}
+
+    {:text "wolf"
+     :article "a"}
+
+    {:text "wombat"
+     :article "a"}
+
+    {:text "woodchuck"
+     :article "a"}
+
+    {:text "yak"
+     :article "a"}
+
+    {:text "zebra"
+     :article "a"}
+
+    ]})
 
 (def noises
   {:noises
