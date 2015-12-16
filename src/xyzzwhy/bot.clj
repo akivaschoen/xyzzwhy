@@ -4,7 +4,6 @@
             [com.stuartsierra.component :as component]
             [xyzzwhy
              [engine :as e]
-             [text :refer :all]
              [twitter :as t]]))
 
 (defn- log-tweet
@@ -15,7 +14,7 @@
   (println "Pausing:" (int (/ interval 60000)) "minutes")
   (println "--"))
 
-(defn- start-bot
+#_(defn- start-bot
   "Initializes Xyzzwhy and starts the bot tweeting."
   [source]
   (let [interrupt (atom false)
@@ -35,7 +34,7 @@
     (println "Started at:" (local/format-local-time (local/local-now) :rfc822))
     bot))
 
-(defrecord Xyzzwhy [source]
+#_(defrecord Xyzzwhy [source]
   component/Lifecycle
   (start [component]
     (if (:bot component)
@@ -46,14 +45,13 @@
       (future-cancel (:bot component))
       component)))
 
-(defn new-bot
+#_(defn new-bot
   "Initializes an instance of an Xyzzwhy record."
   [source]
   (map->Xyzzwhy {:source source}))
 
-(defn xyzzwhy
-  "System-level controller for xyzzwhy for use with
-  Component."
+#_(defn xyzzwhy
+  "System-level controller for xyzzwhy for use with Component."
   ([]
    (xyzzwhy []))
   ([config]
@@ -67,7 +65,7 @@
             (new-bot source)
             [:source :kind])))))
 
-(defn -main
+#_(defn -main
   [& args]
   (let [{:keys [source kind]
          :or {source 'xyzzwhy.text
