@@ -7,15 +7,16 @@
   :min-lein-version "2.5.2"
 
   :dependencies
-  [[org.clojure/clojure "1.8.0-RC4"]
-   [org.clojure/core.async "0.1.346.0-17112a-alpha"]
+  [[org.clojure/clojure "1.8.0-RC5"]
    [clj-time "0.11.0"]
-   [environ "1.0.1"]
-   [com.novemberain/monger "3.0.1"]
-   [twitter-api "0.7.8"]
-   [typographer "1.1.0"]
    [com.stuartsierra/component "0.3.0"]
-   [reloaded.repl "0.2.1"]]
+   [org.clojure/core.async "0.1.346.0-17112a-alpha"]
+   [environ "1.0.1"]
+   [pluralex "1.0.0-SNAPSHOT"]
+   [reloaded.repl "0.2.1"]
+   [rethinkdb "0.11.0-SNAPSHOT"]
+   [twitter-api "0.7.8"]
+   [typographer "1.1.0"]]
 
   :plugins
   [[lein-autoexpect "1.6.0"]

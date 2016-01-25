@@ -1,6 +1,6 @@
 (ns xyzzwhy.engine.interpolation
   (:require [clojure.string :as string]
-            [xyzzwhy.engine.fragments :as frag]))
+            [xyzzwhy.engine.fragment :as frag]))
 
 (defn interpolate
   "Replaces all substitution markers with matching text,

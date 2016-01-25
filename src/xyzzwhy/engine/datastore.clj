@@ -1,14 +1,29 @@
 (ns xyzzwhy.engine.datastore
-  (:require [environ.core :refer :all]
-            [monger.core :as mg]
-            [monger.collection :as mc]))
+  (:require [clojure.string :as str]
+            [environ.core :refer [env]]
+            [rethinkdb.query :as r]))
 
-(def ^:private db nil)
+(defonce db-name "xyzzwhy_corpora")
 
-(defn initialize-db-connection!
-  [& {:keys [uri]}]
-  (alter-var-root #'db (:db (mg/connect-via-uri (or uri (env :corpora-database-uri))))))
+(defn ->table-name
+  [classname]
+  (-> classname
+      name
+      str
+      (str/replace "-" "_")))
 
 (defn get-class
-  [c]
-  (mc/find-maps db c))
+  [classname]
+    (with-open [conn (r/connect (env :xyzzwhy-corpora-db))]
+      (-> (r/db db-name)
+          (r/table (->table-name classname))
+          (r/run conn))))
+
+(defn get-fragment
+  [classname]
+    (with-open [conn (r/connect (env :xyzzwhy-corpora-db))]
+      (-> (r/db db-name)
+          (r/table (->table-name classname))
+          (r/sample 1)
+          (r/run conn)
+          first)))

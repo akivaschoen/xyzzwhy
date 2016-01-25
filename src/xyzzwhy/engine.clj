@@ -1,10 +1,45 @@
 (ns xyzzwhy.engine
-  (:require [clojure.string :as str]
-            [xyzzwhy.engine.follow-ups :as fup]
-            [xyzzwhy.engine.fragments :as frag]
-            [xyzzwhy.engine.interpolation :refer :all]
-            [xyzzwhy.engine.substitutions :as subs]
+  (:require [xyzzwhy.engine
+             [follow-ups :as fup]
+             [fragment :as frag]
+             [interpolation :refer :all]
+             [substitutions :as subs]]
             [xyzzwhy.util :as util]))
+
+(defn article?
+  [fragment config]
+  (and (not (contains? config :no-article))
+       (contains? fragment :sub)))
+
+(defn article
+  "Returns a fragment's article."
+  [fragment]
+  (when-let [article (:article fragment)]
+    (-> article util/pick)))
+
+(defn prep?
+  [config]
+  (not (contains? config :no-prep)))
+
+(defn prep
+  "Returns a fragment's preposition, randomly chosen."
+  [fragment]
+  (when-let [prep (:prep fragment)]
+    (-> prep util/pick)))
+
+(defn prepend
+  "Adds text to the front of another string."
+  [text target]
+  (str (util/pad text) target))
+
+
+
+
+
+
+
+
+;; ____ Older Code Begins Here ____
 
 ;; Corpus
 ;;
@@ -33,7 +68,7 @@
 
 
 ;; Helper functions
-(def ^:private process-fragment (comp fup/add-follow-up-subs
+#_(def ^:private process-fragment (comp fup/add-follow-up-subs
                                       fup/add-follow-up
                                       interpolate
                                       subs/get-subs))

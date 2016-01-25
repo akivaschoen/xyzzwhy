@@ -2,6 +2,8 @@
   (:require [clojure.string :as string]
             [typographer.core :as typo]))
 
+(def any? (complement not-any?))
+
 (defn pad
   [text]
   (str text " "))
@@ -15,7 +17,7 @@
     (update fragment :text #(str (pad %1) text))
     fragment))
 
-(defn capitalize*
+(defn capitalize
   "Capitalizes fragment's sentences."
   [fragment]
   (assoc fragment :text (-> (:text fragment)
@@ -75,12 +77,14 @@
   [follow-up]
   (-> follow-up :optional? true?))
 
-(defn pick
-  "Chooses a random item from coll."
-  [coll]
-  (nth coll (rand-int (count coll))))
-
-(defn smarten*
+(defn smarten
   "Converts fragment's text to use typographer's quotes."
   [fragment]
   (update fragment :text #(typo/smarten %)))
+
+(defn pick
+  [c]
+  (loop [sel c]
+    (if (vector? sel)
+      (recur (nth sel (rand-int (count sel))))
+      sel)))

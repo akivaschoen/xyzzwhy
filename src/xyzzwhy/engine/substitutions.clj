@@ -3,7 +3,11 @@
 
 (defn subs?
   [fragment]
-  (contains? fragment :subs))
+  (contains? fragment :sub))
+
+(defn subs
+  [fragment]
+  (:sub fragment))
 
 ;;
 ;; Pronouns
@@ -51,25 +55,37 @@
      (get-sub follow-up ref)
      (get-sub fragment ref))))
 
-(defmulti substitute
+(defmulti get-substitution
   "Returns a fragment to be used for a substitution."
   (fn [_ sub] (-> sub val :class)))
 
-(defmethod substitute :gender
+(defmethod get-substitution :gender
   [fragment sub]
-  (let [sub' (val sub)
-        gender' (-> fragment
-                    :subs
+  (let [gender' (-> (subs fragment)
                     (find (:ref sub'))
                     val
                     :source
                     :gender)]
     {(key sub) (assoc-in sub' [:source :text] (gender gender' (:case sub')))}))
 
-(defmethod substitute :default
+(defmethod get-substitution :default
   [fragment sub]
   (let [sub' (val sub)]
-    {(key sub) (assoc sub' :source (frag/get-fragment (-> sub' :class)))}))
+    {(key sub) (assoc sub' :source (frag/get-fragment (:class sub')))}))
+
+(defn transclude
+  [fragment]
+  (reduce #(conj %1 (get-substitution fragment %2)) {} (subs fragment)))
+
+(defn substitute
+  "Populates fragment's substitutions with appropriate fragments."
+  [fragment]
+  (if (subs? fragment)
+    (transclude fragment)
+    fragment))
+
+
+;; _____ OLD CODE _____ ;;
 
 (letfn [(subs [fragment subs]
           (reduce #(conj %1 (substitute fragment %2)) {} subs))]

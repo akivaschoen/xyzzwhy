@@ -3,12 +3,12 @@
             [xyzzwhy.engine.substitutions :as subs]
             [xyzzwhy.util :as util]))
 
-(defn follow-ups?
+(defn follow-up?
   [fragment]
-  (contains? fragment :follow-ups))
+  (contains? fragment :follow-up))
 
 (defmulti get-follow-up
-  "Util/Appends fragment's follow up to its :text. If follow-up
+  "Appends fragment's follow up to its :text. If follow-up
   has substitutions, those are handled first."
   (fn [_ follow-up _] (subs/subs? follow-up)))
 
