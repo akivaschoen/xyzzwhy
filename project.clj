@@ -7,7 +7,7 @@
   :min-lein-version "2.5.2"
 
   :dependencies
-  [[org.clojure/clojure "1.8.0-RC5"]
+  [[org.clojure/clojure "1.8.0"]
    [clj-time "0.11.0"]
    [com.stuartsierra/component "0.3.0"]
    [org.clojure/core.async "0.1.346.0-17112a-alpha"]
