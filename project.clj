@@ -1,4 +1,4 @@
-(defproject xyzzwhy "1.0.0"
+(defproject xyzzwhy "2.0.0-SNAPSHOT"
   :description "A Twitter bot who takes you on surreal adventures."
   :url "https://github.com/akivaschoen/xyzzwhy"
   :license {:name "Eclipse Public License"
@@ -14,9 +14,9 @@
    [environ "1.0.1"]
    [pluralex "1.0.0-SNAPSHOT"]
    [reloaded.repl "0.2.1"]
-   [rethinkdb "0.11.0-SNAPSHOT"]
    [twitter-api "0.7.8"]
-   [typographer "1.1.0"]]
+   [typographer "1.1.0"]
+   [xyzzwhy/datastore "1.0.0-SNAPSHOT"]]
 
   :plugins
   [[lein-autoexpect "1.6.0"]

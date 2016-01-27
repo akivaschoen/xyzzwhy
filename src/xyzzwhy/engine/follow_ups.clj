@@ -26,7 +26,7 @@
 
 (defn add-follow-up
   [fragment]
-  (if (follow-ups? fragment)
+  (if (follow-up? fragment)
     (let [options (-> fragment :follow-ups :options)
           follow-up (-> options util/pick)
           index (.indexOf options follow-up)]

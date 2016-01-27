@@ -6,27 +6,6 @@
              [substitutions :as subs]]
             [xyzzwhy.util :as util]))
 
-(defn article?
-  [fragment config]
-  (and (not (contains? config :no-article))
-       (contains? fragment :sub)))
-
-(defn article
-  "Returns a fragment's article."
-  [fragment]
-  (when-let [article (:article fragment)]
-    (-> article util/pick)))
-
-(defn prep?
-  [config]
-  (not (contains? config :no-prep)))
-
-(defn prep
-  "Returns a fragment's preposition, randomly chosen."
-  [fragment]
-  (when-let [prep (:prep fragment)]
-    (-> prep util/pick)))
-
 (defn prepend
   "Adds text to the front of another string."
   [text target]
@@ -39,7 +18,7 @@
 
 
 
-;; ____ Older Code Begins Here ____
+(comment "____ Older Code Begins Here ____"
 
 ;; Corpus
 ;;
@@ -121,4 +100,4 @@
         (get-extras event)
         util/capitalize*
         util/dot-prefix
-        util/smarten*)))
+        util/smarten*))))

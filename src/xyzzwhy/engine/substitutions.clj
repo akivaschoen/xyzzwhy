@@ -1,5 +1,5 @@
 (ns xyzzwhy.engine.substitutions
-  (:require [xyzzwhy.engine.fragments :as frag]))
+  (:require [xyzzwhy.engine.fragment :as frag]))
 
 (defn subs?
   [fragment]
@@ -62,11 +62,11 @@
 (defmethod get-substitution :gender
   [fragment sub]
   (let [gender' (-> (subs fragment)
-                    (find (:ref sub'))
+                    (find (:ref sub))
                     val
                     :source
                     :gender)]
-    {(key sub) (assoc-in sub' [:source :text] (gender gender' (:case sub')))}))
+    {(key sub) (assoc-in sub [:source :text] (gender gender' (:case sub)))}))
 
 (defmethod get-substitution :default
   [fragment sub]
