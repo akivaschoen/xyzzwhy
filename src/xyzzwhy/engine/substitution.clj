@@ -1,4 +1,4 @@
-(ns xyzzwhy.engine.substitutions
+(ns xyzzwhy.engine.substitution
   (:require [xyzzwhy.engine.fragment :as frag]))
 
 (defn subs?
@@ -85,20 +85,20 @@
     fragment))
 
 
-;; _____ OLD CODE _____ ;;
 
-(letfn [(subs [fragment subs]
-          (reduce #(conj %1 (substitute fragment %2)) {} subs))]
-  (defn get-subs
-    "Populates fragment's possible substitutions with
+(comment ";; _____ OLD CODE _____ ;;"
+         (letfn [(subs [fragment subs]
+                   (reduce #(conj %1 (substitute fragment %2)) {} subs))]
+           (defn get-subs
+             "Populates fragment's possible substitutions with
     appropriate fragments."
-    ([fragment]
-     (let [subs (subs fragment (:subs fragment))]
-       (if (empty? subs)
-         fragment
-         (assoc fragment :subs subs))))
-    ([fragment follow-up]
-     (let [subs (subs fragment (:subs follow-up))]
-       (if (empty? subs)
-         follow-up
-         (assoc follow-up :subs subs))))))
+             ([fragment]
+              (let [subs (subs fragment (:subs fragment))]
+                (if (empty? subs)
+                  fragment
+                  (assoc fragment :subs subs))))
+             ([fragment follow-up]
+              (let [subs (subs fragment (:subs follow-up))]
+                (if (empty? subs)
+                  follow-up
+                  (assoc follow-up :subs subs)))))))
