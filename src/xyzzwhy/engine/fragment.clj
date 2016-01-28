@@ -1,6 +1,22 @@
 (ns xyzzwhy.engine.fragment
   (:require [xyzzwhy.datastore :as data]
-            [xyzzwhy.util :as util :refer [any?]]))
+            [xyzzwhy.util :as util :refer [any? pad]]))
+
+
+;;
+;; Utilities
+;;
+(defn a-or-an
+  [s]
+  (if (nil? (re-find #"^[aeiou]" s))
+    "a"
+    "an"))
+
+(defn has-article?
+  [s]
+  (if (re-find #"^(?:a|an|the)\s" s)
+    true
+    false))
 
 
 ;;
@@ -15,10 +31,14 @@
   (not (contains? (:config fragment) :no-article)))
 
 (defn article
-  "Returns a fragment's article."
+  "Returns a fragment's article if specified or 'a' or 'an' as appropriate."
   [fragment]
-  (when-let [article (:article fragment)]
-    (-> article util/pick)))
+  (let [text (-> fragment :text)]
+    (if (has-article? text)
+      (:text fragment)
+      (if (contains? fragment :article)
+        (-> (:fragment article) util/pick)
+        (str (a-or-an (-> fragment :text)) " ")))))
 
 (defn prep?
   [config]
@@ -28,7 +48,7 @@
   "Returns a fragment's preposition, randomly chosen."
   [fragment]
   (when-let [prep (:prep fragment)]
-    (-> prep util/pick)))
+    (str (-> prep util/pick) " ")))
 
 
 ;;
