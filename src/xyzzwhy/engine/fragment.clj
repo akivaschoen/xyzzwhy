@@ -11,9 +11,8 @@
   (any? config :no-groups))
 
 (defn article?
-  [fragment config]
-  (and (not (contains? config :no-article))
-       (contains? fragment :sub)))
+  [fragment]
+  (not (contains? (:config fragment) :no-article)))
 
 (defn article
   "Returns a fragment's article."
