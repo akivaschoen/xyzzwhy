@@ -59,10 +59,10 @@
 
 (defmethod get-fragment* :default
   [c _]
-  (-> c util/pluralize data/get-fragment))
+  (data/get-fragment c))
 
 (defn get-fragment
-  ([c]
-   (get-fragment c nil))
-  ([c config]
-   (get-fragment* c config)))
+  ([classname]
+   (get-fragment classname nil))
+  ([classname config]
+   (get-fragment* classname config)))

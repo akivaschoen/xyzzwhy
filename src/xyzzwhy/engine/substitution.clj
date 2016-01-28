@@ -1,13 +1,13 @@
-(ns xyzzwhy.engine.substitutions
+(ns xyzzwhy.engine.substitution
   (:require [xyzzwhy.engine.fragment :as frag]))
 
-(defn subs?
+;;
+;; Utilities
+;;
+(defn sub?
   [fragment]
   (contains? fragment :sub))
 
-(defn subs
-  [fragment]
-  (:sub fragment))
 
 ;;
 ;; Pronouns
@@ -49,9 +49,9 @@
 (defn get-sub
   "Given a reference number, returns the appropriate substitution."
   ([fragment ref]
-   (get (:subs fragment) ref))
+   (get (:sub fragment) ref))
   ([fragment follow-up ref]
-   (if (contains? (:subs follow-up) ref)
+   (if (contains? (:sub follow-up) ref)
      (get-sub follow-up ref)
      (get-sub fragment ref))))
 
@@ -61,7 +61,7 @@
 
 (defmethod get-substitution :gender
   [fragment sub]
-  (let [gender' (-> (subs fragment)
+  (let [gender' (-> (:sub fragment)
                     (find (:ref sub))
                     val
                     :source
@@ -75,30 +75,33 @@
 
 (defn transclude
   [fragment]
-  (reduce #(conj %1 (get-substitution fragment %2)) {} (subs fragment)))
+  (reduce #(conj %1 (get-substitution fragment %2)) {} (:sub fragment)))
 
 (defn substitute
   "Populates fragment's substitutions with appropriate fragments."
   [fragment]
-  (if (subs? fragment)
-    (transclude fragment)
+  (if (sub? fragment)
+    (assoc fragment :sub (reduce (fn [acc item]
+                                   (conj acc (get-substitution fragment item)))
+                                 {}
+                                 (:sub fragment)))
     fragment))
 
 
-;; _____ OLD CODE _____ ;;
 
-(letfn [(subs [fragment subs]
-          (reduce #(conj %1 (substitute fragment %2)) {} subs))]
-  (defn get-subs
-    "Populates fragment's possible substitutions with
+(comment ";; _____ OLD CODE _____ ;;"
+         (letfn [(subs [fragment subs]
+                   (reduce #(conj %1 (substitute fragment %2)) {} subs))]
+           (defn get-subs
+             "Populates fragment's possible substitutions with
     appropriate fragments."
-    ([fragment]
-     (let [subs (subs fragment (:subs fragment))]
-       (if (empty? subs)
-         fragment
-         (assoc fragment :subs subs))))
-    ([fragment follow-up]
-     (let [subs (subs fragment (:subs follow-up))]
-       (if (empty? subs)
-         follow-up
-         (assoc follow-up :subs subs))))))
+             ([fragment]
+              (let [subs (subs fragment (:subs fragment))]
+                (if (empty? subs)
+                  fragment
+                  (assoc fragment :subs subs))))
+             ([fragment follow-up]
+              (let [subs (subs fragment (:subs follow-up))]
+                (if (empty? subs)
+                  follow-up
+                  (assoc follow-up :subs subs)))))))
