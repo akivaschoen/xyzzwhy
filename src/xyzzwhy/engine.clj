@@ -1,9 +1,9 @@
 (ns xyzzwhy.engine
   (:require [xyzzwhy.engine
-             [follow-ups :as fup]
+             [follow-up :as fup]
              [fragment :as frag]
              [interpolation :refer :all]
-             [substitutions :as subs]]
+             [substitution :as sub]]
             [xyzzwhy.util :as util]))
 
 (defn prepend

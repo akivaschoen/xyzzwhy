@@ -1,6 +1,6 @@
-(ns xyzzwhy.engine.follow-ups
+(ns xyzzwhy.engine.follow-up
   (:require [xyzzwhy.engine.interpolation :refer :all]
-            [xyzzwhy.engine.substitutions :as subs]
+            [xyzzwhy.engine.substitution :as s]
             [xyzzwhy.util :as util]))
 
 (defn follow-up?
@@ -10,11 +10,11 @@
 (defmulti get-follow-up
   "Appends fragment's follow up to its :text. If follow-up
   has substitutions, those are handled first."
-  (fn [_ follow-up _] (subs/subs? follow-up)))
+  (fn [_ follow-up _] (s/sub? follow-up)))
 
 (defmethod get-follow-up true
   [fragment follow-up index]
-  (let [option (subs/get-subs fragment follow-up)
+  (let [option (s/get-sub fragment follow-up)
         option (interpolate option)
         fragment (util/append fragment (:text option))]
     (assoc fragment [:follow-ups :options index] option)))
@@ -35,7 +35,7 @@
 
 (defn add-follow-up-subs
   [fragment]
-  (if (subs/subs? fragment)
+  (if (s/sub? fragment)
     (reduce (fn [_ s]
               (if-let [follow-up (-> s val :source :follow-ups)]
                 (if (and (true? (:optional? follow-up))
@@ -44,10 +44,10 @@
                   (reduced (util/append fragment (-> follow-up
                                                 :options
                                                 util/pick
-                                                subs/get-subs
+                                                s/get-sub
                                                 interpolate
                                                 :text))))
                 fragment))
             fragment
-            (:subs fragment))
+            (:sub fragment))
     fragment))
