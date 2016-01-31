@@ -1,5 +1,5 @@
 (ns xyzzwhy.engine.fragment
-  (:require [xyzzwhy.datastore :as data]
+  (:require [xyzzwhy.datastore :as ds]
             [xyzzwhy.util :as util :refer [any? pad]]))
 
 
@@ -54,6 +54,10 @@
 ;;
 ;; get-fragment (I dare you)
 ;;
+(defn- get-metadata
+  [c]
+  (ds/get-metadata c))
+
 (defmulti get-fragment*
   "Given a class c, returns a random item
   from the corpus."
@@ -61,8 +65,8 @@
 
 (defmethod get-fragment* :actor
   [c config]
-  (let [persons (data/get-class :persons)
-        animals (data/get-class :animals)
+  (let [persons (ds/get-class :persons)
+        animals (ds/get-class :animals)
         actors (apply merge persons animals)
         actors (if (no-groups? config)
                  (remove #(= :group (-> % :gender)) actors)
@@ -72,13 +76,13 @@
 (defmethod get-fragment* :person
   [c config]
   (let [persons (if (no-groups? config)
-                  (remove #(= :group (-> % :gender)) (data/get-class :persons))
-                  (data/get-class :persons))]
+                  (remove #(= :group (-> % :gender)) (ds/get-class :persons))
+                  (ds/get-class :persons))]
        (-> persons util/pick)))
 
 (defmethod get-fragment* :default
   [c _]
-  (data/get-fragment c))
+  (ds/get-fragment c))
 
 (defn get-fragment
   ([classname]
