@@ -1,18 +1,23 @@
 (ns xyzzwhy.engine.interpolation
-  (:require [clojure.string :as string]
-            [xyzzwhy.engine.fragment :as frag]))
+  (:require [clojure.string :as str]
+            [xyzzwhy.engine.fragment :as fr]))
+
+(defn- prep
+  [s]
+  (when (fr/prep? s)
+    (-> s :fragment fr/prep)))
+
+(defn- article
+  [s]
+  (when (fr/article? s)
+    (-> s :fragment fr/article)))
 
 (defn interpolate
-  "Replaces all substitution markers with matching text,
-  returning fragment."
   ([fragment]
-   (reduce #(interpolate %1 %2) fragment (:subs fragment)))
+   (reduce #(interpolate %1 %2) fragment (:sub fragment)))
   ([fragment sub]
-   (let [sub' (val sub)
-         prep (when (frag/prep? (:config sub'))
-                 (-> sub' :source frag/prep))
-         article (when (frag/article? (:config sub'))
-                    (-> sub' :source frag/article))
-         text (str prep article (-> sub' :source :text))]
-     (update fragment :text
-             string/replace (str "%" (key sub)) text))))
+   (let [s (val sub)
+         text (str (prep s)
+                   (article s)
+                   (-> s :fragment :text))]
+     (update fragment :text str/replace (str "%" (key sub)) text))))
