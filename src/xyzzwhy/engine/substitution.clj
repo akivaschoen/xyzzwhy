@@ -1,5 +1,6 @@
 (ns xyzzwhy.engine.substitution
-  (:require [xyzzwhy.engine.fragment :as frag]))
+  (:require [xyzzwhy.engine.fragment :as fr]
+            [clojure.string :as str]))
 
 ;;
 ;; Utilities
@@ -64,14 +65,14 @@
   (let [gender' (-> (:sub fragment)
                     (find (:ref sub))
                     val
-                    :source
+                    :fragment
                     :gender)]
-    {(key sub) (assoc-in sub [:source :text] (gender gender' (:case sub)))}))
+    {(key sub) (assoc-in sub [:fragment :text] (gender gender' (:case sub)))}))
 
 (defmethod get-substitution :default
   [fragment sub]
   (let [sub' (val sub)]
-    {(key sub) (assoc sub' :source (frag/get-fragment (:class sub')))}))
+    {(key sub) (assoc sub' :fragment (fr/get-fragment (:class sub')))}))
 
 (defn transclude
   [fragment]
@@ -86,22 +87,3 @@
                                  {}
                                  (:sub fragment)))
     fragment))
-
-
-
-(comment ";; _____ OLD CODE _____ ;;"
-         (letfn [(subs [fragment subs]
-                   (reduce #(conj %1 (substitute fragment %2)) {} subs))]
-           (defn get-subs
-             "Populates fragment's possible substitutions with
-    appropriate fragments."
-             ([fragment]
-              (let [subs (subs fragment (:subs fragment))]
-                (if (empty? subs)
-                  fragment
-                  (assoc fragment :subs subs))))
-             ([fragment follow-up]
-              (let [subs (subs fragment (:subs follow-up))]
-                (if (empty? subs)
-                  follow-up
-                  (assoc follow-up :subs subs)))))))
