@@ -20,5 +20,4 @@
          text (str (prep s)
                    (article s)
                    (-> s :fragment :text))]
-     (println (article s))
      (update fragment :text str/replace (str "%" (key sub)) text))))
