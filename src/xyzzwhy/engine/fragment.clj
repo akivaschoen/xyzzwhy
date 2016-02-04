@@ -2,13 +2,12 @@
   (:require [xyzzwhy.datastore :as ds]
             [xyzzwhy.util :as util :refer [any? pad]]))
 
-
 ;;
 ;; Utilities
 ;;
 (defn a-or-an
   [s]
-  (if (nil? (re-find #"^[aeiou]" s))
+  (if (nil? (re-find #"(?i)^[aeiou]" s))
     "a"
     "an"))
 
@@ -28,7 +27,7 @@
 
 (defn article?
   [fragment]
-  (not (contains? (:config fragment) :no-article)))
+  (contains? (:config fragment) :article))
 
 (defn article
   "Returns a fragment's article if specified or 'a' or 'an' as appropriate."
@@ -41,8 +40,9 @@
         (str (a-or-an (-> fragment :text)) " ")))))
 
 (defn prep?
-  [config]
-  (not (contains? config :no-prep)))
+  [fragment]
+  (and (not (contains? (:config fragment) :no-prep))
+       (contains? fragment :prep)))
 
 (defn prep
   "Returns a fragment's preposition, randomly chosen."
