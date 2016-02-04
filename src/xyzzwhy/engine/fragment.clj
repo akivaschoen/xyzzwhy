@@ -1,6 +1,21 @@
 (ns xyzzwhy.engine.fragment
-  (:require [xyzzwhy.datastore :as data]
-            [xyzzwhy.util :as util :refer [any?]]))
+  (:require [xyzzwhy.datastore :as ds]
+            [xyzzwhy.util :as util :refer [any? pad]]))
+
+;;
+;; Utilities
+;;
+(defn a-or-an
+  [s]
+  (if (nil? (re-find #"(?i)^[aeiou]" s))
+    "a"
+    "an"))
+
+(defn has-article?
+  [s]
+  (if (re-find #"^(?:a|an|the)\s" s)
+    true
+    false))
 
 
 ;;
@@ -11,30 +26,38 @@
   (any? config :no-groups))
 
 (defn article?
-  [fragment config]
-  (and (not (contains? config :no-article))
-       (contains? fragment :sub)))
+  [fragment]
+  (contains? (:config fragment) :article))
 
 (defn article
-  "Returns a fragment's article."
+  "Returns a fragment's article if specified or 'a' or 'an' as appropriate."
   [fragment]
-  (when-let [article (:article fragment)]
-    (-> article util/pick)))
+  (let [text (-> fragment :text)]
+    (if (has-article? text)
+      (:text fragment)
+      (if (contains? fragment :article)
+        (-> (:fragment article) util/pick)
+        (str (a-or-an (-> fragment :text)) " ")))))
 
 (defn prep?
-  [config]
-  (not (contains? config :no-prep)))
+  [fragment]
+  (and (not (contains? (:config fragment) :no-prep))
+       (contains? fragment :prep)))
 
 (defn prep
   "Returns a fragment's preposition, randomly chosen."
   [fragment]
   (when-let [prep (:prep fragment)]
-    (-> prep util/pick)))
+    (str (-> prep util/pick) " ")))
 
 
 ;;
 ;; get-fragment (I dare you)
 ;;
+(defn- get-metadata
+  [c]
+  (ds/get-metadata c))
+
 (defmulti get-fragment*
   "Given a class c, returns a random item
   from the corpus."
@@ -42,8 +65,8 @@
 
 (defmethod get-fragment* :actor
   [c config]
-  (let [persons (data/get-class :persons)
-        animals (data/get-class :animals)
+  (let [persons (ds/get-class :persons)
+        animals (ds/get-class :animals)
         actors (apply merge persons animals)
         actors (if (no-groups? config)
                  (remove #(= :group (-> % :gender)) actors)
@@ -53,13 +76,13 @@
 (defmethod get-fragment* :person
   [c config]
   (let [persons (if (no-groups? config)
-                  (remove #(= :group (-> % :gender)) (data/get-class :persons))
-                  (data/get-class :persons))]
+                  (remove #(= :group (-> % :gender)) (ds/get-class :persons))
+                  (ds/get-class :persons))]
        (-> persons util/pick)))
 
 (defmethod get-fragment* :default
   [c _]
-  (data/get-fragment c))
+  (ds/get-fragment c))
 
 (defn get-fragment
   ([classname]

@@ -19,8 +19,9 @@
    [xyzzwhy/datastore "1.0.0-SNAPSHOT"]]
 
   :plugins
-  [[lein-autoexpect "1.6.0"]
-   [lein-environ "1.0.1"]]
+  [[lein-autoexpect "1.7.0"]
+   [lein-environ "1.0.1"]
+   [lein-expectations "0.0.8"]]
 
   :main xyzzwhy.bot
 
@@ -39,4 +40,8 @@
     {:env {:dev true}
      :source-paths ["dev"]
      :dependencies [[expectations "2.0.16"]
-                    [leiningen "2.5.2"]]}]})
+                    [leiningen "2.5.2"]]}]}
+
+  :repl-options
+  {:init-ns user
+   :caught clj-stacktrace.repl/pst+})
