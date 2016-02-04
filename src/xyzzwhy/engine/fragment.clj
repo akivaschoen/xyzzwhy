@@ -83,7 +83,11 @@
 
 (defmethod get-fragment* :default
   [c _]
-  (ds/get-fragment c))
+  (let [fragment (ds/get-fragment c)
+        config (cf/get-config c)]
+    (if (empty? config)
+      fragment
+      (assoc fragment :config config))))
 
 (defn get-fragment
   ([classname]
