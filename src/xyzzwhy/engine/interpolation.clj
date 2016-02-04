@@ -4,12 +4,12 @@
 
 (defn- prep
   [s]
-  (when (fr/prep? s)
+  (when (fr/prep? (:fragment s))
     (-> s :fragment fr/prep)))
 
 (defn- article
   [s]
-  (when (fr/article? s)
+  (when (fr/article? (:fragment s))
     (-> s :fragment fr/article)))
 
 (defn interpolate
