@@ -1,5 +1,7 @@
 (ns xyzzwhy.engine.substitution
-  (:require [xyzzwhy.engine.fragment :as fr]
+  (:require [xyzzwhy.engine
+             [config :as cf]
+             [fragment :as fr]]
             [clojure.string :as str]))
 
 ;;
@@ -71,8 +73,10 @@
 
 (defmethod get-substitution :default
   [fragment sub]
-  (let [sub' (val sub)]
-    {(key sub) (assoc sub' :fragment (fr/get-fragment (:class sub')))}))
+  (let [sub' (val sub)
+        subfrag (fr/get-fragment (:class sub'))
+        subfrag (update subfrag :config cf/merge-configs (:config sub'))]
+        {(key sub) (assoc sub' :fragment subfrag)}))
 
 (defn transclude
   [fragment]

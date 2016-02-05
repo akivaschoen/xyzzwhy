@@ -1,6 +1,7 @@
 (ns xyzzwhy.engine.fragment
-  (:require [xyzzwhy.datastore :as ds]
-            [xyzzwhy.util :as util :refer [any? pad]]))
+  (:require [xyzzwhy.engine.config :as cf]
+            [xyzzwhy.datastore :as ds]
+            [xyzzwhy.util :as util :refer [any?]]))
 
 ;;
 ;; Utilities
@@ -13,7 +14,7 @@
 
 (defn has-article?
   [s]
-  (if (re-find #"^(?:a|an|the)\s" s)
+  (if (re-find #"(?i)^(?:a|an|the)\s" s)
     true
     false))
 
@@ -82,7 +83,11 @@
 
 (defmethod get-fragment* :default
   [c _]
-  (ds/get-fragment c))
+  (let [fragment (ds/get-fragment c)
+        config (cf/get-config c)]
+    (if (empty? config)
+      fragment
+      (assoc fragment :config config))))
 
 (defn get-fragment
   ([classname]
