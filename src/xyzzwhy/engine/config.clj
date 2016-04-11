@@ -35,3 +35,10 @@
 (defn config?
   [fragment]
   (contains? fragment :config))
+
+(defn check-config
+  [fragment option]
+  (and (config? fragment)
+       (or (not (contains? (:config fragment) (option-complement option)))
+           (contains? (:config fragment) option)))) 
+
