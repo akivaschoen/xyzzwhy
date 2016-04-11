@@ -42,7 +42,7 @@
 
 (defn prep?
   [fragment]
-  (and (not (contains? (:config fragment) :no-prep))
+  (and (contains? (:config fragment) :prep))
        (contains? fragment :prep)))
 
 (defn prep

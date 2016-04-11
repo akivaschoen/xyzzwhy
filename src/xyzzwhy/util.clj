@@ -28,7 +28,7 @@
 
 (defn chance
   "Returns true if a randomly chosen percentile is less
-  than or equal toc."
+  than or equal to c."
   [c]
   (if (<= (+ 1 (rand-int 100)) c)
     true
