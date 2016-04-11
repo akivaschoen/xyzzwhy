@@ -35,12 +35,11 @@
      :aot :all}]
 
    :dev
-   [:dev-config
-    :twitter
+   [:twitter
     {:env {:dev true}
      :source-paths ["dev"]
      :dependencies [[expectations "2.1.4"]
-                    [leiningen "2.6.0"]]}]}
+                    [leiningen "2.6.1"]]}]}
 
   :repl-options
   {:init-ns user

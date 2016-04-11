@@ -10,6 +10,7 @@
           (:config (ds/get-metadata c))))
 
 (declare option-complement?)
+
 (defn merge-configs
   "Merges c2 into c1 with c1 taking precedence."
   [c1 c2]
@@ -31,3 +32,6 @@
   [option config]
   (contains? config (option-complement option)))
 
+(defn config?
+  [fragment]
+  (contains? fragment :config))

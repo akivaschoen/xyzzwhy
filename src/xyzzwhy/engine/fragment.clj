@@ -28,7 +28,8 @@
 
 (defn article?
   [fragment]
-  (contains? (:config fragment) :article))
+  (or (not (contains? (:config fragment) :no-article))
+      (contains? (:config fragment) :article))
 
 (defn article
   "Returns a fragment's article if specified or 'a' or 'an' as appropriate."
@@ -42,8 +43,10 @@
 
 (defn prep?
   [fragment]
-  (and (not (contains? (:config fragment) :no-prep))
-       (contains? fragment :prep)))
+  (if (and (contains? (:config fragment) :prep)
+           (contains? fragment :prep))
+    true
+    false))
 
 (defn prep
   "Returns a fragment's preposition, randomly chosen."
