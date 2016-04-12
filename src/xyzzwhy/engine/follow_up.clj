@@ -7,8 +7,10 @@
 
 (defn follow-up?
   [fragment]
-  (cf/check-config fragment :follow-up))
+  (and (contains? fragment :follow-up)
+       (not (cf/check-config fragment :no-follow-up))
+       (util/chance 25)))
 
 (defn follow-up
   [fragment]
-  (-> fragment :fragment :follow-up :fragment util/pick :text))
+  (-> fragment :follow-up :fragment util/pick :text))
