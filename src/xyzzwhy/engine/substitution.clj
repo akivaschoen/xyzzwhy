@@ -1,8 +1,11 @@
 (ns xyzzwhy.engine.substitution
   (:require [xyzzwhy.engine
-             [config :as cf]
+             [configuration :as cf]
+             [follow-up :as fu]
              [fragment :as fr]]
-            [clojure.string :as str]))
+            [clojure.string :as str]
+            [xyzzwhy.engine.follow-up :as fu]
+            [xyzzwhy.util :as util]))
 
 ;;
 ;; Utilities
@@ -49,45 +52,41 @@
     :possessive "its"
     :compound "itself"))
 
-(defn get-sub
-  "Given a reference number, returns the appropriate substitution."
-  ([fragment ref]
-   (get (:sub fragment) ref))
-  ([fragment follow-up ref]
-   (if (contains? (:sub follow-up) ref)
-     (get-sub follow-up ref)
-     (get-sub fragment ref))))
+(defn sub
+  [fragment ref]
+  (get (:sub fragment) ref))
 
-(defmulti get-substitution
+(defmulti sub-with
   "Returns a fragment to be used for a substitution."
-  (fn [_ sub] (-> sub val :class)))
+  (fn [item _] (-> item val :class)))
 
-(defmethod get-substitution :gender
-  [fragment sub]
+(defmethod sub-with :gender
+  [item fragment]
   (let [gender' (-> (:sub fragment)
-                    (find (:ref sub))
+                    (find (:ref item))
                     val
                     :fragment
                     :gender)]
-    {(key sub) (assoc-in sub [:fragment :text] (gender gender' (:case sub)))}))
+    {(key item) (assoc-in item [:fragment :text] (gender gender' (:case item)))}))
 
-(defmethod get-substitution :default
-  [fragment sub]
-  (let [sub' (val sub)
-        subfrag (fr/get-fragment (:class sub'))
-        subfrag (update subfrag :config cf/merge-configs (:config sub'))]
-    {(key sub) (merge sub' subfrag)}))
+(defmethod sub-with :default
+  [item fragment]
+  (let [itemval (val item)
+        newitem (fr/fragment (:class itemval))
+        newitem (update newitem :config cf/combine (:config itemval))]
+    {(key sub) (merge itemval newitem)}))
 
 (defn transclude
   [fragment]
-  (reduce #(conj %1 (get-substitution fragment %2)) {} (:sub fragment)))
+  (reduce (fn [acc item]
+            (conj acc (sub-with fragment item)))
+          {}
+          (:sub fragment)))
 
 (defn substitute
   "Populates fragment's substitutions with appropriate fragments."
   [fragment]
-  (if (sub? fragment)
-    (assoc fragment :sub (reduce (fn [acc item]
-                                   (conj acc (get-substitution fragment item)))
-                                 {}
-                                 (:sub fragment)))
-    fragment))
+  (cond-> fragment
+    (sub? fragment) (assoc :sub (transclude fragment))
+    (fu/follow-up? fragment) fu/follow-up
+    ))

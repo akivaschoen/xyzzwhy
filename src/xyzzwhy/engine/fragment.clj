@@ -1,5 +1,5 @@
 (ns xyzzwhy.engine.fragment
-  (:require [xyzzwhy.engine.config :as cf]
+  (:require [xyzzwhy.engine.configuration :as cf]
             [xyzzwhy.datastore :as ds]
             [xyzzwhy.util :as util :refer [any?]]))
 
@@ -23,12 +23,12 @@
 ;; Fragment Configuration
 ;;
 (defn no-groups?
-  [config]
-  (any? config :no-groups))
+  [fragment]
+  (cf/has? fragment :no-groups))
 
 (defn article?
   [fragment]
-  (cf/check-config fragment :article))
+  (cf/has? fragment :article))
 
 (defn article
   "Returns a fragment's article if specified or 'a' or 'an' as appropriate."
@@ -42,7 +42,7 @@
 
 (defn prep?
   [fragment]
-  (and (not (cf/check-config fragment :no-prep))
+  (and (not (cf/has? fragment :no-prep))
        (contains? fragment :prep)))
 
 (defn prep
@@ -53,19 +53,19 @@
 
 
 ;;
-;; get-fragment (I dare you)
+;; Yon fragment fetchery
 ;;
-(defn- get-metadata
-  [c]
-  (ds/get-metadata c))
+(defn- metadata
+  [classname]
+  (ds/get-metadata classname))
 
-(defmulti get-fragment*
-  "Given a class c, returns a random item
+(defmulti fragment*
+  "Given a classname, returns a random item
   from the corpus."
-  (fn [c _] c))
+  (fn [classname _] classname))
 
-(defmethod get-fragment* :actor
-  [c config]
+(defmethod fragment* :actor
+  [classname config]
   (let [persons (ds/get-class :persons)
         animals (ds/get-class :animals)
         actors (apply merge persons animals)
@@ -74,23 +74,23 @@
                  actors)]
     (-> actors util/pick)))
 
-(defmethod get-fragment* :person
-  [c config]
+(defmethod fragment* :person
+  [classname config]
   (let [persons (if (no-groups? config)
                   (remove #(= :group (-> % :gender)) (ds/get-class :persons))
                   (ds/get-class :persons))]
        (-> persons util/pick)))
 
-(defmethod get-fragment* :default
-  [c _]
-  (let [fragment (ds/get-fragment c)
-        config (cf/get-config c)]
+(defmethod fragment* :default
+  [classname _]
+  (let [fragment (ds/get-fragment classname)
+        config (cf/configure classname)]
     (if (empty? config)
       fragment
       (assoc fragment :config config))))
 
-(defn get-fragment
+(defn fragment
   ([classname]
-   (get-fragment classname nil))
+   (fragment classname nil))
   ([classname config]
-   (get-fragment* classname config)))
+   (fragment* classname config)))
