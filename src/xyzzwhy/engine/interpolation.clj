@@ -1,8 +1,6 @@
 (ns xyzzwhy.engine.interpolation
   (:require [clojure.string :as str]
-            [xyzzwhy.engine
-             [fragment :as fr]
-             [follow-up :as fu]]
+            [xyzzwhy.engine.fragment :as fr]
             [xyzzwhy.util :as util]))
 
 (defn- prep
@@ -22,8 +20,5 @@
    (let [s (val sub)
          text (str (prep s)
                    (article s)
-                   (:text s))
-         f (update fragment :text str/replace (str "%" (key sub)) text)]
-     (if (fu/follow-up? s)
-       (util/append f (fu/follow-up s))
-       f))))
+                   (:text s))] 
+     (update fragment :text str/replace (str "%" (key sub)) text))))
