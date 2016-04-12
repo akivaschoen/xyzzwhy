@@ -1,5 +1,6 @@
 (ns xyzzwhy.engine.config
   (:require [clojure.string :as str]
+            [clojure.set :as sets]
             [xyzzwhy.datastore :as ds]))
 
 (defn get-config
@@ -12,14 +13,17 @@
 (declare option-complement?)
 
 (defn merge-configs
-  "Merges c2 into c1 with c1 taking precedence."
+  "Merges c2 into c1 with c2 taking precedence."
   [c1 c2]
-  (reduce (fn [acc opt]
-            (if (option-complement? opt c1)
-              acc
-              (conj acc opt)))
-          c1
-          c2))
+  (let [c (sets/union c1 c2)]
+    (reduce (fn [acc opt]
+              (let [opp (option-complement opt)]
+                (if (and (str/starts-with? (name opt) "no-")
+                         (contains? c opp))
+                  (disj acc opp)
+                  acc)))
+              c
+              c)))
 
 (defn option-complement
   [c]
@@ -35,3 +39,8 @@
 (defn config?
   [fragment]
   (contains? fragment :config))
+
+(defn check-config
+  [fragment option]
+  (and (config? fragment)
+       (contains? (:config fragment) option)))
