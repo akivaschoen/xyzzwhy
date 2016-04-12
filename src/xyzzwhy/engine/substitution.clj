@@ -1,10 +1,8 @@
 (ns xyzzwhy.engine.substitution
   (:require [xyzzwhy.engine
              [configuration :as cf]
-             [follow-up :as fu]
              [fragment :as fr]]
             [clojure.string :as str]
-            [xyzzwhy.engine.follow-up :as fu]
             [xyzzwhy.util :as util]))
 
 ;;
@@ -52,6 +50,44 @@
     :possessive "its"
     :compound "itself"))
 
+
+;;
+;; Yon Follow-Uppery
+;;
+(declare sub transclude)
+
+(defn follow-up?
+  [fragment]
+  (and (contains? fragment :follow-up)
+       (not (cf/has? fragment :no-follow-up))
+       #_(util/chance 25)))
+
+(defn follow-up
+  [fragment]
+  (let [follow (-> fragment :follow-up :fragment util/pick)]
+    (if (sb/sub? follow)
+      (-> follow
+          (assoc :sub (transclude follow)))
+      (util/append fragment (:text follow)))))
+
+(comment
+  ([fragment follow-up ref]
+   (if (contains? (:sub follow-up) ref)
+     (sub follow-up ref)
+     (sub fragment ref)))
+
+  (defn handle-fu-sub
+    [fragment]
+    (let [f (fu/follow-up fragment)]
+      (println f)
+      (util/append fragment f))))
+
+
+
+
+;;
+;; Yon Substitutionarium
+;;
 (defn sub
   [fragment ref]
   (get (:sub fragment) ref))
@@ -88,5 +124,5 @@
   [fragment]
   (cond-> fragment
     (sub? fragment) (assoc :sub (transclude fragment))
-    (fu/follow-up? fragment) fu/follow-up
+    (follow-up? fragment) follow-up
     ))
