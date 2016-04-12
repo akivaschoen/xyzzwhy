@@ -74,11 +74,9 @@
 (defmethod get-substitution :default
   [fragment sub]
   (let [sub' (val sub)
-        subfrag (fr/get-fragment (:class sub'))]
-       ;; subfrag (if (cf/config? subfrag)
-       ;;           (update subfrag :config cf/merge-configs (:config sub'))
-       ;;           subfrag)]
-        {(key sub) (assoc sub' :fragment subfrag)}))
+        subfrag (fr/get-fragment (:class sub'))
+        subfrag (update subfrag :config cf/merge-configs (:config sub'))]
+    {(key sub) (merge sub' subfrag)}))
 
 (defn transclude
   [fragment]
