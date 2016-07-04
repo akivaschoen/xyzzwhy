@@ -37,7 +37,7 @@
     (if (has-article? text)
       (:text fragment)
       (if (contains? fragment :article)
-        (-> (:fragment article) util/pick)
+        (-> (:fragment article) util/pick second)
         (str (a-or-an (-> fragment :text)) " ")))))
 
 (defn prep?
@@ -48,7 +48,7 @@
 (defn prep
   "Returns a fragment's preposition, randomly chosen."
   [fragment]
-  (when-let [prep (:prep fragment)]
+  (let [prep (:prep fragment)]
     (str (-> prep util/pick) " ")))
 
 
@@ -60,8 +60,7 @@
   (ds/get-metadata classname))
 
 (defmulti fragment*
-  "Given a classname, returns a random item
-  from the corpus."
+  "Given a classname, returns a random item from the corpus."
   (fn [classname _] classname))
 
 (defmethod fragment* :actor
@@ -72,14 +71,14 @@
         actors (if (no-groups? config)
                  (remove #(= :group (-> % :gender)) actors)
                  actors)]
-    (-> actors util/pick)))
+    (-> actors util/pick second)))
 
 (defmethod fragment* :person
   [classname config]
   (let [persons (if (no-groups? config)
                   (remove #(= :group (-> % :gender)) (ds/get-class :persons))
                   (ds/get-class :persons))]
-       (-> persons util/pick)))
+    (-> persons util/pick)))
 
 (defmethod fragment* :default
   [classname _]
@@ -90,6 +89,7 @@
       (assoc fragment :config config))))
 
 (defn fragment
+  "Returns a raw adventure fragment of event classname."
   ([classname]
    (fragment classname nil))
   ([classname config]

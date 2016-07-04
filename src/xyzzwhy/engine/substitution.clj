@@ -1,8 +1,9 @@
 (ns xyzzwhy.engine.substitution
-  (:require [xyzzwhy.engine
+  (:require [clojure.string :as str]
+            [xyzzwhy.engine
              [configuration :as cf]
-             [fragment :as fr]]
-            [clojure.string :as str]
+             [fragment :as fr]
+             [interpolation :refer :all]]
             [xyzzwhy.util :as util]))
 
 ;;
@@ -16,7 +17,7 @@
 ;;
 ;; Pronouns
 ;;
-(defmulti ^:private gender (fn [gender _] gender))
+(defmulti gender (fn [gender _] gender))
 
 (defmethod gender :male
   [_ c]
@@ -54,75 +55,55 @@
 ;;
 ;; Yon Follow-Uppery
 ;;
-(declare sub transclude)
+(declare sub-with transclude)
 
 (defn follow-up?
   [fragment]
-  (and (contains? fragment :follow-up)
-       (not (cf/has? fragment :no-follow-up))
-       #_(util/chance 25)))
+  (letfn [(pred [f] (and (contains? f :follow-up)
+                         #_(not (cf/has? fragment :no-follow-up))
+                         #_(util/chance 25)))]
+    (if (= (type fragment) clojure.lang.MapEntry)
+      (pred (val fragment))
+      (pred fragment))))
 
 (defn follow-up
   [fragment]
-  (let [follow (-> fragment :follow-up :fragment util/pick)]
-    (if (sb/sub? follow)
-      (-> follow
-          (assoc :sub (transclude follow)))
-      (util/append fragment (:text follow)))))
-
-(comment
-  ([fragment follow-up ref]
-   (if (contains? (:sub follow-up) ref)
-     (sub follow-up ref)
-     (sub fragment ref)))
-
-  (defn handle-fu-sub
-    [fragment]
-    (let [f (fu/follow-up fragment)]
-      (println f)
-      (util/append fragment f))))
-
-
+  (-> fragment :follow-up :fragment util/pick :text))
 
 
 ;;
 ;; Yon Substitutionarium
 ;;
-(defn sub
-  [fragment ref]
-  (get (:sub fragment) ref))
-
 (defmulti sub-with
   "Returns a fragment to be used for a substitution."
-  (fn [item _] (-> item val :class)))
+  (fn [_ item] (:class item)))
 
 (defmethod sub-with :gender
-  [item fragment]
-  (let [gender' (-> (:sub fragment)
+  [fragment item]
+  (let [sex (-> (:sub fragment)
                     (find (:ref item))
                     val
                     :fragment
                     :gender)]
-    {(key item) (assoc-in item [:fragment :text] (gender gender' (:case item)))}))
+    {(key item) (assoc-in item [:fragment :text] (gender sex (:case item)))}))
 
 (defmethod sub-with :default
-  [item fragment]
-  (let [itemval (val item)
-        newitem (fr/fragment (:class itemval))
-        newitem (update newitem :config cf/combine (:config itemval))]
-    {(key sub) (merge itemval newitem)}))
+  [_ item]
+  (merge item (-> (fr/fragment (:class item))
+                  (update :config cf/combine (:config item)))))
 
 (defn transclude
-  [fragment]
-  (reduce (fn [acc item]
-            (conj acc (sub-with fragment item)))
-          {}
-          (:sub fragment)))
+  [fragment item]
+  ;; (assoc fragment :sub (mapv #(sb/sub-with fragment %) (:sub fragment)))
+  (let [item' (sub-with fragment item)
+        follow (for [f (:sub fragment)]
+                 (when (follow-up? f)
+                   (follow-up f)))]
+    (update fragment :text util/append follow)))
 
 (defn substitute
   "Populates fragment's substitutions with appropriate fragments."
   [fragment]
   (cond-> fragment
-    (sub? fragment) (assoc :sub (transclude fragment))
-    (follow-up? fragment) follow-up
-    ))
+    sub? transclude
+    true interpolate))
