@@ -18,10 +18,10 @@
   [c1 c2]
   (let [c (sets/union c1 c2)]
     (reduce (fn [acc option]
-              (let [opp (option-complement option)]
+              (let [option' (option-complement option)]
                 (if (and (str/starts-with? (name option) "no-")
-                         (contains? c option))
-                  (disj acc option)
+                         (contains? c option'))
+                  (disj acc option')
                   acc)))
               c
               c)))
