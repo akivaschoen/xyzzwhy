@@ -10,21 +10,21 @@
 
 (defn append
   "Adds text to fragment's :text and returns fragment."
-  [fragment text]
-  (if (< (+ (-> fragment :text count)
-            (count text))
+  [oldtext newtext]
+  (if (< (+ (-> oldtext count)
+            (count newtext))
          139)
-    (update fragment :text #(str (pad %1) text))
-    fragment))
+    (str (pad oldtext) newtext)
+    oldtext))
 
-(defn capitalize
+(defn capitalize-first
   "Capitalizes fragment's sentences."
   [fragment]
   (assoc fragment :text (-> (:text fragment)
                             (string/replace #"^[a-z]+" #(string/capitalize %1))
                             (string/replace #"(\.\s)([a-z]+)"
-                                         #(str (second %1)
-                                               (string/capitalize (nth %1 2)))))))
+                                            #(str (second %1)
+                                                  (string/capitalize (nth %1 2)))))))
 
 (defn chance
   "Returns true if a randomly chosen percentile is less
@@ -46,19 +46,20 @@
   (rand-int (count collection)))
 
 (defn format-text
-  "Applies a preposition and/or an article to a given thing."
+  "Applies a preposition and/or an article to a given fragment."
   [thing]
   (let [text    (:text thing)
         article (:article thing)
-        preps   (:preps thing)
+        prep    (:prep thing)
         config  (:config thing)]
     (cond->> text
       (and (not-empty article)
            (not-any? #(= :no-article %) config))  (str article " ")
-      (and (not-empty preps)
-           (not-any? #(= :no-prep %) config))     (str (nth preps (randomize preps)) " "))))
+      (and (not-empty prep)
+           (not-any? #(= :no-prep %) config))     (str (nth prep (randomize prep)) " "))))
 
 (defn pluralize
+  "A simple pluralizer able really only to handle xyzzwhy's classes."
   [c]
   (let [c' (name c)]
     (cond
@@ -83,8 +84,42 @@
   (update fragment :text #(typo/smarten %)))
 
 (defn pick
+  "Given a vector, randomly chooses one item; if a string,
+  simply returns the string."
   [c]
-  (loop [sel c]
-    (if (vector? sel)
-      (recur (nth sel (rand-int (count sel))))
-      sel)))
+  (if (vector? c)
+    (nth c (randomize c))
+    c))
+
+(defn- cast-values
+  "Returns a map with its values converted to keywords as necessary."
+  [m]
+  (reduce (fn [acc item]
+            (assoc acc (first item)
+                   (cond
+                     (= :text (first item)) (second item)
+                     (= :prep (first item)) (second item)
+                     (= :article (first item)) (second item)
+                     (= :config (first item)) (into #{} (map keyword (second item)))
+                     (string? (second item)) (keyword (second item))
+                     :else
+                     (second item))))
+          {}
+          m))
+
+(defn fix-sub-map
+  "Returns a map with its :sub entries' keys converted from keyword to
+  integer.
+
+  (RethinkDB converts them the opposite way when storing.)"
+  [fragment]
+  (if (contains? fragment :sub)
+    (assoc fragment :sub
+           (reduce (fn [acc item]
+                     (assoc acc (-> (key item)
+                                    name
+                                    Integer/parseInt)
+                            (cast-values (val item))))
+                   {}
+                   (:sub fragment)))
+    fragment))

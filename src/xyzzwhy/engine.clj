@@ -1,6 +1,5 @@
 (ns xyzzwhy.engine
   (:require [xyzzwhy.engine
-             [follow-up :as fu]
              [fragment :as fr]
              [interpolation :refer :all]
              [substitution :as sb]]
@@ -27,7 +26,7 @@
 ;; is formatted xyzzwhy.text.
 (def ^:private corpus {})
 
-(defn- initialize-corpus-from-namespace
+(defn initialize-corpus-from-namespace
   [c n]
   (reduce #(conj %1 @(-> (ns-resolve n (symbol %2)) deref future))
           c
@@ -40,7 +39,7 @@
 ;;
 
 
-(defn- choose-event
+(defn choose-event
   "Returns a random event type on which a tweet is built."
   []
   (-> corpus :events util/pick))
@@ -53,12 +52,12 @@
                                       subs/get-subs))
 
 ;; Secondary and Tertiary Events
-(defn- get-tertiary
+(defn get-tertiary
   []
   (-> (frag/get-fragment :tertiary-event)
       process-fragment))
 
-(defn- get-secondary
+(defn get-secondary
   []
   (let [s (-> (frag/get-fragment :secondary-event)
               process-fragment)]
@@ -66,7 +65,7 @@
       (util/append s (:text (get-tertiary)))
       s)))
 
-(defn- get-extras
+(defn get-extras
   [tweet event]
   (case event
     :location-event (if (util/chance 75)
