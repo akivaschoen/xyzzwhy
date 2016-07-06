@@ -1,4 +1,4 @@
-(ns xyzzwhy.bot-test
+(ns xyzzwhy.test.bot
   (:require [clojure.test :refer :all]
             [xyzzwhy.bot :refer :all]))
 
