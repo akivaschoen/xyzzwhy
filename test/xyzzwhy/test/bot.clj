@@ -1,7 +1,4 @@
 (ns xyzzwhy.test.bot
-  (:require [clojure.test :refer :all]
-            [xyzzwhy.bot :refer :all]))
+  (:require [clojure.test :refer [are deftest is testing] :as t]
+            [xyzzwhy.bot :as sut]))
 
-(deftest a-test
-  (testing "FIXME, I fail."
-    (is (= 0 1))))
