@@ -31,14 +31,10 @@
   (cf/has? fragment :article))
 
 (defn article
-  "Returns a fragment's article if specified or 'a' or 'an' as appropriate."
   [fragment]
-  (let [text (-> fragment :text)]
-    (if (has-article? text)
-      (:text fragment)
-      (if (contains? fragment :article)
-        (-> (:fragment article) util/pick second)
-        (str (a-or-an (-> fragment :text)) " ")))))
+  (if-let [article (:article fragment)]
+    (str (-> article util/pick) " ")
+    ""))
 
 (defn prep?
   [fragment]
@@ -48,8 +44,9 @@
 (defn prep
   "Returns a fragment's preposition, randomly chosen."
   [fragment]
-  (let [prep (:prep fragment)]
-    (str (-> prep util/pick) " ")))
+  (if-let [prep (:prep fragment)]
+    (str (-> prep util/pick) " ")
+    ""))
 
 
 ;;
