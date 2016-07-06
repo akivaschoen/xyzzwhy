@@ -76,26 +76,26 @@
 ;;
 (defmulti sub-with
   "Returns a fragment to be used for a substitution."
-  (fn [_ item] (:class item)))
+  (fn [sub] (:class sub)))
 
-(defmethod sub-with :gender
-  [fragment item]
-  (let [sex (-> (:sub fragment)
-                    (find (:ref item))
-                    val
-                    :fragment
-                    :gender)]
-    {(key item) (assoc-in item [:fragment :text] (gender sex (:case item)))}))
+#_(defmethod sub-with :gender
+    [fragment sub]
+    (let [sex (-> (:sub fragment)
+                  (find (:ref sub))
+                  val
+                  :fragment
+                  :gender)]
+      {(key sub) (assoc-in sub [:fragment :text] (gender sex (:case sub)))}))
 
 (defmethod sub-with :default
-  [_ item]
-  (merge item (-> (fr/fragment (:class item))
-                  (update :config cf/combine (:config item)))))
+  [sub]
+  (merge sub (-> (fr/fragment (:class sub))
+                 (update :config cf/combine (:config sub)))))
 
 (defn transclude
-  [fragment item]
+  [fragment sub]
   ;; (assoc fragment :sub (mapv #(sb/sub-with fragment %) (:sub fragment)))
-  (let [item' (sub-with fragment item)
+  (let [sub' (sub-with fragment sub)
         follow (for [f (:sub fragment)]
                  (when (follow-up? f)
                    (follow-up f)))]

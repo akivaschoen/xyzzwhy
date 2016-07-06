@@ -27,11 +27,14 @@
               c)))
 
 (defn option-complement
-  [classname]
-  (let [c (name classname)]
-    (if (str/starts-with? c "no-")
-      (keyword (str/replace c #"^no-" ""))
-      (keyword (str "no-" c)))))
+  [option]
+  (let [opt (name option)]
+    (keyword
+     (cond
+       (empty? opt) nil
+       (str/starts-with? opt "no-") (str/replace opt #"^no-" "")
+       :else
+       (str "no-" opt)))))
 
 (defn option-complement?
   [option config]
