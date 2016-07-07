@@ -1,5 +1,5 @@
 (ns xyzzwhy.engine.fragment
-  (:require [xyzzwhy.engine.configuration :as cf]
+  (:require [xyzzwhy.engine.configuration :refer [has?] :as cf]
             [xyzzwhy.datastore :as ds]
             [xyzzwhy.util :as util :refer [any?]]))
 
@@ -12,7 +12,7 @@
     "a"
     "an"))
 
-(defn has-article?
+(defn starts-with-article?
   [s]
   (if (re-find #"(?i)^(?:a|an|the)\s" s)
     true
@@ -24,11 +24,11 @@
 ;;
 (defn no-groups?
   [fragment]
-  (cf/has? fragment :no-groups))
+  (has? fragment :no-groups))
 
 (defn article?
   [fragment]
-  (cf/has? fragment :article))
+  (has? fragment :article))
 
 (defn article
   [fragment]
@@ -38,7 +38,7 @@
 
 (defn prep?
   [fragment]
-  (and (not (cf/has? fragment :no-prep))
+  (and (not (has? fragment :no-prep))
        (contains? fragment :prep)))
 
 (defn prep

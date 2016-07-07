@@ -4,25 +4,24 @@
              [configuration :as cf]
              [fragment :as sut]]))
 
-
 (deftest test-a-or-an
   (is (= (sut/a-or-an "animal") "an")
       "Expected article 'an' with a word that begins with a vowel.")
   (is (= (sut/a-or-an "book") "a")
       "Expected article 'a' with a word that begins with a consonant."))
 
-(deftest test-has-article?
-  (is (true? (sut/has-article? "a book"))
+(deftest test-starts-with-article?
+  (is (true? (sut/starts-with-article? "a book"))
       "Expected a true result with a string beginning with the 'a'.")
-  (is (true? (sut/has-article? "an animal"))
+  (is (true? (sut/starts-with-article? "an animal"))
       "Expected a true result with a string beginning with the article 'an'.")
-  (is (true? (sut/has-article? "the wall"))
+  (is (true? (sut/starts-with-article? "the wall"))
       "Expected a true result with a string beginning with the article 'the'.")
-  (is (false? (sut/has-article? "animal"))
+  (is (false? (sut/starts-with-article? "animal"))
       "Expected a false result with a string beginning with the non-article 'an'.")
-  (is (false? (sut/has-article? "alpaca"))
+  (is (false? (sut/starts-with-article? "alpaca"))
       "Expected a false result with a string beginning with the non-article 'a'.")
-  (is (false? (sut/has-article? "theocrat"))
+  (is (false? (sut/starts-with-article? "theocrat"))
       "Expected a false result with a string beginning with the non-article 'the'."))
 
 (deftest test-prep
