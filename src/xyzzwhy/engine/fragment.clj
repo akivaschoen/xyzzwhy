@@ -80,7 +80,7 @@
 (defmethod fragment* :default
   [classname _]
   (let [fragment (ds/get-fragment classname)
-        config (cf/configure classname)]
+        config (:config (ds/get-metadata classname))]
     (if (empty? config)
       fragment
       (assoc fragment :config config))))
