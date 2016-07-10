@@ -11,11 +11,7 @@
   [text target]
   (str (util/pad text) target))
 
-(defn choose-event
+(defn event
   "Returns a random event type on which a tweet is built."
   []
-  (-> (ds/events)
-      util/pick
-      first
-      val
-      keyword))
+  (:name (ds/get-event)))
