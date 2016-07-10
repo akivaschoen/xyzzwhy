@@ -3,15 +3,17 @@
              [fragment :as fr]
              [interpolation :refer :all]
              [substitution :as sb]]
-            [xyzzwhy.datastore :as ds]
             [xyzzwhy.util :as util]))
 
-(defn prepend
-  "Adds text to the front of another string."
-  [text target]
-  (str (util/pad text) target))
+(def tweetmap
+  {:tweet nil
+   :event nil})
 
 (defn event
-  "Returns a random event type on which a tweet is built."
-  []
-  (:name (ds/get-event)))
+  [tweetmap]
+  (assoc tweetmap :event (fr/fragment :event)))
+
+(defn event-fragment
+  [tweetmap]
+  (let [fragment (fr/fragment (get-in tweetmap [:event :name]))]
+    (update tweetmap :event merge fragment)))

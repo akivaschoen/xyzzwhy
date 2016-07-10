@@ -3,9 +3,9 @@
             [xyzzwhy.datastore :as ds]
             [xyzzwhy.util :as util :refer [any?]]))
 
-;;
+;; -------
 ;; Utilities
-;;
+;; -------
 (defn a-or-an
   [s]
   (if (nil? (re-find #"(?i)^[aeiou]" s))
@@ -18,10 +18,9 @@
     true
     false))
 
-
-;;
+;; -------
 ;; Fragment Configuration
-;;
+;; -------
 (defn no-groups?
   [fragment]
   (has? fragment :no-groups))
@@ -48,46 +47,36 @@
     (str (-> prep util/pick) " ")
     ""))
 
-
-;;
+;; -------
 ;; Yon fragment fetchery
-;;
-(defn- metadata
-  [classname]
-  (ds/get-metadata classname))
-
-(defmulti fragment*
+;; -------
+(defmulti fragment
   "Given a classname, returns a random item from the corpus."
-  (fn [classname _] classname))
+  (fn [classname] classname))
 
-(defmethod fragment* :actor
-  [classname config]
-  (let [persons (ds/get-class :persons)
-        animals (ds/get-class :animals)
-        actors (apply merge persons animals)
-        actors (if (no-groups? config)
-                 (remove #(= :group (-> % :gender)) actors)
-                 actors)]
-    (-> actors util/pick second)))
+#_(defmethod fragment :actor
+    [classname config]
+    (let [persons (ds/get-class :persons)
+          animals (ds/get-class :animals)
+          actors (apply merge persons animals)
+          actors (if (no-groups? config)
+                   (remove #(= :group (-> % :gender)) actors)
+                   actors)]
+      (-> actors util/pick second)))
 
-(defmethod fragment* :person
-  [classname config]
-  (let [persons (if (no-groups? config)
-                  (remove #(= :group (-> % :gender)) (ds/get-class :persons))
-                  (ds/get-class :persons))]
-    (-> persons util/pick)))
+#_(defmethod fragment :person
+    [classname]
+    (let [config (:config (ds/get-metadata classname))
+          persons (if (no-groups? config)
+                    (remove #(= :group (-> % :gender)) (ds/get-class :persons))
+                    (ds/get-class :persons))]
+      (-> persons util/pick)))
 
-(defmethod fragment* :default
-  [classname _]
-  (let [fragment (ds/get-fragment classname)
-        config (:config (ds/get-metadata classname))]
-    (if (empty? config)
-      fragment
-      (assoc fragment :config config))))
+(defmethod fragment :event
+  [_]
+  (ds/get-event))
 
-(defn fragment
-  "Returns a raw adventure fragment of event classname."
-  ([classname]
-   (fragment classname nil))
-  ([classname config]
-   (fragment* classname config)))
+(defmethod fragment :default
+  [classname]
+  (merge (ds/get-metadata classname)
+         (ds/get-fragment classname)))
