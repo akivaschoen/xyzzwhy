@@ -33,7 +33,7 @@
   [fragment]
   (if-let [article (:article fragment)]
     (str (-> article util/pick) " ")
-    ""))
+    (str (a-or-an (:text fragment)) " ")))
 
 (defn prep?
   [fragment]
