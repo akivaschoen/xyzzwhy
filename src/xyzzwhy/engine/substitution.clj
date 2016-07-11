@@ -101,9 +101,21 @@
                    (follow-up f)))]
     (update fragment :text util/append follow)))
 
-(defn substitute
+#_(defn substitute
   "Populates fragment's substitutions with appropriate fragments."
   [fragment]
   (cond-> fragment
     sub? transclude
     true interpolate))
+
+(defmulti substitute
+  (fn [sub] (:class sub)))
+
+(defmethod substitute :default
+  [sub]
+  (merge sub (-> (fr/fragment (:class sub))
+                 (update :config cf/combine (:config sub)))))
+
+(defn substitutions
+  [subv]
+  (mapv substitute subv))
