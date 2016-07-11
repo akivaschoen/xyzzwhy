@@ -34,3 +34,15 @@
                            (:tweet tweetmap)
                            (get-in tweetmap [:event :sub]))]
     (assoc tweetmap :tweet tweet-text)))
+
+(defn follow-up
+  [tweetmap]
+  (let [text (sb/find-follow-up (get-in tweetmap [:event :sub]))
+        text (if (empty? text)
+               (sb/find-follow-up (vector (:event tweetmap)))
+               text)]
+    (if (empty? text)
+      tweetmap
+      (-> tweetmap
+          (update :tweet str " " text)
+          (update-in [:event :config] conj :no-follow-up)))))

@@ -35,6 +35,14 @@
     (str (-> article util/pick) " ")
     (str (a-or-an (:text fragment)) " ")))
 
+(defn follow-up?
+  ([fragment]
+   (follow-up? fragment 50))
+  ([fragment percentage]
+   (and (not (has? fragment :no-follow-up))
+        (contains? fragment :follow-up)
+        (util/chance percentage))))
+
 (defn prep?
   [fragment]
   (and (not (has? fragment :no-prep))

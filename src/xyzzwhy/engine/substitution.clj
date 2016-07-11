@@ -6,17 +6,16 @@
              [interpolation :refer :all]]
             [xyzzwhy.util :as util]))
 
-;;
+;; -------
 ;; Utilities
-;;
+;; -------
 (defn sub?
   [fragment]
   (contains? fragment :sub))
 
-
-;;
+;; -------
 ;; Pronouns
-;;
+;; -------
 (defmulti gender (fn [gender _] gender))
 
 (defmethod gender :male
@@ -51,29 +50,28 @@
     :possessive "its"
     :compound "itself"))
 
-
-;;
+;; -------
 ;; Yon Follow-Uppery
-;;
-(declare sub-with transclude)
-
-(defn follow-up?
-  [fragment]
-  (letfn [(pred [f] (and (contains? f :follow-up)
-                         #_(not (cf/has? fragment :no-follow-up))
-                         #_(util/chance 25)))]
-    (if (= (type fragment) clojure.lang.MapEntry)
-      (pred (val fragment))
-      (pred fragment))))
-
+;; -------
 (defn follow-up
   [fragment]
   (-> fragment :follow-up :fragment util/pick :text))
 
+(defn find-follow-up
+  ([fragment]
+   (find-follow-up fragment 33.33))
+  ([fragment percentage]
+   (reduce (fn [text fragment]
+             (if (and (empty? text)
+                      (fr/follow-up? fragment percentage))
+               (follow-up fragment)
+               (reduced text)))
+           ""
+           fragment)))
 
-;;
+;; -------
 ;; Yon Substitutionarium
-;;
+;; -------
 (defmulti sub-with
   "Returns a fragment to be used for a substitution."
   (fn [sub] (:class sub)))
@@ -91,22 +89,6 @@
   [sub]
   (merge sub (-> (fr/fragment (:class sub))
                  (update :config cf/combine (:config sub)))))
-
-(defn transclude
-  [fragment sub]
-  ;; (assoc fragment :sub (mapv #(sb/sub-with fragment %) (:sub fragment)))
-  (let [sub' (sub-with fragment sub)
-        follow (for [f (:sub fragment)]
-                 (when (follow-up? f)
-                   (follow-up f)))]
-    (update fragment :text util/append follow)))
-
-#_(defn substitute
-  "Populates fragment's substitutions with appropriate fragments."
-  [fragment]
-  (cond-> fragment
-    sub? transclude
-    true interpolate))
 
 (defmulti substitute
   (fn [sub] (:class sub)))
