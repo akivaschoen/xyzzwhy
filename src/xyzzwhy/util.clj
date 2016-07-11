@@ -58,21 +58,6 @@
       (and (not-empty prep)
            (not-any? #(= :no-prep %) config))     (str (nth prep (randomize prep)) " "))))
 
-(defn pluralize
-  "A simple pluralizer able really only to handle xyzzwhy's classes."
-  [c]
-  (let [c' (name c)]
-    (cond
-      (.endsWith c' "s") c'
-      (.endsWith c' "y") (-> c' (subs 0 (-> c' count dec)) (str "ies"))
-      :else
-      (str c' "s"))))
-
-(defn read-asset
-  "Eases the syntax required to read information from the current asset."
-  ([segment]    (get-in segment [:asset :text]))
-  ([segment k]  (get-in segment [:asset (keyword k)])))
-
 (defn optional?
   "Returns true if a follow-up is optional."
   [follow-up]
@@ -90,36 +75,3 @@
   (if (vector? c)
     (nth c (randomize c))
     c))
-
-(defn- cast-values
-  "Returns a map with its values converted to keywords as necessary."
-  [m]
-  (reduce (fn [acc item]
-            (assoc acc (first item)
-                   (cond
-                     (= :text (first item)) (second item)
-                     (= :prep (first item)) (second item)
-                     (= :article (first item)) (second item)
-                     (= :config (first item)) (into #{} (map keyword (second item)))
-                     (string? (second item)) (keyword (second item))
-                     :else
-                     (second item))))
-          {}
-          m))
-
-(defn fix-sub-map
-  "Returns a map with its :sub entries' keys converted from keyword to
-  integer.
-
-  (RethinkDB converts them the opposite way when storing.)"
-  [fragment]
-  (if (contains? fragment :sub)
-    (assoc fragment :sub
-           (reduce (fn [acc item]
-                     (assoc acc (-> (key item)
-                                    name
-                                    Integer/parseInt)
-                            (cast-values (val item))))
-                   {}
-                   (:sub fragment)))
-    fragment))
