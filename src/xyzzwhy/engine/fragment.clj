@@ -21,10 +21,6 @@
 ;; -------
 ;; Fragment Configuration
 ;; -------
-(defn no-groups?
-  [fragment]
-  (has? fragment :no-groups))
-
 (defn article?
   [fragment]
   (has? fragment :article))
@@ -43,6 +39,10 @@
         (contains? fragment :follow-up)
         (util/chance percentage))))
 
+(defn no-groups?
+  [fragment]
+  (has? fragment :no-groups))
+
 (defn prep?
   [fragment]
   (and (not (has? fragment :no-prep))
@@ -54,6 +54,10 @@
   (if-let [prep (:prep fragment)]
     (str (-> prep util/pick) " ")
     ""))
+
+(defn sub?
+  [fragment]
+  (contains? fragment :sub))
 
 ;; -------
 ;; Yon fragment fetchery

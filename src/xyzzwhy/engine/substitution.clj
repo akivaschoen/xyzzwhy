@@ -9,9 +9,7 @@
 ;; -------
 ;; Utilities
 ;; -------
-(defn sub?
-  [fragment]
-  (contains? fragment :sub))
+
 
 ;; -------
 ;; Pronouns

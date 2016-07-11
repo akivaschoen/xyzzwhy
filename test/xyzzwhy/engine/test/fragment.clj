@@ -1,8 +1,6 @@
 (ns xyzzwhy.engine.test.fragment
   (:require [clojure.test :refer [are deftest is testing] :as t]
-            [xyzzwhy.engine
-             [configuration :as cf]
-             [fragment :as sut]]))
+            [xyzzwhy.engine.fragment :as sut]))
 
 (deftest test-a-or-an
   (is (= (sut/a-or-an "animal") "an")
@@ -34,3 +32,8 @@
         "Expected an 'a '.")
     (is (empty? (sut/prep {:no-prep "a"}))
         "Expected an empty string.")))
+
+(deftest test-sub?
+  (testing "Testing sub? check"
+    (is (= (sut/sub? {:sub "Our subkey" :other "Some other key"}) true))
+    (is (= (sut/sub? {:other "Some other key"}) false))))
