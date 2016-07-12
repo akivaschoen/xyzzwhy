@@ -75,3 +75,11 @@
   (if (vector? c)
     (nth c (randomize c))
     c))
+
+(defn pick-indexed
+  "Given a vector, randomly chooses one item, returning a map
+  of the index and the value."
+  [c]
+  (when (vector? c)
+    (let [item (nth c (randomize c))]
+      (first {(.indexOf c item) item}))))
