@@ -40,11 +40,6 @@
   [fragment]
   (update fragment :text #(string/replace % #"^(@\w+)" ".$1")))
 
-(defn randomize
-  "Produces a random number within the bounds of a given collection."
-  [collection]
-  (rand-int (count collection)))
-
 (defn format-text
   "Applies a preposition and/or an article to a given fragment."
   [thing]
@@ -56,7 +51,7 @@
       (and (not-empty article)
            (not-any? #(= :no-article %) config))  (str article " ")
       (and (not-empty prep)
-           (not-any? #(= :no-prep %) config))     (str (nth prep (randomize prep)) " "))))
+           (not-any? #(= :no-prep %) config))     (str (rand-nth prep) " "))))
 
 (defn optional?
   "Returns true if a follow-up is optional."
@@ -73,7 +68,7 @@
   simply returns the string."
   [c]
   (if (vector? c)
-    (nth c (randomize c))
+    (rand-nth c)
     c))
 
 (defn pick-indexed
@@ -81,5 +76,5 @@
   of the index and the value."
   [c]
   (when (vector? c)
-    (let [item (nth c (randomize c))]
+    (let [item (rand-nth c)]
       (first {(.indexOf c item) item}))))
