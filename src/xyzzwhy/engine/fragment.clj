@@ -35,9 +35,12 @@
   ([fragment]
    (follow-up? fragment 50))
   ([fragment percentage]
-   (and (not (has? fragment :no-follow-up))
-        (contains? fragment :follow-up)
-        (util/chance percentage))))
+   (if (and (not (has? fragment :no-follow-up))
+            (contains? fragment :follow-up))
+     (if (has? (:follow-up fragment) :optional)
+       (util/chance percentage)
+       true)
+     false)))
 
 (defn no-groups?
   [fragment]

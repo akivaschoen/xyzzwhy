@@ -7,11 +7,6 @@
             [xyzzwhy.util :as util]))
 
 ;; -------
-;; Utilities
-;; -------
-
-
-;; -------
 ;; Pronouns
 ;; -------
 (defmulti gender (fn [gender _] gender))
@@ -49,25 +44,6 @@
     :compound "itself"))
 
 ;; -------
-;; Yon Follow-Uppery
-;; -------
-(defn follow-up
-  [fragment]
-  (-> fragment :follow-up :fragment util/pick :text))
-
-(defn find-follow-up
-  ([fragment]
-   (find-follow-up fragment 33.33))
-  ([fragment percentage]
-   (reduce (fn [text fragment]
-             (if (and (empty? text)
-                      (fr/follow-up? fragment percentage))
-               (follow-up fragment)
-               (reduced text)))
-           ""
-           fragment)))
-
-;; -------
 ;; Yon Substitutionarium
 ;; -------
 (defmulti sub-with
@@ -99,3 +75,33 @@
 (defn substitutions
   [subv]
   (mapv substitute subv))
+
+;; -------
+;; Yon Follow-Uppery
+;; -------
+(defn follow-up*
+  ([fragment]
+   (follow-up* fragment util/pick))
+  ([fragment pickfn]
+   (-> fragment :follow-up :fragment pickfn)))
+
+(defmulti follow-up
+  (fn [fragment] (:type fragment)))
+
+(defmethod follow-up :event
+  [fragment]
+  (if (fr/follow-up? fragment)
+    (let [follow (follow-up* fragment util/pick-indexed)]
+      (if (fr/sub? (val follow))
+        (update-in [:follow-up :fragment (key follow)] (substitutions (val follow)))
+        fragment))
+    fragment))
+
+  #_([fragment percentage]
+   (reduce (fn [text fragment]
+             (if (and (empty? text)
+                      (fr/follow-up? fragment percentage))
+               (follow-up fragment)
+               (reduced text)))
+           ""
+           fragment))
