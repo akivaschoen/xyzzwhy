@@ -11,21 +11,25 @@
    :event nil})
 
 (defn event
-  [tweetmap]
-  (assoc tweetmap :event (fr/fragment :event)))
+  ([]
+   (event tweetmap))
+  ([tweetmap]
+  (assoc tweetmap :event (fr/fragment :event))))
 
 (defn event-fragment
   [tweetmap]
-  (let [fragment (fr/fragment (get-in tweetmap [:event :name]))]
+  (let [fragment (fr/fragment (get-in tweetmap [:event :class]))]
     (update tweetmap :event merge fragment)))
 
 (defn tweet-text
   [tweetmap]
-  (assoc tweetmap :tweet (get-in tweetmap [:event :text])))
+  (assoc tweetmap :tweet (util/pick (get-in tweetmap [:event :text]))))
 
 (defn substitutes
   [tweetmap]
-  (update-in tweetmap [:event :sub] #(mapv sb/substitute %)))
+  (if (fr/sub? (:event tweetmap))
+    (update-in tweetmap [:event :sub] #(mapv sb/substitute %))
+    tweetmap))
 
 (defn transclude
   [tweetmap]
@@ -37,12 +41,18 @@
 
 (defn follow-up
   [tweetmap]
-  (let [text (sb/find-follow-up (get-in tweetmap [:event :sub]))
+  (let [text (sb/follow-up (get-in tweetmap [:event :sub]))
         text (if (empty? text)
-               (sb/find-follow-up (vector (:event tweetmap)))
+               (sb/follow-up (vector (:event tweetmap)))
                text)]
     (if (empty? text)
       tweetmap
       (-> tweetmap
           (update :tweet str " " text)
           (update-in [:event :config] conj :no-follow-up)))))
+
+(def tweet-factory (comp follow-up transclude substitutes tweet-text event-fragment event))
+
+(defn tweet
+  []
+  (tweet-factory tweetmap))
