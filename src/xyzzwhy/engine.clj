@@ -41,15 +41,7 @@
 
 (defn follow-up
   [tweetmap]
-  (let [text (sb/follow-up (get-in tweetmap [:event :sub]))
-        text (if (empty? text)
-               (sb/follow-up (vector (:event tweetmap)))
-               text)]
-    (if (empty? text)
-      tweetmap
-      (-> tweetmap
-          (update :tweet str " " text)
-          (update-in [:event :config] conj :no-follow-up)))))
+  (sb/follow-up :event tweetmap))
 
 (def tweet-factory (comp follow-up transclude substitutes tweet-text event-fragment event))
 
