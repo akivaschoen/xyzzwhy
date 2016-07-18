@@ -4,17 +4,13 @@
 
 (def any? (complement not-any?))
 
-(defn pad
-  [text]
-  (str text " "))
-
 (defn append
   "Adds text to fragment's :text and returns fragment."
   [oldtext newtext]
   (if (< (+ (-> oldtext count)
             (count newtext))
          139)
-    (str (pad oldtext) newtext)
+    (str oldtext newtext)
     oldtext))
 
 (defn capitalize-first
@@ -29,21 +25,18 @@
 (defn chance
   "Returns true if a randomly chosen percentile is less
   than or equal to c."
-  [c]
-  (if (<= (+ 1 (rand-int 100)) c)
-    true
-    false))
+  ([]
+   (chance 50))
+  ([c]
+   (if (<= (+ 1 (rand-int 100)) c)
+     true
+     false)))
 
-(defn dot-prefix
+(defn prefix-dot
   "Prefix's fragment's :text with a period if it begins with
   an @mention."
   [fragment]
   (update fragment :text #(string/replace % #"^(@\w+)" ".$1")))
-
-(defn randomize
-  "Produces a random number within the bounds of a given collection."
-  [collection]
-  (rand-int (count collection)))
 
 (defn format-text
   "Applies a preposition and/or an article to a given fragment."
@@ -56,7 +49,7 @@
       (and (not-empty article)
            (not-any? #(= :no-article %) config))  (str article " ")
       (and (not-empty prep)
-           (not-any? #(= :no-prep %) config))     (str (nth prep (randomize prep)) " "))))
+           (not-any? #(= :no-prep %) config))     (str (rand-nth prep) " "))))
 
 (defn optional?
   "Returns true if a follow-up is optional."
@@ -73,5 +66,13 @@
   simply returns the string."
   [c]
   (if (vector? c)
-    (nth c (randomize c))
+    (rand-nth c)
     c))
+
+(defn pick-indexed
+  "Given a vector, randomly chooses one item, returning a map
+  of the index and the value."
+  [c]
+  (when (vector? c)
+    (let [item (rand-nth c)]
+      (first {(.indexOf c item) item}))))

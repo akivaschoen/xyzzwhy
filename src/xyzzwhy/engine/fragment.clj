@@ -23,7 +23,7 @@
 ;; -------
 (defn article?
   [fragment]
-  (has? fragment :article))
+  (not (has? fragment :no-article)))
 
 (defn article
   [fragment]
@@ -32,12 +32,8 @@
     (str (a-or-an (:text fragment)) " ")))
 
 (defn follow-up?
-  ([fragment]
-   (follow-up? fragment 50))
-  ([fragment percentage]
-   (and (not (has? fragment :no-follow-up))
-        (contains? fragment :follow-up)
-        (util/chance percentage))))
+  [fragment]
+  (contains? fragment :follow-up))
 
 (defn no-groups?
   [fragment]
