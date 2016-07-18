@@ -4,17 +4,13 @@
 
 (def any? (complement not-any?))
 
-(defn pad
-  [text]
-  (str text " "))
-
 (defn append
   "Adds text to fragment's :text and returns fragment."
   [oldtext newtext]
   (if (< (+ (-> oldtext count)
             (count newtext))
          139)
-    (str (pad oldtext) newtext)
+    (str oldtext newtext)
     oldtext))
 
 (defn capitalize-first
@@ -29,12 +25,14 @@
 (defn chance
   "Returns true if a randomly chosen percentile is less
   than or equal to c."
-  [c]
-  (if (<= (+ 1 (rand-int 100)) c)
-    true
-    false))
+  ([]
+   (chance 50))
+  ([c]
+   (if (<= (+ 1 (rand-int 100)) c)
+     true
+     false)))
 
-(defn dot-prefix
+(defn prefix-dot
   "Prefix's fragment's :text with a period if it begins with
   an @mention."
   [fragment]

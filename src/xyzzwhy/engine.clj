@@ -1,7 +1,6 @@
 (ns xyzzwhy.engine
   (:require [xyzzwhy.engine
              [fragment :as fr]
-             [interpolation :as in]
              [substitution :as sb]]
             [xyzzwhy.util :as util]
             [clojure.string :as str]))
@@ -33,15 +32,11 @@
 
 (defn transclude
   [tweetmap]
-  (let [tweet-text (reduce (fn [text sub]
-                             (in/interpolate text sub))
-                           (:tweet tweetmap)
-                           (get-in tweetmap [:event :sub]))]
-    (assoc tweetmap :tweet tweet-text)))
+  (sb/transclude :event tweetmap nil))
 
 (defn follow-up
   [tweetmap]
-  (sb/follow-up :event tweetmap))
+  (sb/follow-up tweetmap))
 
 (def tweet-factory (comp follow-up transclude substitutes tweet-text event-fragment event))
 

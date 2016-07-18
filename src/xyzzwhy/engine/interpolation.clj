@@ -4,18 +4,18 @@
             [xyzzwhy.util :as util]))
 
 (defn prep
-  [s]
-  (when (fr/prep? s)
+  [c s]
+  (when (not (contains? c :no-prep))
     (fr/prep s)))
 
 (defn article
-  [s]
-  (when (fr/article? s)
+  [c s]
+  (when (not (contains? c :no-article))
     (fr/article s)))
 
 (defn interpolate
-  [tweet-text sub]
-  (let [text (str (prep sub)
-                  (article sub)
-                  (:text sub))] 
-    (str/replace tweet-text (str "%" (:token sub)) text)))
+  [config text sub]
+  (let [subtext (str (prep config sub)
+                     (article config sub)
+                     (util/pick (:text sub)))]
+    (str/replace text (str "%" (:token sub)) subtext)))
