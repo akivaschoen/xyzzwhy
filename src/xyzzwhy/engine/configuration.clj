@@ -70,9 +70,9 @@
   ([fragment tweetmap option]
    (contains? (merge (config tweetmap) (config fragment)) option)))
 
-(defn optional?
+(defn required?
   [fragment]
-  (has? fragment :optional))
+  (has? fragment :required))
 
 (defn follow-up?
   ([fragment]
