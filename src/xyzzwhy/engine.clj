@@ -13,12 +13,11 @@
   ([]
    (event tweetmap))
   ([tweetmap]
-  (assoc tweetmap :event (fr/fragment :event))))
+   (assoc tweetmap :event (fr/fragment :event nil))))
 
 (defn event-fragment
   [tweetmap]
-  (let [fragment (fr/fragment (get-in tweetmap [:event :class]))]
-    (update tweetmap :event merge fragment)))
+  (assoc tweetmap :event (fr/fragment (:event tweetmap))))
 
 (defn tweet-text
   [tweetmap]
@@ -27,7 +26,7 @@
 (defn substitutes
   [tweetmap]
   (if (fr/sub? (:event tweetmap))
-    (update-in tweetmap [:event :sub] #(mapv sb/substitute %))
+    (update-in tweetmap [:event :sub] sb/substitutions)
     tweetmap))
 
 (defn transclude

@@ -60,36 +60,34 @@
 ;; -------
 (defmulti fragment
   "Given a classname, returns a random item from the corpus."
-  (fn [classname _] classname))
+  (fn [sub] (:class sub)))
 
 (defmethod fragment :person
-  [_ config]
-  (let [metadata (ds/get-metadata :person)
-        persons (ds/get-class :person)]
-    (let [conf (cf/merge-into (cf/config config) (cf/config metadata))]
-      (if (contains? conf :no-groups)
-        (dissoc (util/pick (remove #(= (-> % :gender) "group") persons)) :id)
-        (dissoc (util/pick persons) :id)))))
+  [sub]
+  (let [persons (ds/get-class :person)
+        s (update sub :config cf/merge-into (cf/config (ds/get-metadata :person)))]
+      (if (contains? (cf/config s) :no-groups)
+        (merge s (dissoc (util/pick (vec (remove #(= (-> % :gender) "group") persons))) :id))
+        (merge s (dissoc (util/pick persons) :id)))))
 
 (defmethod fragment :actor
-  [_ config]
+  [sub]
   (let [classname (if (util/chance)
                     :person
                     :animal)
-        metadata (ds/get-metadata classname)
-        actors (ds/get-class classname)]
-    (if (= classname :person)
-      (let [conf (cf/merge-into (cf/config config) (cf/config metadata))]
-        (if (contains? conf :no-groups)
-          (dissoc (util/pick (remove #(= (-> % :gender) "group") actors)) :id)
-          (dissoc (util/pick actors) :id)))
-      (dissoc (util/pick actors) :id))))
+        actors (ds/get-class classname)
+        s (update sub :config cf/merge-into (cf/config (ds/get-metadata classname)))]
+    (if (and (= classname :person)
+             (contains? (cf/config s) :no-groups))
+        (merge (dissoc (util/pick (vec (remove #(= (-> % :gender) "group") actors))) :id) s)
+        (merge (dissoc (util/pick actors) :id) s))))
 
 (defmethod fragment :event
-  [_ _]
+  [_]
   (ds/get-event))
 
 (defmethod fragment :default
-  [classname _]
-  (merge (ds/get-metadata classname)
-         (ds/get-fragment classname)))
+  [sub]
+  (let [classname (:class sub)
+        s (update sub :config cf/merge-into (cf/config (ds/get-metadata classname)))]
+    (merge (ds/get-fragment classname) s)))

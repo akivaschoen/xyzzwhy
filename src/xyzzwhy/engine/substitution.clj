@@ -99,8 +99,7 @@
 
 (defmethod substitute :default
   [sub]
-  (merge sub (-> (fr/fragment (:class sub))
-                 (update :config cf/combine (:config sub)))))
+  (fr/fragment sub))
 
 (defn substitutions
   [subv]
