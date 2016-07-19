@@ -60,31 +60,36 @@
 ;; -------
 (defmulti fragment
   "Given a classname, returns a random item from the corpus."
-  (fn [classname] classname))
+  (fn [classname _] classname))
 
-#_(defmethod fragment :actor
-    [classname config]
-    (let [persons (ds/get-class :persons)
-          animals (ds/get-class :animals)
-          actors (apply merge persons animals)
-          actors (if (no-groups? config)
-                   (remove #(= :group (-> % :gender)) actors)
-                   actors)]
-      (-> actors util/pick second)))
+(defmethod fragment :person
+  [_ config]
+  (let [metadata (ds/get-metadata :person)
+        persons (ds/get-class :person)]
+    (let [conf (cf/merge-into (cf/config config) (cf/config metadata))]
+      (if (contains? conf :no-groups)
+        (dissoc (util/pick (remove #(= (-> % :gender) "group") persons)) :id)
+        (dissoc (util/pick persons) :id)))))
 
-#_(defmethod fragment :person
-    [classname]
-    (let [config (:config (ds/get-metadata classname))
-          persons (if (no-groups? config)
-                    (remove #(= :group (-> % :gender)) (ds/get-class :persons))
-                    (ds/get-class :persons))]
-      (-> persons util/pick)))
+(defmethod fragment :actor
+  [_ config]
+  (let [classname (if (util/chance)
+                    :person
+                    :animal)
+        metadata (ds/get-metadata classname)
+        actors (ds/get-class classname)]
+    (if (= classname :person)
+      (let [conf (cf/merge-into (cf/config config) (cf/config metadata))]
+        (if (contains? conf :no-groups)
+          (dissoc (util/pick (remove #(= (-> % :gender) "group") actors)) :id)
+          (dissoc (util/pick actors) :id)))
+      (dissoc (util/pick actors) :id))))
 
 (defmethod fragment :event
-  [_]
+  [_ _]
   (ds/get-event))
 
 (defmethod fragment :default
-  [classname]
+  [classname _]
   (merge (ds/get-metadata classname)
          (ds/get-fragment classname)))
