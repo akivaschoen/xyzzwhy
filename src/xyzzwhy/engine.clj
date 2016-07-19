@@ -13,7 +13,7 @@
   ([]
    (event tweetmap))
   ([tweetmap]
-   (assoc tweetmap :event (fr/fragment :event nil))))
+   (assoc tweetmap :event (fr/fragment {:class :event}))))
 
 (defn event-fragment
   [tweetmap]
