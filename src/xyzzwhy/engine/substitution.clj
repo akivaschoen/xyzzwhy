@@ -117,9 +117,9 @@
             (let [skey (first sub)
                   sval (second sub)]
               (if (and (fr/follow-up? sval)
-                       (or (and (cf/optional? sval)
+                       (or (and (not (cf/required? sval))
                                 (util/chance))
-                           (not (cf/optional? sval))))
+                           (cf/required? sval)))
                 (let [path [:follow-up :fragment]
                       follow (util/pick-indexed (get-in sval path))]
                   (if (fr/sub? (val follow))
