@@ -1,9 +1,9 @@
-{:events {:action-event 30 ;; event name and weight
+{:events {:action-event 40 ;; event name and weight
+          :location-event 40
           :actor-event 20
           :attack-event 20
-          :diagnosis-event 10
           :dialogue-event 10
-          :location-event 30
+          :diagnosis-event 1
           :news-event 1
           :thought-event 1}
  :subs [:actor-action
