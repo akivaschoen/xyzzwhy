@@ -13,11 +13,11 @@
   ([]
    (event tweetmap))
   ([tweetmap]
-   (assoc tweetmap :event (fr/fragment {:class :event}))))
+   (update tweetmap :event fr/fragment :event)))
 
 (defn event-fragment
   [tweetmap]
-  (assoc tweetmap :event (fr/fragment (:event tweetmap))))
+  (update tweetmap :event fr/fragment))
 
 (defn tweet-text
   [tweetmap]

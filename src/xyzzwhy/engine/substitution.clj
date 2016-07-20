@@ -153,14 +153,15 @@
                 (update :tweet str (get-in tweetmap (conj p :text)))
                 (cf/add :no-follow-up)))
           (-> tweetmap
-              (update tweetmap :tweet str (:text (val follow)))
+              (update :tweet str (:text (val follow)))
               (cf/add :no-follow-up)))))))
 
 (defn follow-up
   [tweetmap]
-  (if (cf/follow-up? tweetmap)
+  (if (and (cf/follow-up? tweetmap)
+           (util/any? #{"required"} (get-in tweetmap [:event :follow-up :config])))
+    (follow-up* :event tweetmap)
     (let [tmap (follow-up* :sub tweetmap)]
       (if (cf/follow-up? tmap)
         (follow-up* :event tweetmap)
-        tmap))
-    tweetmap))
+        tmap))))

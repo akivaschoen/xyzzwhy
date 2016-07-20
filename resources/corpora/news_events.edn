@@ -1,0 +1,6 @@
+{:class :news-event
+ :type :event
+ :fragment [{:text ["You read morning paper: '%0'."
+                    "You turn on the radio and hear a news broadcast: '%0'."
+                    "You pick up a magazine and read '%0'."]
+             :sub [{:token 0 :class :headline}]}]}

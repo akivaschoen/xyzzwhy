@@ -1,0 +1,172 @@
+{:class :action-event
+ :type :event
+ :fragment [{:text "An overhead loudspeaker crackles to life"
+             :follow-up {:config #{:required}
+                         :fragment [{:text ", 'Citizen! Report immediately to the nearest oddly-angled inner tube.'"}
+                                    {:text ", 'Citizen! Report immediately to the nearest self-incrimination booth.'"}
+                                    {:text ", 'Citizen! Report immediately to the nearest Java stacktrace.'"}
+                                    {:text ", 'Citizen! Report immediately to the bean simulator.'"}
+                                    {:text ", 'Citizen! Report immediately to the nearest certified manhole.'"}
+                                    {:text ", 'Citizen! Report immediately to the National Baby Oil Slip-n-Slide.'"}
+                                    {:text ", 'Citizen! Report immediately to the Hall of Uncomfortable Touching.'"}
+                                    {:text ", 'Citizen! Report immediately to the Bakery of Unravelled Cinnamon Buns.'"}
+                                    {:text ", 'Citizen! Stop that.'"}
+                                    {:text ", 'Citizen! Report immediately to the Readers' Digest Condensation Camp.'"}
+                                    {:text ", 'Citizen! Open up your textbook and turn to the chapter concerning your death.'"}
+                                    {:text ", 'Citizen! Report immediately to the Out-of-Control Rototiller Museum.'"}
+                                    {:text ", 'Citizen! Report immediately to the nearest mandatory prison hug.'"}
+                                    {:text ", 'Citizen! Report immediately to the nearest sanctioned dogpile.'"}
+                                    {:text ", 'Citizen! Report immediately to the nearest full-contact Bible study group.'"}
+                                    {:text ", 'Citizen! Report immediately to the mannequin factory.'"}
+                                    {:text ", 'Citizen! Report immediately to The Garbagerie.'"}
+                                    {:text ", 'Citizen! Report immediately to Stall #3.'"}
+                                    {:text ", 'Citizen! Just shut up already.'"}
+                                    {:text ". The announcement is completely garbled. The loudspeaker switches off with a squawk."}]}}
+
+            {:text "In the distance, "
+             :follow-up {:config #{:required}
+                         :fragment [{:text "you hear %0 let the bass drop."
+                                     :sub [{:token 0 :class :person}]}
+                                    {:text "you hear %0 drop the mic."
+                                     :sub [{:token 0 :class :person}]}
+                                    {:text "you hear %0 get wicked."
+                                     :sub [{:token 0 :class :person}]}
+                                    {:text "you hear %0 shake it off."
+                                     :sub [{:token 0 :class :person}]}]}}
+
+            {:text "You start spinning around and around. "
+             :follow-up {:config #{:required}
+                         :fragment [{:text "%0 looks unimpressed."
+                                     :sub [{:token 0 :class :person}]}
+                                    {:text "%0 faints."
+                                     :sub [{:token 0 :class :person}]}
+                                    {:text "You drill straight into the crust of the earth."}
+                                    {:text "You gracefully lift off into a blue sky."}
+                                    {:text "You gracefully lift off into a blue sky never to be seen again."}
+                                    {:text "You gracefully lift off, go sideways, and crash into a building."}]}}
+
+            {:text "The phone rings. "
+             :follow-up {:config #{:required}
+                         :fragment [{:text "%0 stares at it %1. Eventually the ringing stops."
+                                     :sub [{:token 0 :class :person}
+                                           {:token 1 :class :adverb}]}
+                                    {:text "%0 watches as it starts to melt, the sound of the ring slowing and burbling to a stop."
+                                     :sub [{:token 0 :class :person}]}
+                                    {:text "%0 picks it up, listens a moment, shrieks, and slams the phone down again."
+                                     :sub [{:token 0 :class :person}]}
+                                    {:text "%0 picks it up, says, 'It's for you,' but you're longer there."
+                                     :sub [{:token 0 :class :person}]}]}}
+
+            {:text "The radio crackles to life. "
+             :follow-up {:config #{:required}
+                         :fragment [{:text "It sounds like someone with a cold is eating Rice Krispies." }
+                                    {:text "A hollow voice intones, '%0'"
+                                     :sub [{:token 0 :class :intonation}]}
+                                    {:text "Ketchup begins seeping through the speaker holes."}
+                                    {:text "It continues to crackle to life. It's still crackling. It's on fire."}
+                                    {:text "An announcer shouts, 'They found rice on Mars!'"}
+                                    {:text "A news report is on about %0 %1."
+                                     :sub [{:token 0 :class :disaster}
+                                           {:token 1 :class :location :config #{:no-prep}}]}
+                                    {:text "%0 solemnly says, '%1'"
+                                     :sub [{:token 0 :class :person}
+                                           {:token 1 :class :intonation}]}]}}
+
+            {:text "You awake from a nightmare. You saw yourself %0. The corpse of %1 was there, holding %2."
+             :sub [{:token 0 :class :location}
+                   {:token 1 :class :person :config #{:no-groups}}
+                   {:token 2 :class :item}]}
+
+            {:text "You check your inventory. "
+             :follow-up {:config #{:required}
+                         :fragment [{:text "You are empty-handed."}
+                                    {:text "You are carrying %0."
+                                     :sub [{:token 0 :class :item}]}
+                                    {:text "You have %0 and %1."
+                                     :sub [{:token 0 :class :item}
+                                           {:token 1 :class :item}]}
+                                    {:text "You are carrying %0, %1, and %2."
+                                     :sub [{:token 0 :class :item}
+                                           {:token 1 :class :item}
+                                           {:token 2 :class :item}]}]}}
+
+            {:text "You eat %0."
+             :sub [{:token 0 :class :food}]
+             :follow-up {:fragment [{:text " %1 looks on %2."
+                                     :sub [{:token 1 :class :actor}
+                                           {:token 2 :class :adverb}]}]}}
+
+            {:text "You get tired of waiting for "
+             :follow-up {:config #{:required}
+                         :fragment [{:text "your Uber and decide to walk to %0 instead."
+                                     :sub [{:token 0 :class :location :config #{:no-prep}}]}
+                                    {:text "your private jet so you decide to walk to %0 instead."
+                                     :sub [{:token 0 :class :location :config #{:no-prep}}]}
+                                    {:text "the all-you-can-eat-buffet to open so you walk to %0 instead."
+                                     :sub [{:token 0 :class :location :config #{:no-prep}}]}]}}
+
+            {:text "You feel a little famished so you eat %0."
+             :sub [{:token 0 :class :food}]}
+
+            {:text "You find yourself being slowly teleported away. Very slowly. People are beginning to stare."}
+
+            {:text "You open up %0. "
+             :sub [{:token 0 :class :book}]
+             :follow-up {:config #{:required}
+                         :fragment [{:text "Someone has scribbled all over the margins. You throw it down on the floor in disgust."}
+                                    {:text "Someone has left a recipe for beef stew inside."}
+                                    {:text "You read a bit before tossing it over your shoulder and then doing the electric slide."}]}}
+
+            {:text "You peek out the window. "
+             :follow-up {:config #{:required}
+                         :fragment [{:text "%0 is messing around with your mailbox. You crouch in fear."
+                                     :sub [{:token 0 :class :person}]}
+                                    {:text "%0 is laying facedown in your flowerbed. You sink to your knees with worry."
+                                     :sub [{:token 0 :class :person}]}
+                                    {:text "%0 has set up a lemonade stand in your yard. It's on fire."
+                                     :sub [{:token 0 :class :person}]}
+                                    {:text "%0 has set up a lemonade stand in your yard. It's covered in bees."
+                                     :sub [{:token 0 :class :person}]}
+                                    {:text "%0 has set up a lemonade stand in your yard. The line stretches around the block."
+                                     :sub [{:token 0 :class :person}]}
+                                    {:text "%0 has set up a lemonade stand across the street. You feel oddly jealous."
+                                     :sub [{:token 0 :class :person}]}
+                                    {:text "%0 is struggling to start a chainsaw while staring at you. You bite your knuckle."
+                                     :sub [{:token 0 :class :person}]}
+                                    {:text "%0 is standing in your yard, painting a portrait of you peeking out the window."
+                                     :sub [{:token 0 :class :person}]}
+                                    {:text "Your entire house has been encased in a giant stone column."}]}}
+
+            {:text "You pick up %0"
+             :sub [{:token 0 :class :item}]
+             :follow-up {:config #{:required}
+                         :fragment [{:text "."}
+                                    {:text " and hold it close to your chest."}
+                                    {:text " and hold it up to %1's face."
+                                     :sub [{:token 1 :class :person}]}]}}
+
+            {:text "You start eating %0 and don't stop until you're done."
+             :sub [{:token 0 :class :food}]}
+
+            {:text "You start spinning around and around while "
+             :follow-up {:config #{:required}
+                         :fragment [{:text "%0 claps and cheers."
+                                     :sub [{:token 0 :class :person}]}
+                                    {:text "%0 cries and points."
+                                     :sub [{:token 0 :class :person}]}
+                                    {:text "%0 writes furiously on a clipboard."
+                                     :sub [{:token 0 :class :person}]}
+                                    {:text "%0 beams with pride."
+                                     :sub [{:token 0 :class :person}]}]}}
+
+             {:text "You startle %0 who drops %1 and runs away."
+              :sub [{:token 0 :class :person}
+                    {:token 1 :class :item}]}
+
+             {:text "You surprise %0. %1 drops %2 and runs away."
+              :sub [{:token 0 :class :person}
+                    {:token 1 :ref 0 :class :gender :case :subjective}
+                    {:token 2 :class :item}]}
+
+             {:text "You take a sip of %0."
+              :sub [u:token 0 :class :drink :config #{:no-article}u]}]}

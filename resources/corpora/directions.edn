@@ -1,0 +1,11 @@
+{:class :direction
+ :type :sub
+ :config #{:no-article}
+ :fragment [{:text "north"}
+            {:text "northeast"}
+            {:text "east"}
+            {:text "southeast"}
+            {:text "south"}
+            {:text "southwest"}
+            {:text "west"}
+            {:text "northwest"}]}
