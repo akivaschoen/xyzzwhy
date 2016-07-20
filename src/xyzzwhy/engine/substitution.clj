@@ -9,39 +9,30 @@
 ;; -------
 ;; Pronouns
 ;; -------
-(defmulti gender (fn [gender _] gender))
-
-(defmethod gender :male
-  [_ c]
-  (case c
-    :subjective "he"
-    :objective "him"
-    :possessive "his"
-    :compound "himself"))
-
-(defmethod gender :female
-  [_ c]
-  (case c
-    :subjective "she"
-    :objective "her"
-    :possessive "hers"
-    :compound "herself"))
-
-(defmethod gender :group
-  [_ c]
-  (case c
-    :subjective "they"
-    :objective "them"
-    :possessive "theirs"
-    :compound "themselves"))
-
-(defmethod gender :default
-  [_ c]
-  (case c
-    :subjective "it"
-    :objective "it"
-    :possessive "its"
-    :compound "itself"))
+(defn pronoun
+  "Returns a pronoun string for gender g and case c."
+  [g c]
+  (condp = g
+    :male (case c
+            :subjective "he"
+            :objective "him"
+            :possessive "his"
+            :compound "himself")
+    :female (case c
+              :subjective "she"
+              :objective "her"
+              :possessive "hers"
+              :compound "herself")
+    :group (case c
+             :subjective "they"
+             :objective "them"
+             :possessive "theirs"
+             :compound "themselves")
+    (case c
+      :subjective "it"
+      :objective "it"
+      :possessive "its"
+      :compound "itself")))
 
 ;; -------
 ;; Yon Transclusery
