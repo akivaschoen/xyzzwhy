@@ -1,4 +1,4 @@
-{:classname :adverb
+{:class :adverb
  :type :sub
  :config #{:no-article}
  :fragment [{:text "balefully"}

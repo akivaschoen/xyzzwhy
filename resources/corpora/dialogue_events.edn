@@ -1,4 +1,4 @@
-{:classname :dialogue-event
+{:class :dialogue-event
  :type :event
  :fragment [{:text "%0 %1"
              :sub [{:token 0 :class :person}

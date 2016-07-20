@@ -1,4 +1,4 @@
-{:classname :news-event
+{:class :news-event
  :type :event
  :fragment [{:text ["You read morning paper: '%0'."
                     "You turn on the radio and hear a news broadcast: '%0'."

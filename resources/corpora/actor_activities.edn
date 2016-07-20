@@ -1,4 +1,4 @@
-{:classname :actor-activity
+{:class :actor-activity
  :type :sub
  :fragment [{:text "%10 playing the organ."
              :sub [{:token 10 :class :adverb}]}

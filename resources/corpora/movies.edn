@@ -1,4 +1,4 @@
-{:classname :movie
+{:class :movie
  :type :sub
  :config #{:no-article}
  :fragment [{:text "Breakin' 2: Electric Boogaloo"}

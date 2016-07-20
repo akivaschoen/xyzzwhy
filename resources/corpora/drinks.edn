@@ -1,4 +1,4 @@
-{:classname :drink
+{:class :drink
  :type :sub
  :fragment [{:text "gravy"
              :article "a cup of"

@@ -1,4 +1,4 @@
-{:classname :action-event
+{:class :action-event
  :type :event
  :fragment [{:text "An overhead loudspeaker crackles to life"
              :follow-up {:config #{:required}

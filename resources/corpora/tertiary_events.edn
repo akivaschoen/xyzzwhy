@@ -1,4 +1,4 @@
-{:classname :tertiary-event
+{:class :tertiary-event
  :type :event
  :config #{:no-article}
  :fragment [{:text "A basketball bounces by."}

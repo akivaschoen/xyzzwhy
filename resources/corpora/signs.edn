@@ -1,4 +1,4 @@
-{:classname :sign
+{:class :sign
  :type :sub
  :config #{:no-article}
  :fragment [{:text "Burma shave!"}

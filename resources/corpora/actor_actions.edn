@@ -1,4 +1,4 @@
-{:classname :actor-action
+{:class :actor-action
  :type :sub
  :config #{:no-article}
  :fragment [{:text "attacks"}

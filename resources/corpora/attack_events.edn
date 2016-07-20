@@ -1,4 +1,4 @@
-{:classname :attack-event
+{:class :attack-event
  :type :event
  :fragment [{:text "%0 attacks you and knocks you out. You awake sometime later %1."
              :sub [{:token 0 :class :actor}

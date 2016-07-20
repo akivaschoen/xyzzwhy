@@ -1,4 +1,4 @@
-{:classname :location-event
+{:class :location-event
  :type :event
  :fragment [{:text "%0 prevents you from going %1 to %2."
              :sub [{:token 0 :class :obstacle}

@@ -1,4 +1,4 @@
-{:classname :noise
+{:class :noise
  :type :sub
  :fragment [{:text "explosion"
               :decorator {:prefix {:fragment [{:text "distant"}]}

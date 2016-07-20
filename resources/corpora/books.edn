@@ -1,4 +1,4 @@
-{:classname :book
+{:class :book
  :type :sub
  :config #{:no-article}
  :fragment [{:text "the Bible"

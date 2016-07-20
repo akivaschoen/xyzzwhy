@@ -1,4 +1,4 @@
-{:classname :headline
+{:class :headline
  :type :sub
  :config #{:no-article}
  ;; Thanks to Thinkpiece Bot for some of these

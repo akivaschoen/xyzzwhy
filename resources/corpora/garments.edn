@@ -1,4 +1,4 @@
-{:classname :garment
+{:class :garment
  :type :sub
  :fragment [{:text "belt"}
             {:text "clown suit"

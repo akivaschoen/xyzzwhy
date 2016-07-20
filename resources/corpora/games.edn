@@ -1,4 +1,4 @@
-{:classname :game
+{:class :game
  :type :sub
  :config #{:no-article}
  :fragment [{:text "Agricola"

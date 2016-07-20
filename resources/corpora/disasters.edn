@@ -1,4 +1,4 @@
-{:classname :disaster
+{:class :disaster
  :type :sub
  :fragment [{:text "avalanche"}
             {:text "duststorm"}

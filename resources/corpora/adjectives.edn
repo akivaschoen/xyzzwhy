@@ -1,4 +1,4 @@
-{:classname :adjective
+{:class :adjective
  :type :sub
  :config #{:no-article}
  :fragment [{:text "afraid"}

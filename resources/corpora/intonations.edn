@@ -1,4 +1,4 @@
-{:classname :intonation
+{:class :intonation
  :type :sub
  :config #{:no-article}
  :fragment [{:text "Clean up in aisle 8A."}

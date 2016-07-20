@@ -1,4 +1,4 @@
-{:classname :scent
+{:class :scent
  :type :sub
  :config #{:no-article}
  :fragment [{:text "acrid"}

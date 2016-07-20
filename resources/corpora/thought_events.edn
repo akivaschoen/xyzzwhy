@@ -1,4 +1,4 @@
-{:classname :thought-event
+{:class :thought-event
  :type :event
  :config #{:no-article}
  :fragment [{:text "You pause and think, '%20'"

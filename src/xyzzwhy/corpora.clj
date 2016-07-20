@@ -16,7 +16,7 @@
 
 (defn get-event
   []
-  {:classname (weighted-pick (:events (io/read-file "classes")))})
+  {:class (weighted-pick (:events (io/read-file "classes")))})
 
 (defn get-fragments
   [classname]

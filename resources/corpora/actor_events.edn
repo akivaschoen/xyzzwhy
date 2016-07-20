@@ -1,4 +1,4 @@
-{:classname :actor-event
+{:class :actor-event
  :type :event
  :fragment [{:text "%0 %1 %2."
              :sub [{:token 0 :class :actor}

@@ -1,4 +1,4 @@
-{:classname :location
+{:class :location
  :type :sub
  :fragment [{:text "airplane"
              :type :interior

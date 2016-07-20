@@ -1,4 +1,4 @@
-{:classname :dialogue
+{:class :dialogue
  :type :sub
  :config #{:no-article}
  :fragment [{:text "asks, 'Are you following me?'"}

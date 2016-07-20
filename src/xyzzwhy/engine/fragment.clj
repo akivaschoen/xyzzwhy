@@ -22,67 +22,63 @@
 ;; Fragment Configuration
 ;; -------
 (defn article?
-  [fragment]
-  (not (has? fragment :no-article)))
+  [fr]
+  (not (has? fr :no-article)))
 
 (defn article
-  [fragment]
-  (if-let [article (:article fragment)]
+  [fr]
+  (if-let [article (:article fr)]
     (str (-> article util/pick) " ")
-    (str (a-or-an (:text fragment)) " ")))
+    (str (a-or-an (:text fr)) " ")))
 
 (defn follow-up?
-  [fragment]
-  (contains? fragment :follow-up))
+  [fr]
+  (contains? fr :follow-up))
 
 (defn no-groups?
-  [fragment]
-  (has? fragment :no-groups))
+  [fr]
+  (has? fr :no-groups))
 
 (defn prep?
-  [fragment]
-  (and (not (has? fragment :no-prep))
-       (contains? fragment :prep)))
+  [fr]
+  (and (not (has? fr :no-prep))
+       (contains? fr :prep)))
 
 (defn prep
   "Returns a fragment's preposition, randomly chosen."
-  [fragment]
-  (if-let [prep (:prep fragment)]
+  [fr]
+  (if-let [prep (:prep fr)]
     (str (-> prep util/pick) " ")
     ""))
 
 (defn sub?
-  [fragment]
-  (contains? fragment :sub))
+  [fr]
+  (contains? fr :sub))
 
 ;; -------
 ;; Yon fragment fetchery
 ;; -------
 (defn pick-fragment
-  [fragment classname]
-  (let [fragments (corp/get-fragments classname)
-        fragment' (update fragment :config cf/merge-into (cf/config (corp/get-config classname)))]
-    (if (and (= classname :person)
-             (contains? (cf/config fragment') :no-groups))
-      (merge fragment' (dissoc (util/pick (vec (remove
-                                                 #(= (-> % :gender) :group)
-                                                 fragments))) :id))
-      (merge fragment' (dissoc (util/pick fragments) :id)))))
+  [fr cname]
+  (let [fragments (corp/get-fragments cname)
+        fr' (update fr :config cf/merge-into (cf/config (corp/get-config cname)))]
+    (if (and (= cname :person)
+             (contains? (cf/config fr') :no-groups))
+      (merge fr' (dissoc (util/pick (vec (remove
+                                                #(= (-> % :gender) :group)
+                                                fragments))) :id))
+      (merge fr' (dissoc (util/pick fragments) :id)))))
 
-(defmulti fragment
-  "Given a classname, returns a random item from the corpus."
-  (fn [fragment] (:class fragment)))
-
-(defmethod fragment :actor
-  [fragment]
-  (pick-fragment fragment (if (util/chance)
-                            :person
-                            :animal)))
-
-(defmethod fragment :event
-  [_]
-  (corp/get-event))
-
-(defmethod fragment :default
-  [fragment]
-  (pick-fragment fragment (:classname fragment)))
+(defn fragment
+  ([fr]
+   (fragment fr nil))
+  ([fr cname]
+   (let [cname (or cname
+                   (:class fr)) 
+         pick-fn (partial pick-fragment fr)]
+     (condp = cname
+       :actor (pick-fn (if (util/chance)
+                         :person
+                         :animal))
+       :event (corp/get-event)
+       (pick-fn cname)))))

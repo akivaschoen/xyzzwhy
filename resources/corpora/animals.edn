@@ -1,4 +1,4 @@
-{:classname :animal
+{:class :animal
  :type :sub
  :fragment [{:text "aardvark"}
             {:text "alligator"}

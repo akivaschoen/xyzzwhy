@@ -1,4 +1,4 @@
-{:classname :obstacle
+{:class :obstacle
  :type :sub
  :config #{:no-article}
  :fragment [{:text "a black comb on the ground"}

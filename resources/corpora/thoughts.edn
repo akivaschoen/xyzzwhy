@@ -1,4 +1,4 @@
-{:classname :thought
+{:class :thought
  :type :sub
  :config #{:no-article}
  :fragment [{:text "%10 still owes me a backrub."

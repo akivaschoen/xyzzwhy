@@ -1,4 +1,4 @@
-{:classname :direction
+{:class :direction
  :type :sub
  :config #{:no-article}
  :fragment [{:text "north"}

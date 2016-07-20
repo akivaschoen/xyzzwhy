@@ -1,4 +1,4 @@
-{:classname :item
+{:class :item
  :type :sub
  :fragment [{:text "%10"
              :article ["a Laserdisc copy of" "a VHS cassette of" "a Betamax of"]

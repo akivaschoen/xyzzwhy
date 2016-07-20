@@ -1,4 +1,4 @@
-{:classname :secondary-event
+{:class :secondary-event
  :type :event
  :fragment [{:text "%20 %21"
              :sub [{:token 20 :class :person}
