@@ -1,4 +1,13 @@
 {:classname :headline
  :type :sub
  :config #{:no-article}
- :fragment [{:text "Shamer Claims Bullying from Shame Shamers"}]}
+ ;; Thanks to Thinkpiece Bot for some of these
+ :fragment [{:text "Shamer Claims Bullying from Shame Shamers"}
+            {:text "Lizard People: A White Politician's Thoughts"}
+            {:text "Post-Ironic Youths Obsessed With All Those Nazis On Reddit"}
+            {:text "Overly Serious Hipsters Obsessed With Asparagus Water"}
+            {:text "Op-Ed: Why I Hate Farmer's Markets"}
+            {:text "Guy Fieri Is Wrong About Everything"}
+            {:text "Fat Girl Buys Cute Top; Still Fat"}
+            {:text "Why Young People Are Buying 8-Bit Gourmet Mustard"}
+            {:text "Area Man Refuses to Make Eye Contact with Female Dog Walkers"}]}
