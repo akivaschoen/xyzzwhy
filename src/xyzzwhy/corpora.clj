@@ -9,6 +9,11 @@
         rnd (rand-int (last weight))]
     (nth (keys c) (count (take-while #(<= % rnd) weight)))))
 
+(defn get-config
+  [classname]
+  (or {:config (:config (io/read-file classname))}
+      {:config #{}}))
+
 (defn get-event
   []
   (weighted-pick (:events (io/read-file "classes"))))
