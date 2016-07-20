@@ -15,7 +15,7 @@
    [reloaded.repl "0.2.2"]
    [twitter-api "0.7.8"]
    [typographer "1.1.0"]
-   [xyzzwhy/datastore "1.0.0-SNAPSHOT"]]
+   #_[xyzzwhy/datastore "1.0.0-SNAPSHOT"]]
 
   :plugins
   [[lein-environ "1.0.3"]]
