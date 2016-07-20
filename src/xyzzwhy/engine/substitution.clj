@@ -4,7 +4,8 @@
              [configuration :as cf]
              [fragment :as fr]
              [interpolation :as in]]
-            [xyzzwhy.util :as util]))
+            [xyzzwhy.util :as util]
+            [xyzzwhy.engine.substitution :as sb]))
 
 ;; -------
 ;; Pronouns
@@ -41,33 +42,33 @@
   (fn [t _ _] t))
 
 (defmethod transclude :event
-  [_ tweetmap _]
+  [_ tmap _]
   (let [tweet-text (reduce (fn [text sub]
-                             (let [config (cf/merge-into (cf/config tweetmap)
+                             (let [config (cf/merge-into (cf/config tmap)
                                                          (cf/config sub))]
                                (in/interpolate config text sub)))
-                           (:tweet tweetmap)
-                           (get-in tweetmap [:event :sub]))]
-    (assoc tweetmap :tweet tweet-text)))
+                           (:tweet tmap)
+                           (get-in tmap [:event :sub]))]
+    (assoc tmap :tweet tweet-text)))
 
 (defmethod transclude :sub
-  [_ tweetmap index]
+  [_ tmap index]
   (let [path [:event :follow-up :fragment index]
         tweet-text (reduce (fn [text sub]
-                             (let [config (cf/merge-into (cf/config tweetmap)
+                             (let [config (cf/merge-into (cf/config tmap)
                                                          (cf/config sub))]
                                (in/interpolate config text sub)))
-                           (get-in tweetmap (conj path :text))
-                           (get-in tweetmap (conj path :sub)))]
-    (-> tweetmap
+                           (get-in tmap (conj path :text))
+                           (get-in tmap (conj path :sub)))]
+    (-> tmap
         (assoc-in (conj path :text) tweet-text)
         (update :tweet str tweet-text))))
 
 (defmethod transclude :follow-up
-  [_ fragment tmapconf]
+  [_ fragment conf]
   (let [text (reduce (fn [text sub]
-                       (let [config (cf/merge-into (cf/config tmapconf)
-                                                   (cf/config fragment))]
+                       (let [config (cf/merge-into (cf/config conf)
+                                                   (cf/config sub))]
                          (in/interpolate config text sub)))
                      (:text fragment)
                      (:sub fragment))]
@@ -103,7 +104,7 @@
   (fn [t _] t))
 
 (defmethod follow-up* :sub
-  [_ tweetmap]
+  [_ tmap]
   (reduce (fn [tmap sub]
             (let [skey (first sub)
                   sval (second sub)]
@@ -115,7 +116,7 @@
                       follow (util/pick-indexed (get-in sval path))]
                   (if (fr/sub? (val follow))
                     (let [f (update (val follow) :sub substitutions)
-                          t (transclude :follow-up f (cf/config tweetmap))
+                          t (transclude :follow-up f (cf/config tmap))
                           sval' (assoc-in sval
                                           (conj path (key follow))
                                           t)]
@@ -127,32 +128,34 @@
                         (update :tweet str (:text (val follow)))
                         (cf/add :no-follow-up))))
                 tmap)))
-          tweetmap
-          (rseq (vec (map-indexed vector (get-in tweetmap [:event :sub]))))))
+          tmap
+          (rseq (vec (map-indexed vector (get-in tmap [:event :sub]))))))
 
 (defmethod follow-up* :event
-  [_ tweetmap]
+  [_ tmap]
   (let [path [:event :follow-up :fragment]]
-    (if (nil? (get-in tweetmap path))
-      tweetmap
-      (let [follow (util/pick-indexed (get-in tweetmap path))]
-        (if (fr/sub? (val follow))
-          (let [f (substitutions (:sub (val follow)))
-                p (conj path (key follow))]
-            (-> tweetmap
-                (assoc-in (conj p :sub) f)
-                (update :tweet str (get-in tweetmap (conj p :text)))
-                (cf/add :no-follow-up)))
-          (-> tweetmap
-              (update :tweet str (:text (val follow)))
-              (cf/add :no-follow-up)))))))
+    (if-let [follow (util/pick-indexed (get-in tmap path))]
+      (if (fr/sub? (val follow))
+        (let [f (-> (val follow)
+                    (update :sub substitutions)
+                    ((partial transclude :follow-up) nil))
+              p (conj path (key follow))]
+          (as-> tmap tmap'
+            (assoc-in tmap' p f)
+            (update tmap' :tweet str (get-in tmap' (conj p :text)))
+            (cf/add tmap' :no-follow-up)))
+        (-> tmap
+            (update :tweet str (:text (val follow)))
+            (cf/add :no-follow-up)))
+      tmap)))
 
 (defn follow-up
-  [tweetmap]
-  (if (and (cf/follow-up? tweetmap)
-           (util/any? #{"required"} (get-in tweetmap [:event :follow-up :config])))
-    (follow-up* :event tweetmap)
-    (let [tmap (follow-up* :sub tweetmap)]
+  "Returns a tmap with a follow-up possibly attached."
+  [tmap]
+  (if (and (cf/follow-up? tmap)
+           (cf/required? (get-in tmap [:event :follow-up :config])))
+    (follow-up* :event tmap)
+    (let [tmap (follow-up* :sub tmap)]
       (if (cf/follow-up? tmap)
-        (follow-up* :event tweetmap)
+        (follow-up* :event tmap)
         tmap))))
