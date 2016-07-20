@@ -58,29 +58,26 @@
 ;; -------
 ;; Yon fragment fetchery
 ;; -------
+(defn pick-fragment
+  [fragment classname]
+  (let [fragments (corp/get-fragments classname)
+        fragment' (update fragment :config cf/merge-into (cf/config (corp/get-config classname)))]
+    (if (and (= classname :person)
+             (contains? (cf/config fragment') :no-groups))
+      (merge fragment' (dissoc (util/pick (vec (remove
+                                                 #(= (-> % :gender) :group)
+                                                 fragments))) :id))
+      (merge fragment' (dissoc (util/pick fragments) :id)))))
+
 (defmulti fragment
   "Given a classname, returns a random item from the corpus."
   (fn [fragment] (:class fragment)))
 
-(defmethod fragment :person
-  [fragment]
-  (let [persons (corp/get-fragments :person)
-        s (update fragment :config cf/merge-into (cf/config (corp/get-config :person)))]
-      (if (contains? (cf/config s) :no-groups)
-        (merge s (dissoc (util/pick (vec (remove #(= (-> % :gender) "group") persons))) :id))
-        (merge s (dissoc (util/pick persons) :id)))))
-
 (defmethod fragment :actor
   [fragment]
-  (let [classname (if (util/chance)
-                    :person
-                    :animal)
-        actors (corp/get-fragments classname)
-        s (update fragment :config cf/merge-into (cf/config (corp/get-config classname)))]
-    (if (and (= classname :person)
-             (contains? (cf/config s) :no-groups))
-        (merge (dissoc (util/pick (vec (remove #(= (-> % :gender) "group") actors))) :id) s)
-        (merge (dissoc (util/pick actors) :id) s))))
+  (pick-fragment fragment (if (util/chance)
+                            :person
+                            :animal)))
 
 (defmethod fragment :event
   [_]
@@ -88,6 +85,4 @@
 
 (defmethod fragment :default
   [fragment]
-  (let [classname (:classname fragment)
-        s (update fragment :config cf/merge-into (cf/config (corp/get-config classname)))]
-    (merge (corp/get-fragment classname) s)))
+  (pick-fragment fragment (:classname fragment)))
