@@ -6,13 +6,13 @@
             {:text "%0 attacks you but you fight back with %1, "
              :sub [{:token 0 :class :actor}
                    {:token 1 :class :attack}]
-             :follow-up {:config [:required]
+             :follow-up {:config #{:required}
                          :fragment [{:text "winning the battle."}
                                     {:text "taking only a hit to your pride."}]}}
             {:text "%0 attacks you but you fight back with %1. "
              :sub [{:token 0 :class :actor}
                    {:token 1 :class :attack}]
-             :follow-up {:config [:required]
+             :follow-up {:config #{:required}
                          :fragment [{:text "It isn't enough: you lose."}
                                     {:text "This scares the shit out of %2. %3 runs away."
                                      :sub [{:token 2 :ref 0 :class :gender :case :objective}
@@ -21,7 +21,7 @@
              :sub [{:token 0 :class :actor}
                    {:token 1 :class :attack}
                    {:token 2 :class :attack}]
-             :follow-up {:config [:required]
+             :follow-up {:config #{:required}
                          :fragment [{:text "You are victorious!"}
                                     {:text "You have been killed."}
                                     {:text "You have been slain!"}
@@ -41,7 +41,7 @@
              :sub [{:token 0 :class :actor}
                    {:token 1 :class :attack}
                    {:token 2 :class :attack}]
-             :follow-up {:config [:required]
+             :follow-up {:config #{:required}
                          :fragment [{:text "Look at you what with the killing and all."}
                                     {:text "%3 is a bloodstain."
                                      :sub [{:token 3 :ref 0 :class :gender :case :subjective}]}]}}]}

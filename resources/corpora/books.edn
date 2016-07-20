@@ -1,6 +1,6 @@
 {:classname :book
  :type :sub
- :config [:no-article]
+ :config #{:no-article}
  :fragment [{:text "the Bible"
              :prep "a copy of"}
             {:text "The Catcher in the Rye"

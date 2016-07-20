@@ -1,6 +1,6 @@
 {:classname :thought
  :type :sub
- :config [:no-article]
+ :config #{:no-article}
  :fragment [{:text "%10 still owes me a backrub."
              :sub [{:token 10 :class :person}]}
             {:text "%10 never has a second cup of coffee at home..."

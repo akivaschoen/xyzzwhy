@@ -3,7 +3,8 @@
  :fragment [{:text "apple pocket"}
             {:text "block of cheese"}
             {:text "bobka"
-             :decorator {:prefix {:fragment [{:text ["cinnamon" "chocolate" "Satanic"]}]}}}
+             :decorator {:prefix {:config #{:required}
+                                  :fragment [{:text ["cinnamon" "chocolate" "Satanic"]}]}}}
             {:text "bouquet of corndogs"}
             {:text "burger"
              :decorator {:prefix {:fragment [{:text ["half-eaten" "tongue" "tooth"]}]}}}
@@ -31,7 +32,8 @@
             {:text "pasta"
              :article "some"}
             {:text "Pop Tart"
-             :decorator {:prefix {:fragment [{:text ["angst" "apple cinnamon" "blueberry" "Dutch apple"
+             :decorator {:prefix {:config #{:required}
+                                  :fragment [{:text ["angst" "apple cinnamon" "blueberry" "Dutch apple"
                                                      "frosted feces" "nihilist" "snozzberry" "strawberry"]}]}}}
             {:text "Reese's Peanut Butter Cup"
              :article "a"}

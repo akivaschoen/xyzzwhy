@@ -1,6 +1,6 @@
 {:classname :scent
  :type :sub
- :config [:no-article]
+ :config #{:no-article}
  :fragment [{:text "acrid"}
             {:text "bitter"}
             {:text "foul"}

@@ -21,7 +21,7 @@
              :sub [{:token 20 :class :actor}]}
             {:text "%20 wanders by, "
              :sub [{:token 20 :class :actor}]
-             :follow-up {:config [:required]
+             :follow-up {:config #{:required}
                          :fragment [{:text "doing algebra and shit."}
                                     {:text "playing a recorder."}
                                     {:text "jamming on a mouth organ."}

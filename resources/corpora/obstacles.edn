@@ -1,6 +1,6 @@
 {:classname :obstacle
  :type :sub
- :config [:no-article]
+ :config #{:no-article}
  :fragment [{:text "a black comb on the ground"}
             {:text "a stack of dogs going all the way to the moon"}
             {:text "Steve Buscemi's grin"}

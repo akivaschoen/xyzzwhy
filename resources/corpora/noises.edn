@@ -8,7 +8,7 @@
               :decorator {:prefix {:fragment [{:text "distant"}]}
                           :suffix {:fragment [{:text "in the distance"}]}}}
              {:text "foghorn"
-              :decorator {:config [:both]
+              :decorator {:config #{:both}
                           :prefix {:fragment [{:text ["distant" "lonely"]}]}
                           :suffix {:fragment [{:text "in the distance"}]}}}
              {:text "laughter"
@@ -40,7 +40,7 @@
                                                     "quietly"]}}}}
             {:text ["choking"]
              :article ["someone" "somebody"]
-             :decorator {:config [:both]
+             :decorator {:config #{:both}
                          :prefix {:fragment [{:text ["loudly" "quietly"]}]}
                          :suffix {:fragment [{:text ["to death"]}]}}}
             {:text ["crying"]

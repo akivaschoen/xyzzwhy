@@ -1,6 +1,6 @@
 {:classname :intonation
  :type :sub
- :config [:no-article]
+ :config #{:no-article}
  :fragment [{:text "Clean up in aisle 8A."}
             {:text "Coitus?"}
             {:text "Consider deeply the baked ham."}

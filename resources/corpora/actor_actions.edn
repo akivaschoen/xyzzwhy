@@ -1,6 +1,6 @@
 {:classname :actor-action
  :type :sub
- :config [:no-article]
+ :config #{:no-article}
  :fragment [{:text "attacks"}
             {:text "examines"}
             {:text "flirts with"}

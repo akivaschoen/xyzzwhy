@@ -7,17 +7,17 @@
              :article "a can of"}
             {:text "books"
              :article "some"
-             :decorator {:prefix {:config [:multiple]
+             :decorator {:prefix {:config #{:multiple}
                                   :fragment [{:text ["children's" "dusty" "old" "pornographic" "rare"]}]}}}
             {:text ["baseball" "softball" "tennis ball"]
              :decorator {:prefix {:fragment [{:text ["huge" "oddly-shaped" "radioactive" "tiny"]}]}}}
             {:text "briefcase"
              :decorator {:prefix {:fragment [{:text ["familiar" "leather" "plastic" "unfamiliar"]}]}}
-             :follow-up {:fragment [{:text "It's on fire."}
-                                    {:text "It's covered in bees."}
-                                    {:text "It's full of whole milk."}
-                                    {:text "It's been deep-fried."}
-                                    {:text "It appears to be empty."}]}}
+             :follow-up {:fragment [{:text " It's on fire."}
+                                    {:text " It's covered in bees."}
+                                    {:text " It's full of whole milk."}
+                                    {:text " It's been deep-fried."}
+                                    {:text " It appears to be empty."}]}}
             {:text "bucket of corks"}
             {:text "discarded puppets"
              :article ["a collection of" "a pile of" "a stack of" "a stash of"]}
@@ -42,17 +42,17 @@
              :article "a bag of"}
             {:text "magic scroll"
              :follow-up {:fragment [{:text "It's a spell of %10."
-                                     :sub [{:token 10 :class :spell :config [:no-article]}]}]}}
+                                     :sub [{:token 10 :class :spell :config #{:no-article}}]}]}}
             {:text "movie ticket"
              :decorator {:prefix {:fragment {:text "old"}}}
-             :follow-up {:fragment [{:text "It's already been torn."}
-                                    {:text "Unfortunately, it's for a Vince Vaughn movie."}]}}
+             :follow-up {:fragment [{:text " It's already been torn."}
+                                    {:text " Unfortunately, it's for a Vince Vaughn movie."}]}}
             {:text "non-Euclidian Lego"}
             {:text "no tea"}
             {:text "newspaper"}
             {:text "pellets"
              :article "a bag of"
-             :decorator {:prefix {:fragment [{:text ["rabbit" "slick" "stinky" "tiny"]}]}}}
+             :decorator {:prefix {:fragment [{:text ["giant" "rabbit" "slick" "stinky" "tiny"]}]}}}
             {:text ["pen" "pencil"]}
             {:text "phone book"}
             {:text "pinecone"}
@@ -71,7 +71,7 @@
             {:text "Snausages"}
             {:text "sword"
              :decorator {:prefix {:fragment [{:text ["ancient" "elven" "magical"]}]}}
-             :follow-up {:fragment [{:text "It's slightly glowing."}]}}
+             :follow-up {:fragment [{:text " It's slightly glowing."}]}}
             {:text "towel from the Las Vegas Radisson"}
             {:text "trilby"
              :decorator {:prefix {:fragment [{:text "sweat-incrusted"}]}}}

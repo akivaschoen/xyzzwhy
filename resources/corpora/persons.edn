@@ -1,6 +1,6 @@
 {:classname :person
  :type :sub
- :config [:no-article]
+ :config #{:no-article}
  :fragment [{:text "Justin Bieber"
              :gender :male}
             {:text "Lloyd Braun"

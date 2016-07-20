@@ -1,13 +1,13 @@
 {:classname :tertiary-event
  :type :event
- :config [:no-article]
+ :config #{:no-article}
  :fragment [{:text "A basketball bounces by."}
             {:text "A cool breeze blows by."}
             {:text "A warm breeze blows by."}
             {:text "It starts to rain."}
             {:text "It starts to snow."}
             {:text "Somehow, you've lost your %20."
-             :sub [{:token 20 :class :garment :config [:no-article]}]}
+             :sub [{:token 20 :class :garment :config #{:no-article}}]}
             {:text "Someone is having fun against their will nearby."}
             {:text "Someone is struggling with warped Tupperware nearby."}
             {:text "Someone nearby farts loudly."}

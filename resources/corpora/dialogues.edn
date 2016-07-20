@@ -1,6 +1,6 @@
 {:classname :dialogue
  :type :sub
- :config [:no-article]
+ :config #{:no-article}
  :fragment [{:text "asks, 'Are you following me?'"}
             {:text "asks, 'Can I have a hug?'"}
             {:text "asks, 'Does it smell like %10 in here to you?'"
@@ -23,7 +23,7 @@
             {:text "says, 'Hello, please.'"}
             {:text "says, 'How unfortunate.'"}
             {:text "says, 'I can't find my %10.'"
-             :sub [{:token 10 :class :garment :config [:no-article]}]}
+             :sub [{:token 10 :class :garment :config #{:no-article}}]}
             {:text "says, 'I can't find my heirloom clown suit.'"}
             {:text "says, 'I'm a brown-belt in speed tai chi.'"}
             {:text "says, 'I'm a source of fiber.'"}
