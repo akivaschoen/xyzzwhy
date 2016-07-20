@@ -1,0 +1,4 @@
+{:classname :headline
+ :type :sub
+ :config [:no-article]
+ :fragment [{:text "Shamer Claims Bullying from Shame Shamers"}]}

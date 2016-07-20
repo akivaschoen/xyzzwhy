@@ -1,0 +1,74 @@
+{:classname :dialogue
+ :type :sub
+ :config [:no-article]
+ :fragment [{:text "asks, 'Are you following me?'"}
+            {:text "asks, 'Can I have a hug?'"}
+            {:text "asks, 'Does it smell like %10 in here to you?'"
+             :sub [{:token 10 :class :food}]}
+            {:text "asks, 'Have you ever seen a grown man naked?'"}
+            {:text "asks, 'Have you ever seen an elephant throw up?'"}
+            {:text "asks, 'Have you got a flag?'"}
+            {:text "asks, 'How long is a man?'"}
+            {:text "asks, 'May I use your FAX machine?'"}
+            {:text "asks, 'Where have you been?'"}
+            {:text "asks, 'Which one are you?'"}
+            {:text "asks, 'Why am I holding this pitchfork?'"}
+            {:text "asks, 'Would you like to see my collection of tiny ceiling fans?'"}
+            {:text "chants, 'It's time to pay the price.'"}
+            {:text "mumbles, 'I've never been to Belize.'"}
+            {:text "mumbles, 'One day I'm going to burn this place to the ground.'"}
+            {:text "mumbles, 'Skrillex ruined it all for everybody.'"}
+            {:text "mumbles, 'You can't go up against city hall.'"}
+            {:text "says, 'Bye, Felicia.'"}
+            {:text "says, 'Hello, please.'"}
+            {:text "says, 'How unfortunate.'"}
+            {:text "says, 'I can't find my %10.'"
+             :sub [{:token 10 :class :garment :config [:no-article]}]}
+            {:text "says, 'I can't find my heirloom clown suit.'"}
+            {:text "says, 'I'm a brown-belt in speed tai chi.'"}
+            {:text "says, 'I'm a source of fiber.'"}
+            {:text "says, 'I'm addicted to Kitty Lick III.'"}
+            {:text "says, 'I'm going to button up the top of my polo shirt to demonstrate I don't want to talk to you.'"}
+            {:text "says, 'I'm in a poo trance.'"}
+            {:text "says, 'I'm not an actor but I play one on television.'"}
+            {:text "says, 'I'm stuck in a poo loop.'"}
+            {:text "says, 'I've been waiting for you.'"}
+            {:text "says, 'If you asked me to have sex with you, I wouldn't say \"no\".'"}
+            {:text "says, 'It never hurts to have a corpse open the door for you.'"}
+            {:text "says, 'It's like drinking a meatloaf!'"}
+            {:text "says, 'It's true: the boot is the best McNugget shape.'"}
+            {:text "says, 'Looks like I'm not having any mayonnaise.'"}
+            {:text "says, 'No money? No hamburger!'"}
+            {:text "says, 'So I guess Kevin Spacey is going to be a thing now.'"}
+            {:text "says, 'Surrealism is the scourage of butane.'"}
+            {:text "says, 'That bisexual really jazzed up my latte.'"}
+            {:text "says, 'That dog rode on a bus by itself."}
+            {:text "says, 'The Swanson TV Dinner heard 'round the world.'"}
+            {:text "says, 'The membership card is edible.'"}
+            {:text "says, 'The time has come for me to deal with the fact that I'll never be Ed Begley, Jr.'"}
+            {:text "says, 'This drink tastes like Sears!'"}
+            {:text "says, 'This is giving me the freak-out.'"}
+            {:text "says, 'This teenager salad tastes like a slowly closing door.'"}
+            {:text "says, 'Took you long enough.'"}
+            {:text "says, 'Well that really scrambles my eggs.'"}
+            {:text "says, 'Well, that's a dead give away.'"}
+            {:text "says, 'Wrong answer, chief.'"}
+            {:text "shouts, 'Don Quixote! Swingin' from a pipe!'"}
+            {:text "shouts, 'It keeps happening!'"}
+            {:text "shouts, 'They're having a brownout in Lagos!'"}
+            {:text "shouts, 'You can't fold a cat!'"}
+            {:text "shouts, 'You can't go up against city hall!'"}
+            {:text "shriefs, 'Baby-oil covered balloon animals for all!"}
+            {:text "shrieks, 'Boiled soil!'"}
+            {:text "shrieks, 'I'm living on the edge!'"}
+            {:text "shrieks, 'What's this shit I keep hearing about erections?!'"}
+            {:text "sighs, 'I liked you better before the hip-replacement surgery.'"}
+            {:text "snarls, 'Siddown before ya fall down!'"}
+            {:text "whispers, 'Fee was a Buddhist prodigy.'"}
+            {:text "whispers, 'I've always wanted to be a creepy uncle.'"}
+            {:text "whispers, 'It puts the lotion on its skin...'"}
+            {:text "whispers, 'Sleep is unproductive and a waste of time.'"}
+            {:text "whispers, 'There squats the brown clown.'"}
+            {:text "whispers, 'Why are you talking in all lowercase?'"}
+            {:text "whispers, 'You just lost the game.'"}
+            {:text "yells, 'I warned you about stairs, bro! I told ya, dawg!'"}]}

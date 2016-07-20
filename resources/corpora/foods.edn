@@ -1,0 +1,48 @@
+{:classname :food
+ :type :sub
+ :fragment [{:text "apple pocket"}
+            {:text "block of cheese"}
+            {:text "bobka"
+             :decorator {:prefix {:fragment [{:text ["cinnamon" "chocolate" "Satanic"]}]}}}
+            {:text "bouquet of corndogs"}
+            {:text "burger"
+             :decorator {:prefix {:fragment [{:text ["half-eaten" "tongue" "tooth"]}]}}}
+            {:text "burrito"}
+            {:text "cake"
+             :article ["a" "a slice of"]
+             :decorator {:prefix {:fragment [{:text "birthday"}]}}}
+            {:text ["Cheerios" "Rice Chex"]
+             :article "a bowl of"}
+            {:text "cheeseburger"
+             :decorator {:prefix {:fragment [{:text ["half-eaten" "bacon double"]}]}}}
+            {:text ["chips" "Doritos" "Fritos" "Funyons" "nacho chips"]
+             :article "some"}
+            {:text "delicious churro"}
+            {:text "Cinnabon"}
+            {:text "cornbread"
+             :article "some"
+             :decorator {:prefix {:fragment [{:text "weaponized"}]}}}
+            {:text "corndog"}
+            {:text "duck confit"
+             :article "some"}
+            {:text "kumquat"}
+            {:text "pancakes"
+             :article "some"}
+            {:text "pasta"
+             :article "some"}
+            {:text "Pop Tart"
+             :decorator {:prefix {:fragment [{:text ["angst" "apple cinnamon" "blueberry" "Dutch apple"
+                                                     "frosted feces" "nihilist" "snozzberry" "strawberry"]}]}}}
+            {:text "Reese's Peanut Butter Cup"
+             :article "a"}
+            {:text "uncooked rice"
+             :article "some"}
+            {:text "salad"
+             :decorator {:prefix {:fragment [{:text "big"}]}}}
+            {:text "sandwich"
+             :decorator {:prefix {:fragment [{:text ["ham" "persecution"]}]}}}
+            {:text "slice of fried spam"}
+            {:text "sushi"
+             :article "some"}
+            {:text "sweetroll"}
+            {:text "wedge of cheese with some mold on it"}]}

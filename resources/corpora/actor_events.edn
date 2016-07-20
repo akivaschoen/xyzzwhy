@@ -1,0 +1,65 @@
+{:classname :actor-event
+ :type :event
+ :fragment [{:text "%0 %1 %2."
+             :sub [{:token 0 :class :actor}
+                   {:token 1 :class :actor-action}
+                   {:token 2 :class :actor}]}
+            {:text "%0 %1 you."
+             :sub [{:token 0 :class :actor}
+                   {:token 1 :class :actor-action}]}
+            {:text "%0 appears in a puff of smoke, %1"
+             :sub [{:token 0 :class :person}
+                   {:token 1 :class :actor-activity}]}
+            {:text "%0 arrives from the %1, carrying %2."
+             :sub [{:token 0 :class :actor :config [:no-groups]}
+                   {:token 1 :class :direction}
+                   {:token 2 :class :item}]}
+            {:text "%0 does a little jig. 'Bidibidibidi, wanna dance?'"
+             :sub [{:token 0 :class :actor}]}
+            {:text "%0 drops %1 here."
+             :sub [{:token 0 :class :actor}
+                   {:token 1 :class :item}]}
+            {:text "%0 drops %1, looks at you %2, then leaves."
+             :sub [{:token 0 :class :actor}
+                   {:token 1 :class :item}
+                   {:token 2 :class :adverb}]}
+            {:text "%0 gently places %1 on the ground and then backs away slowly."
+             :sub [{:token 0 :class :actor}
+                   {:token 1 :class :item}]}
+            {:text "%0 is calling from %1"
+             :sub [{:token 0 :class :person}
+                   {:token 1 :class :location :config [:no-prep]}]
+             :follow-up {:config [:required]
+                         :fragment [{:text " asking if %2 can come out and play."
+                                     :sub [{:token 2 :class :person}]}
+                                    {:text " asking for %2."
+                                     :sub [{:token 2 :class :item}]}
+                                    {:text " taking responsibility for a recent %2."
+                                     :sub [{ :token 2 :class :disaster}]}]}}
+            {:text "%0 makes a rude noise. %1 points surreptitiously to %2 nearby."
+             :sub [{:token 0 :class :person}
+                   {:token 1 :ref 0 :class :gender :case :subjective}
+                   {:token 2 :class :animal}]}
+            {:text "%0 picks up %1."
+             :sub [{:token 0 :class :actor}
+                   {:token 1 :class :item}]}
+            {:text "%0 slams down a half-empty glass of %1."
+             :sub [{:token 0 :class :person}
+                   {:token 1 :class :drink :config [:no-prep :no-article]}]
+             :follow-up {:fragment [{:text " 'All this nonsense about %2 needs to stop! I can't take it anymore!'"
+                                     :sub [{:token 2 :class :item}]}
+                                    {:text " 'They're making plans for Nigel! They want what's best for him!'"}
+                                    {:text " 'You can't go up against city hall!'"}
+                                    {:text " 'I just can't take you seriously anymore!'"}
+                                    {:text " 'MOM?!'"}]}}
+            {:text "%0 starts breakdancing and won't stop no matter how much you scream."
+             :sub [{:token 0 :class :person}]}
+            {:text "%0 suddenly appears out of the shadows and "
+             :sub [{:token 0 :class :actor}]
+             :follow-up {:config [:required]
+                         :fragment [{:text "hisses at you, then scrambles away like a spider."}
+                                    {:text "says, 'Oh, sorry about that,' then retreats back into the shadows."}
+                                    {:text "says, '%1 will see you now,' then slowly retreats back into the shadows."
+                                     :sub [{:token 1 :class :actor}]}]}}
+            {:text "%0 suddenly shrieks."
+             :sub [{:token 0 :class :person}]}]}

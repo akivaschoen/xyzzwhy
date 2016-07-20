@@ -1,0 +1,18 @@
+{:classname :disaster
+ :type :sub
+ :fragment [{:text "avalanche"}
+            {:text "duststorm"}
+            {:text "fire"}
+            {:text "flood"}
+            {:text "hurricane"}
+            {:text "landslide"}
+            {:text "lava flow"}
+            {:text "lightning strike"}
+            {:text "plague of locusts"}
+            {:text "radiation leak"}
+            {:text "rift in the spacetime continuum"}
+            {:text "sandstorm"}
+            {:text "snowstorm"}
+            {:text "tornado"}
+            {:text "tsunami"}
+            {:text "volcanic eruption"}]}

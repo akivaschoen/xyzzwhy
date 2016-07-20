@@ -1,0 +1,36 @@
+{:classes {:events [{:name :action-event :weight 1}
+                    {:name :actor-event :weight 1}
+                    {:name :attack-event :weight 1}
+                    {:name :diagnosis-event :weight 1}
+                    {:name :dialogue-event :wieght 1}
+                    {:name :location-event :weight 1}
+                    {:name :news-event :weight 1}
+                    {:name :secondary-event :weight 1}
+                    {:name :tertiary-event :weight 1}
+                    {:name :thought-event :weight 1}]
+           :subs [:actor-action
+                  :actor-activity
+                  :adjective
+                  :adverb
+                  :animal
+                  :attack
+                  :book
+                  :diagnosis
+                  :dialogue
+                  :direction
+                  :disaster
+                  :drink
+                  :food
+                  :game
+                  :garment
+                  :headline
+                  :intonation
+                  :item
+                  :location
+                  :movie
+                  :noise
+                  :obstacle
+                  :person
+                  :scent
+                  :sign
+                  :thought]}}

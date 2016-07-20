@@ -1,0 +1,8 @@
+{:classname :thought-event
+ :type :event
+ :config [:no-article]
+ :fragment [{:text "You pause and think, '%20'"
+             :sub [{:token 20 :class :thought}]}
+            {:text "A thought bubble appears above %20's head: '%21'"
+             :sub [{:token 20 :class :person :config [:no-groups]}
+                   {:token 21 :class :thought}]}]}

@@ -1,0 +1,26 @@
+{:classname :drink
+ :type :sub
+ :fragment [{:text "gravy"
+             :article "a cup of"
+             :decorator {:prefix {:fragment [{:text ["cold" "boiling" "lukewarm"
+                                                     "mushroom" "steaming" "turkey"]}]}}}
+            {:text "juice"
+             :article "a glass of"
+             :decorator {:prefix {:fragment [{:text ["apple" "cranberry" "grape" "grapefruit"
+                                                     "fruit" "orange"]}]}}}
+            {:text "milk"
+             :article "a gallon of"
+             :decorator {:prefix {:config [:optional]
+                                  :fragment [{:text ["almond" "boiling"
+                                                     "breast" "rancid" "raw" "skim"
+                                                     "soy" "spoiled" "whole"]}]}}}
+            {:text "tea"
+             :article "some"}
+            {:text "soda"
+             :article "some"}
+            {:text "water"
+             :article "some"}
+            {:text "broth"
+             :article "some"
+             :decorator {:prefix {:fragment [{:text ["beef" "chicken" "pork" "seafood" "vegetable"]}]}}}
+            {:text "scotch"}]}
