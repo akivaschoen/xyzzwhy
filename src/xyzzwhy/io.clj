@@ -1,15 +1,16 @@
 (ns xyzzwhy.io
   (:require [clojure.string :as str]
             [clojure.edn :as edn]
-            [clojure.java.io :as io])
+            [clojure.java.io :as io]
+            [pluralex.core :as pl])
   (:import java.io.PushbackReader))
 
 (defonce corpora-dir "resources/corpora/")
 
-;;
-;; EDN Functions
-;; (Thanks to yogthos)
-;;
+(defn filename
+  [classname]
+  (-> classname name (str/replace "-" "_") pl/pluralize))
+
 (defn edn-prefix
   [s]
   (if (str/ends-with? s ".edn")
@@ -17,8 +18,8 @@
     (str s ".edn")))
 
 (defn read-file
-  [filename]
-  (let [path (str corpora-dir (edn-prefix filename))]
+  [file]
+  (let [path (str corpora-dir (-> file filename edn-prefix))]
     (try
       (with-open [file (-> path io/reader PushbackReader.)]
         (edn/read file))
