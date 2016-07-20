@@ -1,6 +1,6 @@
 (ns xyzzwhy.engine.fragment
   (:require [xyzzwhy.engine.configuration :refer [has?] :as cf]
-            [xyzzwhy.datastore :as ds]
+            [xyzzwhy.corpora :as corp]
             [xyzzwhy.util :as util :refer [any?]]))
 
 ;; -------
@@ -60,23 +60,23 @@
 ;; -------
 (defmulti fragment
   "Given a classname, returns a random item from the corpus."
-  (fn [sub] (:class sub)))
+  (fn [fragment] (:class fragment)))
 
 (defmethod fragment :person
-  [sub]
-  (let [persons (ds/get-class :person)
-        s (update sub :config cf/merge-into (cf/config (ds/get-metadata :person)))]
+  [fragment]
+  (let [persons (corp/get-fragments :person)
+        s (update fragment :config cf/merge-into (cf/config (corp/get-config :person)))]
       (if (contains? (cf/config s) :no-groups)
         (merge s (dissoc (util/pick (vec (remove #(= (-> % :gender) "group") persons))) :id))
         (merge s (dissoc (util/pick persons) :id)))))
 
 (defmethod fragment :actor
-  [sub]
+  [fragment]
   (let [classname (if (util/chance)
                     :person
                     :animal)
-        actors (ds/get-class classname)
-        s (update sub :config cf/merge-into (cf/config (ds/get-metadata classname)))]
+        actors (corp/get-fragments classname)
+        s (update fragment :config cf/merge-into (cf/config (corp/get-config classname)))]
     (if (and (= classname :person)
              (contains? (cf/config s) :no-groups))
         (merge (dissoc (util/pick (vec (remove #(= (-> % :gender) "group") actors))) :id) s)
@@ -84,10 +84,10 @@
 
 (defmethod fragment :event
   [_]
-  (ds/get-event))
+  (corp/get-event))
 
 (defmethod fragment :default
-  [sub]
-  (let [classname (:class sub)
-        s (update sub :config cf/merge-into (cf/config (ds/get-metadata classname)))]
-    (merge (ds/get-fragment classname) s)))
+  [fragment]
+  (let [classname (:classname fragment)
+        s (update fragment :config cf/merge-into (cf/config (corp/get-config classname)))]
+    (merge (corp/get-fragment classname) s)))
