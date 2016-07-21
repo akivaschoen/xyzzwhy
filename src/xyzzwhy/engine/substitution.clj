@@ -116,7 +116,7 @@
                       follow (util/pick-indexed (get-in sval path))]
                   (if (fr/sub? (val follow))
                     (let [f (update (val follow) :sub substitute)
-                          t (transclude :follow-up f (cf/config tmap))
+                          t (transclude f (cf/config tmap) :follow-up)
                           sval' (assoc-in sval
                                           (conj path (key follow))
                                           t)]
@@ -159,9 +159,13 @@
         tmap
         (cf/add tmap' :no-follow-up)))))
 
+;; -------
+;; Yon Extra-Eventoilet
+;; -------
 (declare tertiary)
 
 (defn append-event
+  "Returns a tmap with an extra event attached."
   [tmap event-type]
   (let [event (-> nil
                   (fr/fragment (-> event-type
@@ -178,7 +182,7 @@
 (defn secondary
   "Returns a tmap with a secondary (and tertiary) event possibly attached.
 
-  Secondary events have a 75% chance for :location-events only followed by a
+  Secondary events have a 75% chance for :location-events only, followed by a
   25% chance for a tertiary event."
   ([tmap]
    (secondary tmap 75 25))
@@ -202,5 +206,3 @@
             (util/chance chance))
      (append-event tmap :tertiary)
      tmap)))
-
-(def extra-events (comp tertiary secondary))
