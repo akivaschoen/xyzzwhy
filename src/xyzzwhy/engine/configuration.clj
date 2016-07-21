@@ -1,7 +1,43 @@
 (ns xyzzwhy.engine.configuration
-  (:require [clojure
-             [string :as str]
-             [set :as sets]]))
+  (:require [clojure.string :as cstr]))
+
+;; -------
+;; Queries
+;; -------
+(declare config has?)
+
+(defn follow-up?
+  ([fr]
+   (not (has? fr :no-follow-up)))
+  ([fr tmap]
+   (not (has? fr tmap :no-follow-up))))
+
+(defn has?
+  ([fr option]
+   (contains? (config fr) option))
+  ([fr tmap option]
+   (contains? (merge (config tmap) (config fr)) option)))
+
+(defn required?
+  [fr]
+  (has? fr :required))
+
+(defn secondary?
+  [fr]
+  (not (has? fr :no-secondary)))
+
+(defn tertiary?
+  [fr]
+  (not (has? fr :no-tertiary)))
+
+;; -------
+;; Utilities
+;; -------
+(declare option-complement? option-complement)
+
+(defn add
+  [tmap opt]
+  (update-in tmap [:event :config] conj opt))
 
 (defn config
   [tmap]
@@ -9,8 +45,6 @@
     (contains? tmap :event) (get-in tmap [:event :config])
     :else
     (:config tmap)))
-
-(declare option-complement? option-complement)
 
 (defn merge-into
   "Merges c2 into c1 returning a merged set."
@@ -30,48 +64,16 @@
               c1
               c2))))
 
-(defn combine
-  [c1 c2]
-  (let [c (sets/union (:config c1) (:config c2))]
-    (reduce (fn [acc option]
-              (let [opt (option-complement option)]
-                (if (and (str/starts-with? (name option) "no-"))
-                  (contains? c opt))
-                (disj acc opt)
-                acc))
-            c
-            c)))
-
 (defn option-complement
   [option]
   (let [opt (name option)]
     (keyword
      (cond
        (empty? opt) nil
-       (str/starts-with? opt "no-") (str/replace opt #"^no-" "")
+       (cstr/starts-with? opt "no-") (cstr/replace opt #"^no-" "")
        :else
        (str "no-" opt)))))
 
 (defn option-complement?
   [option config]
   (contains? config (option-complement option)))
-
-(defn has?
-  ([fr option]
-   (contains? (config fr) option))
-  ([fr tmap option]
-   (contains? (merge (config tmap) (config fr)) option)))
-
-(defn required?
-  [fr]
-  (has? fr :required))
-
-(defn follow-up?
-  ([fr]
-   (not (has? fr :no-follow-up)))
-  ([fr tmap]
-   (not (has? fr tmap :no-follow-up))))
-
-(defn add
-  [tmap opt]
-  (update-in tmap [:event :config] conj opt))

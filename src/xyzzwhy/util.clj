@@ -23,11 +23,6 @@
      true
      false)))
 
-(defn smarten
-  "Converts fragment's text to use typographer's quotes."
-  [text]
-  (typo/smarten text))
-
 (defn pick
   "Given a vector, randomly chooses one item; if a string,
   simply returns the string."
@@ -57,5 +52,10 @@
       (cstr/replace #"^[a-z]+" cstr/capitalize)
       (cstr/replace #"(\.\s)([a-z]+)" #(str (second %1)
                                             (cstr/capitalize (nth %1 2))))))
+
+(defn smarten
+  "Converts fragment's text to use typographer's quotes."
+  [text]
+  (typo/smarten text))
 
 (def finalize (comp smarten prefix sentence-case))
