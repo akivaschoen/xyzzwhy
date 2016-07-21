@@ -1,5 +1,7 @@
 (ns user)
 
+(defn rl-bot [] (require '[xyzzwhy.bot :as bot] :reload))
+
 (defn rl-cf [] (require '[xyzzwhy.engine.configuration :as cf] :reload))
 
 (defn rl-en [] (require '[xyzzwhy.engine :as en] :reload))
