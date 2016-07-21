@@ -1,6 +1,5 @@
 (ns xyzzwhy.engine.substitution
-  (:require [clojure.string :as str]
-            [xyzzwhy.engine
+  (:require [xyzzwhy.engine
              [configuration :as cf]
              [fragment :as fr]
              [interpolation :as in]]
@@ -61,7 +60,7 @@
                            (get-in tmap (conj path :sub)))]
     (-> tmap
         (assoc-in (conj path :text) tweet-text)
-        (update :tweet str tweet-text))))
+        (update :tweet util/append tweet-text))))
 
 (defmethod transclude :follow-up
   [_ fragment conf]
@@ -123,9 +122,9 @@
                                           t)]
                       (-> tmap
                           (assoc-in [:event :sub skey] sval')
-                          (update :tweet str (:text t))))
+                          (update :tweet util/append (:text t))))
                     (-> tmap
-                        (update :tweet str (:text (val follow))))))
+                        (update :tweet util/append (:text (val follow))))))
                 tmap)))
           tmap
           (rseq (vec (map-indexed vector (get-in tmap [:event :sub]))))))
@@ -141,8 +140,8 @@
               p (conj path (key follow))]
           (as-> tmap t
               (assoc-in t p f)
-              (update t :tweet str (get-in t (conj p :text)))))
-        (update tmap :tweet str (:text (val follow))))
+              (update t :tweet util/append (get-in t (conj p :text)))))
+        (update tmap :tweet util/append (:text (val follow))))
       tmap)))
 
 (defn follow-up
