@@ -25,10 +25,9 @@
 
   :profiles
   {:uberjar
-   [:prod-config
-    {:env {:production true}
-     :omit-source true
-     :aot :all}]
+   {:env {:production true}
+    :omit-source true
+    :aot :all}
 
    :dev
    [:twitter
