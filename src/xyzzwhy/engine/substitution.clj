@@ -155,5 +155,5 @@
         (cf/add tmap' :no-follow-up)))
     (let [tmap' (follow-up* tmap :sub)]
       (if (= tmap' tmap)
-        (cf/add :tmap' :no-follow-up)
-        tmap))))
+        tmap
+        (cf/add tmap' :no-follow-up)))))
