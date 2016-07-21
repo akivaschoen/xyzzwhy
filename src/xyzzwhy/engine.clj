@@ -2,8 +2,7 @@
   (:require [xyzzwhy.engine
              [fragment :as fr]
              [substitution :as sb]]
-            [xyzzwhy.util :as util]
-            [clojure.string :as str]))
+            [xyzzwhy.util :as util]))
 
 (def tweetmap
   {:tweet nil

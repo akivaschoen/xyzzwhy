@@ -1,5 +1,5 @@
 (ns xyzzwhy.util
-  (:require [clojure.string :as string]
+  (:require [clojure.string :as str]
             [typographer.core :as typo]))
 
 (def any? (complement not-any?))
@@ -17,10 +17,10 @@
   "Capitalizes fragment's sentences."
   [fragment]
   (assoc fragment :text (-> (:text fragment)
-                            (string/replace #"^[a-z]+" #(string/capitalize %1))
-                            (string/replace #"(\.\s)([a-z]+)"
+                            (str/replace #"^[a-z]+" #(str/capitalize %1))
+                            (str/replace #"(\.\s)([a-z]+)"
                                             #(str (second %1)
-                                                  (string/capitalize (nth %1 2)))))))
+                                                  (str/capitalize (nth %1 2)))))))
 
 (defn chance
   "Returns true if a randomly chosen percentile is less
@@ -36,7 +36,7 @@
   "Prefix's fragment's :text with a period if it begins with
   an @mention."
   [fragment]
-  (update fragment :text #(string/replace % #"^(@\w+)" ".$1")))
+  (update fragment :text #(str/replace % #"^(@\w+)" ".$1")))
 
 (defn format-text
   "Applies a preposition and/or an article to a given fragment."

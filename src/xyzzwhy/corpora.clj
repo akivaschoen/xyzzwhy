@@ -1,6 +1,5 @@
 (ns xyzzwhy.corpora
-  (:require [clojure.string :as str]
-            [xyzzwhy.io :as io]
+  (:require [xyzzwhy.io :as io]
             [xyzzwhy.util :as util]))
 
 (defn weighted-pick
