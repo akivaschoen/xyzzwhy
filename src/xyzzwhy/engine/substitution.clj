@@ -4,8 +4,7 @@
              [configuration :as cf]
              [fragment :as fr]
              [interpolation :as in]]
-            [xyzzwhy.util :as util]
-            [xyzzwhy.engine.substitution :as sb]))
+            [xyzzwhy.util :as util]))
 
 ;; -------
 ;; Pronouns
@@ -101,10 +100,10 @@
 ;; Yon Follow-Uppery
 ;; -------
 (defmulti follow-up*
-  (fn [t _] t))
+  (fn [_ t] t))
 
 (defmethod follow-up* :sub
-  [_ tmap]
+  [tmap _]
   (reduce (fn [tmap sub]
             (let [skey (first sub)
                   sval (second sub)]
@@ -122,17 +121,15 @@
                                           t)]
                       (-> tmap
                           (assoc-in [:event :sub skey] sval')
-                          (update :tweet str (:text t))
-                          (cf/add :no-follow-up)))
+                          (update :tweet str (:text t))))
                     (-> tmap
-                        (update :tweet str (:text (val follow)))
-                        (cf/add :no-follow-up))))
+                        (update :tweet str (:text (val follow))))))
                 tmap)))
           tmap
           (rseq (vec (map-indexed vector (get-in tmap [:event :sub]))))))
 
 (defmethod follow-up* :event
-  [_ tmap]
+  [tmap _]
   (let [path [:event :follow-up :fragment]]
     (if-let [follow (util/pick-indexed (get-in tmap path))]
       (if (fr/sub? (val follow))
@@ -140,22 +137,23 @@
                     (update :sub substitutions)
                     ((partial transclude :follow-up) nil))
               p (conj path (key follow))]
-          (as-> tmap tmap'
-            (assoc-in tmap' p f)
-            (update tmap' :tweet str (get-in tmap' (conj p :text)))
-            (cf/add tmap' :no-follow-up)))
-        (-> tmap
-            (update :tweet str (:text (val follow)))
-            (cf/add :no-follow-up)))
+          (as-> tmap t
+              (assoc-in t p f)
+              (update t :tweet str (get-in t (conj p :text)))))
+        (update tmap :tweet str (:text (val follow))))
       tmap)))
 
 (defn follow-up
   "Returns a tmap with a follow-up possibly attached."
   [tmap]
-  (if (and (cf/follow-up? tmap)
-           (cf/required? (get-in tmap [:event :follow-up :config])))
-    (follow-up* :event tmap)
-    (let [tmap (follow-up* :sub tmap)]
-      (if (cf/follow-up? tmap)
-        (follow-up* :event tmap)
+  (if (cf/required? (get-in tmap [:event :follow-up]))
+    (let [tmap' (-> tmap
+                    (follow-up* :event)
+                    (follow-up* :sub))]
+      (if (= tmap' tmap)
+        tmap
+        (cf/add tmap' :no-follow-up)))
+    (let [tmap' (follow-up* tmap :sub)]
+      (if (= tmap' tmap)
+        (cf/add :tmap' :no-follow-up)
         tmap))))
