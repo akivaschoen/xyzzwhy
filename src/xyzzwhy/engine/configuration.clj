@@ -1,22 +1,14 @@
 (ns xyzzwhy.engine.configuration
   (:require [clojure
              [string :as str]
-             [set :as sets]]
-            [xyzzwhy.datastore :as ds]))
-
-#_(defn configure
-    [classname]
-    (reduce (fn [acc option]
-              (conj acc (keyword option)))
-            #{}
-            (:config (ds/get-metadata classname))))
+             [set :as sets]]))
 
 (defn config
-  [fragment]
+  [tmap]
   (cond
-    (contains? fragment :event) (get-in fragment [:event :config])
+    (contains? tmap :event) (get-in tmap [:event :config])
     :else
-    (:config fragment)))
+    (:config tmap)))
 
 (declare option-complement? option-complement)
 
@@ -65,21 +57,21 @@
   (contains? config (option-complement option)))
 
 (defn has?
-  ([fragment option]
-   (contains? (config fragment) option))
-  ([fragment tweetmap option]
-   (contains? (merge (config tweetmap) (config fragment)) option)))
+  ([fr option]
+   (contains? (config fr) option))
+  ([fr tmap option]
+   (contains? (merge (config tmap) (config fr)) option)))
 
 (defn required?
-  [fragment]
-  (has? fragment :required))
+  [fr]
+  (has? fr :required))
 
 (defn follow-up?
-  ([fragment]
-   (not (has? fragment :no-follow-up)))
-  ([fragment tweetmap]
-   (not (has? fragment tweetmap :no-follow-up))))
+  ([fr]
+   (not (has? fr :no-follow-up)))
+  ([fr tmap]
+   (not (has? fr tmap :no-follow-up))))
 
 (defn add
-  [tweetmap opt]
-  (update-in tweetmap [:event :config] conj opt))
+  [tmap opt]
+  (update-in tmap [:event :config] conj opt))

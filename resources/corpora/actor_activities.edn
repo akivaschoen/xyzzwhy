@@ -1,0 +1,44 @@
+{:class :actor-activity
+ :type :sub
+ :fragment [{:text "%10 playing the organ."
+             :sub [{:token 10 :class :adverb}]}
+            {:text "being chased around by a %10."
+             :sub [{:token 10 :class :animal}]}
+            {:text "being chased by %10."
+             :sub [{:token 10 :class :person}]}
+            {:text "being chased by %10 which is attached to them by a string."
+             :sub [{:token 10 :class :item}]}
+            {:text "being chased by a swarm of balloon animals."}
+            {:text "being menaced by %10."
+             :sub [{:token 10 :class :animal}]}
+            {:text "clutching a DVD of %10."
+             :sub [{:token 10 :class :movie}]}
+            {:text "dancing extremely slowly."}
+            {:text "dancing furiously."}
+            {:text "dancing in a small circle."}
+            {:text "defiantly eating Scrabble tiles, one by one."}
+            {:text "doing the Kenosha Kid."}
+            {:text "drooling uncontrollably."}
+            {:text "examining %10 with great confusion."
+             :sub [{:token 10 :class :item}]}
+            {:text "having a coughing fit."}
+            {:text "having a sneezing fit."}
+            {:text "having a Guru Meditation Error."}
+            {:text "hiding under a sofa."}
+            {:text "hiding under a table."}
+            {:text "hiding in the bushes."}
+            {:text "looking %10."
+             :sub [{:token 10 :class :adjective}]}
+            {:text "juggling some balls."}
+            {:text "munching on %10."
+             :sub [{:token 10 :class :food}]}
+            {:text "organizing matches."}
+            {:text "pretending to be invisible."}
+            {:text "ready to start some shit."}
+            {:text "shouting at an imaginary helicopter."}
+            {:text "stooping up and down like a rapper in concert."}
+            {:text "thinking %10 about %11."
+             :sub [{:token 10 :class :adverb}
+                   {:token 11 :class :actor}]}
+            {:text "wearing an eyepatch."}
+            {:text "wearing two eyepatches and stumbling around blindly."}]}

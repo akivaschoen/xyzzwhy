@@ -1,0 +1,34 @@
+{:events {:location-event 40 ;; event name and weight
+          :action-event 40
+          :actor-event 20
+          :attack-event 20
+          :dialogue-event 10
+          :diagnosis-event 1
+          :news-event 1
+          :thought-event 1}
+ :subs [:actor-action
+        :actor-activity
+        :adjective
+        :adverb
+        :animal
+        :attack
+        :book
+        :diagnosis
+        :dialogue
+        :direction
+        :disaster
+        :drink
+        :food
+        :game
+        :garment
+        :headline
+        :intonation
+        :item
+        :location
+        :movie
+        :noise
+        :obstacle
+        :person
+        :scent
+        :sign
+        :thought]}
