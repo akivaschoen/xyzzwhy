@@ -82,7 +82,7 @@
   [subv sub]
   (-> sub
       (assoc :config #{:no-article})
-      (assoc :text (pronoun (:gender (fr/get-ref sub subv)) (:case sub)))))
+      (assoc :text (pronoun (util/pick (:gender (fr/get-ref sub subv))) (:case sub)))))
 
 (defmethod sub :default
   [_ sub]
