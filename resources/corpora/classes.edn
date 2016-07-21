@@ -1,5 +1,5 @@
-{:events {:action-event 40 ;; event name and weight
-          :location-event 40
+{:events {:location-event 40 ;; event name and weight
+          :action-event 40
           :actor-event 20
           :attack-event 20
           :dialogue-event 10
