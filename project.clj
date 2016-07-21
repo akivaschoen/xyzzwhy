@@ -14,8 +14,7 @@
    [pluralex "1.0.0-SNAPSHOT"]
    [reloaded.repl "0.2.2"]
    [twitter-api "0.7.8"]
-   [typographer "1.1.0"]
-   #_[xyzzwhy/datastore "1.0.0-SNAPSHOT"]]
+   [typographer "1.1.0"]]
 
   :plugins
   [[lein-environ "1.0.3"]]
