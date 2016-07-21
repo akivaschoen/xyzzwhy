@@ -76,25 +76,27 @@
 ;; -------
 ;; Yon Substitutionarium
 ;; -------
-#_(defmethod sub-with :gender
-    [fragment sub]
-    (let [sex (-> (:sub fragment)
-                  (find (:ref sub))
-                  val
-                  :fragment
-                  :gender)]
-      {(key sub) (assoc-in sub [:fragment :text] (gender sex (:case sub)))}))
+(defmulti sub
+  (fn [_ sub] (:class sub)))
 
-(defmulti substitute
-  (fn [sub] (:class sub)))
+(defmethod sub :gender
+  [subv sub]
+  (-> sub
+      (assoc :config #{:no-article})
+      (assoc :text (pronoun (:gender (fr/get-ref sub subv)) (:case sub)))))
 
-(defmethod substitute :default
-  [sub]
+(defmethod sub :default
+  [_ sub]
   (fr/fragment sub))
 
-(defn substitutions
+(defn substitute
   [subv]
-  (mapv substitute subv))
+  (loop [out []
+         subs (apply list subv)]
+    (if (empty? subs)
+      out
+      (recur (conj out (sub out (peek subs)))
+             (next subs)))))
 
 ;; -------
 ;; Yon Follow-Uppery
@@ -114,7 +116,7 @@
                 (let [path [:follow-up :fragment]
                       follow (util/pick-indexed (get-in sval path))]
                   (if (fr/sub? (val follow))
-                    (let [f (update (val follow) :sub substitutions)
+                    (let [f (update (val follow) :sub substitute)
                           t (transclude :follow-up f (cf/config tmap))
                           sval' (assoc-in sval
                                           (conj path (key follow))
@@ -134,7 +136,7 @@
     (if-let [follow (util/pick-indexed (get-in tmap path))]
       (if (fr/sub? (val follow))
         (let [f (-> (val follow)
-                    (update :sub substitutions)
+                    (update :sub substitute)
                     ((partial transclude :follow-up) nil))
               p (conj path (key follow))]
           (as-> tmap t
