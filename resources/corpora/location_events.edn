@@ -3,7 +3,7 @@
  :fragment [{:text "%0 prevents you from going %1 to %2."
              :sub [{:token 0 :class :obstacle}
                    {:token 1 :class :direction}
-                   {:token 2 :class :location :config #{:no-prep :no-follow-up}}]}
+                   {:token 2 :class :location :config #{:no-prep}}]}
             {:text "A double bounce on a trampoline lands you %0."
              :sub [{:token 0 :class :location}]}
             {:text "After %0 at your %1, you are relocated by FEMA to %2."
