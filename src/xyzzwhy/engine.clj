@@ -26,7 +26,7 @@
 (defn substitutes
   [tmap]
   (if (fr/sub? (:event tmap))
-    (update-in tmap [:event :sub] sb/substitutions)
+    (update-in tmap [:event :sub] sb/substitute)
     tmap))
 
 (defn transclude

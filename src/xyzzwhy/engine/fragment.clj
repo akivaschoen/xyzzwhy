@@ -19,6 +19,13 @@
     false))
 
 ;; -------
+;; Fragment Accessors
+;; -------
+(defn get-ref
+  [refm subv]
+  (first (filter #(= (:token %) (:ref refm)) subv)))
+
+;; -------
 ;; Fragment Configuration
 ;; -------
 (defn article?
