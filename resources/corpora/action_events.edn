@@ -169,4 +169,4 @@
                     {:token 2 :class :item}]}
 
              {:text "You take a sip of %0."
-              :sub [u:token 0 :class :drink :config #{:no-article}u]}]}
+              :sub [{:token 0 :class :drink :config #{:no-article}}]}]}
