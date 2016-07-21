@@ -186,7 +186,7 @@
    (secondary tmap sec-chance 25))
   ([tmap sec-chance ter-chance]
    (if (and (cf/secondary? tmap)
-            (= (:event tmap) :location-event)
+            (= (get-in tmap [:event :class]) :location-event)
             (util/chance sec-chance))
      (tertiary (append-event tmap :secondary) ter-chance)
      tmap)))

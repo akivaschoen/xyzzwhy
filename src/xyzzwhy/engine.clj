@@ -30,13 +30,28 @@
 
 (defn transclude
   [tmap]
-  (sb/transclude :event tmap nil))
+  (sb/transclude tmap nil :event))
 
 (defn follow-up
   [tmap]
   (sb/follow-up tmap))
 
-(def tweet-factory (comp follow-up transclude substitutes tweet-text event-fragment event))
+(defn secondary-event
+  [tmap]
+  (sb/secondary tmap))
+
+(defn tertiary-event
+  [tmap]
+  (sb/tertiary tmap))
+
+(def tweet-factory (comp tertiary-event
+                         secondary-event
+                         follow-up
+                         transclude
+                         substitutes
+                         tweet-text
+                         event-fragment
+                         event))
 
 (defn tweet
   []
