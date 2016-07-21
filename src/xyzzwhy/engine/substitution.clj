@@ -37,10 +37,10 @@
 ;; Yon Transclusery
 ;; -------
 (defmulti transclude
-  (fn [t _ _] t))
+  (fn [_ _ t] t))
 
 (defmethod transclude :event
-  [_ tmap _]
+  [tmap _ _]
   (let [tweet-text (reduce (fn [text sub]
                              (let [config (cf/merge-into (cf/config tmap)
                                                          (cf/config sub))]
@@ -50,7 +50,7 @@
     (assoc tmap :tweet tweet-text)))
 
 (defmethod transclude :sub
-  [_ tmap index]
+  [tmap index _]
   (let [path [:event :follow-up :fragment index]
         tweet-text (reduce (fn [text sub]
                              (let [config (cf/merge-into (cf/config tmap)
@@ -62,8 +62,8 @@
         (assoc-in (conj path :text) tweet-text)
         (update :tweet util/append tweet-text))))
 
-(defmethod transclude :follow-up
-  [_ fragment conf]
+(defmethod transclude :default
+  [fragment conf _]
   (let [text (reduce (fn [text sub]
                        (let [config (cf/merge-into (cf/config conf)
                                                    (cf/config sub))]
@@ -158,3 +158,49 @@
       (if (= tmap' tmap)
         tmap
         (cf/add tmap' :no-follow-up)))))
+
+(declare tertiary)
+
+(defn append-event
+  [tmap event-type]
+  (let [event (-> nil
+                  (fr/fragment (-> event-type
+                                   name
+                                   (str "-event")
+                                   keyword))
+                  (update :sub substitute)
+                  (transclude nil nil))]
+    (-> tmap
+        (assoc-in [:event event-type] event)
+        (update :tweet util/append (str " " (:text event)))
+        (cf/add (cf/option-complement event-type)))))
+
+(defn secondary
+  "Returns a tmap with a secondary (and tertiary) event possibly attached.
+
+  Secondary events have a 75% chance for :location-events only followed by a
+  25% chance for a tertiary event."
+  ([tmap]
+   (secondary tmap 75 25))
+  ([tmap sec-chance]
+   (secondary tmap sec-chance 25))
+  ([tmap sec-chance ter-chance]
+   (if (and (cf/secondary? tmap)
+            (= (:event tmap) :location-event)
+            (util/chance sec-chance))
+     (tertiary (append-event tmap :secondary) ter-chance)
+     tmap)))
+
+(defn tertiary
+  "Returns a tmap with a tertiary event possibly attached.
+
+  Tertiary events have a 35% chance of appearing for any event."
+  ([tmap]
+   (tertiary tmap 35))
+  ([tmap chance]
+   (if (and (cf/tertiary? tmap)
+            (util/chance chance))
+     (append-event tmap :tertiary)
+     tmap)))
+
+(def extra-events (comp tertiary secondary))
