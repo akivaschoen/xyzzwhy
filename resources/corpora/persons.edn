@@ -24,7 +24,7 @@
             {:text "Stephen Fry"
              :gender :male}
             {:text "a gas station attendant"
-             :gender :male}
+             :gender [:female :male]}
             {:text "Whoopi Goldberg"
              :gender :female}
             {:text "Nancy Grace"
@@ -65,8 +65,6 @@
              :gender :male}
             {:text "Craig T. Nelson"
              :gender :male}
-            {:text "Drew Olanoff"
-             :gender :male}
             {:text "Katy Perry"
              :gender :female}
             {:text "Geoff Petersen"
@@ -74,7 +72,7 @@
             {:text "Brad Pitt"
              :gender :male}
             {:text "a police officer"
-             :gender :male}
+             :gender [:female :male]}
             {:text "Thomas Pynchon"
              :gender :male}
             {:text "Bob Sacamano"
