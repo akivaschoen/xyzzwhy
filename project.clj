@@ -10,9 +10,9 @@
   [[org.clojure/clojure "1.8.0"]
    [clj-time "0.12.0"]
    [com.stuartsierra/component "0.3.1"]
-   [environ "1.0.3"]
+   [environ "1.1.0"]
    [pluralex "1.0.0-SNAPSHOT"]
-   [reloaded.repl "0.2.2"]
+   [reloaded.repl "0.2.3"]
    [twitter-api "0.7.8"]
    [typographer "1.1.0"]]
 
@@ -25,7 +25,7 @@
 
   :profiles
   {:uberjar
-   {:env {:production true}
+   {:env {:production "true"}
     :omit-source true
     :aot :all}
 
