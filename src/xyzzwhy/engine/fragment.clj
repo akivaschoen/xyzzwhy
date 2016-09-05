@@ -36,7 +36,7 @@
   [fr]
   (if-let [article (:article fr)]
     (str (-> article util/pick) " ")
-    (str (a-or-an (:text fr)) " ")))
+    (str (a-or-an (util/pick (:text fr))) " ")))
 
 (defn follow-up?
   [fr]
