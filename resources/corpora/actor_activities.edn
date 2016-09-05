@@ -1,5 +1,6 @@
 {:class :actor-activity
  :type :sub
+ :config #{:no-article}
  :fragment [{:text "%10 playing the organ."
              :sub [{:token 10 :class :adverb}]}
             {:text "being chased around by a %10."
