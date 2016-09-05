@@ -21,6 +21,7 @@
 
   :main xyzzwhy.bot
 
+  :resource-paths ["resources"]
   :target-path "target/%s"
 
   :profiles

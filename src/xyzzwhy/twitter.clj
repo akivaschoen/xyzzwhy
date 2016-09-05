@@ -11,7 +11,7 @@
     (env :xyzzwhy-twitter-user-access-token)
     (env :xyzzwhy-twitter-user-access-token-secret)))
 
-(defn post-to-twitter
+(defn update
   "This, uh, posts to Twitter."
   [status-text]
   (try

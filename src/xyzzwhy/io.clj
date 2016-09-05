@@ -5,7 +5,7 @@
             [pluralex.core :as pl])
   (:import java.io.PushbackReader))
 
-(defonce corpora-dir "resources/corpora/")
+(defonce corpora-dir "corpora/")
 
 (defn filename
   [classname]
@@ -21,7 +21,7 @@
   [file]
   (let [path (str corpora-dir (-> file filename edn-prefix))]
     (try
-      (with-open [file (-> path io/reader PushbackReader.)]
+      (with-open [file (-> path io/resource io/reader PushbackReader.)]
         (edn/read file))
       (catch Exception e
         (println (str "OH GOD. Failed to load '" path "': " (.getLocalizedMessage e)))))))
