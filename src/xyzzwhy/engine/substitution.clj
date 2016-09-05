@@ -36,8 +36,7 @@
 ;; -------
 ;; Yon Transclusery
 ;; -------
-(defmulti transclude
-  (fn [_ _ t] t))
+(defmulti transclude (fn [_ _ t] t))
 
 (defmethod transclude :event
   [tmap _ _]
@@ -63,20 +62,19 @@
         (update :tweet util/append tweet-text))))
 
 (defmethod transclude :default
-  [fragment conf _]
+  [tmap conf _]
   (let [text (reduce (fn [text sub]
                        (let [config (cf/merge-into (cf/config conf)
                                                    (cf/config sub))]
                          (in/interpolate config text sub)))
-                     (:text fragment)
-                     (:sub fragment))]
-    (assoc fragment :text text)))
+                     (:text tmap)
+                     (:sub tmap))]
+    (assoc tmap :text text)))
 
 ;; -------
 ;; Yon Substitutionarium
 ;; -------
-(defmulti sub
-  (fn [_ sub] (:class sub)))
+(defmulti sub (fn [_ sub] (:class sub)))
 
 (defmethod sub :gender
   [subv sub]
@@ -136,7 +134,7 @@
       (if (fr/sub? (val follow))
         (let [f (-> (val follow)
                     (update :sub substitute)
-                    ((partial transclude :follow-up) nil))
+                    (transclude nil :follow-up))
               p (conj path (key follow))]
           (as-> tmap t
               (assoc-in t p f)

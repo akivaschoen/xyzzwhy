@@ -1,11 +1,11 @@
 (ns xyzzwhy.bot
-  (:gen-class)
   (:require [clj-time.local :as local]
             [com.stuartsierra.component :as component]
             [xyzzwhy
              [engine :as en]
              [twitter :as tw]]
-            [xyzzwhy.engine.fragment :as fr]))
+            [xyzzwhy.engine.fragment :as fr])
+  (:gen-class))
 
 (defn- log-tweet
   [tweet interval]
