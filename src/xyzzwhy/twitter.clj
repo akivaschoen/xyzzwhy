@@ -6,10 +6,10 @@
 
 (def credentials
   (make-oauth-creds
-    (env :xyzzwhy-twitter-consumer-key)
-    (env :xyzzwhy-twitter-consumer-secret)
-    (env :xyzzwhy-twitter-user-access-token)
-    (env :xyzzwhy-twitter-user-access-token-secret)))
+    (env :twitter-consumer-key)
+    (env :twitter-consumer-secret)
+    (env :twitter-user-access-token)
+    (env :twitter-user-access-token-secret)))
 
 (defn update
   "This, uh, posts to Twitter."
