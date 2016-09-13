@@ -1,0 +1,31 @@
+{:class :insult
+ :type :sub
+ :config #{:no-article}
+ :fragment [{:text "cocktable"
+             :kind :name}
+            {:text "Constable Von Shitz"
+             :kind :name}
+            {:text "cuntbutter"
+             :kind :name}
+            {:text "dickstaple"
+             :kind :name}
+            {:text "douchepilot"
+             :kind :name}
+            {:text "Fondles Yon Genitals"
+             :Kind :name}
+            {:text "licker of shit"
+             :kind :name}
+            {:text "twatvomit"
+             :kind :name}
+            {:text "you ass hole"
+             :kind :name}
+            {:text "you bag of dicks"
+             :kind :name}
+            {:text "you ballsnacker"
+             :kind :name}
+            {:text "you everloving taintgobble"
+             :kind :name}
+            {:text "you fucking squat thrust"
+             :kind :name}
+            {:text "you goddamned cocktable"
+             :kind :name}]}

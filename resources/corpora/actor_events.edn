@@ -14,8 +14,10 @@
              :sub [{:token 0 :class :actor :config #{:no-groups}}
                    {:token 1 :class :direction}
                    {:token 2 :class :item}]}
-            {:text "%0 does a little jig. 'Bidibidibidi, wanna dance?'"
-             :sub [{:token 0 :class :actor}]}
+            {:text "%0 pulls %1 out of %2 pocket and flings it over the horizon."
+             :sub [{:token 0 :class :actor :config #{:no-groups}}
+                   {:token 1 :class :item}
+                   {:token 1 :class :gender :possessive}]}
             {:text "%0 drops %1 here."
              :sub [{:token 0 :class :actor}
                    {:token 1 :class :item}]}
