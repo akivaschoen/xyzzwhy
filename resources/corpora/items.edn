@@ -48,7 +48,8 @@
              :follow-up {:fragment [{:text " It's already been torn."}
                                     {:text " Unfortunately, it's for a Vince Vaughn movie."}]}}
             {:text "non-Euclidian Lego"}
-            {:text "no tea"}
+            {:text "no tea"
+             :config #{:no-article}}
             {:text "newspaper"}
             {:text "pellets"
              :article "a bag of"

@@ -15,6 +15,10 @@
              :Kind :name}
             {:text "licker of shit"
              :kind :name}
+            {:text "shitcheese"
+             :kind :name}
+            {:text "turdburglar"
+             :kind :name}
             {:text "twatvomit"
              :kind :name}
             {:text "you ass hole"
@@ -28,4 +32,6 @@
             {:text "you fucking squat thrust"
              :kind :name}
             {:text "you goddamned cocktable"
+             :kind :name}
+            {:text "you shit tangle"
              :kind :name}]}

@@ -31,8 +31,7 @@
                                      :sub [{:token 0 :class :person}]}
                                     {:text "you hear %0 get wicked."
                                      :sub [{:token 0 :class :person}]}
-                                    {:text "you hear %0 shake it off."
-                                     :sub [{:token 0 :class :person}]}]}}
+                                    ]}}
 
             {:text "You start spinning around and around. "
              :follow-up {:config #{:required}
@@ -65,6 +64,7 @@
                                     {:text "Ketchup begins seeping through the speaker holes."}
                                     {:text "It continues to crackle to life. It's still crackling. It's on fire."}
                                     {:text "An announcer shouts, 'They found rice on Mars!'"}
+                                    {:text "An announcer shouts, 'I'M NUDE TODAY.'"}
                                     {:text "A news report is on about %0 %1."
                                      :sub [{:token 0 :class :disaster}
                                            {:token 1 :class :location :config #{:no-prep}}]}
@@ -108,13 +108,17 @@
             {:text "You feel a little famished so you eat %0."
              :sub [{:token 0 :class :food}]}
 
-            {:text "You find yourself being slowly teleported away. Very slowly. People are beginning to stare."}
-
             {:text "You open up %0. "
              :sub [{:token 0 :class :book}]
              :follow-up {:config #{:required}
                          :fragment [{:text "Someone has scribbled all over the margins. You throw it down on the floor in disgust."}
+                                    {:text "Most of the book has been blacked out."}
+                                    {:text "Inside is a note: 'When you're not reading this, it's written in Spanish."}
+                                    {:text "Water pours out."}
+                                    {:text "Orange juice spills out."}
+                                    {:text "It bursts into flames."}
                                     {:text "Someone has left a recipe for beef stew inside."}
+                                    {:text "You read a bit before tossing it over your shoulder and then sobbing quietly."}
                                     {:text "You read a bit before tossing it over your shoulder and then doing the electric slide."}]}}
 
             {:text "You peek out the window. "
@@ -131,22 +135,37 @@
                                      :sub [{:token 0 :class :person}]}
                                     {:text "%0 has set up a lemonade stand across the street. You feel oddly jealous."
                                      :sub [{:token 0 :class :person}]}
+                                    {:text "%0 has set up a lemonade stand in your yard. Somehow %1 is also in line."
+                                     :sub [{:token 0 :class :person}
+                                           {:token 1 :class :gender :case :subjective}]}
                                     {:text "%0 is struggling to start a chainsaw while staring at you. You bite your knuckle."
                                      :sub [{:token 0 :class :person}]}
                                     {:text "%0 is standing in your yard, painting a portrait of you peeking out the window."
                                      :sub [{:token 0 :class :person}]}
+                                    {:text "%0 is standing right there, peeking back in."
+                                     :sub [{:token 0 :class :person}]}
+                                    {:text "%0 is strutting back and forth."
+                                     :sub [{:token 0 :class :animal}]}
+                                    {:text "The cops have set up a parameter around your house."}
+                                    {:text "You're impressed: real life has an excellent framerate."}
+                                    {:text "It's dark out because it's night. The moon is getting closer."}
+                                    {:text "%0 has almost finished burying all the corpses in your yard."
+                                     :sub [{:token 0 :class :person}]}
+                                    {:text "The bodies are hitting the floor."}
+                                    {:text "It's raining Scrabble tiles because of course it is."}
+                                    {:text "It's raining Scrabble tiles."}
+                                    {:text "Someone has installed an above-ground pool and filled it with mini-ravioli."}
                                     {:text "Your entire house has been encased in a giant stone column."}]}}
 
             {:text "You pick up %0"
              :sub [{:token 0 :class :item}]
              :follow-up {:config #{:required}
                          :fragment [{:text "."}
+                                    {:text ". It bursts into flames."}
+                                    {:text ". You throw it into the sky and it disappears."}
                                     {:text " and hold it close to your chest."}
                                     {:text " and hold it up to %1's face."
                                      :sub [{:token 1 :class :person}]}]}}
-
-            {:text "You start eating %0 and don't stop until you're done."
-             :sub [{:token 0 :class :food}]}
 
             {:text "You start spinning around and around while "
              :follow-up {:config #{:required}
@@ -156,17 +175,25 @@
                                      :sub [{:token 0 :class :person}]}
                                     {:text "%0 writes furiously on a clipboard."
                                      :sub [{:token 0 :class :person}]}
+                                    {:text "%0 starts spinning in the opposite direction, trying to offset your insanity with more insanity."
+                                     :sub [{:token 0 :class :person}]}
+                                    {:text "%0 strolls by, shaking %1 head sadly."
+                                     :sub [{:token 0 :class :actor}
+                                           {:token 1 :class :gender :case :possessive}]}
                                     {:text "%0 beams with pride."
                                      :sub [{:token 0 :class :person}]}]}}
 
-             {:text "You startle %0 who drops %1 and runs away."
-              :sub [{:token 0 :class :person}
-                    {:token 1 :class :item}]}
+            {:text "You startle %0 who drops %1 and runs away."
+             :sub [{:token 0 :class :person}
+                   {:token 1 :class :item}]}
 
-             {:text "You surprise %0. %1 drops %2 and runs away."
-              :sub [{:token 0 :class :person}
-                    {:token 1 :ref 0 :class :gender :case :subjective}
-                    {:token 2 :class :item}]}
+            {:text "You surprise %0. %1 drops %2 and runs away."
+             :sub [{:token 0 :class :person}
+                   {:token 1 :ref 0 :class :gender :case :subjective}
+                   {:token 2 :class :item}]}
 
-             {:text "You take a sip of %0."
+            {:text "You take a bite of %0."
+             :sub [{:token 0 :class :food}]}
+
+            {:text "You take a sip of %0."
               :sub [{:token 0 :class :drink :config #{:no-article}}]}]}

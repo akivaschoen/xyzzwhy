@@ -17,7 +17,7 @@
             {:text "%0 pulls %1 out of %2 pocket and flings it over the horizon."
              :sub [{:token 0 :class :actor :config #{:no-groups}}
                    {:token 1 :class :item}
-                   {:token 1 :class :gender :possessive}]}
+                   {:token 2 :class :gender :case :possessive}]}
             {:text "%0 drops %1 here."
              :sub [{:token 0 :class :actor}
                    {:token 1 :class :item}]}
@@ -37,7 +37,7 @@
                                     {:text " asking for %2."
                                      :sub [{:token 2 :class :item}]}
                                     {:text " taking responsibility for a recent %2."
-                                     :sub [{ :token 2 :class :disaster}]}]}}
+                                     :sub [{:token 2 :class :disaster}]}]}}
             {:text "%0 makes a rude noise. %1 points surreptitiously to %2 nearby."
              :sub [{:token 0 :class :person}
                    {:token 1 :ref 0 :class :gender :case :subjective}

@@ -24,6 +24,8 @@
              :sub [{:token 0 :class :location}]}
             {:text "The bridge game turned violent so you went to %0."
              :sub [{:token 0 :class :location :config #{:no-prep}}]}
+            {:text "The drugs are kicking in. You are %0."
+             :sub [{:token 0 :class :location}]}
             {:text "The drugs are wearing off. You are %0."
              :sub [{:token 0 :class :location}]}
             {:text "Google Maps leads you to %0."
@@ -51,7 +53,7 @@
              :sub [{:token 0 :class :location}]}
             {:text "The trapdoor drops open beneath you and you land %0."
              :sub [{:token 0 :class :location}]}
-            {:text "Using a vine to swing across the pit, you land %0."
+            {:text "Using a vine to swing across a pit, you land %0."
              :sub [{:token 0 :class :location}]}
             {:text "You are %0."
              :sub [{:token 0 :class :location}]}
@@ -61,13 +63,23 @@
              :follow-up {:fragment [{:text " The prosecuting attorney insists on speaking through a broken bullhorn."}
                                     {:text " They hand out Chicken McNuggets but they're stone cold."}
                                     {:text " The judge is dressed like Dr. Frankenfurter."}
+                                    {:text " The courtroom is on fire."}
+                                    {:text " An altar boy wanders around aimlessly, swinging an incense burner."}
+                                    {:text " The juror next to you keeps putting his hand on your knee."}
+                                    {:text " The juror next to you keeps putting her hand on your knee."}
+                                    {:text " A handsome guy in a white suit is nearby. He's going to fuck up deliberations, isn't he?"}
                                     {:text " You're unsure why they insist the jury sit in a vat of carbonated %0."
                                      :sub [{:token 0 :class :drink :config [:no-article]}]}]}}
             {:text "You are standing %0 of %1."
              :sub [{:token 0 :class :direction}
                    {:token 1 :class :location :config #{:no-prep}}]}
+            {:text "You are laying face down %0."
+             :sub [{:token 0 :class :location}]}
             {:text "You arrive %0."
              :sub [{:token 0 :class :location}]}
+            {:text "With a shriek, you rush %0 from %1."
+             :sub [{:token 0 :class :direction}
+                   {:token 1 :class location :config #{:no-prep}}]}
             {:text "You arrive for your first day at college only to find your roommate is %0."
              :sub [{:token 0 :class :actor}]}
             {:text "You blow into the cartridge too hard and are teleported to %0."
@@ -93,6 +105,10 @@
              :sub [{:token 0 :class :location}]}
             {:text "You find yourself %0."
              :sub [{:token 0 :class :location}]}
+            {:text "You fall asleep in the bath and wake up %0."
+             :sub [{:token 0 :class :location}]
+             :follow-up {:fragment [{:text " %10 is now in the tub with you."
+                                     :sub [{:token 10 :class :actor :config #{:no-groups}}]}]}}
             {:text "You feel your way blindly and end up %0."
              :sub [{:token 0 :class :location}]}
             {:text "You flip the Game Select selector and find yourself %0."
@@ -119,6 +135,9 @@
              :sub [{:token 0 :class :direction}
                    {:token 1 :class :location :config #{:no-prep}}]}
             {:text "You jump out of a moving car, roll down a hill, and find yourself %0."
+             :sub [{:token 0 :class :location}]}
+            {:text "You jump out of a moving car, roll down a hill, and find yourself in another moving car."}
+            {:text "You jump out of an airplane and gently plop %0."
              :sub [{:token 0 :class :location}]}
             {:text "You open the secret door only to see %0."
              :sub [{:token 0 :class :location :config #{:no-prep}}]}
@@ -157,6 +176,15 @@
              :sub [{:token 0 :class :person}]}
             {:text "You wake up from an odd dream. You are %0."
              :sub [{:token 0 :class :location}]}
-            {:text "You walk %0 and arrive at %1."
+            {:text "You start your job %0."
+             :sub [{:token 0 :class :location}]
+             :follow-up {:fragment [{:text "%10 is here, looking %11."
+                                     :sub [{:token 10 :class :actor}
+                                           {:token 10 :class :adjective}]}]}}
+            {:text "After getting fired from your job at %0, you head %1 to %2."
+             :sub [{:token 0 :class :location :config #{:no-prep}}
+                   {:token 1 :class :direction}
+                   {:token 2 :class :location :config #{:no-prep}}]}
+             {:text "You walk %0 and arrive at %1."
              :sub [{:token 0 :class :direction}
                    {:token 1 :class :location :config #{:no-prep}}]}]}
