@@ -12,8 +12,7 @@
   (println "--")
   (println (:tweet tweet))
   (println "On:" (local/format-local-time (local/local-now) :rfc822))
-  (println "Pausing:" (int (/ interval 60000)) "minutes")
-  (println "--"))
+  (println "Pausing for" (int (/ interval 60000)) "minutes"))
 
 (defn tweet
   []
@@ -31,6 +30,7 @@
                             (reset! interrupt true))))))]
     (println "xyzzwhy is ready for some magical adventures!")
     (println "Started at:" (local/format-local-time (local/local-now) :rfc822))
+    (Thread/sleep 60000)
     bot))
 
 (defn -main
