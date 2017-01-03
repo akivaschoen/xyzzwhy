@@ -44,7 +44,12 @@
   [tmap]
   (sb/tertiary tmap))
 
-(def tweet-factory (comp tertiary-event
+(defn finalize
+  [tmap]
+  (update tmap :tweet util/finalize))
+
+(def tweet-factory (comp finalize
+                         tertiary-event
                          secondary-event
                          follow-up
                          transclude
