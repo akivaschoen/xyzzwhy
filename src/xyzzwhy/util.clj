@@ -49,9 +49,9 @@
   "Capitalizes fragment's sentences."
   [text]
   (-> text
-      (cstr/replace #"^[a-z]+" cstr/capitalize)
-      (cstr/replace #"(\.\s)([a-z]+)" #(str (second %1)
-                                            (cstr/capitalize (nth %1 2))))))
+      (cstr/replace #"^(\w)" #(str (cstr/capitalize (first %1))))
+      (cstr/replace #"([.!?]\s*)(\w)" #(str (second %1)
+                                             (cstr/capitalize (nth %1 2))))))
 
 (defn smarten
   "Converts fragment's text to use typographer's quotes."
