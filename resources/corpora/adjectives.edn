@@ -1,23 +1,43 @@
 {:class :adjective
  :type :sub
  :config #{:no-article}
- :fragment [{:text "afraid"}
-            {:text "angry"}
-            {:text "aroused"}
-            {:text "bored"}
-            {:text "distracted"}
-            {:text "forlorn"}
-            {:text "fussy"}
-            {:text "happy"}
-            {:text "hopeful"}
-            {:text "hungry"}
-            {:text "isolated"}
-            {:text "nonplussed"}
-            {:text "relieved"}
-            {:text "sad"}
-            {:text "sleepy"}
-            {:text "stinky"}
-            {:text "thirsty"}
-            {:text "uncertain"}
-            {:text "worried"}
-            {:text "vexed"}]}
+ :fragment [{:index 0
+             :text "afraid"}
+            {:index 1
+             :text "angry"}
+            {:index 2
+             :text "aroused"}
+            {:index 3
+             :text "bored"}
+            {:index 4
+             :text "distracted"}
+            {:index 5
+             :text "forlorn"}
+            {:index 6
+             :text "fussy"}
+            {:index 7
+             :text "happy"}
+            {:index 8
+             :text "hopeful"}
+            {:index 9
+             :text "hungry"}
+            {:index 10
+             :text "isolated"}
+            {:index 11
+             :text "nonplussed"}
+            {:index 12
+             :text "relieved"}
+            {:index 13
+             :text "sad"}
+            {:index 14
+             :text "sleepy"}
+            {:index 15
+             :text "stinky"}
+            {:index 16
+             :text "thirsty"}
+            {:index 17
+             :text "uncertain"}
+            {:index 18
+             :text "worried"}
+            {:index 19
+             :text "vexed"}]}

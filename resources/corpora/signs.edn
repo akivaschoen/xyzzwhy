@@ -1,11 +1,19 @@
 {:class :sign
  :type :sub
  :config #{:no-article}
- :fragment [{:text "Burma shave!"}
-            {:text "For those who can make the journey, there is a place."}
-            {:text "Here lies Hammerdog, a dog made of hammers."}
-            {:text "Here lies Knifekitten, a kitten made of knives."}
-            {:text "It's time to pay the price."}
-            {:text "Now you know how hard it is to say 'Irish wristwatch'."}
-            {:text "When you're not reading this, it's written in Spanish."}
-            {:text "You can't go up against city hall."}]}
+ :fragment [{:index 0
+             :text "Burma shave!"}
+            {:index 1
+             :text "For those who can make the journey, there is a place."}
+            {:index 2
+             :text "Here lies Hammerdog, a dog made of hammers."}
+            {:index 3
+             :text "Here lies Knifekitten, a kitten made of knives."}
+            {:index 4
+             :text "It's time to pay the price."}
+            {:index 5
+             :text "Now you know how hard it is to say 'Irish wristwatch'."}
+            {:index 6
+             :text "When you're not reading this, it's written in Spanish."}
+            {:index 7
+             :text "You can't go up against city hall."}]}

@@ -1,37 +1,54 @@
 {:class :insult
  :type :sub
  :config #{:no-article}
- :fragment [{:text "cocktable"
+ :fragment [{:index 0
+             :text "cocktable"
              :kind :name}
-            {:text "Constable Von Shitz"
+            {:index 1
+             :text "Constable Von Shitz"
              :kind :name}
-            {:text "cuntbutter"
+            {:index 2
+             :text "cuntbutter"
              :kind :name}
-            {:text "dickstaple"
+            {:index 3
+             :text "dickstaple"
              :kind :name}
-            {:text "douchepilot"
+            {:index 4
+             :text "douchepilot"
              :kind :name}
-            {:text "Fondles Yon Genitals"
+            {:index 5
+             :text "Fondles Yon Genitals"
              :Kind :name}
-            {:text "licker of shit"
+            {:index 6
+             :text "licker of shit"
              :kind :name}
-            {:text "shitcheese"
+            {:index 7
+             :text "shitcheese"
              :kind :name}
-            {:text "turdburglar"
+            {:index 8
+             :text "turdburglar"
              :kind :name}
-            {:text "twatvomit"
+            {:index 9
+             :text "twatvomit"
              :kind :name}
-            {:text "you ass hole"
+            {:index 10
+             :text "you ass hole"
              :kind :name}
-            {:text "you bag of dicks"
+            {:index 11
+             :text "you bag of dicks"
              :kind :name}
-            {:text "you ballsnacker"
+            {:index 12
+             :text "you ballsnacker"
              :kind :name}
-            {:text "you everloving taintgobble"
+            {:index 13
+             :text "you everloving taintgobble"
              :kind :name}
-            {:text "you fucking squat thrust"
+            {:index 14
+             :text "you fucking squat thrust"
              :kind :name}
-            {:text "you goddamned cocktable"
+            {:index 15
+             :text "you goddamned cocktable"
              :kind :name}
-            {:text "you shit tangle"
+            {:index 16
+             :text "you shit tangle"
              :kind :name}]}

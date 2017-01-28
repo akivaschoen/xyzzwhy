@@ -1,10 +1,17 @@
 {:class :movie
  :type :sub
  :config #{:no-article}
- :fragment [{:text "Breakin' 2: Electric Boogaloo"}
-            {:text "Coming to America"}
-            {:text "Debbie Does Dallas"}
-            {:text "Dirty Harry"}
-            {:text "Enter the Dragon"}
-            {:text "The Kentucky Fried Movie"}
-            {:text "Office Space"}]}
+ :fragment [{:index 0
+             :text "Breakin' 2: Electric Boogaloo"}
+            {:index 1
+             :text "Coming to America"}
+            {:index 2
+             :text "Debbie Does Dallas"}
+            {:index 3
+             :text "Dirty Harry"}
+            {:index 4
+             :text "Enter the Dragon"}
+            {:index 5
+             :text "The Kentucky Fried Movie"}
+            {:index 6
+             :text "Office Space"}]}

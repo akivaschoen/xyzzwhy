@@ -1,16 +1,29 @@
 {:class :adverb
  :type :sub
  :config #{:no-article}
- :fragment [{:text "balefully"}
-            {:text "bravely"}
-            {:text "carefully"}
-            {:text "happily"}
-            {:text "lustfully"}
-            {:text "mournfully"}
-            {:text "proudly"}
-            {:text "sadly"}
-            {:text "solemnly"}
-            {:text "uncertainly"}
-            {:text "warily"}
-            {:text "willfully"}
-            {:text "wistfully"}]}
+ :fragment [{:index 0
+             :text "balefully"}
+            {:index 1
+             :text "bravely"}
+            {:index 2
+             :text "carefully"}
+            {:index 3
+             :text "happily"}
+            {:index 4
+             :text "lustfully"}
+            {:index 5
+             :text "mournfully"}
+            {:index 6
+             :text "proudly"}
+            {:index 7
+             :text "sadly"}
+            {:index 8
+             :text "solemnly"}
+            {:index 9
+             :text "uncertainly"}
+            {:index 10
+             :text "warily"}
+            {:index 11
+             :text "willfully"}
+            {:index 12
+             :text "wistfully"}]}

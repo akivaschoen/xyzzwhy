@@ -1,19 +1,27 @@
 {:class :game
  :type :sub
  :config #{:no-article}
- :fragment [{:text "Agricola"
+ :fragment [{:index 0
+             :text "Agricola"
              :qualifier :tabletop}
-            {:text "Advanced Squad Leader"
+            {:index 1
+             :text "Advanced Squad Leader"
              :qualifier :tabletop}
-            {:text "Carcassonne"
+            {:index 2
+             :text "Carcassonne"
              :qualifier :tabletop}
-            {:text "World in Flames"
+            {:index 4
+             :text "World in Flames"
              :qualifier :tabletop}
-            {:text "Monopoly"
+            {:index 5
+             :text "Monopoly"
              :qualifier :tabletop}
-            {:text "World of Warcraft"
+            {:index 6
+             :text "World of Warcraft"
              :qualifier :video}
-            {:text "Civilization V"
+            {:index 7
+             :text "Civilization V"
              :qualifier :video}
-            {:text "Grand Theft Auto V"
+            {:index 8
+             :text "Grand Theft Auto V"
              :qualifier :video}]}

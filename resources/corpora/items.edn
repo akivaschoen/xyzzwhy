@@ -1,85 +1,148 @@
 {:class :item
  :type :sub
- :fragment [{:text "%10"
+ :fragment [{:index 0
+             :text "%10"
              :article ["a Laserdisc copy of" "a VHS cassette of" "a Betamax of"]
              :sub [{:token 10 :class :movies}]}
-            {:text ["Aquanet" "spackle" "spray-on bacon"]
+            {:index 1
+             :text ["Aquanet" "spackle" "spray-on bacon"]
              :article "a can of"}
-            {:text "books"
+            {:index 2
+             :text "books"
              :article "some"
              :decorator {:prefix {:config #{:multiple}
-                                  :fragment [{:text ["children's" "dusty" "old" "pornographic" "rare"]}]}}}
-            {:text ["baseball" "softball" "tennis ball"]
-             :decorator {:prefix {:fragment [{:text ["huge" "oddly-shaped" "radioactive" "tiny"]}]}}}
-            {:text "briefcase"
-             :decorator {:prefix {:fragment [{:text ["familiar" "leather" "plastic" "unfamiliar"]}]}}
-             :follow-up {:fragment [{:text " It's on fire."}
-                                    {:text " It's covered in bees."}
-                                    {:text " It's full of whole milk."}
-                                    {:text " It's been deep-fried."}
-                                    {:text " It appears to be empty."}]}}
-            {:text "bucket of corks"}
-            {:text "discarded puppets"
+                                  :fragment [{:index 0
+                                              :text ["children's" "dusty" "old" "pornographic" "rare"]}]}}}
+            {:index 3
+             :text ["baseball" "softball" "tennis ball"]
+             :decorator {:prefix {:fragment [{:index 0
+                                              :text ["huge" "oddly-shaped" "radioactive" "tiny"]}]}}}
+            {:index 4
+             :text "briefcase"
+             :decorator {:prefix {:fragment [{:index 0
+                                              :text ["familiar" "leather" "plastic" "unfamiliar"]}]}}
+             :follow-up {:fragment [{:index 0
+                                     :text " It's on fire."}
+                                    {:index 1
+                                     :text " It's covered in bees."}
+                                    {:index 2
+                                     :text " It's full of whole milk."}
+                                    {:index 3
+                                     :text " It's been deep-fried."}
+                                    {:index 4
+                                     :text " It appears to be empty."}]}}
+            {:index 5
+             :text "bucket of corks"}
+            {:index 6
+             :text "discarded puppets"
              :article ["a collection of" "a pile of" "a stack of" "a stash of"]}
-            {:text "fat-soluble Jesus"
+            {:index 7
+             :text "fat-soluble Jesus"
              :article "a bottle of"}
-            {:text "floppy disk"}
-            {:text ["football" "soccer ball"]
-             :decorator {:prefix {:fragment [{:text ["deflated" "huge" "oddly-shaped" "radioactive" "tiny"]}]}}}
-            {:text "grade report card"
+            {:index 8
+             :text "floppy disk"}
+            {:index 9
+             :text ["football" "soccer ball"]
+             :decorator {:prefix {:fragment [{:index 0
+                                              :text ["deflated" "huge" "oddly-shaped" "radioactive" "tiny"]}]}}}
+            {:index 10
+             :text "grade school report card"
              :article ["your" "your mom's" "your dad's"]
-             :decorators {:prefix {:fragment [{:text ["first" "second" "third" "fourth" "fifth" "sixth"]}]}}}
-            {:text ["jean shorts" "parachute pants" "skinny jeans"]
+             :decorators {:prefix {:fragment [{:index 0
+                                               :text ["first" "second" "third" "fourth" "fifth" "sixth"]}]}}}
+            {:index 11
+             :text ["jean shorts" "parachute pants" "skinny jeans"]
              :article "a pair of"}
-            {:text "giant styrofoam peanut"}
-            {:text "kitten"
-             :decorator {:prefix {:fragment [{:text ["angry" "hungry" "meowing" "playful"
+            {:index 12
+             :text "giant styrofoam peanut"}
+            {:index 13
+             :text "kitten"
+             :decorator {:prefix {:fragment [{:index 0
+                                              :text ["angry" "hungry" "meowing" "playful"
                                                      "purring" "sleeping" "sleppy" "soft"]}]}}}
-            {:text "lantern"}
-            {:text "Lincoln Log"
-             :decorator {:prefix {:fragment [{:text ["giant" "radioactive" "smelly" "wet"]}]}}}
-            {:text "llama treats"
+            {:index 14
+             :text "lantern"}
+            {:index 15
+             :text "Lincoln Log"
+             :decorator {:prefix {:fragment [{:index 0
+                                              :text ["giant" "radioactive" "smelly" "wet"]}]}}}
+            {:index 16
+             :text "llama treats"
              :article "a bag of"}
-            {:text "magic scroll"
-             :follow-up {:fragment [{:text "It's a spell of %10."
+            {:index 17
+             :text "magic scroll"
+             :follow-up {:fragment [{:index 0
+                                     :text "It's a spell of %10."
                                      :sub [{:token 10 :class :spell :config #{:no-article}}]}]}}
-            {:text "movie ticket"
+            {:index 18
+             :text "movie ticket"
              :decorator {:prefix {:fragment {:text "old"}}}
-             :follow-up {:fragment [{:text " It's already been torn."}
-                                    {:text " Unfortunately, it's for a Vince Vaughn movie."}]}}
-            {:text "non-Euclidian Lego"}
-            {:text "no tea"
+             :follow-up {:fragment [{:index 0
+                                     :text " It's already been torn."}
+                                    {:index 1
+                                     :text " Unfortunately, it's for a Vince Vaughn movie."}]}}
+            {:index 19
+             :text "non-Euclidian Lego"}
+            {:index 20
+             :text "no tea"
              :config #{:no-article}}
-            {:text "newspaper"}
-            {:text "pellets"
+            {:index 21
+             :text "newspaper"}
+            {:index 22
+             :text "pellets"
              :article "a bag of"
-             :decorator {:prefix {:fragment [{:text ["giant" "rabbit" "slick" "stinky" "tiny"]}]}}}
-            {:text ["pen" "pencil"]}
-            {:text "phone book"}
-            {:text "pinecone"}
-            {:text ["Cheetos" "Doritos" "marbles" "popcorn" "potatoes" "rice"]
+             :decorator {:prefix {:fragment [{:index 0
+                                              :text ["giant" "rabbit" "slick" "stinky" "tiny"]}]}}}
+            {:index 23
+             :text ["pen" "pencil"]}
+            {:index 24
+             :text "phone book"}
+            {:index 25
+             :text "pinecone"}
+            {:index 26
+             :text ["Cheetos" "Doritos" "marbles" "popcorn" "potatoes" "rice"]
              :article "a packet of"}
-            {:text "puppy"
-             :decorator {:prefix {:fragment [{:text ["growling" "hungry" "panting" "playful"
+            {:index 27
+             :text "puppy"
+             :decorator {:prefix {:fragment [{:index 0
+                                              :text ["growling" "hungry" "panting" "playful"
                                                      "sleeping" "sleepy" "tumbly"]}]}}}
-            {:text "receipt from %10 outfit rental"
+            {:index 28
+             :text "receipt from %10 outfit rental"
              :sub [{:token 10 :class :animal}]}
-            {:text "sandwich"
-             :decorator {:prefix {:fragment [{:text ["damp" "deep-fried" "half-eaten" "moist"]}]}}}
-            {:text "signed photograph of %10"
+            {:index 29
+             :text "sandwich"
+             :decorator {:prefix {:fragment [{:index 0
+                                              :text ["damp" "deep-fried" "half-eaten" "moist"]}]}}}
+            {:index 30
+             :text "signed photograph of %10"
              :sub [{:token 10 :class :person :qualifier :famous}]}
-            {:text "slide rule"}
-            {:text "Snausages"}
-            {:text "sword"
-             :decorator {:prefix {:fragment [{:text ["ancient" "elven" "magical"]}]}}
-             :follow-up {:fragment [{:text " It's slightly glowing."}]}}
-            {:text "towel from the Las Vegas Radisson"}
-            {:text "trilby"
-             :decorator {:prefix {:fragment [{:text "sweat-incrusted"}]}}}
-            {:text "t-shirt"
-             :decorator {:prefix {:fragment [{:text "hipster"}]}}}
-            {:text ["Betamax tape" "Blu-ray" "DVD" "Laserdisc" "VHS cassette"]
-             :decorator {:suffix {:fragment [{:text "covered in blood"}]}}}
-            {:text "vitamins"
+            {:index 31
+             :text "slide rule"}
+            {:index 32
+             :text "Snausages"}
+            {:index 33
+             :text "sword"
+             :decorator {:prefix {:fragment [{:index 0
+                                              :text ["ancient" "elven" "magical"]}]}}
+             :follow-up {:fragment [{:index 0
+                                     :text " It's slightly glowing."}]}}
+            {:index 34
+             :text "towel from the Las Vegas Radisson"}
+            {:index 35
+             :text "trilby"
+             :decorator {:prefix {:fragment [{:index 0
+                                              :text "sweat-incrusted"}]}}}
+            {:index 36
+             :text "t-shirt"
+             :decorator {:prefix {:fragment [{:index 0
+                                              :text "hipster"}]}}}
+            {:index 37
+             :text ["Betamax tape" "Blu-ray" "DVD" "Laserdisc" "VHS cassette"]
+             :decorator {:suffix {:fragment [{:index 0
+                                              :text "covered in blood"}]}}}
+            {:index 38
+             :text "vitamins"
              :article "some"
-             :decorator {:prefix {:fragment [{:text ["giant" "homeopathic" "oddly-shaped"]}]}}}]}
+             :decorator {:prefix {:fragment [{:index 0
+                                              :text ["giant" "homeopathic" "oddly-shaped"]}]}}}]}

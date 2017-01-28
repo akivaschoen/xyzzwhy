@@ -1,27 +1,51 @@
 {:class :diagnosis
  :type :sub
  :config #{:no-article}
- :fragment [{:text "absurdly sticky"}
-            {:text "affable"}
-            {:text "confused"}
-            {:text "covered in bees"}
-            {:text "drunk"}
-            {:text "feeling great"}
-            {:text "feeling gross"}
-            {:text "heavily wounded"}
-            {:text "high"}
-            {:text "hungry"}
-            {:text "lightly wounded"}
-            {:text "moderately wounded"}
-            {:text "near death"}
-            {:text "on fire"}
-            {:text "skinless"}
-            {:text "sleepy"}
-            {:text "sober"}
-            {:text "spaghettified"}
-            {:text "spontaneously hirsute"}
-            {:text "stoned"}
-            {:text "temporarily blind"}
-            {:text "temporarily deaf"}
-            {:text "thirsty"}
-            {:text "unemployed"}]}
+ :fragment [{:index 0
+             :text "absurdly sticky"}
+            {:index 1
+             :text "affable"}
+            {:index 2
+             :text "confused"}
+            {:index 3
+             :text "covered in bees"}
+            {:index 4
+             :text "drunk"}
+            {:index 5
+             :text "feeling great"}
+            {:index 6
+             :text "feeling gross"}
+            {:index 7
+             :text "heavily wounded"}
+            {:index 8
+             :text "high"}
+            {:index 9
+             :text "hungry"}
+            {:index 10
+             :text "lightly wounded"}
+            {:index 11
+             :text "moderately wounded"}
+            {:index 12
+             :text "near death"}
+            {:index 13
+             :text "on fire"}
+            {:index 14
+             :text "skinless"}
+            {:index 15
+             :text "sleepy"}
+            {:index 16
+             :text "sober"}
+            {:index 17
+             :text "spaghettified"}
+            {:index 18
+             :text "spontaneously hirsute"}
+            {:index 19
+             :text "stoned"}
+            {:index 20
+             :text "temporarily blind"}
+            {:index 21
+             :text "temporarily deaf"}
+            {:index 22
+             :text "thirsty"}
+            {:index 23
+             :text "unemployed"}]}

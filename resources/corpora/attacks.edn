@@ -1,40 +1,75 @@
 {:class :attack
  :type :sub
  :config #{:no-article}
- :fragment [{:text "%10"
+ :fragment [{:index 0
+             :text "%10"
              :sub [{:token 10 :class :item}]}
-            {:text "an antiparticle dildo"}
-            {:text "an apathetic hipster"}
-            {:text "an atomic wedgie"}
-            {:text "a bad British accent"}
-            {:text "a balloon"
+            {:index 1
+             :text "an antiparticle dildo"}
+            {:index 2
+             :text "an apathetic hipster"}
+            {:index 3
+             :text "an atomic wedgie"}
+            {:index 4
+             :text "a bad British accent"}
+            {:index 5
+             :text "a balloon"
              :decorator {:suffix {:fragment [{:text "animal"}]}}}
-            {:text "Canadian disapproval"}
-            {:text "a Cleveland steamer"}
-            {:text "Conservative politics"}
-            {:text "cute kittens"}
-            {:text "a dangling participle"}
-            {:text "a fancy uppercut"}
-            {:text "a filthy soap slap"}
-            {:text "a flurry of tiny kisses"}
-            {:text "a forlorn sigh"}
-            {:text "a high clownkick"}
-            {:text "a judo chop"}
-            {:text "a Judeo chop"}
-            {:text "Liberal politics"}
-            {:text "poor grammar"}
-            {:text "a prison hug"}
-            {:text "a reverse hug"}
-            {:text "a rub cut"}
-            {:text "a rough kitty lick"}
-            {:text "a rusty trombone"}
-            {:text "a sad testicle tug"}
-            {:text "secret.jpg"}
-            {:text "a spontaneous coma"}
-            {:text "a smug kidney punch"}
-            {:text "a sushi pants special"}
-            {:text "tubgirl.jpg"}
-            {:text "tumbly puppies"}
-            {:text "Vogon poetry"}
-            {:text "a wet hug"}
-            {:text "a weaponized beard"}]}
+            {:index 6
+             :text "Canadian disapproval"}
+            {:index 7
+             :text "a Cleveland steamer"}
+            {:index 8
+             :text "Conservative politics"}
+            {:index 9
+             :text "cute kittens"}
+            {:index 10
+             :text "a dangling participle"}
+            {:index 11
+             :text "a fancy uppercut"}
+            {:index 12
+             :text "a filthy soap slap"}
+            {:index 13
+             :text "a flurry of tiny kisses"}
+            {:index 14
+             :text "a forlorn sigh"}
+            {:index 15
+             :text "a high clownkick"}
+            {:index 16
+             :text "a judo chop"}
+            {:index 17
+             :text "a Judeo chop"}
+            {:index 18
+             :text "Liberal politics"}
+            {:index 19
+             :text "poor grammar"}
+            {:index 20
+             :text "a prison hug"}
+            {:index 21
+             :text "a reverse hug"}
+            {:index 22
+             :text "a rub cut"}
+            {:index 23
+             :text "a rough kitty lick"}
+            {:index 24
+             :text "a rusty trombone"}
+            {:index 25
+             :text "a sad testicle tug"}
+            {:index 26
+             :text "secret.jpg"}
+            {:index 27
+             :text "a spontaneous coma"}
+            {:index 28
+             :text "a smug kidney punch"}
+            {:index 29
+             :text "a sushi pants special"}
+            {:index 30
+             :text "tubgirl.jpg"}
+            {:index 31
+             :text "tumbly puppies"}
+            {:index 32
+             :text "Vogon poetry"}
+            {:index 33
+             :text "a wet hug"}
+            {:index 34
+             :text "a weaponized beard"}]}

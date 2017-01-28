@@ -1,84 +1,137 @@
 {:class :secondary-event
  :type :event
- :fragment [{:text "%20 %21"
+ :fragment [{:index 0
+             :text "%20 %21"
              :sub [{:token 20 :class :person}
                    {:token 21 :class :dialogue}]}
-             {:text "%20 follows you."
+            {:index 1
+             :text "%20 follows you."
               :sub [{:token 20 :class :actor}]}
-             {:text "%20 is here."
+            {:index 2
+             :text "%20 is here."
               :sub [{:token 20 :class :actor}]}
-             {:text "%20 is here %21"
+            {:index 3
+             :text "%20 is here %21"
               :sub [{:token 20 :class :actor}
                     {:token 21 :class :actor-action}]}
-            {:text "%20 is here with %21. They look %22."
+            {:index 4
+             :text "%20 is here with %21. They look %22."
              :sub [{:token 20 :class :actor}
                    {:token 21 :class :actor}
                    {:token 22 :class :adjective}]}
-            {:text "%20 is here searching for %21."
+            {:index 5
+             :text "%20 is here searching for %21."
              :sub [{:token 20 :class :actor}
                    {:token 21 :class :item}]}
-            {:text "%20 slinks up behind you."
+            {:index 6
+             :text "%20 slinks up behind you."
              :sub [{:token 20 :class :actor}]}
-            {:text "%20 wanders by, "
+            {:index 7
+             :text "%20 wanders by, "
              :sub [{:token 20 :class :actor}]
              :follow-up {:config #{:required}
-                         :fragment [{:text "doing algebra and shit."}
-                                    {:text "playing a recorder."}
-                                    {:text "jamming on a mouth organ."}
-                                    {:text "wearing a cape."}
-                                    {:text "casually on fire."}
-                                    {:text "followed by a classy balloon."}
-                                    {:text "whistling the theme to the Andy Griffith Show."}
-                                    {:text "whistling the theme to the Garry Shandling Show."}]}}
-            {:text "A hollow voice intones, '%20'"
+                         :fragment [{:index 0
+                                     :text "doing algebra and shit."}
+                                    {:index 1
+                                     :text "playing a recorder."}
+                                    {:index 2
+                                     :text "jamming on a mouth organ."}
+                                    {:index 3
+                                     :text "wearing a cape."}
+                                    {:index 4
+                                     :text "casually on fire."}
+                                    {:index 5
+                                     :text "followed by a classy balloon."}
+                                    {:index 6
+                                     :text "whistling the theme to the Andy Griffith Show."}
+                                    {:index 7
+                                     :text "whistling the theme to the Garry Shandling Show."}]}}
+            {:index 8
+             :text "A hollow voice intones, '%20'"
              :sub [{:token 20 :class :intonation}]}
-            {:text "A fire truck goes by."
-             :follow-up {:fragment [{:text " It's covered in ice."}
-                                    {:text " It's playing a funeral dirge."}]}}
-            {:text "An ice cream truck goes by."
-             :follow-up {:fragment [{:text " It's on fire."}
-                                    {:text " It's going by at nearly 212,020 mph. Somehow, a group of children are managing to keep up."}]}}
-             {:text "It appears abandoned."}
-             {:text "It seems that no one has been here for a long time."}
-             {:text "It smells %20."
-              :sub [{:token 20 :class :scent}]}
-             {:text "Someone has attached marionnette wires to your hands, feet, and head."}
-             {:text "Someone has been here recently."}
-             {:text "Someone has left a running bulldozer here."}
-             {:text "Something smells %20 here."
-              :sub [{:token 20 :class :scent}]}
-             {:text "Spray-painted on the wall here are the words 'Alice?! Alice?! Who the f...'. The rest is illegible."}
-             {:text "There are fresh footprints here."}
-             {:text "There has been significant damage from %20."
-              :sub [{:token 20 :class :disaster}]}
-             {:text "There is %20 here."
-              :sub [{:token 20 :class :item}]}
-            {:text "The wind howls in the distance."}
-            {:text "The words 'eat dulp' are spray-painted on a wall here."}
-            {:text "The words 'Hammerdog lives!' are spray-painted on a wall here."}
-            {:text "The words 'Knifekitten lives!' are spray-painted on a wall here."}
-            {:text "You drop %20 here."
+            {:index 9
+             :text "A fire truck goes by."
+             :follow-up {:fragment [{:index 0
+                                     :text " It's covered in ice."}
+                                    {:index 1
+                                     :text " It's playing a funeral dirge."}]}}
+            {:index 10
+             :text "An ice cream truck goes by."
+             :follow-up {:fragment [{:index 0
+                                     :text " It's on fire."}
+                                    {:index 1
+                                     :text " It's going by at nearly 212,020 mph. Somehow, a group of children are managing to keep up."}]}}
+            {:index 11
+             :text "It appears abandoned."}
+            {:index 12
+             :text "It seems that no one has been here for a long time."}
+            {:index 13
+             :text "It smells %20."
+             :sub [{:token 20 :class :scent}]}
+            {:index 14
+             :text "Someone has attached marionnette wires to your hands, feet, and head."}
+            {:index 15
+             :text "Someone has been here recently."}
+            {:index 16
+             :text "Someone has left a running bulldozer here."}
+            {:index 17
+             :text "Something smells %20 here."
+             :sub [{:token 20 :class :scent}]}
+            {:index 18
+             :text "Spray-painted on the wall here are the words 'Alice?! Alice?! Who the f...'. The rest is illegible."}
+            {:index 19
+             :text "There are fresh footprints here."}
+            {:index 20
+             :text "There has been significant damage from %20."
+             :sub [{:token 20 :class :disaster}]}
+            {:index 21
+             :text "There is %20 here."
+             :sub [{:token 20 :class :item}]}
+            {:index 22
+             :text "The wind howls in the distance."}
+            {:index 23
+             :text "The words 'eat dulp' are spray-painted on a wall here."}
+            {:index 24
+             :text "The words 'Hammerdog lives!' are spray-painted on a wall here."}
+            {:index 25
+             :text "The words 'Knifekitten lives!' are spray-painted on a wall here."}
+            {:index 26
+             :text "You drop %20 here."
              :sub [{:token 20 :class :item}]
-             :follow-up {:fragment [{:text " It bursts into flames."}
-                                    {:text " It turns into a wisp of smoke."}
-                                    {:text " And then some really bad CGI happens."}
-                                    {:text " It pierces the crust of the Earth."}
-                                    {:text " It bounces right back into your hand."}]}}
-            {:text "You hear %20 in the distance."
+             :follow-up {:fragment [{:index 0
+                                     :text " It bursts into flames."}
+                                    {:index 1
+                                     :text " It turns into a wisp of smoke."}
+                                    {:index 2
+                                     :text " And then some really bad CGI happens."}
+                                    {:index 3
+                                     :text " It pierces the crust of the Earth."}
+                                    {:index 4
+                                     :text " It bounces right back into your hand."}]}}
+            {:index 27
+             :text "You hear %20 in the distance."
              :sub [{:token 20 :class :noise}]}
-            {:text "You hear the sound of %20 nearby."
+            {:index 28
+             :text "You hear the sound of %20 nearby."
              :sub [{:token 20 :class :noise}]}
-            {:text "You find %20 here %21"
+            {:index 29
+             :text "You find %20 here %21"
              :sub [{:token 20 :class :actor}
                    {:token 21 :class :actor-action}]}
-            {:text "You find %20 here. You back away %21."
+            {:index 30
+             :text "You find %20 here. You back away %21."
              :sub [{:token 20 :class :item}
                    {:token 21 :class :adjective}]}
-            {:text "You pick up %20."
+            {:index 31
+             :text "You pick up %20."
              :sub [{:token 20 :class :item}]
-             :follow-up {:fragment [{:text " It's covered in dust."}]}}
-            {:text "You see %20 here."
+             :follow-up {:fragment [{:index 0
+                                     :text " It's covered in dust."}]}}
+            {:index 32
+             :text "You see %20 here."
              :sub [{:token 20 :class :item}]
-             :follow-up {:fragment [{:text " It looks oddly familiar"}]}}
-            {:text "You see a sign here. On it is written '%20'"
+             :follow-up {:fragment [{:index 0
+                                     :text " It looks oddly familiar"}]}}
+            {:index 33
+             :text "You see a sign here. On it is written '%20'"
              :sub [{:token 20 :class :sign}]}]}

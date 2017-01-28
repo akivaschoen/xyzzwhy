@@ -1,28 +1,40 @@
 {:class :drink
  :type :sub
- :fragment [{:text "gravy"
+ :fragment [{:index 0
+             :text "gravy"
              :article "a cup of"
              :decorator {:prefix {:config #{:required}
                                   :fragment [{:text ["cold" "boiling" "lukewarm"
                                                      "mushroom" "steaming" "turkey"]}]}}}
-            {:text "juice"
+            {:index 1
+             :text "juice"
              :article "a glass of"
              :decorator {:prefix {:config #{:required}
                                   :fragment [{:text ["apple" "cranberry" "grape" "grapefruit"
                                                      "fruit" "orange"]}]}}}
-            {:text "milk"
+            {:index 2
+             :text "milk"
              :article "a gallon of"
              :decorator {:prefix {:fragment [{:text ["almond" "boiling"
                                                      "breast" "rancid" "raw" "skim"
                                                      "soy" "spoiled" "whole"]}]}}}
-            {:text "tea"
+            {:index 3
+             :text "tea"
              :article "some"}
-            {:text "soda"
+            {:index 4
+             :text "soda"
              :article "some"}
-            {:text "water"
+            {:index 5
+             :text "water"
              :article "some"}
-            {:text "broth"
+            {:index 6
+             :text "broth"
              :article "some"
              :decorator {:prefix {:config #{:required}
-                                  :fragment [{:text ["beef" "chicken" "pork" "seafood" "vegetable"]}]}}}
-            {:text "scotch"}]}
+                                  :fragment [{:index 0
+                                              :text ["beef" "chicken" "pork"
+                                                     "seafood" "vegetable"]}]}}}
+            {:index 7
+             :text "scotch"
+             :decorate {:prefix {:fragment [{:index 0
+                                             :text ["single-malt" "blended" "peaty"]}]}}}]}

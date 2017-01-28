@@ -1,45 +1,76 @@
 {:class :actor-activity
  :type :sub
  :config #{:no-article}
- :fragment [{:text "%10 playing the organ."
+ :fragment [{:index 0
+             :text "%10 playing the organ."
              :sub [{:token 10 :class :adverb}]}
-            {:text "being chased around by a %10."
+            {:index 1
+             :text "being chased around by a %10."
              :sub [{:token 10 :class :animal}]}
-            {:text "being chased by %10."
+            {:index 2
+             :text "being chased by %10."
              :sub [{:token 10 :class :person}]}
-            {:text "being chased by %10 which is attached to them by a string."
+            {:index 3
+             :text "being chased by %10 which is attached to them by a string."
              :sub [{:token 10 :class :item}]}
-            {:text "being chased by a swarm of balloon animals."}
-            {:text "being menaced by %10."
+            {:index 4
+             :text "being chased by a swarm of balloon animals."}
+            {:index 5
+             :text "being menaced by %10."
              :sub [{:token 10 :class :animal}]}
-            {:text "clutching a DVD of %10."
+            {:index 6
+             :text "clutching a DVD of %10."
              :sub [{:token 10 :class :movie}]}
-            {:text "dancing extremely slowly."}
-            {:text "dancing furiously."}
-            {:text "dancing in a small circle."}
-            {:text "defiantly eating Scrabble tiles, one by one."}
-            {:text "doing the Kenosha Kid."}
-            {:text "drooling uncontrollably."}
-            {:text "examining %10 with great confusion."
+            {:index 7
+             :text "dancing extremely slowly."}
+            {:index 8
+             :text "dancing furiously."}
+            {:index 9
+             :text "dancing in a small circle."}
+            {:index 10
+             :text "defiantly eating Scrabble tiles, one by one."}
+            {:index 11
+             :text "doing the Kenosha Kid."}
+            {:index 12
+             :text "drooling uncontrollably."}
+            {:index 13
+             :text "examining %10 with great confusion."
              :sub [{:token 10 :class :item}]}
-            {:text "having a coughing fit."}
-            {:text "having a sneezing fit."}
-            {:text "having a Guru Meditation Error."}
-            {:text "hiding under a sofa."}
-            {:text "hiding under a table."}
-            {:text "hiding in the bushes."}
-            {:text "looking %10."
+            {:index 14
+             :text "having a coughing fit."}
+            {:index 15
+             :text "having a sneezing fit."}
+            {:index 16
+             :text "having a Guru Meditation Error."}
+            {:index 17
+             :text "hiding under a sofa."}
+            {:index 18
+             :text "hiding under a table."}
+            {:index 19
+             :text "hiding in the bushes."}
+            {:index 20
+             :text "looking %10."
              :sub [{:token 10 :class :adjective}]}
-            {:text "juggling some balls."}
-            {:text "munching on %10."
+            {:index 21
+             :text "juggling some balls."}
+            {:index 22
+             :text "munching on %10."
              :sub [{:token 10 :class :food}]}
-            {:text "organizing matches."}
-            {:text "pretending to be invisible."}
-            {:text "ready to start some shit."}
-            {:text "shouting at an imaginary helicopter."}
-            {:text "stooping up and down like a rapper in concert."}
-            {:text "thinking %10 about %11."
+            {:index 23
+             :text "organizing matches."}
+            {:index 24
+             :text "pretending to be invisible."}
+            {:index 25
+             :text "ready to start some shit."}
+            {:index 26
+             :text "shouting at an imaginary helicopter."}
+            {:index 27
+             :text "stooping up and down like a rapper in concert."}
+            {:index 28
+             :text "thinking %10 about %11."
              :sub [{:token 10 :class :adverb}
                    {:token 11 :class :actor}]}
-            {:text "wearing an eyepatch."}
-            {:text "wearing two eyepatches and stumbling around blindly."}]}
+            {:index 29
+             :text "wearing an eyepatch."}
+            {:index 30
+             :text "wearing two eyepatches and stumbling around blindly."}]}

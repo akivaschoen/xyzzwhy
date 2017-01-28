@@ -1,50 +1,77 @@
 {:class :food
  :type :sub
- :fragment [{:text "apple pocket"}
-            {:text "block of cheese"}
-            {:text "bobka"
+ :fragment [{:index 0
+             :text "apple pocket"}
+            {:index 1
+             :text "block of cheese"}
+            {:index 2
+             :text "bobka"
              :decorator {:prefix {:config #{:required}
                                   :fragment [{:text ["cinnamon" "chocolate" "Satanic"]}]}}}
-            {:text "bouquet of corndogs"}
-            {:text "burger"
+            {:index 3
+             :text "bouquet of corndogs"}
+            {:index 4
+             :text "burger"
              :decorator {:prefix {:fragment [{:text ["half-eaten" "tongue" "tooth"]}]}}}
-            {:text "burrito"}
-            {:text "cake"
+            {:index 5
+             :text "burrito"}
+            {:index 6
+             :text "cake"
              :article ["a" "a slice of"]
              :decorator {:prefix {:fragment [{:text "birthday"}]}}}
-            {:text ["Cheerios" "Rice Chex"]
+            {:index 7
+             :text ["Cheerios" "Rice Chex"]
              :article "a bowl of"}
-            {:text "cheeseburger"
+            {:index 8
+             :text "cheeseburger"
              :decorator {:prefix {:fragment [{:text ["half-eaten" "bacon double"]}]}}}
-            {:text ["chips" "Doritos" "Fritos" "Funyons" "nacho chips"]
+            {:index 9
+             :text ["chips" "Doritos" "Fritos" "Funyons" "nacho chips"]
              :article "some"}
-            {:text "delicious churro"}
-            {:text "Cinnabon"}
-            {:text "cornbread"
+            {:index 10
+             :text "delicious churro"}
+            {:index 11
+             :text "Cinnabon"}
+            {:index 12
+             :text "cornbread"
              :article "some"
              :decorator {:prefix {:fragment [{:text "weaponized"}]}}}
-            {:text "corndog"}
-            {:text "duck confit"
+            {:index 13
+             :text "corndog"}
+            {:index 14
+             :text "duck confit"
              :article "some"}
-            {:text "kumquat"}
-            {:text "pancakes"
+            {:index 15
+             :text "kumquat"}
+            {:index 16
+             :text "pancakes"
              :article "some"}
-            {:text "pasta"
+            {:index 17
+             :text "pasta"
              :article "some"}
-            {:text "Pop Tart"
+            {:index 18
+             :text "Pop Tart"
              :decorator {:prefix {:config #{:required}
                                   :fragment [{:text ["angst" "apple cinnamon" "blueberry" "Dutch apple"
                                                      "frosted feces" "nihilist" "snozzberry" "strawberry"]}]}}}
-            {:text "Reese's Peanut Butter Cup"
+            {:index 19
+             :text "Reese's Peanut Butter Cup"
              :article "a"}
-            {:text "uncooked rice"
+            {:index 20
+             :text "uncooked rice"
              :article "some"}
-            {:text "salad"
+            {:index 21
+             :text "salad"
              :decorator {:prefix {:fragment [{:text "big"}]}}}
-            {:text "sandwich"
+            {:index 22
+             :text "sandwich"
              :decorator {:prefix {:fragment [{:text ["ham" "persecution"]}]}}}
-            {:text "slice of fried spam"}
-            {:text "sushi"
+            {:index 23
+             :text "slice of fried spam"}
+            {:index 24
+             :text "sushi"
              :article "some"}
-            {:text "sweetroll"}
-            {:text "wedge of cheese with some mold on it"}]}
+            {:index 25
+             :text "sweetroll"}
+            {:index 26
+             :text "wedge of cheese with some mold on it"}]}
