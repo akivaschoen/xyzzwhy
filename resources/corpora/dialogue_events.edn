@@ -3,7 +3,7 @@
  :fragment [{:text "%0 %1"
              :sub [{:token 0 :class :person}
                    {:token 1 :class :dialogue}]}
-            {:text "0% is nearby. %1 %2"
+            {:text "%0 is nearby. %1 %2"
              :sub [{:token 0 :class :person :config #{:no-groups}}
                    {:token 1 :ref 0 :class :gender :case :subjective}
                    {:token 2 :class :dialogue}]}
