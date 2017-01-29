@@ -21,8 +21,7 @@
   ([]
    {:class (weighted-pick (:events (io/read-file "classes")))})
   ([index]
-   (let [index (find (:events (io/read-file "classes")) )])
-   {:class (find (:events (io/read-file "classes")))}))
+   {:class (index-of index (:events (io/read-file "classes")))}))
 
 (defn get-fragments
   [classname]

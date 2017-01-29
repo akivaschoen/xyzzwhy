@@ -23,21 +23,21 @@
      true
      false)))
 
+(defn index-of
+  [idx c]
+  (some #(if (= idx (:index %)) %) c))
+
 (defn pick
   "Given a vector, randomly chooses one item; if a string,
   simply returns the string."
-  [c]
-  (if (vector? c)
-    (rand-nth c)
-    c))
-
-(defn pick-indexed
-  "Given a vector, randomly chooses one item, returning a map
-  of the index and the value."
-  [c]
-  (when (vector? c)
-    (let [item (rand-nth c)]
-      (first {(.indexOf c item) item}))))
+  ([c]
+   (pick -1 c))
+  ([i c]
+   (if (vector? c)
+     (if (not (neg? i))
+       (index-of i c)
+       (rand-nth c))
+     c)))
 
 (defn prefix
   "Prefix's fragment's :text with a period if it begins with
