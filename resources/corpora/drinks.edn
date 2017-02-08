@@ -1,11 +1,12 @@
-{:class :drink
- :type :sub
+{:group :drink
+ :category :sub
  :fragment [{:index 0
              :text "gravy"
              :article "a cup of"
              :decorator {:prefix {:config #{:required}
-                                  :fragment [{:text ["cold" "boiling" "lukewarm"
-                                                     "mushroom" "steaming" "turkey"]}]}}}
+                                  :fragment [{:text ["cold" "beef" "boiling" "lukewarm"
+                                                     "mushroom" "pork" "stinking" "steaming"
+                                                     "turkey"]}]}}}
             {:index 1
              :text "juice"
              :article "a glass of"

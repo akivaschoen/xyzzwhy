@@ -1,5 +1,5 @@
-{:class :sign
- :type :sub
+{:group :sign
+ :category :sub
  :config #{:no-article}
  :fragment [{:index 0
              :text "Burma shave!"}

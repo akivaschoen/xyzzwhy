@@ -1,12 +1,12 @@
-{:class :thought
- :type :sub
+{:group :thought
+ :category :sub
  :config #{:no-article}
  :fragment [{:index 0
              :text "%10 still owes me a backrub."
-             :sub [{:token 10 :class :person}]}
+             :sub [{:token 10 :group :person}]}
             {:index 1
              :text "%10 never has a second cup of coffee at home..."
-             :sub [{:token 10 :class :person}]}
+             :sub [{:token 10 :group :person}]}
             {:index 2
              :text "Hey! But I didn't eat the mousse!"}
             {:index 3

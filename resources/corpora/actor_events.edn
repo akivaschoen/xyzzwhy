@@ -1,71 +1,71 @@
-{:class :actor-event
- :type :event
+{:group :actor-event
+ :category :event
  :fragment [{:index 0
              :text "%0 %1 %2."
-             :sub [{:token 0 :class :actor}
-                   {:token 1 :class :actor-action}
-                   {:token 2 :class :actor}]}
+             :sub [{:token 0 :group :actor}
+                   {:token 1 :group :actor-action}
+                   {:token 2 :group :actor}]}
             {:index 1
              :text "%0 %1 you."
-             :sub [{:token 0 :class :actor}
-                   {:token 1 :class :actor-action}]}
+             :sub [{:token 0 :group :actor}
+                   {:token 1 :group :actor-action}]}
             {:index 2
              :text "%0 appears in a puff of smoke, %1"
-             :sub [{:token 0 :class :person}
-                   {:token 1 :class :actor-activity}]}
+             :sub [{:token 0 :group :person}
+                   {:token 1 :group :actor-activity}]}
             {:index 3
              :text "%0 arrives from the %1, carrying %2."
-             :sub [{:token 0 :class :actor :config #{:no-groups}}
-                   {:token 1 :class :direction}
-                   {:token 2 :class :item}]}
+             :sub [{:token 0 :group :actor :config #{:no-groups}}
+                   {:token 1 :group :direction}
+                   {:token 2 :group :item}]}
             {:index 4
              :text "%0 pulls %1 out of %2 pocket and flings it over the horizon."
-             :sub [{:token 0 :class :actor :config #{:no-groups}}
-                   {:token 1 :class :item}
-                   {:token 2 :class :gender :case :possessive}]}
+             :sub [{:token 0 :group :actor :config #{:no-groups}}
+                   {:token 1 :group :item}
+                   {:token 2 :group :gender :case :possessive}]}
             {:index 5
              :text "%0 drops %1 here."
-             :sub [{:token 0 :class :actor}
-                   {:token 1 :class :item}]}
+             :sub [{:token 0 :group :actor}
+                   {:token 1 :group :item}]}
             {:index 6
              :text "%0 drops %1, looks at you %2, then leaves."
-             :sub [{:token 0 :class :actor}
-                   {:token 1 :class :item}
-                   {:token 2 :class :adverb}]}
+             :sub [{:token 0 :group :actor}
+                   {:token 1 :group :item}
+                   {:token 2 :group :adverb}]}
             {:index 7
              :text "%0 gently places %1 on the ground and then backs away slowly."
-             :sub [{:token 0 :class :actor}
-                   {:token 1 :class :item}]}
+             :sub [{:token 0 :group :actor}
+                   {:token 1 :group :item}]}
             {:index 8
              :text "%0 is calling from %1"
-             :sub [{:token 0 :class :person}
-                   {:token 1 :class :location :config #{:no-prep}}]
+             :sub [{:token 0 :group :person}
+                   {:token 1 :group :location :config #{:no-prep}}]
              :follow-up {:config #{:required}
                          :fragment [{:index 0
                                      :text " asking if %2 can come out and play."
-                                     :sub [{:token 2 :class :person}]}
+                                     :sub [{:token 2 :group :person}]}
                                     {:index 1
                                      :text " asking for %2."
-                                     :sub [{:token 2 :class :item}]}
+                                     :sub [{:token 2 :group :item}]}
                                     {:index 2
                                      :text " taking responsibility for a recent %2."
-                                     :sub [{:token 2 :class :disaster}]}]}}
+                                     :sub [{:token 2 :group :disaster}]}]}}
             {:index 9
              :text "%0 makes a rude noise. %1 points surreptitiously to %2 nearby."
-             :sub [{:token 0 :class :person}
-                   {:token 1 :ref 0 :class :gender :case :subjective}
-                   {:token 2 :class :animal}]}
+             :sub [{:token 0 :group :person}
+                   {:token 1 :ref 0 :group :gender :case :subjective}
+                   {:token 2 :group :animal}]}
             {:index 10
              :text "%0 picks up %1."
-             :sub [{:token 0 :class :actor}
-                   {:token 1 :class :item}]}
+             :sub [{:token 0 :group :actor}
+                   {:token 1 :group :item}]}
             {:index 11
              :text "%0 slams down a half-empty glass of %1."
-             :sub [{:token 0 :class :person}
-                   {:token 1 :class :drink :config #{:no-prep :no-article}}]
+             :sub [{:token 0 :group :person}
+                   {:token 1 :group :drink :config #{:no-prep :no-article}}]
              :follow-up {:fragment [{:index 0
                                      :text " 'All this nonsense about %2 needs to stop! I can't take it anymore!'"
-                                     :sub [{:token 2 :class :item}]}
+                                     :sub [{:token 2 :group :item}]}
                                     {:index 1
                                      :text " 'They're making plans for Nigel! They want what's best for him!'"}
                                     {:index 2
@@ -76,10 +76,10 @@
                                      :text " 'MOM?!'"}]}}
             {:index 12
              :text "%0 starts breakdancing and won't stop no matter how much you scream."
-             :sub [{:token 0 :class :person}]}
+             :sub [{:token 0 :group :person}]}
             {:index 13
              :text "%0 suddenly appears out of the shadows and "
-             :sub [{:token 0 :class :actor}]
+             :sub [{:token 0 :group :actor}]
              :follow-up {:config #{:required}
                          :fragment [{:index 0
                                      :text "hisses at you, then scrambles away like a spider."}
@@ -87,7 +87,7 @@
                                      :text "says, 'Oh, sorry about that,' then retreats back into the shadows."}
                                     {:index 2
                                      :text "says, '%1 will see you now,' then slowly retreats back into the shadows."
-                                     :sub [{:token 1 :class :actor}]}]}}
+                                     :sub [{:token 1 :group :actor}]}]}}
             {:index 14
              :text "%0 suddenly shrieks."
-             :sub [{:token 0 :class :person}]}]}
+             :sub [{:token 0 :group :person}]}]}

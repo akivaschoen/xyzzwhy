@@ -1,5 +1,5 @@
-{:class :animal
- :type :sub
+{:group :animal
+ :category :sub
  :fragment [{:index 0
              :text "aardvark"}
             {:index 1

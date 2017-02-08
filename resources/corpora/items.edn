@@ -1,9 +1,9 @@
-{:class :item
+{:group :item
  :type :sub
  :fragment [{:index 0
              :text "%10"
              :article ["a Laserdisc copy of" "a VHS cassette of" "a Betamax of"]
-             :sub [{:token 10 :class :movies}]}
+             :sub [{:token 10 :group :movie}]}
             {:index 1
              :text ["Aquanet" "spackle" "spray-on bacon"]
              :article "a can of"}
@@ -71,9 +71,10 @@
              :article "a bag of"}
             {:index 17
              :text "magic scroll"
-             :follow-up {:fragment [{:index 0
-                                     :text "It's a spell of %10."
-                                     :sub [{:token 10 :class :spell :config #{:no-article}}]}]}}
+             :follow-up {:config #{:required}
+                         :fragment [{:index 0
+                                     :text " It's a spell of %10."
+                                     :sub [{:token 10 :group :spell :config #{:no-article}}]}]}}
             {:index 18
              :text "movie ticket"
              :decorator {:prefix {:fragment {:text "old"}}}
@@ -109,18 +110,19 @@
                                                      "sleeping" "sleepy" "tumbly"]}]}}}
             {:index 28
              :text "receipt from %10 outfit rental"
-             :sub [{:token 10 :class :animal}]}
+             :sub [{:token 10 :group :animal}]}
             {:index 29
              :text "sandwich"
              :decorator {:prefix {:fragment [{:index 0
                                               :text ["damp" "deep-fried" "half-eaten" "moist"]}]}}}
             {:index 30
              :text "signed photograph of %10"
-             :sub [{:token 10 :class :person :qualifier :famous}]}
+             :sub [{:token 10 :group :person :qualifier :famous}]}
             {:index 31
              :text "slide rule"}
             {:index 32
-             :text "Snausages"}
+             :text "Snausages"
+             :article "some"}
             {:index 33
              :text "sword"
              :decorator {:prefix {:fragment [{:index 0

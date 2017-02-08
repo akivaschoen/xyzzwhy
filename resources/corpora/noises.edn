@@ -1,4 +1,4 @@
-{:class :noise
+{:group :noise
  :type :sub
  :fragment [{:index 0
              :text "explosion"

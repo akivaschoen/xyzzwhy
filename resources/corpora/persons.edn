@@ -1,4 +1,4 @@
-{:class :person
+{:group :person
  :type :sub
  :config #{:no-article}
  :fragment [{:index 0

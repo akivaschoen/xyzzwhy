@@ -1,10 +1,10 @@
-{:class :thought-event
- :type :event
+{:group :thought-event
+ :category :event
  :config #{:no-article}
  :fragment [{:index 0
              :text "You pause and think, '%20'"
-             :sub [{:token 20 :class :thought}]}
+             :sub [{:token 20 :group :thought}]}
             {:index 1
              :text "A thought bubble appears above %20's head: '%21'"
-             :sub [{:token 20 :class :person :config #{:no-groups}}
-                   {:token 21 :class :thought}]}]}
+             :sub [{:token 20 :group :person :config #{:no-groups}}
+                   {:token 21 :group :thought}]}]}

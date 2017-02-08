@@ -1,34 +1,34 @@
-{:class :secondary-event
+{:group :secondary-event
  :type :event
  :fragment [{:index 0
              :text "%20 %21"
-             :sub [{:token 20 :class :person}
-                   {:token 21 :class :dialogue}]}
+             :sub [{:token 20 :group :person}
+                   {:token 21 :group :dialogue}]}
             {:index 1
              :text "%20 follows you."
-              :sub [{:token 20 :class :actor}]}
+              :sub [{:token 20 :group :actor}]}
             {:index 2
              :text "%20 is here."
-              :sub [{:token 20 :class :actor}]}
+              :sub [{:token 20 :group :actor}]}
             {:index 3
              :text "%20 is here %21"
-              :sub [{:token 20 :class :actor}
-                    {:token 21 :class :actor-action}]}
+              :sub [{:token 20 :group :actor}
+                    {:token 21 :group :actor-action}]}
             {:index 4
              :text "%20 is here with %21. They look %22."
-             :sub [{:token 20 :class :actor}
-                   {:token 21 :class :actor}
-                   {:token 22 :class :adjective}]}
+             :sub [{:token 20 :group :actor}
+                   {:token 21 :group :actor}
+                   {:token 22 :group :adjective}]}
             {:index 5
              :text "%20 is here searching for %21."
-             :sub [{:token 20 :class :actor}
-                   {:token 21 :class :item}]}
+             :sub [{:token 20 :group :actor}
+                   {:token 21 :group :item}]}
             {:index 6
              :text "%20 slinks up behind you."
-             :sub [{:token 20 :class :actor}]}
+             :sub [{:token 20 :group :actor}]}
             {:index 7
              :text "%20 wanders by, "
-             :sub [{:token 20 :class :actor}]
+             :sub [{:token 20 :group :actor}]
              :follow-up {:config #{:required}
                          :fragment [{:index 0
                                      :text "doing algebra and shit."}
@@ -41,14 +41,14 @@
                                     {:index 4
                                      :text "casually on fire."}
                                     {:index 5
-                                     :text "followed by a classy balloon."}
+                                     :text "followed by a groupy balloon."}
                                     {:index 6
                                      :text "whistling the theme to the Andy Griffith Show."}
                                     {:index 7
                                      :text "whistling the theme to the Garry Shandling Show."}]}}
             {:index 8
              :text "A hollow voice intones, '%20'"
-             :sub [{:token 20 :class :intonation}]}
+             :sub [{:token 20 :group :intonation}]}
             {:index 9
              :text "A fire truck goes by."
              :follow-up {:fragment [{:index 0
@@ -67,7 +67,7 @@
              :text "It seems that no one has been here for a long time."}
             {:index 13
              :text "It smells %20."
-             :sub [{:token 20 :class :scent}]}
+             :sub [{:token 20 :group :scent}]}
             {:index 14
              :text "Someone has attached marionnette wires to your hands, feet, and head."}
             {:index 15
@@ -76,17 +76,17 @@
              :text "Someone has left a running bulldozer here."}
             {:index 17
              :text "Something smells %20 here."
-             :sub [{:token 20 :class :scent}]}
+             :sub [{:token 20 :group :scent}]}
             {:index 18
              :text "Spray-painted on the wall here are the words 'Alice?! Alice?! Who the f...'. The rest is illegible."}
             {:index 19
              :text "There are fresh footprints here."}
             {:index 20
              :text "There has been significant damage from %20."
-             :sub [{:token 20 :class :disaster}]}
+             :sub [{:token 20 :group :disaster}]}
             {:index 21
              :text "There is %20 here."
-             :sub [{:token 20 :class :item}]}
+             :sub [{:token 20 :group :item}]}
             {:index 22
              :text "The wind howls in the distance."}
             {:index 23
@@ -97,7 +97,7 @@
              :text "The words 'Knifekitten lives!' are spray-painted on a wall here."}
             {:index 26
              :text "You drop %20 here."
-             :sub [{:token 20 :class :item}]
+             :sub [{:token 20 :group :item}]
              :follow-up {:fragment [{:index 0
                                      :text " It bursts into flames."}
                                     {:index 1
@@ -110,28 +110,28 @@
                                      :text " It bounces right back into your hand."}]}}
             {:index 27
              :text "You hear %20 in the distance."
-             :sub [{:token 20 :class :noise}]}
+             :sub [{:token 20 :group :noise}]}
             {:index 28
              :text "You hear the sound of %20 nearby."
-             :sub [{:token 20 :class :noise}]}
+             :sub [{:token 20 :group :noise}]}
             {:index 29
              :text "You find %20 here %21"
-             :sub [{:token 20 :class :actor}
-                   {:token 21 :class :actor-action}]}
+             :sub [{:token 20 :group :actor}
+                   {:token 21 :group :actor-action}]}
             {:index 30
              :text "You find %20 here. You back away %21."
-             :sub [{:token 20 :class :item}
-                   {:token 21 :class :adjective}]}
+             :sub [{:token 20 :group :item}
+                   {:token 21 :group :adjective}]}
             {:index 31
              :text "You pick up %20."
-             :sub [{:token 20 :class :item}]
+             :sub [{:token 20 :group :item}]
              :follow-up {:fragment [{:index 0
                                      :text " It's covered in dust."}]}}
             {:index 32
              :text "You see %20 here."
-             :sub [{:token 20 :class :item}]
+             :sub [{:token 20 :group :item}]
              :follow-up {:fragment [{:index 0
                                      :text " It looks oddly familiar"}]}}
             {:index 33
              :text "You see a sign here. On it is written '%20'"
-             :sub [{:token 20 :class :sign}]}]}
+             :sub [{:token 20 :group :sign}]}]}

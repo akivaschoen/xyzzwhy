@@ -1,5 +1,5 @@
-{:class :food
- :type :sub
+{:group :food
+ :category :sub
  :fragment [{:index 0
              :text "apple pocket"}
             {:index 1

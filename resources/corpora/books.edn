@@ -1,5 +1,5 @@
-{:class :book
- :type :sub
+{:group :book
+ :category :sub
  :config #{:no-article}
  :fragment [{:index 0
              :text "the Bible"

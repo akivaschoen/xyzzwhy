@@ -1,91 +1,91 @@
-{:class :location-event
+{:group :location-event
  :type :event
  :fragment [{:index 0
              :text "%0 prevents you from going %1 to %2."
-             :sub [{:token 0 :class :obstacle}
-                   {:token 1 :class :direction}
-                   {:token 2 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :obstacle}
+                   {:token 1 :group :direction}
+                   {:token 2 :group :location :config #{:no-prep}}]}
             {:index 1
              :text "A double bounce on a trampoline lands you %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 2
              :text "After %0 at your %1, you are relocated by FEMA to %2."
-             :sub [{:token 0 :class :disaster}
-                   {:token 1 :class :location :config #{:no-prep :no-article}}
-                   {:token 2 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :disaster}
+                   {:token 1 :group :location :config #{:no-prep :no-article}}
+                   {:token 2 :group :location :config #{:no-prep}}]}
             {:index 3
              :text "After being shot out of a cannon, you land %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 4
              :text "After pushing your way through a dense crowd, you arrive %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 5
              :text "After scrambling through some dense underbrush, you find yourself %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 6
              :text "After the shoot-out, you make your escape to %0."
-             :sub [{:token 0 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :location :config #{:no-prep}}]}
             {:index 7
              :text "After walking for a long time, you find yourself %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 8
              :text "A tornado deposits you %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 9
              :text "The bridge game turned violent so you went to %0."
-             :sub [{:token 0 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :location :config #{:no-prep}}]}
             {:index 10
              :text "The drugs are kicking in. You are %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 11
              :text "The drugs are wearing off. You are %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 12
              :text "Google Maps leads you to %0."
-             :sub [{:token 0 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :location :config #{:no-prep}}]}
             {:index 13
              :text "Hands on your hips, you survey %0 %1."
-             :sub [{:token 0 :class :location :config #{:no-prep}}
-                   {:token 1 :class :adverb}]}
+             :sub [{:token 0 :group :location :config #{:no-prep}}
+                   {:token 1 :group :adverb}]}
             {:index 14
              :text "No matter how hard you try, you still end up %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 15
              :text "Right on cue, you pop up out of the jack-in-the-box. You're %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 16
              :text "The drugs are starting to take hold. Casually you saunter over to %0."
-             :sub [{:token 0 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :location :config #{:no-prep}}]}
             {:index 17
              :text "The elevator doors open to reveal %0."
-             :sub [{:token 0 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :location :config #{:no-prep}}]}
             {:index 18
              :text "The fog clears and you find yourself %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 19
              :text "The merry-go-round spins faster and faster until you're flung off and land %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 20
              :text "The metro bus unceremoniously dumps you %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 21
              :text "The spell effects are wearing off. You are %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 22
              :text "The taxi driver randomly drops you off %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 23
              :text "The trapdoor drops open beneath you and you land %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 24
              :text "Using a vine to swing across a pit, you land %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 25
              :text "You are %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 26
              :text "You are magically teleported to %0!"
-             :sub [{:token 0 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :location :config #{:no-prep}}]}
             {:index 27
              :text "You are serving jury duty."
              :follow-up {:fragment [{:index 0
@@ -106,174 +106,174 @@
                                      :text " A handsome guy in a white suit is nearby. He's going to fuck up deliberations, isn't he?"}
                                     {:index 8
                                      :text " You're unsure why they insist the jury sit in a vat of carbonated %0."
-                                     :sub [{:token 0 :class :drink :config [:no-article]}]}]}}
+                                     :sub [{:token 0 :group :drink :config #{:no-article}}]}]}}
             {:index 28
              :text "You are standing %0 of %1."
-             :sub [{:token 0 :class :direction}
-                   {:token 1 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :direction}
+                   {:token 1 :group :location :config #{:no-prep}}]}
             {:index 29
              :text "You are laying face down %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 30
              :text "You arrive %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 31
              :text "With a shriek, you rush %0 from %1."
-             :sub [{:token 0 :class :direction}
-                   {:token 1 :class location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :direction}
+                   {:token 1 :group location :config #{:no-prep}}]}
             {:index 32
              :text "You arrive for your first day at college only to find your roommate is %0."
-             :sub [{:token 0 :class :actor}]}
+             :sub [{:token 0 :group :actor}]}
             {:index 33
              :text "You blow into the cartridge too hard and are teleported to %0."
-             :sub [{:token 0 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :location :config #{:no-prep}}]}
             {:index 34
              :text "You climb down a tree and find yourself %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 35
              :text "You climb out of the treasure chest. You are now %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 36
              :text "You climb up a flight of stairs. You are now %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 37
              :text "You come across %0."
-             :sub [{:token 0 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :location :config #{:no-prep}}]}
             {:index 38
              :text "You come to %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 39
              :text "You cripwalk %0 to %1."
-             :sub [{:token 0 :class :direction}
-                   {:token 1 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :direction}
+                   {:token 1 :group :location :config #{:no-prep}}]}
             {:index 40
              :text "You emerge %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 41
              :text "You fall down a flight of stairs and into %0."
-             :sub [{:token 0 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :location :config #{:no-prep}}]}
             {:index 42
              :text "You fall through the ceiling and land %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 43
              :text "You find yourself %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 44
              :text "You fall asleep in the bath and wake up %0."
-             :sub [{:token 0 :class :location}]
+             :sub [{:token 0 :group :location}]
              :follow-up {:fragment [{:index 0
                                      :text " %10 is now in the tub with you."
-                                     :sub [{:token 10 :class :actor :config #{:no-groups}}]}]}}
+                                     :sub [{:token 10 :group :actor :config #{:no-groups}}]}]}}
             {:index 45
              :text "You feel your way blindly and end up %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 46
              :text "You flip the Game Select selector and find yourself %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 47
              :text "You follow %0 to %1."
-             :sub [{:token 0 :class :actor}
-                   {:token 1 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :actor}
+                   {:token 1 :group :location :config #{:no-prep}}]}
             {:index 48
              :text "You follow a sloping path %0. You find yourself %1."
-             :sub [{:token 0 :class :direction}
-                   {:token 1 :class :location}]}
+             :sub [{:token 0 :group :direction}
+                   {:token 1 :group :location}]}
             {:index 49
              :text "You follow a treasure map to %0."
-             :sub [{:token 0 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :location :config #{:no-prep}}]}
             {:index 50
              :text "You follow a winding path %0 only to find yourself %1."
-             :sub [{:token 0 :class :direction}
-                   {:token 1 :class :location}]}
+             :sub [{:token 0 :group :direction}
+                   {:token 1 :group :location}]}
             {:index 51
              :text "You get tangled up in a revolving door. You stumble out into %0."
-             :sub [{:token 0 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :location :config #{:no-prep}}]}
             {:index 52
              :text "You go %0 and find yourself at %1."
-             :sub [{:token 0 :class :direction}
-                   {:token 1 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :direction}
+                   {:token 1 :group :location :config #{:no-prep}}]}
             {:index 53
              :text "You have entered %0."
-             :sub [{:token 0 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :location :config #{:no-prep}}]}
             {:index 54
              :text "You head %0 and arrive at %1."
-             :sub [{:token 0 :class :direction}
-                   {:token 1 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :direction}
+                   {:token 1 :group :location :config #{:no-prep}}]}
             {:index 55
              :text "You jump out of a moving car, roll down a hill, and find yourself %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 56
              :text "You jump out of a moving car, roll down a hill, and find yourself in another moving car."}
             {:index 57
              :text "You jump out of an airplane and gently plop %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 58
              :text "You open the secret door only to see %0."
-             :sub [{:token 0 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :location :config #{:no-prep}}]}
             {:index 59
              :text "You ride %0 to %1."
-             :sub [{:token 0 :class :animal}
-                   {:token 1 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :animal}
+                   {:token 1 :group :location :config #{:no-prep}}]}
             {:index 60
              :text "You run screaming into %0."
-             :sub [{:token 0 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :location :config #{:no-prep}}]}
             {:index 61
              :text "You're %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 62
              :text "Your parachute gently plops you %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 63
              :text "You shuffle down a flight of stairs and enter %0."
-             :sub [{:token 0 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :location :config #{:no-prep}}]}
             {:index 64
              :text "You slide down a fireman's pole and land %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 65
              :text "You squeeze out of the sewage outflow and tumble into %0."
-             :sub [{:token 0 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :location :config #{:no-prep}}]}
             {:index 66
              :text "You start doing the worm until you find yourself %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 67
              :text "You step through a magic mirror and end up %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 68
              :text "You strut %0 and end up %1."
-             :sub [{:token 0 :class :direction}
-                   {:token 1 :class :location}]}
+             :sub [{:token 0 :group :direction}
+                   {:token 1 :group :location}]}
             {:index 69
              :text "You stumble into %0."
-             :sub [{:token 0 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :location :config #{:no-prep}}]}
             {:index 70
              :text "You tunnel through the soil and pop up %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 71
              :text "You try to go %0 but your way is blocked by %1."
-             :sub [{:token 0 :class :direction}
-                   {:token 1 :class :obstacle}]}
+             :sub [{:token 0 :group :direction}
+                   {:token 1 :group :obstacle}]}
             {:index 72
              :text "You wake up %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 73
              :text "You wake up in front of %0's house. You have no clue how you got there."
-             :sub [{:token 0 :class :person}]}
+             :sub [{:token 0 :group :person}]}
             {:index 74
              :text "You wake up from an odd dream. You are %0."
-             :sub [{:token 0 :class :location}]}
+             :sub [{:token 0 :group :location}]}
             {:index 75
              :text "You start your job %0."
-             :sub [{:token 0 :class :location}]
+             :sub [{:token 0 :group :location}]
              :follow-up {:fragment [{:index 0
                                      :text "%10 is here, looking %11."
-                                     :sub [{:token 10 :class :actor}
-                                           {:token 10 :class :adjective}]}]}}
+                                     :sub [{:token 10 :group :actor}
+                                           {:token 10 :group :adjective}]}]}}
             {:index 76
              :text "After getting fired from your job at %0, you head %1 to %2."
-             :sub [{:token 0 :class :location :config #{:no-prep}}
-                   {:token 1 :class :direction}
-                   {:token 2 :class :location :config #{:no-prep}}]}
+             :sub [{:token 0 :group :location :config #{:no-prep}}
+                   {:token 1 :group :direction}
+                   {:token 2 :group :location :config #{:no-prep}}]}
             {:index 77
              :text "You walk %0 and arrive at %1."
-             :sub [{:token 0 :class :direction}
-                   {:token 1 :class :location :config #{:no-prep}}]}]}
+             :sub [{:token 0 :group :direction}
+                   {:token 1 :group :location :config #{:no-prep}}]}]}

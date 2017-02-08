@@ -1,4 +1,4 @@
-{:class :obstacle
+{:group :obstacle
  :type :sub
  :config #{:no-article}
  :fragment [{:index 0
@@ -61,10 +61,10 @@
              :text "your own unwillingness to improve yourself"}
             {:index 29
              :text "%10's sheer force of will"
-             :subs [{:token 10 :class :person}]}
+             :subs [{:token 10 :group :person}]}
             {:index 30
              :text "%10's birthday party"
-             :subs [{:token 10 :class :person}]}
+             :subs [{:token 10 :group :person}]}
             {:index 31
              :text "a delicious Nutter Butter"}
             {:index 32

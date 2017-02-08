@@ -1,5 +1,5 @@
-{:class :action-event
- :type :event
+{:group :action-event
+ :category :event
  :fragment [{:index 0
              :text "An overhead loudspeaker crackles to life"
              :follow-up {:config #{:required}
@@ -48,22 +48,22 @@
              :follow-up {:config #{:required}
                          :fragment [{:index 0
                                      :text "you hear %0 let the bass drop."
-                                     :sub [{:token 0 :class :person}]}
+                                     :sub [{:token 0 :group :person}]}
                                     {:index 1
                                      :text "you hear %0 drop the mic."
-                                     :sub [{:token 0 :class :person}]}
+                                     :sub [{:token 0 :group :person}]}
                                     {:index 2
                                      :text "you hear %0 get wicked."
-                                     :sub [{:token 0 :class :person}]}]}}
+                                     :sub [{:token 0 :group :person}]}]}}
             {:index 2
              :text "You start spinning around and around. "
              :follow-up {:config #{:required}
                          :fragment [{:index 0
                                      :text "%0 looks unimpressed."
-                                     :sub [{:token 0 :class :person}]}
+                                     :sub [{:token 0 :group :person}]}
                                     {:index 1
                                      :text "%0 faints."
-                                     :sub [{:token 0 :class :person}]}
+                                     :sub [{:token 0 :group :person}]}
                                     {:index 2
                                      :text "You drill straight into the crust of the earth."}
                                     {:index 3
@@ -77,17 +77,17 @@
              :follow-up {:config #{:required}
                          :fragment [{:index 0
                                      :text "%0 stares at it %1. Eventually the ringing stops."
-                                     :sub [{:token 0 :class :person}
-                                           {:token 1 :class :adverb}]}
+                                     :sub [{:token 0 :group :person}
+                                           {:token 1 :group :adverb}]}
                                     {:index 1
                                      :text "%0 watches as it starts to melt, the sound of the ring slowing and burbling to a stop."
-                                     :sub [{:token 0 :class :person}]}
+                                     :sub [{:token 0 :group :person}]}
                                     {:index 2
                                      :text "%0 picks it up, listens a moment, shrieks, and slams the phone down again."
-                                     :sub [{:token 0 :class :person}]}
+                                     :sub [{:token 0 :group :person}]}
                                     {:index 3
                                      :text "%0 picks it up, says, 'It's for you,' but you're longer there."
-                                     :sub [{:token 0 :class :person}]}]}}
+                                     :sub [{:token 0 :group :person}]}]}}
             {:index 4
              :text "The radio crackles to life. "
              :follow-up {:config #{:required}
@@ -95,7 +95,7 @@
                                      :text "It sounds like someone with a cold is eating Rice Krispies." }
                                     {:index 1
                                      :text "A hollow voice intones, '%0'"
-                                     :sub [{:token 0 :class :intonation}]}
+                                     :sub [{:token 0 :group :intonation}]}
                                     {:index 2
                                      :text "Ketchup begins seeping through the speaker holes."}
                                     {:index 3
@@ -106,17 +106,17 @@
                                      :text "An announcer shouts, 'I'M NUDE TODAY.'"}
                                     {:index 6
                                      :text "A news report is on about %0 %1."
-                                     :sub [{:token 0 :class :disaster}
-                                           {:token 1 :class :location :config #{:no-prep}}]}
+                                     :sub [{:token 0 :group :disaster}
+                                           {:token 1 :group :location :config #{:no-prep}}]}
                                     {:index 7
                                      :text "%0 solemnly says, '%1'"
-                                     :sub [{:token 0 :class :person}
-                                           {:token 1 :class :intonation}]}]}}
+                                     :sub [{:token 0 :group :person}
+                                           {:token 1 :group :intonation}]}]}}
             {:index 5
              :text "You awake from a nightmare. You saw yourself %0. The corpse of %1 was there, holding %2."
-             :sub [{:token 0 :class :location}
-                   {:token 1 :class :person :config #{:no-groups}}
-                   {:token 2 :class :item}]}
+             :sub [{:token 0 :group :location}
+                   {:token 1 :group :person :config #{:no-groups}}
+                   {:token 2 :group :item}]}
             {:index 6
              :text "You check your inventory. "
              :follow-up {:config #{:required}
@@ -124,41 +124,41 @@
                                      :text "You are empty-handed."}
                                     {:index 1
                                      :text "You are carrying %0."
-                                     :sub [{:token 0 :class :item}]}
+                                     :sub [{:token 0 :group :item}]}
                                     {:index 2
                                      :text "You have %0 and %1."
-                                     :sub [{:token 0 :class :item}
-                                           {:token 1 :class :item}]}
+                                     :sub [{:token 0 :group :item}
+                                           {:token 1 :group :item}]}
                                     {:index 3
                                      :text "You are carrying %0, %1, and %2."
-                                     :sub [{:token 0 :class :item}
-                                           {:token 1 :class :item}
-                                           {:token 2 :class :item}]}]}}
+                                     :sub [{:token 0 :group :item}
+                                           {:token 1 :group :item}
+                                           {:token 2 :group :item}]}]}}
             {:index 6
              :text "You eat %0."
-             :sub [{:token 0 :class :food}]
+             :sub [{:token 0 :group :food}]
              :follow-up {:fragment [{:index 0
                                      :text " %1 looks on %2."
-                                     :sub [{:token 1 :class :actor}
-                                           {:token 2 :class :adverb}]}]}}
+                                     :sub [{:token 1 :group :actor}
+                                           {:token 2 :group :adverb}]}]}}
             {:index 7
              :text "You get tired of waiting for "
              :follow-up {:config #{:required}
                          :fragment [{:index 0
                                      :text "your Uber and decide to walk to %0 instead."
-                                     :sub [{:token 0 :class :location :config #{:no-prep}}]}
+                                     :sub [{:token 0 :group :location :config #{:no-prep}}]}
                                     {:index 1
                                      :text "your private jet so you decide to walk to %0 instead."
-                                     :sub [{:token 0 :class :location :config #{:no-prep}}]}
+                                     :sub [{:token 0 :group :location :config #{:no-prep}}]}
                                     {:index 2
                                      :text "the all-you-can-eat-buffet to open so you walk to %0 instead."
-                                     :sub [{:token 0 :class :location :config #{:no-prep}}]}]}}
+                                     :sub [{:token 0 :group :location :config #{:no-prep}}]}]}}
             {:index 8
              :text "You feel a little famished so you eat %0."
-             :sub [{:token 0 :class :food}]}
+             :sub [{:token 0 :group :food}]}
             {:index 9
              :text "You open up %0. "
-             :sub [{:token 0 :class :book}]
+             :sub [{:token 0 :group :book}]
              :follow-up {:config #{:required}
                          :fragment [{:index 0
                                      :text "Someone has scribbled all over the margins. You throw it down on the floor in disgust."}
@@ -184,38 +184,38 @@
              :follow-up {:config #{:required}
                          :fragment [{:index 0
                                      :text "%0 is messing around with your mailbox. You crouch in fear."
-                                     :sub [{:token 0 :class :person}]}
+                                     :sub [{:token 0 :group :person}]}
                                     {:index 1
                                      :text "%0 is laying facedown in your flowerbed. You sink to your knees with worry."
-                                     :sub [{:token 0 :class :person}]}
+                                     :sub [{:token 0 :group :person}]}
                                     {:index 2
                                      :text "%0 has set up a lemonade stand in your yard. It's on fire."
-                                     :sub [{:token 0 :class :person}]}
+                                     :sub [{:token 0 :group :person}]}
                                     {:index 3
                                      :text "%0 has set up a lemonade stand in your yard. It's covered in bees."
-                                     :sub [{:token 0 :class :person}]}
+                                     :sub [{:token 0 :group :person}]}
                                     {:index 4
                                      :text "%0 has set up a lemonade stand in your yard. The line stretches around the block."
-                                     :sub [{:token 0 :class :person}]}
+                                     :sub [{:token 0 :group :person}]}
                                     {:index 5
                                      :text "%0 has set up a lemonade stand across the street. You feel oddly jealous."
-                                     :sub [{:token 0 :class :person}]}
+                                     :sub [{:token 0 :group :person}]}
                                     {:index 6
                                      :text "%0 has set up a lemonade stand in your yard. Somehow %1 is also in line."
-                                     :sub [{:token 0 :class :person}
-                                           {:token 1 :class :gender :case :subjective}]}
+                                     :sub [{:token 0 :group :person}
+                                           {:token 1 :group :gender :case :subjective}]}
                                     {:index 7
                                      :text "%0 is struggling to start a chainsaw while staring at you. You bite your knuckle."
-                                     :sub [{:token 0 :class :person}]}
+                                     :sub [{:token 0 :group :person}]}
                                     {:index 8
                                      :text "%0 is standing in your yard, painting a portrait of you peeking out the window."
-                                     :sub [{:token 0 :class :person}]}
+                                     :sub [{:token 0 :group :person}]}
                                     {:index 9
                                      :text "%0 is standing right there, peeking back in."
-                                     :sub [{:token 0 :class :person}]}
+                                     :sub [{:token 0 :group :person}]}
                                     {:index 10
                                      :text "%0 is strutting back and forth."
-                                     :sub [{:token 0 :class :animal}]}
+                                     :sub [{:token 0 :group :animal}]}
                                     {:index 11
                                      :text "The cops have set up a parameter around your house."}
                                     {:index 12
@@ -224,7 +224,7 @@
                                      :text "It's dark out because it's night. The moon is getting closer."}
                                     {:index 14
                                      :text "%0 has almost finished burying all the corpses in your yard."
-                                     :sub [{:token 0 :class :person}]}
+                                     :sub [{:token 0 :group :person}]}
                                     {:index 15
                                      :text "The bodies are hitting the floor."}
                                     {:index 16
@@ -237,7 +237,7 @@
                                      :text "Your entire house has been encased in a giant stone column."}]}}
             {:index 11
              :text "You pick up %0"
-             :sub [{:token 0 :class :item}]
+             :sub [{:token 0 :group :item}]
              :follow-up {:config #{:required}
                          :fragment [{:index 0
                                      :text "."}
@@ -249,41 +249,41 @@
                                      :text " and hold it close to your chest."}
                                     {:index 4
                                      :text " and hold it up to %1's face."
-                                     :sub [{:token 1 :class :person}]}]}}
+                                     :sub [{:token 1 :group :person}]}]}}
             {:index 12
              :text "You start spinning around and around while "
              :follow-up {:config #{:required}
                          :fragment [{:index 0
                                      :text "%0 claps and cheers."
-                                     :sub [{:token 0 :class :person}]}
+                                     :sub [{:token 0 :group :person}]}
                                     {:index 1
                                      :text "%0 cries and points."
-                                     :sub [{:token 0 :class :person}]}
+                                     :sub [{:token 0 :group :person}]}
                                     {:index 2
                                      :text "%0 writes furiously on a clipboard."
-                                     :sub [{:token 0 :class :person}]}
+                                     :sub [{:token 0 :group :person}]}
                                     {:index 3
                                      :text "%0 starts spinning in the opposite direction, trying to offset your insanity with more insanity."
-                                     :sub [{:token 0 :class :person}]}
+                                     :sub [{:token 0 :group :person}]}
                                     {:index 4
                                      :text "%0 strolls by, shaking %1 head sadly."
-                                     :sub [{:token 0 :class :actor}
-                                           {:token 1 :class :gender :case :possessive}]}
+                                     :sub [{:token 0 :group :actor}
+                                           {:token 1 :group :gender :case :possessive}]}
                                     {:index 5
                                      :text "%0 beams with pride."
-                                     :sub [{:token 0 :class :person}]}]}}
+                                     :sub [{:token 0 :group :person}]}]}}
             {:index 13
              :text "You startle %0 who drops %1 and runs away."
-             :sub [{:token 0 :class :person}
-                   {:token 1 :class :item}]}
+             :sub [{:token 0 :group :person}
+                   {:token 1 :group :item}]}
             {:index 14
              :text "You surprise %0. %1 drops %2 and runs away."
-             :sub [{:token 0 :class :person}
-                   {:token 1 :ref 0 :class :gender :case :subjective}
-                   {:token 2 :class :item}]}
+             :sub [{:token 0 :group :person}
+                   {:token 1 :ref 0 :group :gender :case :subjective}
+                   {:token 2 :group :item}]}
             {:index 15
              :text "You take a bite of %0."
-             :sub [{:token 0 :class :food}]}
+             :sub [{:token 0 :group :food}]}
             {:index 16
              :text "You take a sip of %0."
-              :sub [{:token 0 :class :drink :config #{:no-article}}]}]}
+              :sub [{:token 0 :group :drink :config #{:no-article}}]}]}

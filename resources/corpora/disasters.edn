@@ -1,5 +1,5 @@
-{:class :disaster
- :type :sub
+{:group :disaster
+ :category :sub
  :fragment [{:index 0
              :text "avalanche"}
             {:index 1
@@ -31,4 +31,6 @@
             {:index 14
              :text "tsunami"}
             {:index 15
-             :text "volcanic eruption"}]}
+             :text "volcanic eruption"}
+            {:index 16
+             :text "sinkhole"}]}

@@ -1,9 +1,9 @@
-{:class :attack
- :type :sub
+{:group :attack
+ :category :sub
  :config #{:no-article}
  :fragment [{:index 0
              :text "%10"
-             :sub [{:token 10 :class :item}]}
+             :sub [{:token 10 :group :item}]}
             {:index 1
              :text "an antiparticle dildo"}
             {:index 2

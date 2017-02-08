@@ -1,27 +1,27 @@
-{:class :game
+{:group :game
  :type :sub
  :config #{:no-article}
  :fragment [{:index 0
              :text "Agricola"
-             :qualifier :tabletop}
+             :kind :tabletop}
             {:index 1
              :text "Advanced Squad Leader"
-             :qualifier :tabletop}
+             :kind :tabletop}
             {:index 2
              :text "Carcassonne"
-             :qualifier :tabletop}
+             :kind :tabletop}
             {:index 4
              :text "World in Flames"
-             :qualifier :tabletop}
+             :kind :tabletop}
             {:index 5
              :text "Monopoly"
-             :qualifier :tabletop}
+             :kind :tabletop}
             {:index 6
              :text "World of Warcraft"
-             :qualifier :video}
+             :kind :video}
             {:index 7
              :text "Civilization V"
-             :qualifier :video}
+             :kind :video}
             {:index 8
              :text "Grand Theft Auto V"
-             :qualifier :video}]}
+             :kind :video}]}

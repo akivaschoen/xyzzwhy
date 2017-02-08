@@ -1,4 +1,4 @@
-{:class :location
+{:group :location
  :type :sub
  :fragment [{:index 0
              :text "airplane"
@@ -103,7 +103,7 @@
                                      :text " The ceiling has been lowered to 4'."}
                                     {:index 10
                                      :text " The walls are covered with %10 posters."
-                                     :sub [{:token 10 :class :person}]}
+                                     :sub [{:token 10 :group :person}]}
                                     {:index 11
                                      :text " It is almost completely filled with a Habitrail of active gerbils."}
                                     {:index 12
@@ -126,8 +126,8 @@
                                      :text " There's a constant breeze rising up from the depths."}
                                     {:index 1
                                      :text " Wide and low, the cave gently slopes %10-%11 here."
-                                     :sub [{:token 10 :class :direction}
-                                           {:token 11 :class :direction}]}
+                                     :sub [{:token 10 :group :direction}
+                                           {:token 11 :group :direction}]}
                                     {:index 2
                                      :text " It smells of warm packing peanuts."}
                                     {:index 3
@@ -167,8 +167,8 @@
                                      :text " You can see the bodies hitting the floor nearby."}
                                     {:index 12
                                      :text " %10 is here, looking %11."
-                                     :sub [{:token 10 :class :person}
-                                           {:token 11 :class :adjective}]}
+                                     :sub [{:token 10 :group :person}
+                                           {:token 11 :group :adjective}]}
                                     {:index 13
                                      :text " No one here is on drugs. No one. Seriously. Trust me on this."}
                                     {:index 14
@@ -187,7 +187,7 @@
                                      :text " Quiet. You'll wake the goddamn clowns."}
                                     {:index 4
                                      :text " A hollow voice intones, '%10'"
-                                     :sub [{:token 10 :class :intonation}]}]}}
+                                     :sub [{:token 10 :group :intonation}]}]}}
             {:index 10
              :text "coffin"
              :type :interior
@@ -200,19 +200,19 @@
                                      :text " It smells of Aquanet in here. Makes sense."}
                                     {:index 3
                                      :text " It smells %10 in here. As coffins often do."
-                                     :sub [{:token 10 :class :scent}]}
+                                     :sub [{:token 10 :group :scent}]}
                                     {:index 4
                                      :text " It begins spinning and shaking dangerously."}
                                     {:index 5
                                      :text " It's full of %10."
-                                     :sub [{:token 10 :class :drink}]}
+                                     :sub [{:token 10 :group :drink}]}
                                     {:index 6
                                      :text " It's full of %10."
-                                     :sub [{:token 10 :class :food}]}
+                                     :sub [{:token 10 :group :food}]}
                                     {:index 7
                                      :text " %10 is laying in it. %11 won't stop giggling."
-                                     :sub [{:token 10 :class :person}
-                                           {:token 11 :ref 10 :class :gender :case :subjective}]}
+                                     :sub [{:token 10 :group :person}
+                                           {:token 11 :ref 10 :group :gender :case :subjective}]}
                                     {:index 8
                                      :text " It's pitch black. It probably doesn't matter if ther's a grue here."}]}}
             {:index 11
@@ -221,7 +221,7 @@
              :prep "in"
              :follow-up {:fragment [{:index 0
                                      :text " It is pitch black here. You're likely to be eaten by %10."
-                                     :sub [{:token 10 :class :actor}]}
+                                     :sub [{:token 10 :group :actor}]}
                                     {:index 1
                                      :text " It's really dark here. Like... REALLY dark."}
                                     {:index 2
@@ -371,7 +371,7 @@
                                      :text " There is an open grave nearby. There's a phone book in it."}
                                     {:index 3
                                      :text " There is an open grave nearby. It's full of %10."
-                                     :sub [{:token 10 :class :drink :config #{:no-article}}]}
+                                     :sub [{:token 10 :group :drink :config #{:no-article}}]}
                                     {:index 4
                                      :text " There is an open grave nearby. It's full of molten peanut butter."}
                                     {:index 5
@@ -450,7 +450,7 @@
                                      :text " It's full of marshmallows."}
                                     {:index 4
                                      :text " A kid inside growls at you, 'Yo, %10, wait your turn.'"
-                                     :sub [{:token 10 :class :insult}]}
+                                     :sub [{:token 10 :group :insult}]}
                                     {:index 5
                                      :text " It smells of stale sweat and lies, lies, lies..."}]}}
             {:index 24
@@ -509,7 +509,7 @@
                                      :text " A tiny monkey on a Harley slowly cruises by, staring at you."}
                                     {:index 3
                                      :text " %10 is here, throwing a profanity-laced tantrum."
-                                     :sub [{:token 10 :class :person :config #{:no-groups}}]}
+                                     :sub [{:token 10 :group :person :config #{:no-groups}}]}
                                     {:index 4
                                      :text " A hundred small dogs are here, looking menacing."}]}}
             {:index 30
@@ -626,7 +626,7 @@
                                      :text " The steam smells like patchouli. You throw up a lot."}
                                     {:index 4
                                      :text " %10 is here, totally nude."
-                                     :sub [{:token 10 :class :person}]}
+                                     :sub [{:token 10 :group :person}]}
                                     {:index 5
                                      :text " The floor is covered with Phish ticket stubs."}
                                     {:index 6
@@ -647,8 +647,8 @@
                                      :text " The door has been boarded up."}
                                     {:index 4
                                      :text " %10 is patiently waiting in line by %11."
-                                     :sub [{:token 10 :class :person}
-                                           {:token 11 :class :gender :case :compound}]}
+                                     :sub [{:token 10 :group :person}
+                                           {:token 11 :group :gender :case :compound}]}
                                     {:index 5
                                      :text " The building looks like it has been condemned."}]}}
             {:index 30
@@ -665,7 +665,7 @@
                                      :text " Your name is mispelled on the cup."}
                                     {:index 4
                                      :text " A hollow voice intones, '%10'"
-                                     :sub [{:token 10 :class :intonation}]}
+                                     :sub [{:token 10 :group :intonation}]}
                                     {:index 5
                                      :text " It's on fire."}
                                     {:index 6
@@ -743,7 +743,7 @@
                                      :text " It's filled with orange juice."}
                                     {:index 7
                                      :text " %10 is here, looking at you with hunger and/or lust."
-                                     :sub [{:token 10 :class :actor}]}
+                                     :sub [{:token 10 :group :actor}]}
                                     {:index 8
                                      :text " It's pitch black. No room for a grue, luckily."}]}}
             {:index 35

@@ -1,26 +1,26 @@
-{:class :actor-activity
- :type :sub
+{:group :actor-activity
+ :category :sub
  :config #{:no-article}
  :fragment [{:index 0
              :text "%10 playing the organ."
-             :sub [{:token 10 :class :adverb}]}
+             :sub [{:token 10 :group :adverb}]}
             {:index 1
              :text "being chased around by a %10."
-             :sub [{:token 10 :class :animal}]}
+             :sub [{:token 10 :group :animal}]}
             {:index 2
              :text "being chased by %10."
-             :sub [{:token 10 :class :person}]}
+             :sub [{:token 10 :group :person}]}
             {:index 3
              :text "being chased by %10 which is attached to them by a string."
-             :sub [{:token 10 :class :item}]}
+             :sub [{:token 10 :group :item}]}
             {:index 4
              :text "being chased by a swarm of balloon animals."}
             {:index 5
              :text "being menaced by %10."
-             :sub [{:token 10 :class :animal}]}
+             :sub [{:token 10 :group :animal}]}
             {:index 6
              :text "clutching a DVD of %10."
-             :sub [{:token 10 :class :movie}]}
+             :sub [{:token 10 :group :movie}]}
             {:index 7
              :text "dancing extremely slowly."}
             {:index 8
@@ -35,7 +35,7 @@
              :text "drooling uncontrollably."}
             {:index 13
              :text "examining %10 with great confusion."
-             :sub [{:token 10 :class :item}]}
+             :sub [{:token 10 :group :item}]}
             {:index 14
              :text "having a coughing fit."}
             {:index 15
@@ -50,12 +50,12 @@
              :text "hiding in the bushes."}
             {:index 20
              :text "looking %10."
-             :sub [{:token 10 :class :adjective}]}
+             :sub [{:token 10 :group :adjective}]}
             {:index 21
              :text "juggling some balls."}
             {:index 22
              :text "munching on %10."
-             :sub [{:token 10 :class :food}]}
+             :sub [{:token 10 :group :food}]}
             {:index 23
              :text "organizing matches."}
             {:index 24
@@ -68,8 +68,8 @@
              :text "stooping up and down like a rapper in concert."}
             {:index 28
              :text "thinking %10 about %11."
-             :sub [{:token 10 :class :adverb}
-                   {:token 11 :class :actor}]}
+             :sub [{:token 10 :group :adverb}
+                   {:token 11 :group :actor}]}
             {:index 29
              :text "wearing an eyepatch."}
             {:index 30

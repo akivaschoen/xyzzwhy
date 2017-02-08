@@ -1,5 +1,5 @@
-{:class :dialogue
- :type :sub
+{:group :dialogue
+ :category :sub
  :config #{:no-article}
  :fragment [{:index 0
              :text "asks, 'Are you following me?'"}
@@ -7,7 +7,7 @@
              :text "asks, 'Can I have a hug?'"}
             {:index 2
              :text "asks, 'Does it smell like %10 in here to you?'"
-             :sub [{:token 10 :class :food}]}
+             sub [{:token 10 :group :food}]}
             {:index 3
              :text "asks, 'Have you ever seen a grown man naked?'"}
             {:index 4
@@ -44,7 +44,7 @@
              :text "says, 'How unfortunate.'"}
             {:index 20
              :text "says, 'I can't find my %10.'"
-             :sub [{:token 10 :class :garment :config #{:no-article}}]}
+             :sub [{:token 10 :group :garment :config #{:no-article}}]}
             {:index 21
              :text "says, 'I can't find my heirloom clown suit.'"}
             {:index 22

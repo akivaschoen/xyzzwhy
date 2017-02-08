@@ -1,5 +1,5 @@
-{:class :tertiary-event
- :type :event
+{:group :tertiary-event
+ :category :event
  :config #{:no-article}
  :fragment [{:index 0
              :text "A basketball bounces by."}
@@ -13,7 +13,7 @@
              :text "It starts to snow."}
             {:index 4
              :text "Somehow, you've lost your %20."
-             :sub [{:token 20 :class :garment :config #{:no-article}}]}
+             :sub [{:token 20 :group :garment :config #{:no-article}}]}
             {:index 5
              :text "Someone is having fun against their will nearby."}
             {:index 6

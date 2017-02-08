@@ -1,5 +1,5 @@
-{:class :insult
- :type :sub
+{:group :insult
+ :category :sub
  :config #{:no-article}
  :fragment [{:index 0
              :text "cocktable"

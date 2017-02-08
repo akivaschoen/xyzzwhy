@@ -1,4 +1,4 @@
-{:class :scent
+{:group :scent
  :type :sub
  :config #{:no-article}
  :fragment [{:index 0

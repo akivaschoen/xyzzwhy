@@ -1,7 +1,7 @@
-{:class :diagnosis-event
- :type :event
+{:group :diagnosis-event
+ :category :event
  :fragment [{:index 0
              :text ["A doctor leans in from the shadows to inform you that you are %0."
                     "You look into a nearby mirror and notice you are %0."
                     "You check your health: you are %0."]
-             :sub [{:token 0 :class :diagnosis}]}]}
+             :sub [{:token 0 :group :diagnosis}]}]}

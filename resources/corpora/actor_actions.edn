@@ -1,5 +1,5 @@
-{:class :actor-action
- :type :sub
+{:group :actor-action
+ :category :sub
  :config #{:no-article}
  :fragment [{:index 0
              :text "attacks"}

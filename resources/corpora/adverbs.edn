@@ -1,5 +1,5 @@
-{:class :adverb
- :type :sub
+{:group :adverb
+ :category :sub
  :config #{:no-article}
  :fragment [{:index 0
              :text "balefully"}

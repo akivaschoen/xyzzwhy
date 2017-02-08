@@ -1,4 +1,4 @@
-{:class :garment
+{:group :garment
  :type :sub
  :fragment [{:index 0
              :text "belt"}
