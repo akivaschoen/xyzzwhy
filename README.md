@@ -24,6 +24,6 @@ We'll see.
 
 ## License
 
-Copyright © 2014-16 Akiva R. Schoen
+Copyright © 2014-17 Akiva R. Schoen
 
 Distributed under the MIT License (see LICENSE for details).
