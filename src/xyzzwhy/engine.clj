@@ -8,12 +8,16 @@
   {:tweet nil
    :event nil})
 
+;; Step 1. Choose event type for the tweet
 (defn event
   ([]
    (event tweetmap))
   ([tmap]
-   (update tmap :event fr/fragment :event)))
+   (update tmap :event fr/fragment :event))
+  ([tmap index]
+   (update tmap :event fr/fragment :event index)))
 
+;; Step 2. Choose the event fragment based on event type
 (defn event-fragment
   [tmap]
   (update tmap :event fr/fragment))
@@ -22,7 +26,8 @@
   [tmap]
   (assoc tmap :tweet (util/pick (get-in tmap [:event :text]))))
 
-(defn substitutes
+;; Step 3. Pick substitutions for each item in :sub
+(defn substitute
   [tmap]
   (if (fr/sub? (:event tmap))
     (update-in tmap [:event :sub] sb/substitute)
@@ -53,8 +58,8 @@
                          secondary-event
                          follow-up
                          transclude
-                         substitutes
                          tweet-text
+                         substitute
                          event-fragment
                          event))
 

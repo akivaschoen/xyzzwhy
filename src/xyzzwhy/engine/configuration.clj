@@ -2,49 +2,22 @@
   (:require [clojure.string :as cstr]))
 
 ;; -------
-;; Queries
-;; -------
-(declare config has?)
-
-(defn follow-up?
-  ([fr]
-   (not (has? fr :no-follow-up)))
-  ([fr tmap]
-   (not (has? fr tmap :no-follow-up))))
-
-(defn has?
-  ([fr option]
-   (contains? (config fr) option))
-  ([fr tmap option]
-   (contains? (merge (config tmap) (config fr)) option)))
-
-(defn required?
-  [fr]
-  (has? fr :required))
-
-(defn secondary?
-  [fr]
-  (not (has? fr :no-secondary)))
-
-(defn tertiary?
-  [fr]
-  (not (has? fr :no-tertiary)))
+;; DEFAULTS
+;;   :article
 
 ;; -------
 ;; Utilities
 ;; -------
-(declare option-complement? option-complement)
-
 (defn add
-  [tmap opt]
-  (update-in tmap [:event :config] conj opt))
+  "Adds a configuration option to an event's config."
+  [event option]
+  (update-in event [:event :config] conj option))
 
 (defn config
-  [tmap]
-  (cond
-    (contains? tmap :event) (get-in tmap [:event :config])
-    :else
-    (:config tmap)))
+  "Returns a config set."
+  [fragment]
+  (or (get-in fragment [:event :config])
+      (:config fragment)))
 
 (defn merge-into
   "Merges c2 into c1 returning a merged set."
@@ -77,3 +50,31 @@
 (defn option-complement?
   [option config]
   (contains? config (option-complement option)))
+
+
+;; -------
+;; Queries
+;; -------
+(defn has?
+  ([fragment option]
+   (contains? (config fragment) option))
+  ([fragment tmap option]
+   (contains? (merge (config tmap) (config fragment)) option)))
+
+(defn follow-up?
+  ([fragment]
+   (not (has? fragment :no-follow-up)))
+  ([fragment tmap]
+   (not (has? fragment tmap :no-follow-up))))
+
+(defn required?
+  [fragment]
+  (has? fragment :required))
+
+(defn secondary?
+  [fragment]
+  (not (has? fragment :no-secondary)))
+
+(defn tertiary?
+  [fragment]
+  (not (has? fragment :no-tertiary)))
