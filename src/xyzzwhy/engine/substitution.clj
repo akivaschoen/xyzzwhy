@@ -5,6 +5,8 @@
              [interpolation :as in]]
             [xyzzwhy.util :as util]))
 
+
+
 ;; -------
 ;; Pronouns
 ;; -------
@@ -33,6 +35,7 @@
       :possessive "its"
       :compound "itself")))
 
+
 ;; -------
 ;; Yon Transclusery
 ;; -------
@@ -44,7 +47,7 @@
                              (let [config (cf/merge-into (cf/config tmap)
                                                          (cf/config sub))]
                                (in/interpolate config text sub)))
-                           (:tweet tmap)
+                           (get-in tmap [:event :text])
                            (get-in tmap [:event :sub]))]
     (assoc tmap :tweet tweet-text)))
 
@@ -74,26 +77,23 @@
 ;; -------
 ;; Yon Substitutionarium
 ;; -------
-(defmulti sub (fn [_ sub] (:class sub)))
+(defmulti substitute* (fn [sub] (:class sub)))
 
-(defmethod sub :gender
-  [subv sub]
+(defmethod substitute* :gender
+  [sub]
   (-> sub
       (assoc :config #{:no-article})
-      (assoc :text (pronoun (util/pick (:gender (fr/get-ref sub subv))) (:case sub)))))
+      #_(assoc :text (pronoun (util/pick (:gender (fr/get-ref sub subv))) (:case sub)))))
 
-(defmethod sub :default
-  [_ sub]
+(defmethod substitute* :default
+  [sub]
   (fr/fragment sub))
 
 (defn substitute
-  [subv]
-  (loop [out []
-         subs (apply list subv)]
-    (if (empty? subs)
-      out
-      (recur (conj out (sub out (peek subs)))
-             (next subs)))))
+  [subs]
+  (if (empty? subs)
+    []
+    (mapv #(substitute* %1) subs)))
 
 ;; -------
 ;; Yon Follow-Uppery
@@ -157,6 +157,7 @@
         tmap
         (cf/add tmap' :no-follow-up)))))
 
+
 ;; -------
 ;; Yon Extra-Eventoilet
 ;; -------
@@ -180,8 +181,8 @@
 (defn secondary
   "Returns a tmap with a secondary (and tertiary) event possibly attached.
 
-  Secondary events have a 75% chance for :location-events only, followed by a
-  25% chance for a tertiary event."
+  Secondary events have a default 75% chance for :location-events only,
+  followed by a default 25% chance for a tertiary event."
   ([tmap]
    (secondary tmap 75 25))
   ([tmap sec-chance]
@@ -196,7 +197,7 @@
 (defn tertiary
   "Returns a tmap with a tertiary event possibly attached.
 
-  Tertiary events have a 35% chance of appearing for any event."
+  Tertiary events have a default 35% chance of appearing for any event."
   ([tmap]
    (tertiary tmap 35))
   ([tmap chance]

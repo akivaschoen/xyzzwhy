@@ -2,31 +2,40 @@
   (:require [xyzzwhy.io :as io]
             [xyzzwhy.util :as util]))
 
-(defn index-of
-  [idx c]
-  (some #(if (= idx (:index %)) %) c))
-
 (defn weighted-pick
-  [c]
-  (let [weight (reductions #(+ %1 %2) (map :weight c))
+  "Returns a group by weighted randomization."
+  [group]
+  (let [weight (reductions #(+ %1 %2) (map :weight group))
         rnd (rand-int (last weight))]
-    (nth c (count (take-while #(<= % rnd) weight)))))
+    (nth group (count (take-while #(<= % rnd) weight)))))
 
 (defn get-config
-  [classname]
-  (or {:config (:config (io/read-file classname))}
+  "Returns the :config set from a group."
+  [group]
+  (or {:config (:config (io/read-file group))}
       {:config #{}}))
 
 (defn get-event
+  "Returns an event either based on weighted randomization or, if
+  passed a recipe index, by that index."
   ([]
-   {:class (weighted-pick (:events (io/read-file "classes")))})
+   {:kind (:kind (weighted-pick (:events (io/read-file "groups"))))})
   ([index]
-   {:class (index-of index (:events (io/read-file "classes")))}))
+   {:kind (:kind (util/pick index (:events (io/read-file "groups"))))}))
 
-(defn get-fragments
-  [classname]
-  (:fragment (io/read-file classname)))
+(defn fragment
+  [fragment]
+  (let [group (-> fragment :group io/read-file :fragment)]
+    (util/pick group)))
 
 (defn get-fragment
-  [classname]
-  (util/pick (get-fragments classname)))
+  "Returns a fragment from a group either randomly or by a given
+  recipe index."
+  ([group]
+   (get-fragment group -1))
+  ([group index]
+   (let [groupf (:fragment (io/read-file group))]
+     (if (neg? index)
+       (util/pick groupf)
+       (util/pick index groupf)))))
+
