@@ -8,12 +8,12 @@
 
   :dependencies
   [[org.clojure/clojure "1.8.0"]
-   [clj-time "0.13.0"]
+   [clj-time "0.14.0"]
    [com.stuartsierra/component "0.3.2"]
    [environ "1.1.0"]
    [pluralex "1.0.0-SNAPSHOT"]
    [reloaded.repl "0.2.3"]
-   [twitter-api "0.7.9"]
+   [twitter-api "1.8.0"]
    [typographer "1.1.0"]]
 
   :plugins
