@@ -1,22 +1,8 @@
 {:group :dialogue-event
  :category :event
- :fragment [{:index 0
-             :text "%0 %1"
-             :sub [{:token 0 :group :person}
-                   {:token 1 :group :dialogue}]}
-            {:index 1
-             :text "%0 is nearby. %1 %2"
-             :sub [{:token 0 :group :person :config #{:no-groups}}
-                   {:token 1 :ref 0 :group :gender :case :subjective}
-                   {:token 2 :group :dialogue}]}
-            {:index 2
-             :text "%0 marches up to you and %1"
-             :sub [{:token 0 :group :person}
-                   {:token 1 :group :dialogue}]}
-            {:index 3
-             :text "You check your messages: "
+ :fragment [{:text '({:index 0 :group :person} {:index 1 :group :dialogue})}
+            {:text '({:index 0 :group :person :config #{:no-groups}} " is nearby. " {:index 1 :ref 0 :group :gender :case :subjective} {:index 2 :group :dialogue})}
+            {:text '({:index 0 :group :person} " marches up to you and " {:index 1 :group :dialogue})}
+            {:text '("You check your messages: ")
              :follow-up {:config #{:required}
-                         :fragment [{:index 0
-                                     :text "%0 %1"
-                                     :sub [{:token 0 :group :person :config #{:no-groups}}
-                                           {:token 1 :group :dialogue}]}]}}]}
+                         :fragment [{:text '({:index 0 :group :person :config #{:no-groups}} {:index 1 :group :dialogue})}]}}]}

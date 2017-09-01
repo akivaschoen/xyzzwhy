@@ -1,34 +1,34 @@
-{:events [{:index 0 :group :location-event :weight 40} ;; event name and weight
-          {:index 1 :group :action-event :weight 40}
-          {:index 2 :group :actor-event :weight 20}
-          {:index 3 :group :attack-event :weight 10}
-          {:index 4 :group :dialogue-event :weight 10}
-          {:index 5 :group :diagnosis-event :weight 1}
-          {:index 6 :group :news-event :weight 1}
-          {:index 7 :group :thought-event :weight 1}]
- :subs [{:index 0 :group :actor-action}
-        {:index 1 :group :actor-activity}
-        {:index 2 :group :adjective}
-        {:index 3 :group :adverb}
-        {:index 4 :group :animal}
-        {:index 5 :group :attack}
-        {:index 6 :group :book}
-        {:index 7 :group :diagnosis}
-        {:index 8 :group :dialogue}
-        {:index 9 :group :direction}
-        {:index 10 :group :disaster}
-        {:index 11 :group :drink}
-        {:index 12 :group :food}
-        {:index 13 :group :game}
-        {:index 14 :group :garment}
-        {:index 15 :group :headline}
-        {:index 16 :group :intonation}
-        {:index 17 :group :item}
-        {:index 18 :group :location}
-        {:index 19 :group :movie}
-        {:index 20 :group :noise}
-        {:index 21 :group :obstacle}
-        {:index 22 :group :person}
-        {:index 23 :group :scent}
-        {:index 24 :group :sign}
-        {:index 25 :group :thought}]}
+{:events [{:group :location-event :weight 40}
+          {:group :action-event :weight 40}
+          {:group :actor-event :weight 20}
+          {:group :attack-event :weight 10}
+          {:group :dialogue-event :weight 10}
+          {:group :diagnosis-event :weight 1}
+          {:group :news-event :weight 1}
+          {:group :thought-event :weight 1}]
+ :subs [{:group :actor-action}
+        {:group :actor-activity}
+        {:group :adjective}
+        {:group :adverb}
+        {:group :animal}
+        {:group :attack}
+        {:group :book}
+        {:group :diagnosis}
+        {:group :dialogue}
+        {:group :direction}
+        {:group :disaster}
+        {:group :drink}
+        {:group :food}
+        {:group :game}
+        {:group :garment}
+        {:group :headline}
+        {:group :intonation}
+        {:group :item}
+        {:group :location}
+        {:group :movie}
+        {:group :noise}
+        {:group :obstacle}
+        {:group :person}
+        {:group :scent}
+        {:group :sign}
+        {:group :thought}]}

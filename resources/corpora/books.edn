@@ -1,21 +1,15 @@
 {:group :book
  :category :sub
  :config #{:no-article}
- :fragment [{:index 0
-             :text "the Bible"
-             :prep "a copy of"}
-            {:index 1
-             :text "The Catcher in the Rye"
-             :prep "a copy of"}
-            {:index 2
-             :text "Gravity's Rainbow"
-             :prep "a copy of"}
-            {:index 3
-             :text "The Hitchhiker's Guide to the Galaxy"
-             :prep "a copy of"}
-            {:index 4
-             :text "Infinite Jest"
-             :prep "a copy of"}
-            {:index 5
-             :text "A Prayer for Owen Meany"
-             :prep "a copy of"}]}
+ :fragment [{:text '("the Bible")
+             :prep '("a copy of")}
+            {:text '("The Catcher in the Rye")
+             :prep '("a copy of")}
+            {:text '("Gravity's Rainbow")
+             :prep '("a copy of")}
+            {:text '("The Hitchhiker's Guide to the Galaxy")
+             :prep '("a copy of")}
+            {:text '("Infinite Jest")
+             :prep '("a copy of")}
+            {:text '("A Prayer for Owen Meany")
+             :prep '("a copy of")}]}
