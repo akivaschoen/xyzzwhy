@@ -1,36 +1,19 @@
 {:group :disaster
  :category :sub
- :fragment [{:index 0
-             :text "avalanche"}
-            {:index 1
-             :text "duststorm"}
-            {:index 2
-             :text "fire"}
-            {:index 3
-             :text "flood"}
-            {:index 4
-             :text "hurricane"}
-            {:index 5
-             :text "landslide"}
-            {:index 6
-             :text "lava flow"}
-            {:index 7
-             :text "lightning strike"}
-            {:index 8
-             :text "plague of locusts"}
-            {:index 9
-             :text "radiation leak"}
-            {:index 10
-             :text "rift in the spacetime continuum"}
-            {:index 11
-             :text "sandstorm"}
-            {:index 12
-             :text "snowstorm"}
-            {:index 13
-             :text "tornado"}
-            {:index 14
-             :text "tsunami"}
-            {:index 15
-             :text "volcanic eruption"}
-            {:index 16
-             :text "sinkhole"}]}
+ :fragment [{:text '("avalanche")}
+            {:text '("duststorm")}
+            {:text '("fire")}
+            {:text '("flood")}
+            {:text '("hurricane")}
+            {:text '("landslide")}
+            {:text '("lava flow")}
+            {:text '("lightning strike")}
+            {:text '("plague of locusts")}
+            {:text '("radiation leak")}
+            {:text '("rift in the spacetime continuum")}
+            {:text '("sandstorm")}
+            {:text '("snowstorm")}
+            {:text '("tornado")}
+            {:text '("tsunami")}
+            {:text '("volcanic eruption")}
+            {:text '("sinkhole")}]}

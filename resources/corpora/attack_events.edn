@@ -1,85 +1,33 @@
 {:group :attack-event
  :category :event
- :fragment [{:index 0
-             :text "%0 attacks you and knocks you out. You awake sometime later %1."
-             :sub [{:token 0 :group :actor}
-                   {:token 1 :group :location}]}
-            {:index 1
-             :text "%0 attacks you but you fight back with %1, "
-             :sub [{:token 0 :group :actor}
-                   {:token 1 :group :attack}]
+ :fragment [{:text '({:index 0 :group :actor} " attacks you and knocks you out. You awake sometime later " {:index 1 :group :location} ".")]
+            {:text '({:index 0 :group :actor} " attacks you but you fight back with " {:index 1 :group :attack} ", ")
              :follow-up {:config #{:required}
-                         :fragment [{:index 0
-                                     :text "winning the battle."}
-                                    {:index 1
-                                     :text "taking only a hit to your pride."}]}}
-            {:index 2
-             :text "%0 attacks you but you fight back with %1. "
-             :sub [{:token 0 :group :actor}
-                   {:token 1 :group :attack}]
+                         :fragment [{:text '("winning the battle.")}
+                                    {:text '("taking only a hit to your pride.")}]}}
+            {:text '({:index 0 :group :actor} " attacks you but you fight back with " {:index 1 :group :attack} ".")
              :follow-up {:config #{:required}
-                         :fragment [{:index 0
-                                     :text "It isn't enough: you lose."}
-                                    {:index 1
-                                     :text "This scares the shit out of %2. %3 runs away."
-                                     :sub [{:token 2 :ref 0 :group :gender :case :objective}
-                                           {:token 3 :ref 0 :group :gender :case :subjective}]}]}}
-            {:index 3
-             :text "%0 attacks with %1. You execute %2. "
-             :sub [{:token 0 :group :actor}
-                   {:token 1 :group :attack}
-                   {:token 2 :group :attack}]
+                         :fragment [{:text '("It isn't enough: you lose.")}
+                                    {:text '("This scares the shit out of " {:index 2 :ref 0 :group :gender :case :objective} ". " {:index 3 :ref 0 :group :gender :case :subjective} "runs away.")}]}}
+            {:text '({:index 0 :group :actor} " attacks with " {:index 1 :group :attack} ". You execute " {:index 2 :group :attack} ".")
              :follow-up {:config #{:required}
-                         :fragment [{:index 0
-                                     :text "You are victorious!"}
-                                    {:index 1
-                                     :text "You have been killed."}
-                                    {:index 2
-                                     :text "You have been slain!"}
-                                    {:index 3
-                                     :text "So much blood... but is it yours or %3?"
-                                     :sub [{:token 3 :ref 0 :group :gender :case :possessive}]}
-                                    {:index 4
-                                     :text "%3 keels over all dead and stuff."
-                                     :sub [{:token 3 :ref 0 :group :gender :case :subjective}]}]}}
-            {:index 4
-             :text "%0 attacks with %1. You respond with %2. "
-             :sub [{:token 0 :group :actor}
-                   {:token 1 :group :attack}
-                   {:token 2 :group :attack}]
+                         :fragment [{:text '("You are victorious!")}
+                                    {:text '("You have been killed.")}
+                                    {:text '("You have been slain!")}
+                                    {:text '("So much blood... but is it yours or " {:index 3 :ref 0 :group :gender :case :possessive} "?")}
+                                    {:text '({:index 3 :ref 0 :group :gender :case :subjective} " keels over all dead and stuff.")}]}}
+            {:text '({:index 0 :group :actor} " attacks with " {:index 1 :group :attack} ". You respond with " {:index 2 :group :attack} ".")
              :follow-up {:config #{:required}
-                         :fragment [{:index 0
-                                     :text "You are defeated."}
-                                    {:index 1
-                                     :text "You're the winner!"}]}}
-            {:index 5
-             :text "%0 attacks with %1. You attack with %2. "
-             :sub [{:token 0 :group :actor}
-                   {:token 1 :group :attack}
-                   {:token 2 :group :attack}]
+                         :fragment [{:text '("You are defeated.")}
+                                    {:text '("You're the winner!")}]}}
+            {:text '({:index 0 :group :actor} " attacks with " {:index 1 :group :attack} ". You attack with " {:index 2 :group :attack} ".")
              :follow-up {:config #{:required}
-                         :fragment [{:index 0
-                                     :text "You are defeated."}
-                                    {:index 1
-                                     :text "You're the winner!"}]}}
-            {:index 6
-             :text "%0 attacks with %1. You strike back with %2. FATALITY. But who?!"
-             :sub [{:token 0 :group :actor}
-                   {:token 1 :group :attack}
-                   {:token 2 :group :attack}]}
-            {:index 7
-             :text "%0 attacks with %1. You with %2. "
-             :sub [{:token 0 :group :actor}
-                   {:token 1 :group :attack}
-                   {:token 2 :group :attack}]
+                         :fragment [{:text '("You are defeated.")}
+                                    {:text '("You're the winner!")}]}}
+            {:text '({:index 0 :group :actor} " attacks with " {:index 1 :group :attack} ". You strike back with " {:index 2 :group :attack} ". FATALITY. But who?!")
+             {:text '({:index 0 :group :actor} " attacks with " {:index 1 :group :attack} ". You with " {:index 2 :group :attack} ".")
              :follow-up {:config #{:required}
-                         :fragment [{:index 0
-                                     :text "Look at you what with the killing and all."}
-                                    {:index 1
-                                     :text "You've been converted into a broken zip file."}
-                                    {:index 2
-                                     :text "%3 explodes into a ball of green flame. GREEN FLAME."
-                                     :sub [{:token 3 :ref 0 :group :gender :case :subjective}]}
-                                    {:index 3
-                                     :text "%3 is a bloodstain."
-                                     :sub [{:token 3 :ref 0 :group :gender :case :subjective}]}]}}]}
+                         :fragment [{:text '("Look at you what with the killing and all.")}
+                                    {:text '("You've been converted into a broken zip file.")}
+                                    {:text '({:index 3 :ref 0 :group :gender :case :subjective} " explodes into a ball of green flame. GREEN FLAME.")}
+                                    {:text '({:index 3 :ref 0 :group :gender :case :subjective} " is a bloodstain.")}]}}]}

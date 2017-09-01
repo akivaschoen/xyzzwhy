@@ -1,19 +1,11 @@
 {:group :direction
  :category :sub
  :config #{:no-article}
- :fragment [{:index 0
-             :text "north"}
-            {:index 1
-             :text "northeast"}
-            {:index 2
-             :text "east"}
-            {:index 3
-             :text "southeast"}
-            {:index 4
-             :text "south"}
-            {:index 5
-             :text "southwest"}
-            {:index 6
-             :text "west"}
-            {:index 7
-             :text "northwest"}]}
+ :fragment [{:text '("north")}
+            {:text '("northeast")}
+            {:text '("east")}
+            {:text '("southeast")}
+            {:text '("south")}
+            {:text '("southwest")}
+            {:text '("west")}
+            {:text '("northwest")}]}

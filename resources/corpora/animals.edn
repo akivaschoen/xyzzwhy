@@ -1,285 +1,136 @@
 {:group :animal
  :category :sub
- :fragment [{:index 0
-             :text "aardvark"}
-            {:index 1
-             :text "alligator"}
-            {:index 2
-             :text "alpaca"}
-            {:index 3
-             :text "antelope"}
-            {:index 4
-             :text "ape"}
-            {:index 5
-             :text "armadillo"}
-            {:index 6
-             :text "baboon"}
-            {:index 7
-             :text "badger"}
-            {:index 8
-             :text "bat"}
-            {:index 9
-             :text "bear"
-             :decorator {:prefix {:option ["grizzly" "brown" "teddy"]}}}
-            {:index 10
-             :text "beaver"}
-            {:index 11
-             :text "bison"}
-            {:index 12
-             :text "boar"}
-            {:index 13
-             :text "buffalo"}
-            {:index 14
-             :text "bull"}
-            {:index 15
-             :text "bunny"}
-            {:index 16
-             :text "buzzard"}
-            {:index 17
-             :text "camel"}
-            {:index 18
-             :text "canary"}
-            {:index 19
-             :text "capybara"}
-            {:index 20
-             :text ["cat" "kitten"]
-             :decorator {:prefix {:option ["tabby" "gray" "black" "butter" "white"]}
-                         :ambifix {:option ["purring" "meowing" "growling"]}}
-             :sound ["purrs" "meows" "growls"]}
-            {:index 21
-             :text "chameleon"}
-            {:index 22
-             :text "cheetah"}
-            {:index 23
-             :text "chicken"}
-            {:index 24
-             :text "chimpanzee"}
-            {:index 25
-             :text "chinchilla"}
-            {:index 26
-             :text "chipmunk"}
-            {:index 27
-             :text "cougar"}
-            {:index 28
-             :text "cow"}
-            {:index 29
-             :text "coyote"}
-            {:index 30
-             :text "crocodile"}
-            {:index 31
-             :text "crow"
-             :decorator {:prefix {:option "cawing"}}
-             :sound ["caws" "caws at you" "caws forlornly" "caws quietly"]}
-            {:index 32
-             :text "dingo"}
-            {:index 33
-             :text ["dog" "puppy"]
-             :decorator {:prefix {:option ["black" "white" "brown"]}
-                         :ambifix {:option ["barking" "panting" "growling"]}}
-             :sound ["barks" "pants" "growls"]}
-            {:index 34
-             :text "dolphin"}
-            {:index 35
-             :text "donkey"}
-            {:index 36
-             :text "duck"
-             :decorator {:prefix {:option "quacking"}}
-             :sound "quacks"}
-            {:index 37
-             :text "eagle"}
-            {:index 38
-             :text "elephant"}
-            {:index 39
-             :text "ewe"}
-            {:index 40
-             :text "hawk"}
-            {:index 41
-             :text "ferret"}
-            {:index 42
-             :text "finch" :sound "chirps"}
-            {:index 43
-             :text "fox"}
-            {:index 44
-             :text "gazelle"}
-            {:index 45
-             :text "gerbil"}
-            {:index 46
-             :text "gila monster"}
-            {:index 47
-             :text "giraffe"}
-            {:index 48
-             :text "gnu"}
-            {:index 49
-             :text "goat"}
-            {:index 50
-             :text "gopher"}
-            {:index 51
-             :text "gorilla"}
-            {:index 52
-             :text "groundhog"
-             :decorator {:prefix {:option ["repeating" "familiar"]}}}
-            {:index 53
-             :text "guinea pig"}
-            {:index 54
-             :text "hamster"}
-            {:index 55
-             :text "hawk"}
-            {:index 56
-             :text "hedgehog"
-             :decorator {:prefix {:option "prickly"}}}
-            {:index 57
-             :text "hippopotamus"}
-            {:index 58
-             :text "hog"
-             :decorator {:prefix {:option ["snorting" "oinking"]}
-                         :sound ["snorts" "oinks"]}}
-            {:index 59
-             :text "horse"}
-            {:index 60
-             :text "hyena"}
-            {:index 61
-             :text "ibex"}
-            {:index 62
-             :text "iguana"}
-            {:index 63
-             :text "impala"}
-            {:index 64
-             :text "jackal"}
-            {:index 65
-             :text "jaguar"}
-            {:index 66
-             :text "kangaroo"}
-            {:index 67
-             :text "koala"}
-            {:index 68
-             :text "lamb"}
-            {:index 69
-             :text "lemur"}
-            {:index 70
-             :text "leopard"}
-            {:index 71
-             :text "lion"}
-            {:index 72
-             :text "lizard"}
-            {:index 73
-             :text "llama"}
-            {:index 74
-             :text "lynx"}
-            {:index 75
-             :text "magpie"}
-            {:index 76
-             :text "marmot"}
-            {:index 77
-             :text "mink"}
-            {:index 78
-             :text "mole"}
-            {:index 79
-             :text "mongoose"}
-            {:index 80
-             :text "monkey"}
-            {:index 81
-             :text "moose"}
-            {:index 82
-             :text "mule"}
-            {:index 83
-             :text "muskrat"}
-            {:index 84
-             :text "moose"}
-            {:index 85
-             :text "mountain goat"}
-            {:index 86
-             :text "mouse"}
-            {:index 87
-             :text "mule"}
-            {:index 88
-             :text "muskrat"}
-            {:index 89
-             :text "mynah bird"}
-            {:index 90
-             :text "newt"}
-            {:index 91
-             :text "ocelot"}
-            {:index 92
-             :text "opossum"}
-            {:index 93
-             :text "orangutan"}
-            {:index 94
-             :text "otter"}
-            {:index 95
-             :text "ox"}
-            {:index 96
-             :text "panda"}
-            {:index 97
-             :text "panther"}
-            {:index 98
-             :text "parakeet"}
-            {:index 99
-             :text "parrot"}
-            {:index 100
-             :text "pig"}
-            {:index 101
-             :text "pigeon"}
-            {:index 102
-             :text "platypus"}
-            {:index 103
-             :text "polar bear"}
-            {:index 104
-             :text "porcupine"}
-            {:index 105
-             :text "porpoise"}
-            {:index 106
-             :text "prairie dog"}
-            {:index 107
-             :text "rabbit"}
-            {:index 108
-             :text "raccoon"}
-            {:index 109
-             :text "reindeer"}
-            {:index 110
-             :text "rhinoceros"}
-            {:index 111
-             :text "salamander"}
-            {:index 112
-             :text "seal"}
-            {:index 113
-             :text "serpent"}
-            {:index 114
-             :text "sheep"}
-            {:index 115
-             :text "shrew"}
-            {:index 116
-             :text "skunk"}
-            {:index 117
-             :text "sloth"}
-            {:index 118
-             :text "snake"}
-            {:index 119
-             :text "squirrel"}
-            {:index 120
-             :text "tapir"}
-            {:index 121
-             :text "tiger"}
-            {:index 122
-             :text "toad"}
-            {:index 123
-             :text "turtle"}
-            {:index 124
-             :text "walrus"}
-            {:index 125
-             :text "warthog"}
-            {:index 126
-             :text "weasel"}
-            {:index 127
-             :text "wildcat"}
-            {:index 128
-             :text "wolf"}
-            {:index 129
-             :text "wolverine"}
-            {:index 130
-             :text "wombat"}
-            {:index 131
-             :text "woodchuck"}
-            {:index 132
-             :text "yak"}
-            {:index 133
-             :text "zebra"}]}
+ :fragment [{:text ("aardvark")}
+            {:text ("alligator")}
+            {:text ("alpaca")}
+            {:text ("antelope")}
+            {:text ("ape")}
+            {:text ("armadillo")}
+            {:text ("baboon")}
+            {:text ("badger")}
+            {:text ("bat")}
+            {:text ("bear") :decorator {:prefix {:option ["grizzly" "brown" "teddy"]}}}
+            {:text ("beaver")}
+            {:text ("bison")}
+            {:text ("boar")}
+            {:text ("buffalo")}
+            {:text ("bull")}
+            {:text ("bunny")}
+            {:text ("buzzard")}
+            {:text ("camel")}
+            {:text ("canary")}
+            {:text ("capybara")}
+            {:text (["cat" "kitten"]) :decorator {:prefix {:option ["tabby" "gray" "black" "butter" "white"]} :ambifix {:option ["purring" "meowing" "growling"]}} :sound ["purrs" "meows" "growls"]}
+            {:text ("chameleon")}
+            {:text ("cheetah")}
+            {:text ("chicken")}
+            {:text ("chimpanzee")}
+            {:text ("chinchilla")}
+            {:text ("chipmunk")}
+            {:text ("cougar")}
+            {:text ("cow")}
+            {:text ("coyote")}
+            {:text ("crocodile")}
+            {:text ("crow") :prefix {:option "cawing"} :sound ["caws" "caws at you" "caws forlornly" "caws quietly"]}
+            {:text ("dingo")}
+            {:text (["dog" "puppy"]) :decorator {:prefix {:option ["black" "white" "brown"]} :ambifix {:option ["barking" "panting" "growling"]}} :sound ["barks" "pants" "growls"]}
+            {:text ("dolphin")}
+            {:text ("donkey")}
+            {:text ("duck") :decorator {:prefix {:option "quacking"}} :sound "quacks"}
+            {:text ("eagle")}
+            {:text ("elephant")}
+            {:text ("ewe")}
+            {:text ("hawk")}
+            {:text ("ferret")}
+            {:text ("finch") :sound "chirps"}
+            {:text ("fox")}
+            {:text ("gazelle")}
+            {:text ("gerbil")}
+            {:text ("gila monster")}
+            {:text ("giraffe")}
+            {:text ("gnu")}
+            {:text ("goat")}
+            {:text ("gopher")}
+            {:text ("gorilla")}
+            {:text ("groundhog") :decorator {:prefix {:option ["repeating" "familiar"]}}}
+            {:text ("guinea pig")}
+            {:text ("hamster")}
+            {:text ("hawk")}
+            {:text ("hedgehog") :decorator {:prefix {:option "prickly"}}}
+            {:text ("hippopotamus")}
+            {:text ("hog") :decorator {:prefix {:option ["snorting" "oinking"]}} :sound ["snorts" "oinks"]}
+            {:text ("horse")}
+            {:text ("hyena")}
+            {:text ("ibex")}
+            {:text ("iguana")}
+            {:text ("impala")}
+            {:text ("jackal")}
+            {:text ("jaguar")}
+            {:text ("kangaroo")}
+            {:text ("koala")}
+            {:text ("lamb")}
+            {:text ("lemur")}
+            {:text ("leopard")}
+            {:text ("lion")}
+            {:text ("lizard")}
+            {:text ("llama")}
+            {:text ("lynx")}
+            {:text ("magpie")}
+            {:text ("marmot")}
+            {:text ("mink")}
+            {:text ("mole")}
+            {:text ("mongoose")}
+            {:text ("monkey")}
+            {:text ("moose")}
+            {:text ("mule")}
+            {:text ("muskrat")}
+            {:text ("moose")}
+            {:text ("mountain goat")}
+            {:text ("mouse")}
+            {:text ("mule")}
+            {:text ("muskrat")}
+            {:text ("mynah bird")}
+            {:text ("newt")}
+            {:text ("ocelot")}
+            {:text ("opossum")}
+            {:text ("orangutan")}
+            {:text ("otter")}
+            {:text ("ox")}
+            {:text ("panda")}
+            {:text ("panther")}
+            {:text ("parakeet")}
+            {:text ("parrot")}
+            {:text ("pig")}
+            {:text ("pigeon")}
+            {:text ("platypus")}
+            {:text ("polar bear")}
+            {:text ("porcupine")}
+            {:text ("porpoise")}
+            {:text ("prairie dog")}
+            {:text ("rabbit")}
+            {:text ("raccoon")}
+            {:text ("reindeer")}
+            {:text ("rhinoceros")}
+            {:text ("salamander")}
+            {:text ("seal")}
+            {:text ("serpent")}
+            {:text ("sheep")}
+            {:text ("shrew")}
+            {:text ("skunk")}
+            {:text ("sloth")}
+            {:text ("snake")}
+            {:text ("squirrel")}
+            {:text ("tapir")}
+            {:text ("tiger")}
+            {:text ("toad")}
+            {:text ("turtle")}
+            {:text ("walrus")}
+            {:text ("warthog")}
+            {:text ("weasel")}
+            {:text ("wildcat")}
+            {:text ("wolf")}
+            {:text ("wolverine")}
+            {:text ("wombat")}
+            {:text ("woodchuck")}
+            {:text ("yak")}
+            {:text ("zebra")}]}

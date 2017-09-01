@@ -403,7 +403,7 @@
                                     {:index 1
                                      :text " An orange light wanders from window to window."}
                                     {:index 2
-                                     :text " A sign here reads: 'As seen on TV."}
+                                     :text " A sign here reads: 'As seen on TV.'"}
                                     {:index 3
                                      :text " Endless amounts of blood pour from the windows."}
                                     {:index 4
@@ -415,7 +415,11 @@
                                     {:index 7
                                      :text " A sign out front reads 'Dead Nig...' Just kidding. Probably."}
                                     {:index 8
-                                     :text " Looks inviting except for the corpses littering the lawn."}]}}
+                                     :text " Looks inviting except for the corpses littering the lawn."}
+                                    {:index 9
+                                     :text " It's only 6\" tall."}
+                                    {:index 10
+                                     :text " It's surrounded by a moat of delicious soup."}]}}
             {:index 22
              :text "hot tub"
              :type :interior

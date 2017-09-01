@@ -1,76 +1,34 @@
-{:group :actor-activity
- :category :sub
- :config #{:no-article}
- :fragment [{:index 0
-             :text "%10 playing the organ."
-             :sub [{:token 10 :group :adverb}]}
-            {:index 1
-             :text "being chased around by a %10."
-             :sub [{:token 10 :group :animal}]}
-            {:index 2
-             :text "being chased by %10."
-             :sub [{:token 10 :group :person}]}
-            {:index 3
-             :text "being chased by %10 which is attached to them by a string."
-             :sub [{:token 10 :group :item}]}
-            {:index 4
-             :text "being chased by a swarm of balloon animals."}
-            {:index 5
-             :text "being menaced by %10."
-             :sub [{:token 10 :group :animal}]}
-            {:index 6
-             :text "clutching a DVD of %10."
-             :sub [{:token 10 :group :movie}]}
-            {:index 7
-             :text "dancing extremely slowly."}
-            {:index 8
-             :text "dancing furiously."}
-            {:index 9
-             :text "dancing in a small circle."}
-            {:index 10
-             :text "defiantly eating Scrabble tiles, one by one."}
-            {:index 11
-             :text "doing the Kenosha Kid."}
-            {:index 12
-             :text "drooling uncontrollably."}
-            {:index 13
-             :text "examining %10 with great confusion."
-             :sub [{:token 10 :group :item}]}
-            {:index 14
-             :text "having a coughing fit."}
-            {:index 15
-             :text "having a sneezing fit."}
-            {:index 16
-             :text "having a Guru Meditation Error."}
-            {:index 17
-             :text "hiding under a sofa."}
-            {:index 18
-             :text "hiding under a table."}
-            {:index 19
-             :text "hiding in the bushes."}
-            {:index 20
-             :text "looking %10."
-             :sub [{:token 10 :group :adjective}]}
-            {:index 21
-             :text "juggling some balls."}
-            {:index 22
-             :text "munching on %10."
-             :sub [{:token 10 :group :food}]}
-            {:index 23
-             :text "organizing matches."}
-            {:index 24
-             :text "pretending to be invisible."}
-            {:index 25
-             :text "ready to start some shit."}
-            {:index 26
-             :text "shouting at an imaginary helicopter."}
-            {:index 27
-             :text "stooping up and down like a rapper in concert."}
-            {:index 28
-             :text "thinking %10 about %11."
-             :sub [{:token 10 :group :adverb}
-                   {:token 11 :group :actor}]}
-            {:index 29
-             :text "wearing an eyepatch."}
-            {:index 30
-             :text "wearing two eyepatches and stumbling around blindly."}]}
+(:group :actor-activity
+        :category :sub
+        :config #{:no-article}
+        :fragment [{:text '({:index 0 :group :adverb} " playing the organ.")}
+                   {:text '("being chased around by a " {:index 0 :group :animal} ".")}
+                   {:text '("being chased by " {:index 0 :group :person} ".")}
+                   {:text '("being chased by " {:index 0 :group :item} " which is attached to them by a string.")}
+                   {:text '("being chased by a swarm of balloon animals.")}
+                   {:text '("being menaced by " {:index 0 :group :animal} ".")}
+                   {:text '("clutching a DVD of " {:index 0 :group :movie} ".")}
+                   {:text '("dancing extremely slowly.")}
+                   {:text '("dancing furiously.")}
+                   {:text '("dancing in a small circle.")}
+                   {:text '("defiantly eating Scrabble tiles, one by one.")}
+                   {:text '("doing the Kenosha Kid.")}
+                   {:text '("drooling uncontrollably.")}
+                   {:text '("examining " {:index 0 :group :item} " with great confusion.")}
+                   {:text '("having a coughing fit.")}
+                   {:text '("having a sneezing fit.")}
+                   {:text '("having a Guru Meditation Error.")}
+                   {:text '("hiding under a sofa.")}
+                   {:text '("hiding under a table.")}
+                   {:text '("hiding in the bushes.")}
+                   {:text '("looking " {:index 0 :group :adjective} ".")}
+                   {:text '("juggling some balls.")}
+                   {:text '("munching on " {:index 0 :group :food} ".")} :sub []
+                   {:text '("organizing matches.")}
+                   {:text '("pretending to be invisible.")}
+                   {:text '("ready to start some shit.")}
+                   {:text '("shouting at an imaginary helicopter.")}
+                   {:text '("stooping up and down like a rapper in concert.")}
+                   {:text '("thinking " {:index 0 :group :adverb} " about " {:index 1 :group :actor} ".")}
+                   {:text '("wearing an eyepatch.")}
+                   {:text '("wearing two eyepatches and stumbling around blindly.")}])

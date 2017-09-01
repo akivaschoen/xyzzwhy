@@ -1,149 +1,75 @@
 {:group :dialogue
  :category :sub
  :config #{:no-article}
- :fragment [{:index 0
-             :text "asks, 'Are you following me?'"}
-            {:index 1
-             :text "asks, 'Can I have a hug?'"}
-            {:index 2
-             :text "asks, 'Does it smell like %10 in here to you?'"
-             sub [{:token 10 :group :food}]}
-            {:index 3
-             :text "asks, 'Have you ever seen a grown man naked?'"}
-            {:index 4
-             :text "asks, 'Have you ever seen an elephant throw up?'"}
-            {:index 5
-             :text "asks, 'Have you got a flag?'"}
-            {:index 6
-             :text "asks, 'How long is a man?'"}
-            {:index 7
-             :text "asks, 'May I use your FAX machine?'"}
-            {:index 8
-             :text "asks, 'Where have you been?'"}
-            {:index 9
-             :text "asks, 'Which one are you?'"}
-            {:index 10
-             :text "asks, 'Why am I holding this pitchfork?'"}
-            {:index 11
-             :text "asks, 'Would you like to see my collection of tiny ceiling fans?'"}
-            {:index 12
-             :text "chants, 'It's time to pay the price.'"}
-            {:index 13
-             :text "mumbles, 'I've never been to Belize.'"}
-            {:index 14
-             :text "mumbles, 'One day I'm going to burn this place to the ground.'"}
-            {:index 15
-             :text "mumbles, 'Skrillex ruined it all for everybody.'"}
-            {:index 16
-             :text "mumbles, 'You can't go up against city hall.'"}
-            {:index 17
-             :text "says, 'Bye, Felicia.'"}
-            {:index 18
-             :text "says, 'Hello, please.'"}
-            {:index 19
-             :text "says, 'How unfortunate.'"}
-            {:index 20
-             :text "says, 'I can't find my %10.'"
-             :sub [{:token 10 :group :garment :config #{:no-article}}]}
-            {:index 21
-             :text "says, 'I can't find my heirloom clown suit.'"}
-            {:index 22
-             :text "says, 'I'm a brown-belt in speed tai chi.'"}
-            {:index 23
-             :text "says, 'I'm a source of fiber.'"}
-            {:index 24
-             :text "says, 'I'm addicted to Kitty Lick III.'"}
-            {:index 25
-             :text "says, 'I'm going to button up the top of my polo shirt to demonstrate I don't want to talk to you.'"}
-            {:index 26
-             :text "says, 'I'm in a poo trance.'"}
-            {:index 27
-             :text "says, 'I'm not an actor but I play one on television.'"}
-            {:index 28
-             :text "says, 'I'm stuck in a poo loop.'"}
-            {:index 29
-             :text "says, 'I've been waiting for you.'"}
-            {:index 30
-             :text "says, 'If you asked me to have sex with you, I wouldn't say \"no\".'"}
-            {:index 31
-             :text "says, 'It never hurts to have a corpse open the door for you.'"}
-            {:index 32
-             :text "says, 'It's like drinking a meatloaf!'"}
-            {:index 33
-             :text "says, 'It's time for your epic nude scene!"}
-            {:index 34
-             :text "says, 'It's true: the boot is the best McNugget shape.'"}
-            {:index 35
-             :text "says, 'Looks like I'm not having any mayonnaise.'"}
-            {:index 36
-             :text "says, 'No money? No hamburger!'"}
-            {:index 37
-             :text "says, 'So I guess Kevin Spacey is going to be a thing now.'"}
-            {:index 38
-             :text "says, 'Surrealism is the scourage of butane.'"}
-            {:index 39
-             :text "says, 'That bisexual really jazzed up my latte.'"}
-            {:index 40
-             :text "says, 'That dog rode on a bus by itself."}
-            {:index 41
-             :text "says, 'The Swanson TV Dinner heard 'round the world.'"}
-            {:index 42
-             :text "says, 'The membership card is edible.'"}
-            {:index 43
-             :text "says, 'The time has come for me to deal with the fact that I'll never be Ed Begley, Jr.'"}
-            {:index 44
-             :text "says, 'This drink tastes like Sears!'"}
-            {:index 45
-             :text "says, 'This is giving me the freak-out.'"}
-            {:index 46
-             :text "says, 'This teenager salad tastes like a slowly closing door.'"}
-            {:index 47
-             :text "says, 'Took you long enough.'"}
-            {:index 48
-             :text "says, 'Well that really scrambles my eggs.'"}
-            {:index 49
-             :text "says, 'Well, that's a dead give away.'"}
-            {:index 50
-             :text "says, 'Wrong answer, chief.'"}
-            {:index 51
-             :text "shouts, 'Don Quixote! Swingin' from a pipe!'"}
-            {:index 52
-             :text "shouts, 'It keeps happening!'"}
-            {:index 53
-             :text "shouts, 'They're having a brownout in Lagos!'"}
-            {:index 54
-             :text "shouts, 'You can't fold a cat!'"}
-            {:index 55
-             :text "shouts, 'You can't go up against city hall!'"}
-            {:index 56
-             :text "shouts, 'IT'S NOT ENOUGH TO BURN TO DEATH IN PUBLIC; I MUST ALSO WEAR THE MOZILLA SHIRT.'"}
-            {:index 57
-             :text "shriefs, 'Baby-oil covered balloon animals for all!"}
-            {:index 58
-             :text "shrieks, 'Boiled soil!'"}
-            {:index 59
-             :text "shrieks, 'I'm living on the edge!'"}
-            {:index 50
-             :text "shrieks, 'What's this shit I keep hearing about erections?!'"}
-            {:index 51
-             :text "sighs, 'I liked you better before the hip-replacement surgery.'"}
-            {:index 52
-             :text "snarls, 'Siddown before ya fall down!'"}
-            {:index 53
-             :text "whines, 'Don't call me dick smoke!'"}
-            {:index 54
-             :text "whispers, 'Fee was a Buddhist prodigy.'"}
-            {:index 55
-             :text "whispers, 'I've always wanted to be a creepy uncle.'"}
-            {:index 56
-             :text "whispers, 'It puts the lotion on its skin...'"}
-            {:index 57
-             :text "whispers, 'Sleep is unproductive and a waste of time.'"}
-            {:index 58
-             :text "whispers, 'There squats the brown clown.'"}
-            {:index 59
-             :text "whispers, 'Why are you talking in all lowercase?'"}
-            {:index 60
-             :text "whispers, 'You just lost the game.'"}
-            {:index 61
-             :text "yells, 'I warned you about stairs, bro! I told ya, dawg!'"}]}
+ :fragment [{:text '("asks, 'Are you following me?'")}
+            {:text '("asks, 'Can I have a hug?'")}
+            {:text '("asks, 'Does it smell like " {:token 10 :group :food} " in here to you?"')}
+            {:text '("asks, 'Have you ever seen a grown man naked?'")}
+            {:text '("asks, 'Have you ever seen an elephant throw up?'")}
+            {:text '("asks, 'Have you got a flag?'")}
+            {:text '("asks, 'How long is a man?'")}
+            {:text '("asks, 'May I use your FAX machine?'")}
+            {:text '("asks, 'Where have you been?'")}
+            {:text '("asks, 'Which one are you?'")}
+            {:text '("asks, 'Why am I holding this pitchfork?'")}
+            {:text '("asks, 'Would you like to see my collection of tiny ceiling fans?'")}
+            {:text '("chants, 'It's time to pay the price.'")}
+            {:text '("mumbles, 'I've never been to Belize.'")}
+            {:text '("mumbles, 'One day I'm going to burn this place to the ground.'")}
+            {:text '("mumbles, 'Skrillex ruined it all for everybody.'")}
+            {:text '("mumbles, 'You can't go up against city hall.'")}
+            {:text '("says, 'Bye, Felicia.'")}
+            {:text '("says, 'Hello, please.'")}
+            {:text '("says, 'How unfortunate.'")}
+            {:text '("says, 'I can't find my " {:token 10 :group :garment :config #{:no-article}} "."')}
+            {:text '("says, 'I can't find my heirloom clown suit.'")}
+            {:text '("says, 'I'm a brown-belt in speed tai chi.'")}
+            {:text '("says, 'I'm a source of fiber.'")}
+            {:text '("says, 'I'm addicted to Kitty Lick III.'")}
+            {:text '("says, 'I'm going to button up the top of my polo shirt to demonstrate I don't want to talk to you.'")}
+            {:text '("says, 'I'm in a poo trance.'")}
+            {:text '("says, 'I'm not an actor but I play one on television.'")}
+            {:text '("says, 'I'm stuck in a poo loop.'")}
+            {:text '("says, 'I've been waiting for you.'")}
+            {:text '("says, 'If you asked me to have sex with you, I wouldn't say \"no\".'")}
+            {:text '("says, 'It never hurts to have a corpse open the door for you.'")}
+            {:text '("says, 'It's like drinking a meatloaf!'")}
+            {:text '("says, 'It's time for your epic nude scene!")}
+            {:text '("says, 'It's true: the boot is the best McNugget shape.'")}
+            {:text '("says, 'Looks like I'm not having any mayonnaise.'")}
+            {:text '("says, 'No money? No hamburger!'")}
+            {:text '("says, 'So I guess Kevin Spacey is going to be a thing now.'")}
+            {:text '("says, 'Surrealism is the scourage of butane.'")}
+            {:text '("says, 'That bisexual really jazzed up my latte.'")}
+            {:text '("says, 'That dog rode on a bus by itself.")}
+            {:text '("says, 'The Swanson TV Dinner heard 'round the world.'")}
+            {:text '("says, 'The membership card is edible.'")}
+            {:text '("says, 'The time has come for me to deal with the fact that I'll never be Ed Begley, Jr.'")}
+            {:text '("says, 'This drink tastes like Sears!'")}
+            {:text '("says, 'This is giving me the freak-out.'")}
+            {:text '("says, 'This teenager salad tastes like a slowly closing door.'")}
+            {:text '("says, 'Took you long enough.'")}
+            {:text '("says, 'Well that really scrambles my eggs.'")}
+            {:text '("says, 'Well, that's a dead give away.'")}
+            {:text '("says, 'Wrong answer, chief.'")}
+            {:text '("shouts, 'Don Quixote! Swingin' from a pipe!'")}
+            {:text '("shouts, 'It keeps happening!'")}
+            {:text '("shouts, 'They're having a brownout in Lagos!'")}
+            {:text '("shouts, 'You can't fold a cat!'")}
+            {:text '("shouts, 'You can't go up against city hall!'")}
+            {:text '("shouts, 'IT'S NOT ENOUGH TO BURN TO DEATH IN PUBLIC; I MUST ALSO WEAR THE MOZILLA SHIRT.'")}
+            {:text '("shriefs, 'Baby-oil covered balloon animals for all!")}
+            {:text '("shrieks, 'Boiled soil!'")}
+            {:text '("shrieks, 'I'm living on the edge!'")}
+            {:text '("shrieks, 'What's this shit I keep hearing about erections?!'")}
+            {:text '("sighs, 'I liked you better before the hip-replacement surgery.'")}
+            {:text '("snarls, 'Siddown before ya fall down!'")}
+            {:text '("whines, 'Don't call me dick smoke!'")}
+            {:text '("whispers, 'Fee was a Buddhist prodigy.'")}
+            {:text '("whispers, 'I've always wanted to be a creepy uncle.'")}
+            {:text '("whispers, 'It puts the lotion on its skin...'")}
+            {:text '("whispers, 'Sleep is unproductive and a waste of time.'")}
+            {:text '("whispers, 'There squats the brown clown.'")}
+            {:text '("whispers, 'Why are you talking in all lowercase?'")}
+            {:text '("whispers, 'You just lost the game.'")}
+            {:text '("yells, 'I warned you about stairs, bro! I told ya, dawg!'")}]}
