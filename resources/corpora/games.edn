@@ -1,27 +1,11 @@
 {:group :game
  :type :sub
  :config #{:no-article}
- :fragment [{:index 0
-             :text "Agricola"
-             :kind :tabletop}
-            {:index 1
-             :text "Advanced Squad Leader"
-             :kind :tabletop}
-            {:index 2
-             :text "Carcassonne"
-             :kind :tabletop}
-            {:index 4
-             :text "World in Flames"
-             :kind :tabletop}
-            {:index 5
-             :text "Monopoly"
-             :kind :tabletop}
-            {:index 6
-             :text "World of Warcraft"
-             :kind :video}
-            {:index 7
-             :text "Civilization V"
-             :kind :video}
-            {:index 8
-             :text "Grand Theft Auto V"
-             :kind :video}]}
+ :fragment [{:text '("Agricola")}
+            {:text '("Advanced Squad Leader")}
+            {:text '("Carcassonne")}
+            {:text '("World in Flames")}
+            {:text '("Monopoly")}
+            {:text '("World of Warcraft")}
+            {:text '("Civilization V")}
+            {:text '("Grand Theft Auto V")}

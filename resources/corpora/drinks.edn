@@ -25,9 +25,7 @@
             {:text '("broth")
              :article '("some")
              :decorator {:prefix {:config #{:required}
-                                  :fragment [{:index 0
-                                              :text ["beef" "chicken" "pork"
+                                  :fragment [{:text ["beef" "chicken" "pork"
                                                      "seafood" "vegetable"]}]}}}
             {:text '("scotch")
-             :decorate {:prefix {:fragment [{:index 0
-                                             :text ["single-malt" "blended" "peaty"]}]}}}]}
+             :decorate {:prefix {:fragment [{:text ["single-malt" "blended" "peaty"]}]}}}]}

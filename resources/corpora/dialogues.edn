@@ -3,7 +3,7 @@
  :config #{:no-article}
  :fragment [{:text '("asks, 'Are you following me?'")}
             {:text '("asks, 'Can I have a hug?'")}
-            {:text '("asks, 'Does it smell like " {:token 10 :group :food} " in here to you?"')}
+            {:text '("asks, 'Does it smell like " {:group :food} " in here to you?"')}
             {:text '("asks, 'Have you ever seen a grown man naked?'")}
             {:text '("asks, 'Have you ever seen an elephant throw up?'")}
             {:text '("asks, 'Have you got a flag?'")}
@@ -21,7 +21,7 @@
             {:text '("says, 'Bye, Felicia.'")}
             {:text '("says, 'Hello, please.'")}
             {:text '("says, 'How unfortunate.'")}
-            {:text '("says, 'I can't find my " {:token 10 :group :garment :config #{:no-article}} "."')}
+            {:text '("says, 'I can't find my " {:group :garment :config #{:no-article}} "."')}
             {:text '("says, 'I can't find my heirloom clown suit.'")}
             {:text '("says, 'I'm a brown-belt in speed tai chi.'")}
             {:text '("says, 'I'm a source of fiber.'")}

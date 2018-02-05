@@ -22,6 +22,7 @@
         {:group :game}
         {:group :garment}
         {:group :headline}
+        {:group :insult}
         {:group :intonation}
         {:group :item}
         {:group :location}

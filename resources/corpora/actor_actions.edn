@@ -1,7 +1,7 @@
 {:group :actor-action
  :category :sub
  :config #{:no-article}
- :fragment [{:text'("attacks")}
+ :fragment [{:text '("attacks")}
             {:text '("examines")}
             {:text '("flirts with")}
             {:text '("ignores")}

@@ -2,21 +2,12 @@
  :type :sub
  :config #{:no-article}
  ;; Thanks to Thinkpiece Bot for some of these
- :fragment [{:index 0
-             :text "Shamer Claims Bullying from Shame Shamers"}
-            {:index 1
-             :text "Lizard People: A White Politician's Thoughts"}
-            {:index 2
-             :text "Post-Ironic Youths Obsessed With All Those Nazis On Reddit"}
-            {:index 3
-             :text "Overly Serious Hipsters Obsessed With Asparagus Water"}
-            {:index 4
-             :text "Op-Ed: Why I Hate Farmer's Markets"}
-            {:index 5
-             :text "Guy Fieri Is Wrong About Everything"}
-            {:index 6
-             :text "Rice Found On Mars"}
-            {:index 7
-             :text "Why Young People Are Buying 8-Bit Gourmet Mustard"}
-            {:index 8
-             :text "Area Man Refuses to Make Eye Contact with Female Dog Walkers"}]}
+ :fragment [{:text '("Shamer Claims Bullying from Shame Shamers")}
+            {:text '("Lizard People: A White Politician's Thoughts")}
+            {:text '("Post-Ironic Youths Obsessed With All Those Nazis On Reddit")}
+            {:text '("Overly Serious Hipsters Obsessed With Asparagus Water")}
+            {:text '("Op-Ed: Why I Hate Farmer's Markets")}
+            {:text '("Guy Fieri Is Wrong About Everything")}
+            {:text '("Rice Found On Mars")}
+            {:text '("Why Young People Are Buying 8-Bit Gourmet Mustard")}
+            {:text '("Area Man Refuses to Make Eye Contact with Female Dog Walkers")}]}

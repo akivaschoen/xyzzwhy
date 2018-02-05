@@ -1,100 +1,67 @@
 {:group :noise
  :type :sub
- :fragment [{:index 0
-             :text "explosion"
-             :decorator {:prefix {:fragment [{:index 0
-                                              :text "distant"}]}
-                         :suffix {:fragment [{:index 0
-                                              :text "in the distance"}]}}}
-            {:index 1
-             :text "explosions"
-              :article "some"
-             :decorator {:prefix {:fragment [{:index 0
-                                              :text "distant"}]}
-                         :suffix {:fragment [{:index 0
-                                              :text "in the distance"}]}}}
-            {:index 2
-             :text "foghorn"
+ :fragment [{:text "explosion"
+             :decorator {:prefix {:fragment "distant"}}
+                         :suffix {:fragment "in the distance"}}
+            {:text "explosions"
+             :article "some"
+             :decorator {:prefix {:fragment "distant"}
+                         :suffix {:fragment "in the distance"}}}
+            {:text "foghorn"
               :decorator {:config #{:both}
-                          :prefix {:fragment [{:index 0
-                                               :text ["distant" "lonely"]}]}
-                          :suffix {:fragment [{:index 0
-                                               :text "in the distance"}]}}}
-            {:index 3
-             :text "laughter"
-              :article "some"
-             :decorator {:prefix {:fragment [{:index 0
-                                              :text ["child-like"
-                                                      "distant"
-                                                      "high-pitched"
-                                                      "insane"
-                                                      "loud"
-                                                      "obnoxious"
-                                                      "quiet"
-                                                      "sinister"
-                                                      "unnerving"]}]}}}
-            {:index 4
-             :text ["cackle" "chuckle" "laugh"]
-             :decorator {:prefix {:fragment [{:index 0
-                                              :text ["child-like"
-                                                     "distant"
-                                                     "insane"
-                                                     "loud"
-                                                     "obnoxious"
-                                                     "sinister"
-                                                     "unnerving"]}]}}}
-            {:index 5
-             :text ["cackling" "chuckling" "laughing"]
+                          :prefix {:fragment ["distant" "lonely"]}
+                          :suffix {:fragment "in the distance"}}}
+            {:text "laughter"
+             :article "some"
+             :decorator {:prefix {:fragment ["child-like"
+                                             "distant"
+                                             "high-pitched"
+                                             "insane"
+                                             "loud"
+                                             "obnoxious"
+                                             "quiet"
+                                             "sinister"
+                                             "unnerving"]}}}
+            {:text ["cackle" "chuckle" "laugh"]
+             :decorator {:prefix {:fragment ["child-like"
+                                             "distant"
+                                             "insane"
+                                             "loud"
+                                             "obnoxious"
+                                             "sinister"
+                                             "unnerving"]}}}
+            {:text ["cackling" "chuckling" "laughing"]
              :article ["someone" "somebody"]
-             :decorator {:suffix {:fragment {:index 0
-                                             :text ["insanely"
-                                                    "loudly"
-                                                    "insanely"
-                                                    "nearby"
-                                                    "obnoxiously"
-                                                    "quietly"]}}}}
-            {:index 6
-             :text ["choking"]
+             :decorator {:suffix {:fragment ["insanely"
+                                             "loudly"
+                                             "insanely"
+                                             "nearby"
+                                             "obnoxiously"
+                                             "quietly"]}}}
+            {:text "choking"
              :article ["someone" "somebody"]
              :decorator {:config #{:both}
-                         :prefix {:fragment [{:index 0
-                                              :text ["loudly" "quietly"]}]}
-                         :suffix {:fragment [{:index 0
-                                              :text ["to death"]}]}}}
-            {:index 7
-             :text ["crying"]
+                         :prefix {:fragment ["loudly" "quietly"]}
+                         :suffix {:fragment ["to death"]}}}
+            {:text "crying"
              :article ["someone" "somebody"]
-             :decorator {:suffix {:fragment [{:index 0
-                                              :text ["loudly" "quietly" "obnoxiously"]}]}}}
-            {:index 8
-             :text ["weeping" "sobbing"]
+             :decorator {:suffix {:fragment ["loudly" "quietly" "obnoxiously"]}}}
+            {:text ["weeping" "sobbing"]
              :article ["someone" "somebody"]
-             :decorator {:suffix {:fragment [{:index 0
-                                              :text ["loudly" "quietly"]}]}}}
-            {:index 9
-             :text ["sneeze" "cough" "burp" "fart"]
+             :decorator {:suffix {:fragment ["loudly" "quietly"]}}}
+            {:text ["sneeze" "cough" "burp" "fart"]
              :article "a"
-             :decorator {:prefix {:fragment [{:index 0
-                                              :text ["loud" "wet" "quiet" "dainty" "manly"]}]}}}
-            {:index 10
-             :text ["sneezing" "coughing" "burping" "farting"]
+             :decorator {:prefix {:fragment ["loud" "wet" "quiet" "dainty" "manly"]}}}
+            {:text ["sneezing" "coughing" "burping" "farting"]
              :article ["someone" "somebody"]
-             :decorator {:prefix {:fragment [{:index 0
-                                              :text ["loudly" "quietly" "repeatedly"]}]}
-                         :suffix {:fragment [{:index 0
-                                              :text ["while crying" "while running" "while eating"]}]}}}
-            {:index 11
-             :text ["wolves howling"]
-             :decorator {:suffix {:fragment [{:index 0
-                                              :text ["in the distance" "under water"]}]}}}
-            {:index 12
-             :text ["ice cream truck" "ambulance"]}
-            {:index 13
-             :text ["fire truck"]}
-            {:index 14
-             :text ["phone ringing"]
+             :decorator {:prefix {:fragment ["loudly" "quietly" "repeatedly"]}
+                         :suffix {:fragment ["while crying" "while running" "while eating"]}}}
+            {:text "wolves howling"
+             :decorator {:suffix {:fragment ["in the distance" "under water"]}}}
+            {:text ["ice cream truck" "ambulance"]}
+            {:text "fire truck"}
+            {:text "phone ringing"
              :article ["a" "the"]}
-            {:index 15
-             :text ["bell tower"]}
+            {:text "bell tower"}
             {:index 16
-             :text ["door slam"]}]}
+             :text "door slam"}]}

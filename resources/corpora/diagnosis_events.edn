@@ -1,5 +1,5 @@
 {:group :diagnosis-event
  :category :event
- :fragment [{:text ['("A doctor leans in from the shadows to inform you that you are " {:token 0 :group :diagnosis} ".")
-                    '("You look into a nearby mirror and notice you are " {:token 0 :group :diagnosis} ".")
-                    '("You check your health: you are " {:token 0 :group :diagnosis} ".")]}]}
+ :fragment [{:text '("A doctor leans in from the shadows to inform you that you are " {:group :diagnosis} ".")
+             :text '("You look into a nearby mirror and notice you are " {:group :diagnosis} ".")
+             :text '("You check your health: you are " {:group :diagnosis} ".")}]}

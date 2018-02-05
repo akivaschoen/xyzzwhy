@@ -1,7 +1,7 @@
 {:group :attack
  :category :sub
  :config #{:no-article}
- :fragment [{:text '({:index 10 :group :item})}
+ :fragment [{:text '({:group :item})}
             {:text '("an antiparticle dildo")}
             {:text '("an apathetic hipster")}
             {:text '("an atomic wedgie")}

@@ -1,29 +1,16 @@
 {:group :scent
  :type :sub
  :config #{:no-article}
- :fragment [{:index 0
-             :text "acrid"}
-            {:index 1
-             :text "bitter"}
-            {:index 2
-             :text "foul"}
-            {:index 3
-             :text "gross"}
-            {:index 4
-             :text "of feet"}
-            {:index 5
-             :text "of your grandfather's hair cream"}
-            {:index 6
-             :text "of warm peanut butter"}
-            {:index 7
-             :text "pleasant"}
-            {:index 8
-             :text "nice"}
-            {:index 9
-             :text "rotten"}
-            {:index 10
-             :text "sweet"}
-            {:index 11
-             :text "sour"}
-            {:index 12
-             :text "smoky"}]}
+ :fragment [{:text "acrid"}
+            {:text "bitter"}
+            {:text "foul"}
+            {:text "gross"}
+            {:text "of feet"}
+            {:text "of your grandfather's hair cream"}
+            {:text "of warm peanut butter"}
+            {:text "pleasant"}
+            {:text "nice"}
+            {:text "rotten"}
+            {:text "sweet"}
+            {:text "sour"}
+            {:text "smoky"}]}

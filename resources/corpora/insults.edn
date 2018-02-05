@@ -1,54 +1,20 @@
 {:group :insult
  :category :sub
  :config #{:no-article}
- :fragment [{:index 0
-             :text "cocktable"
-             :kind :name}
-            {:index 1
-             :text "Constable Von Shitz"
-             :kind :name}
-            {:index 2
-             :text "cuntbutter"
-             :kind :name}
-            {:index 3
-             :text "dickstaple"
-             :kind :name}
-            {:index 4
-             :text "douchepilot"
-             :kind :name}
-            {:index 5
-             :text "Fondles Yon Genitals"
-             :Kind :name}
-            {:index 6
-             :text "licker of shit"
-             :kind :name}
-            {:index 7
-             :text "shitcheese"
-             :kind :name}
-            {:index 8
-             :text "turdburglar"
-             :kind :name}
-            {:index 9
-             :text "twatvomit"
-             :kind :name}
-            {:index 10
-             :text "you ass hole"
-             :kind :name}
-            {:index 11
-             :text "you bag of dicks"
-             :kind :name}
-            {:index 12
-             :text "you ballsnacker"
-             :kind :name}
-            {:index 13
-             :text "you everloving taintgobble"
-             :kind :name}
-            {:index 14
-             :text "you fucking squat thrust"
-             :kind :name}
-            {:index 15
-             :text "you goddamned cocktable"
-             :kind :name}
-            {:index 16
-             :text "you shit tangle"
-             :kind :name}]}
+ :fragment [{:text '("cocktable")}
+            {:text '("Constable Von Shitz")}
+            {:text '("cuntbutter")}
+            {:text '("dickstaple")}
+            {:text '("douchepilot")}
+            {:text '("Fondles Yon Genitals")}
+            {:text '("licker of shit")}
+            {:text '("shitcheese")}
+            {:text '("turdburglar")}
+            {:text '("twatvomit")}
+            {:text '("you ass hole")}
+            {:text '("you bag of dicks")}
+            {:text '("you ballsnacker")}
+            {:text '("you everloving taintgobble")}
+            {:text '("you fucking squat thrust")}
+            {:text '("you goddamned cocktable")}
+            {:text '("you shit tangle")}]}
