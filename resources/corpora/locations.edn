@@ -1,766 +1,379 @@
 {:group :location
  :type :sub
- :fragment [{:index 0
-             :text "airplane"
-             :type :interior
+ :fragment [{:text "airplane"
              :prep "in"
-             :follow-up {:fragment [{:index 0
-                                     :text " There's no one else on board."}
-                                    {:index 1
-                                     :text " You hear strange noises coming from the restroom."}
-                                    {:index 2
-                                     :text " Somehow you have a dozen packets of pretzels."}
-                                    {:index 3
-                                     :text " Someone drank your Fresca while you were napping."}
-                                    {:index 4
-                                     :text " It's pitch black outside. Can grues fly?"}
-                                    {:index 5
-                                     :text " The pilot says, 'We've reached our cruising altitude of 30 feet.'"}
-                                    {:index 6
-                                     :text " The plane has been going straight up for hours now."}]}}
-            {:index 1
-             :text "all-you-can-eat buffet"
-             :type :interior
+             :follow-up {:fragment [" There's no one else on board."
+                                    " You hear strange noises coming from the restroom."
+                                    " Somehow you have a dozen packets of pretzels."
+                                    " Someone drank your Fresca while you were napping."
+                                    " It's pitch black outside. Can grues fly?"
+                                    " The pilot says, 'We've reached our cruising altitude of 30 feet.'"
+                                    " The plane has been going straight up for hours now."]}}
+            {:text "all-you-can-eat buffet"
              :prep "at"
-             :follow-up {:fragment [{:index 0
-                                     :text " It looks abandoned."}
-                                    {:index 1
-                                     :text " Bullet time means more eggrolls."}
-                                    {:index 2
-                                     :text " Steam crowds the air."}
-                                    {:index 3
-                                     :text " It's all gluten-free and vegan. You leave immediately."}
-                                    {:index 4
-                                     :text " It smells of freedom and gluttony."}
-                                    {:index 5
-                                     :text " All of the food has been replaced with wax replicas."}
-                                    {:index 6
-                                     :text " It's in complete disarray and hasn't been tended for some time."}]}}
-            {:index 2
-             :text "all-you-can't-eat buffet"
-             :type :interior
+             :follow-up {:fragment [" It looks abandoned."
+                                    " Bullet time means more eggrolls."
+                                    " Steam crowds the air."
+                                    " It's all gluten-free and vegan. You leave immediately."
+                                    " It smells of freedom and gluttony."
+                                    " All of the food has been replaced with wax replicas."
+                                    " It's in complete disarray and hasn't been tended for some time."]}}
+            {:text "all-you-can't-eat buffet"
              :prep "at"
-             :follow-up {:fragment [{:index 0
-                                     :text " Each tray is filled with live mice."}
-                                    {:index 1
-                                     :text " A cook is here, wearing a cloche instead of a hat."}
-                                    {:index 2
-                                     :text " Each tray is filled with a variety of hair."}
-                                    {:index 3
-                                     :text " It is guarded by several angry dogs on unicycles."}
-                                    {:index 4
-                                     :text " It serves nothing but half-eaten MREs."}]}}
-            {:index 3
-             :text "Apple Store"
-             :type :exterior
+             :follow-up {:fragment [" Each tray is filled with live mice."
+                                    " A cook is here, wearing a cloche instead of a hat."
+                                    " Each tray is filled with a variety of hair."
+                                    " It is guarded by several angry dogs on unicycles."
+                                    " It serves nothing but half-eaten MREs."]}}
+            {:text "Apple Store"
              :prep ["at" "in" "near" "behind" "in front of"]}
-            {:index 4
-             :text "AT&T Store"
-             :type :exterior
+            {:text "AT&T Store"
              :prep ["at" "in" "near" "behind" "in front of"]}
-            {:index 5
-             :text "ballpit"
-             :type :interior
+            {:text "ballpit"
              :prep ["in" "near"]
-             :follow-up {:fragment [{:index 0
-                                     :text " Oddly, all of the balls here are the same color: orange."}
-                                    {:index 1
-                                     :text " The ballpit seems unusually deep. You can't feel the bottom."}
-                                    {:index 2
-                                     :text " It's been filled with Rubik's Cubes."}
-                                    {:index 3
-                                     :text " It's empty except for one orange ball at the bottom."}
-                                    {:index 4
-                                     :text " It contains only one ball: orange and 12' across."}
-                                    {:index 5
-                                     :text " It would appear all the orange balls ate the other balls."}
-                                    {:index 6
-                                     :text " You get the feeling someone is swimming around in there."}]}}
-            {:index 6
-             :text "bedroom"
-             :type :interior
+             :follow-up {:fragment [" Oddly, all of the balls here are the same color: orange."
+                                    " The ballpit seems unusually deep. You can't feel the bottom."
+                                    " It's been filled with Rubik's Cubes."
+                                    " It's empty except for one orange ball at the bottom."
+                                    " It contains only one ball: orange and 12' across."
+                                    " It would appear all the orange balls ate the other balls."
+                                    " You get the feeling someone is swimming around in there."]}}
+            {:text "bedroom"
              :article "your"
              :prep "in"
-             :follow-up {:fragment [{:index 0
-                                     :text " It hasn't been cleaned in a long time."}
-                                    {:index 1
-                                     :text " There's a pleasantly disgusting smell here."}
-                                    {:index 2
-                                     :text " It's small and lightly furnished. The bed is unmade."}
-                                    {:index 3
-                                     :text " It's on fire."}
-                                    {:index 4
-                                     :text " It's snowing in here."}
-                                    {:index 5
-                                     :text " There is nothing special about it."}
-                                    {:index 6
-                                     :text " You notice an unusual stain in the carpet."}
-                                    {:index 7
-                                     :text " There's an unusual stain in the carpet next to a usual stain."}
-                                    {:index 8
-                                     :text " The ceiling fan is spinning dangerously fast."}
-                                    {:index 9
-                                     :text " The ceiling has been lowered to 4'."}
-                                    {:index 10
-                                     :text " The walls are covered with %10 posters."
-                                     :sub [{:token 10 :group :person}]}
-                                    {:index 11
-                                     :text " It is almost completely filled with a Habitrail of active gerbils."}
-                                    {:index 12
-                                     :text " Your mother is asleep in your bed."}
-                                    {:index 13
-                                     :text " Your father has cut a hole in the ceiling and is trying to escape."}
-                                    {:index 14
-                                     :text " Your sister is in here, trying on wedding dresses."}
-                                    {:index 15
-                                     :text " A giant drain has been installed in the floor. It's gurgling."}
-                                    {:index 16
-                                     :text " A murder of crows is here watching an episode of Murder She Wrote."}
-                                    {:index 17
-                                     :text " There's a pile of clothes nearby."}]}}
-            {:index 7
-             :text "breezy cave"
-             :type :exterior
+             :follow-up {:fragment [" It hasn't been cleaned in a long time."
+                                    " There's a pleasantly disgusting smell here."
+                                    " It's small and lightly furnished. The bed is unmade."
+                                    " It's on fire."
+                                    " It's snowing in here."
+                                    " There is nothing special about it."
+                                    " You notice an unusual stain in the carpet."
+                                    " There's an unusual stain in the carpet next to a usual stain."
+                                    " The ceiling fan is spinning dangerously fast."
+                                    " The ceiling has been lowered to 4'."
+                                    '(" The walls are covered with " {:group :person} " posters.")
+                                    " It is almost completely filled with a Habitrail of active gerbils."
+                                    " Your mother is asleep in your bed."
+                                    " Your father has cut a hole in the ceiling and is trying to escape."
+                                    " Your sister is in here, trying on wedding dresses."
+                                    " A giant drain has been installed in the floor. It's gurgling."
+                                    " A murder of crows is here watching an episode of Murder She Wrote."
+                                    " There's a pile of clothes nearby."]}}
+            {:text "breezy cave"
              :prep ["in" "near" "in front of"]
-             :follow-up {:fragment [{:index 0
-                                     :text " There's a constant breeze rising up from the depths."}
-                                    {:index 1
-                                     :text " Wide and low, the cave gently slopes %10-%11 here."
-                                     :sub [{:token 10 :group :direction}
-                                           {:token 11 :group :direction}]}
-                                    {:index 2
-                                     :text " It smells of warm packing peanuts."}
-                                    {:index 3
-                                     :text " It's really breezy. Gale-force breezy."}
-                                    {:index 4
-                                     :text " It's seems over-oxygenated. You get light-headed."}
-                                    {:index 5
-                                     :text " The cave seems to be breathing rapidly."}]}}
-            {:index 8
-             :text "Burning Man"
-             :type :exterior
+             :follow-up {:fragment [" There's a constant breeze rising up from the depths."
+                                    '(" Wide and low, the cave gently slopes " {:group :direction} "-" {:group :direction} " here.")
+                                    " It smells of warm packing peanuts."
+                                    " It's really breezy. Gale-force breezy."
+                                    " It's seems over-oxygenated. You get light-headed."
+                                    " The cave seems to be breathing rapidly."]}}
+            {:text "Burning Man"
              :prep "at"
              :config #{:no-article}
-             :follow-up {:fragment [{:index 0
-                                     :text " Oddly, no one appears to be here."}
-                                    {:index 1
-                                     :text " There's a Starbucks here."}
-                                    {:index 2
-                                     :text " A tumbleweed made out of human hair stumbles by."}
-                                    {:index 3
-                                     :text " A dust storm is approaching."}
-                                    {:index 4
-                                     :text " A giant tsunami of toilet water is approaching."}
-                                    {:index 5
-                                     :text " It looks like it might rain soon."}
-                                    {:index 6
-                                     :text " A sign here reads, 'No fracking this year, please."}
-                                    {:index 7
-                                     :text " You hear someone playing Oasis in the distance."}
-                                    {:index 8
-                                     :text " Snow is gently falling."}
-                                    {:index 9
-                                     :text " In the distance, you see the Temple burning."}
-                                    {:index 10
-                                     :text " Someone has built a ladder to the sky. It looks dangerous."}
-                                    {:index 11
-                                     :text " You can see the bodies hitting the floor nearby."}
-                                    {:index 12
-                                     :text " %10 is here, looking %11."
-                                     :sub [{:token 10 :group :person}
-                                           {:token 11 :group :adjective}]}
-                                    {:index 13
-                                     :text " No one here is on drugs. No one. Seriously. Trust me on this."}
-                                    {:index 14
-                                     :text " Clearly the drugs have begun to take hold."}]}}
-            {:index 9
-             :text "circus"
-             :type :interior
+             :follow-up {:fragment [" Oddly, no one appears to be here."
+                                    " There's a Starbucks here."
+                                    " A tumbleweed made out of human hair stumbles by."
+                                    " A dust storm is approaching."
+                                    " A giant tsunami of toilet water is approaching."
+                                    " It looks like it might rain soon."
+                                    " A sign here reads, 'No fracking this year, please."
+                                    " You hear someone playing Oasis in the distance."
+                                    " Snow is gently falling."
+                                    " In the distance, you see the Temple burning."
+                                    " Someone has built a ladder to the sky. It looks dangerous."
+                                    " You can see the bodies hitting the floor nearby."
+                                    '({:group :person} " is here, looking " {:group :adjective} ".")
+                                    " No one here is on drugs. No one. Seriously. Trust me on this."
+                                    " Clearly the drugs have begun to take hold."]}}
+            {:text "circus"
              :prep ["at"]
-             :follow-up {:fragment [{:index 0
-                                     :text " 101 assorted jungle animals are here, resting and chatting about Mr. Robot."}
-                                    {:index 1
-                                     :text " The ringmaster is here, leafing through a copy of Vogue."}
-                                    {:index 2
-                                     :text " A crowd of toddlers are jointly mounting a giraffe."}
-                                    {:index 3
-                                     :text " Quiet. You'll wake the goddamn clowns."}
-                                    {:index 4
-                                     :text " A hollow voice intones, '%10'"
-                                     :sub [{:token 10 :group :intonation}]}]}}
-            {:index 10
-             :text "coffin"
-             :type :interior
+             :follow-up {:fragment [" 101 assorted jungle animals are here, resting and chatting about Mr. Robot."
+                                    " The ringmaster is here, leafing through a copy of Vogue."
+                                    " A crowd of toddlers are jointly mounting a giraffe."
+                                    " Quiet. You'll wake the goddamn clowns."
+                                    '(" A hollow voice intones, '" {:group :intonation} "'")]}}
+            {:text "coffin"
              :prep ["in" "near" "in front of"]
-             :follow-up {:fragment [{:index 0
-                                     :text " It is well upholstered."}
-                                    {:index 1
-                                     :text " It smells of cotton candy in here for some reason."}
-                                    {:index 2
-                                     :text " It smells of Aquanet in here. Makes sense."}
-                                    {:index 3
-                                     :text " It smells %10 in here. As coffins often do."
-                                     :sub [{:token 10 :group :scent}]}
-                                    {:index 4
-                                     :text " It begins spinning and shaking dangerously."}
-                                    {:index 5
-                                     :text " It's full of %10."
-                                     :sub [{:token 10 :group :drink}]}
-                                    {:index 6
-                                     :text " It's full of %10."
-                                     :sub [{:token 10 :group :food}]}
-                                    {:index 7
-                                     :text " %10 is laying in it. %11 won't stop giggling."
-                                     :sub [{:token 10 :group :person}
-                                           {:token 11 :ref 10 :group :gender :case :subjective}]}
-                                    {:index 8
-                                     :text " It's pitch black. It probably doesn't matter if ther's a grue here."}]}}
-            {:index 11
-             :text "dark area"
-             :type :interior
+             :follow-up {:fragment [" It is well upholstered."
+                                    " It smells of cotton candy in here for some reason."
+                                    " It smells of Aquanet in here. Makes sense."
+                                    '(" It smells " {:group :scent} " in here. As coffins often do.")
+                                    " It begins spinning and shaking dangerously."
+                                    '(" It's full of " {:group :drink} ".")
+                                    '(" It's full of " {:group :food} ".")
+                                    '({:group :person}" is laying in it. ")
+                                    '({:group :gender :case :subjective} " won't stop giggling.")
+                                    " It's pitch black. It probably doesn't matter if ther's a grue here."]}}
+            {:text "dark area"
              :prep "in"
-             :follow-up {:fragment [{:index 0
-                                     :text " It is pitch black here. You're likely to be eaten by %10."
-                                     :sub [{:token 10 :group :actor}]}
-                                    {:index 1
-                                     :text " It's really dark here. Like... REALLY dark."}
-                                    {:index 2
-                                     :text " It just got slightly darker somehow."}
-                                    {:index 3
-                                     :text " It's so dark you can taste it. Tastes like dark."}
-                                    {:index 4
-                                     :text " It's bloody dark in here. You think about oranges."}
-                                    {:index 5
-                                     :text " It's dark as death here. And death's, y'know, like dark and stuff."}
-                                    {:index 6
-                                     :text " It's pitch black. You realize you've never seen pitch."}
-                                    {:index 7
-                                     :text " It's completely dark here. You practice hiding in plain site."}
-                                    {:index 8
-                                     :text " It's absurdly dark here. Someone touches your shoulder. You gently pee yourself."}
-                                    {:index 9
-                                     :text " It's dark here. DARK AS YOUR SOUL."}]}}
-            {:index 12
-             :text "dead-end"
-             :type :interior
+             :follow-up {:fragment ['(" It is pitch black here. You're likely to be eaten by " {:group :actor} ".")
+                                    " It's really dark here. Like... REALLY dark."
+                                    " It just got slightly darker somehow."
+                                    " It's so dark you can taste it. Tastes like dark."
+                                    " It's bloody dark in here. You think about oranges."
+                                    " It's dark as death here. And death's, y'know, like dark and stuff."
+                                    " It's pitch black. You realize you've never seen pitch."
+                                    " It's completely dark here. You practice hiding in plain site."
+                                    " It's absurdly dark here. Someone touches your shoulder. You gently pee yourself."
+                                    " It's dark here. DARK AS YOUR SOUL."]}}
+            {:text "dead-end"
              :prep ["at" "in front of"]
-             :follow-up {:fragment [{:index 0
-                                     :text " You start to moonwalk away."}
-                                    {:index 1
-                                     :text " There's a staircase here leading up to the ceiling."}
-                                    {:index 2
-                                     :text " Someone has left a half-eaten donut here."}
-                                    {:index 3
-                                     :text " Someone has left a half-eaten TV dinner here."}
-                                    {:index 4
-                                     :text " Soemone has left a 3' tall stack of sausages here."}
-                                    {:index 5
-                                     :text " %10 has left a note here. It reads '%11'."}
-                                    {:index 6
-                                     :text " There's a treasure map of your face here. 'X' marks your mouth."}
-                                    {:index 7
-                                     :text " Someone has left a tape recorder here; it's spewing out miles of tape."}
-                                    {:index 8
-                                     :text " Someone has painted a giant sad face here."}]}}
-            {:index 13
-             :text "dildo bonfire"
-             :type :exterior
+             :follow-up {:fragment [" You start to moonwalk away."
+                                    " There's a staircase here leading up to the ceiling."
+                                    " Someone has left a half-eaten donut here."
+                                    " Someone has left a half-eaten TV dinner here."
+                                    " Soemone has left a 3' tall stack of sausages here."
+                                    " %10 has left a note here. It reads '%11'."
+                                    " There's a treasure map of your face here. 'X' marks your mouth."
+                                    " Someone has left a tape recorder here; it's spewing out miles of tape."
+                                    " Someone has painted a giant sad face here."]}}
+            {:text "dildo bonfire"
              :prep ["at" "near" "behind" "in front of"]
-             :follow-up {:fragment [{:index 0
-                                     :text " You look closely but don't recognize any of them."}
-                                    {:index 1
-                                     :text " The plastic hisses and creaks in the blaze."}
-                                    {:index 2
-                                     :text " You pick one up at random and it attaches itself to your hand, Videodrome style. Good luck explaining this to Mom."}
-                                    {:index 3
-                                     :text " The smoke smells of vanilla."}
-                                    {:index 4
-                                     :text " The air is dense with the echoes of unreached orgasms."}]}}
-            {:index 14
-             :text "ditch"
-             :type :exterior
+             :follow-up {:fragment [" You look closely but don't recognize any of them."
+                                    " The plastic hisses and creaks in the blaze."
+                                    " You pick one up at random and it attaches itself to your hand, Videodrome style. Good luck explaining this to Mom."
+                                    " The smoke smells of vanilla."
+                                    " The air is dense with the echoes of unreached orgasms."]}}
+            {:text "ditch"
              :prep "in"
-             :follow-up {:fragment [{:index 0
-                                     :text " The dusty stench of aged sewage gives you a hug."}
-                                    {:index 1
-                                     :text " It is completely blocked here by a giant boulder."}
-                                    {:index 2
-                                     :text " A trickle of clear water runs down the middle of it."}]}}
-            {:index 15
-             :text "dump"
-             :type :exterior
+             :follow-up {:fragment [" The dusty stench of aged sewage gives you a hug."
+                                    " It is completely blocked here by a giant boulder."
+                                    " A trickle of clear water runs down the middle of it."]}}
+            {:text "dump"
              :article "the"
              :prep ["at" "near" "behind" "in front of"]
-             :follow-up {:fragment [{:index 0
-                                     :text " In the distance, you see a hazy castle."}
-                                    {:index 1
-                                     :text " It's completely empty. Oh wait, this is Burning Man."}
-                                    {:index 2
-                                     :text " A sign here reads: 'Orange garbage only.'"}
-                                    {:index 3
-                                     :text " A sign here reads: 'Only traspassers allowed."}
-                                    {:index 4
-                                     :text " A sign here reads: 'Eat what you take; don't take what you can't eat."}
-                                    {:index 5
-                                     :text " There are nothing but Bibles here."}
-                                    {:index 6
-                                     :text " The hill of trash shifts dangerously beneath your feet."}]}}
-            {:index 16
-             :text "dump truck"
-             :type :exterior
+             :follow-up {:fragment [" In the distance, you see a hazy castle."
+                                    " It's completely empty. Oh wait, this is Burning Man."
+                                    " A sign here reads: 'Orange garbage only.'"
+                                    " A sign here reads: 'Only traspassers allowed."
+                                    " A sign here reads: 'Eat what you take; don't take what you can't eat."
+                                    " There are nothing but Bibles here."
+                                    " The hill of trash shifts dangerously beneath your feet."]}}
+            {:text "dump truck"
              :prep ["in" "near" "behind" "in front of" "underneath"]
-             :follow-up {:fragment [{:index 0
-                                     :text " It's covered with a patina of black filth."}
-                                    {:index 1
-                                     :text " It's full of Scrabble tiles."}
-                                    {:index 2
-                                     :text " It is currently on fire."}
-                                    {:index 3
-                                     :text " It begins to roll away."}
-                                    {:index 4
-                                     :text " It begins to roll away until it crashes through an absurdly large manhole."}
-                                    {:index 5
-                                     :text " It suddenly gets swallowed up by a sinkhole."}
-                                    {:index 6
-                                     :text " It's full of diapers."}
-                                    {:index 7
-                                     :text " For some reason, it's full of burned up dildos."}
-                                    {:index 8
-                                     :text " Fresh off the line, it gleams bright red."}
-                                    {:index 9
-                                     :text " The engine rumbles roughly to itself. The doors are locked."}]}}
-            {:index 17
-             :text "forest"
-             :type :exterior
+             :follow-up {:fragment [" It's covered with a patina of black filth."
+                                    " It's full of Scrabble tiles."
+                                    " It is currently on fire."
+                                    " It begins to roll away."
+                                    " It begins to roll away until it crashes through an absurdly large manhole."
+                                    " It suddenly gets swallowed up by a sinkhole."
+                                    " It's full of diapers."
+                                    " For some reason, it's full of burned up dildos."
+                                    " Fresh off the line, it gleams bright red."
+                                    " The engine rumbles roughly to itself. The doors are locked."]}}
+            {:text "forest"
              :prep ["in" "near" "in front of"]
-             :follow-up {:fragment [{:index 0
-                                     :text " It is a dense, dark, and tangled choke of gnarled trees, thorny underbrush, and spiky thickets."}
-                                    {:index 1
-                                     :text " Shot through with shafts of light, the forest before you looks serene."}
-                                    {:index 2
-                                     :text " The trees, mostly oak and spruce, sway gently in the occasional breeze."}
-                                    {:index 3
-                                     :text " It's currently on fire."}
-                                    {:index 4
-                                     :text " The trees are all inflated plastic."}
-                                    {:index 5
-                                     :text " The trees ignore your incessant crying."}
-                                    {:index 6
-                                     :text " Birds are chirping and rodents scamper through the underbrush."}]}}
-            {:index 18
-             :text "full-contact Bible study group"
-             :type :interior
+             :follow-up {:fragment [" It is a dense, dark, and tangled choke of gnarled trees, thorny underbrush, and spiky thickets."
+                                    " Shot through with shafts of light, the forest before you looks serene."
+                                    " The trees, mostly oak and spruce, sway gently in the occasional breeze."
+                                    " It's currently on fire."
+                                    " The trees are all inflated plastic."
+                                    " The trees ignore your incessant crying."
+                                    " Birds are chirping and rodents scamper through the underbrush."]}}
+            {:text "full-contact Bible study group"
              :prep ["near" "behind" "in front of" "in"]
-             :follow-up {:fragment [{:index 0
-                                     :text " No one is here."}
-                                    {:index 1
-                                     :text " They stare at you and begin to crowl."}
-                                    {:index 2
-                                     :text " They're all covered with cuts and bruises."}
-                                    {:index 3
-                                     :text " They're currently scrumming over the last unironic deviled egg."}]}}
-            {:index 19
-             :text "graveyard"
-             :type :exterior
+             :follow-up {:fragment [" No one is here."
+                                    " They stare at you and begin to crowl."
+                                    " They're all covered with cuts and bruises."
+                                    " They're currently scrumming over the last unironic deviled egg."]}}
+            {:text "graveyard"
              :prep ["at" "in" "near" "behind" "in front of"]
-             :follow-up {:fragment [{:index 0
-                                     :text " There is a freshly laid grave nearby."}
-                                    {:index 1
-                                     :text " There is an open grave nearby. It's empty."}
-                                    {:index 2
-                                     :text " There is an open grave nearby. There's a phone book in it."}
-                                    {:index 3
-                                     :text " There is an open grave nearby. It's full of %10."
-                                     :sub [{:token 10 :group :drink :config #{:no-article}}]}
-                                    {:index 4
-                                     :text " There is an open grave nearby. It's full of molten peanut butter."}
-                                    {:index 5
-                                     :text " There are fresh footprints here."}
-                                    {:index 6
-                                     :text " A lazy mist drifts amongst the tombstones."}
-                                    {:index 7
-                                     :text " The tombstones have been replaced by durable plastic bricks."}
-                                    {:index 8
-                                     :text " The Christmas lights sure make it look festive."}
-                                    {:index 9
-                                     :text " A disco ball spins sadly from a gnarled tree."}]}}
-            {:index 20
-             :text "grotto"
+             :follow-up {:fragment [" There is a freshly laid grave nearby."
+                                    " There is an open grave nearby. It's empty."
+                                    " There is an open grave nearby. There's a phone book in it."
+                                    '(" There is an open grave nearby. It's full of " {:group :drink :config #{:no-article}} ".")
+                                    " There is an open grave nearby. It's full of molten peanut butter."
+                                    " There are fresh footprints here."
+                                    " A lazy mist drifts amongst the tombstones."
+                                    " The tombstones have been replaced by durable plastic bricks."
+                                    " The Christmas lights sure make it look festive."
+                                    " A disco ball spins sadly from a gnarled tree."]}}
+            {:text "grotto"
              :type :exterior
              :prep ["in" "near" "behind" "in front of"]
-             :follow-up {:fragment [{:index 0
-                                     :text " The ceiling is sparkling with reflected light."}
-                                    {:index 1
-                                     :text " The water is darkened with greenish-gray algae."}
-                                    {:index 2
-                                     :text " The pool of water seems unusually deep. A lean, black fish swims in a circle."}]}}
-            {:index 21
-             :text "haunted house"
-             :type :exterior
+             :follow-up {:fragment [" The ceiling is sparkling with reflected light."
+                                    " The water is darkened with greenish-gray algae."
+                                    " The pool of water seems unusually deep. A lean, black fish swims in a circle."]}}
+            {:text "haunted house"
              :prep ["at" "in" "near" "behind" "in front of"]
-             :follow-up {:fragment [{:index 0
-                                     :text " The house shrugs under its own entropy."}
-                                    {:index 1
-                                     :text " An orange light wanders from window to window."}
-                                    {:index 2
-                                     :text " A sign here reads: 'As seen on TV.'"}
-                                    {:index 3
-                                     :text " Endless amounts of blood pour from the windows."}
-                                    {:index 4
-                                     :text " It's painted completely orange and looks rather festive."}
-                                    {:index 5
-                                     :text " Endless numbers of bodies pour out from the windows."}
-                                    {:index 6
-                                     :text " It tips its roof to you, says, 'Welcome.'"}
-                                    {:index 7
-                                     :text " A sign out front reads 'Dead Nig...' Just kidding. Probably."}
-                                    {:index 8
-                                     :text " Looks inviting except for the corpses littering the lawn."}
-                                    {:index 9
-                                     :text " It's only 6\" tall."}
-                                    {:index 10
-                                     :text " It's surrounded by a moat of delicious soup."}]}}
-            {:index 22
-             :text "hot tub"
-             :type :interior
+             :follow-up {:fragment [" The house shrugs under its own entropy."
+                                    " An orange light wanders from window to window."
+                                    " A sign here reads: 'As seen on TV.'"
+                                    " Endless amounts of blood pour from the windows."
+                                    " It's painted completely orange and looks rather festive."
+                                    " Endless numbers of bodies pour out from the windows."
+                                    " It tips its roof to you, says, 'Welcome.'"
+                                    " A sign out front reads 'Dead Nig...' Just kidding. Probably."
+                                    " Looks inviting except for the corpses littering the lawn."
+                                    " It's only 6\" tall."
+                                    " It's surrounded by a moat of delicious soup."]}}
+            {:text "hot tub"
              :prep ["in" "near"]
-             :follow-up {:fragment [{:index 0
-                                     :text " The water roils and steams like water roils and steams."}
-                                    {:index 1
-                                     :text " It's frozen solid."}
-                                    {:index 2
-                                     :text " A basketball dances on the bubbles."}
-                                    {:index 3
-                                     :text " You see a staircase beneath the water."}
-                                    {:index 4
-                                     :text " Is it water or is it hydrocarbons?"}
-                                    {:index 5
-                                     :text " The water has been replaced with pulpy orange juice."}
-                                    {:index 6
-                                     :text " The water has been replaced with gasoline which is, of course, currently on fire."}
-                                    {:index 7
-                                     :text " It smells delicious because someone filled it with chicken soup."}]}}
-            {:index 23
-             :text "hugbox"
-             :type :interior
+             :follow-up {:fragment [" The water roils and steams like water roils and steams."
+                                    " It's frozen solid."
+                                    " A basketball dances on the bubbles."
+                                    " You see a staircase beneath the water."
+                                    " Is it water or is it hydrocarbons?"
+                                    " The water has been replaced with pulpy orange juice."
+                                    " The water has been replaced with gasoline which is, of course, currently on fire."
+                                    " It smells delicious because someone filled it with chicken soup."]}}
+            {:text "hugbox"
              :prep "in"
-             :follow-up {:fragment [{:index 0
-                                     :text " You feel at home again."}
-                                    {:index 1
-                                     :text " It's very warm in here. Perhaps too warm."}
-                                    {:index 2
-                                     :text " It's on fire. Just like every goddamn other thing around here."}
-                                    {:index 3
-                                     :text " It's full of marshmallows."}
-                                    {:index 4
-                                     :text " A kid inside growls at you, 'Yo, %10, wait your turn.'"
-                                     :sub [{:token 10 :group :insult}]}
-                                    {:index 5
-                                     :text " It smells of stale sweat and lies, lies, lies..."}]}}
-            {:index 24
-             :text "ice skating rink"
-             :type :exterior
+             :follow-up {:fragment [" You feel at home again."
+                                    " It's very warm in here. Perhaps too warm."
+                                    " It's on fire. Just like every goddamn other thing around here."
+                                    " It's full of marshmallows."
+                                    '(" A kid inside growls at you, 'Yo," {:group :insult} ", wait your turn.'")
+                                    " It smells of stale sweat and lies, lies, lies..."]}}
+            {:text "ice skating rink"
              :prep ["at" "in front of" "on"]
-             :follow-up {:fragment [{:index 0
-                                     :text " It's currently on fire."}
-                                    {:index 1
-                                     :text " Unfortunately, it's made of dry ice."}
-                                    {:index 2
-                                     :text " A solid-gold curling stone is nearby."}
-                                    {:index 3
-                                     :text " There are three hungry-looking zambonies here."}]}}
-            {:index 25
-             :text "Luby's"
-             :type :exterior
+             :follow-up {:fragment [" It's currently on fire."
+                                    " Unfortunately, it's made of dry ice."
+                                    " A solid-gold curling stone is nearby."
+                                    " There are three hungry-looking zambonies here."]}}
+            {:text "Luby's"
              :prep ["at" "in" "near" "behind" "in front of"]}
-            {:index 26
-             :text "maze of twisty little passages, all alike"
-             :type :interior
+            {:text "maze of twisty little passages, all alike"
              :prep "in"}
-            {:index 27
-             :text "McDonald's"
-             :type :exterior
+            {:text "McDonald's"
              :prep ["at" "in" "near" "behind" "in front of"]
-             :follow-up {:fragment [{:index 0
-                                     :text " It's about to explode with McNuggets."}
-                                    {:index 1
-                                     :text " It's on fire, dammit."}
-                                    {:index 2
-                                     :text " Why are you even here?"}]}}
-            {:index 28
-             :text "meeting"
-             :type :interior
+             :follow-up {:fragment [" It's about to explode with McNuggets."
+                                    " It's on fire, dammit."
+                                    " Why are you even here?"]}}
+            {:text "meeting"
              :prep "in"
-             :follow-up {:fragment [{:index 0
-                                     :text " The room is crowded by tripods holding colorful charts."}
-                                    {:index 1
-                                     :text " The projector is on, showing random photos of cats at play."}
-                                    {:index 2
-                                     :text " The table is covered with a chalk outline."}
-                                    {:index 3
-                                     :text " The chairs are all occupied by cobweb-encrusted skeletons."}
-                                    {:index 4
-                                     :text " The room is almost full of balloons."}]}}
-            {:index 29
-             :text "movie set"
-             :type :exterior
+             :follow-up {:fragment [" The room is crowded by tripods holding colorful charts."
+                                    " The projector is on, showing random photos of cats at play."
+                                    " The table is covered with a chalk outline."
+                                    " The chairs are all occupied by cobweb-encrusted skeletons."
+                                    " The room is almost full of balloons."]}}
+            {:text "movie set"
              :prep "on"
-             :follow-up {:fragment [{:index 0
-                                     :text " The crafts table is covered with another, smaller crafts table."}
-                                    {:index 1
-                                     :text " A nude man strolls by."}
-                                    {:index 2
-                                     :text " A tiny monkey on a Harley slowly cruises by, staring at you."}
-                                    {:index 3
-                                     :text " %10 is here, throwing a profanity-laced tantrum."
-                                     :sub [{:token 10 :group :person :config #{:no-groups}}]}
-                                    {:index 4
-                                     :text " A hundred small dogs are here, looking menacing."}]}}
-            {:index 30
-             :text "New York Public Library"
-             :type :exterior
+             :follow-up {:fragment [" The crafts table is covered with another, smaller crafts table."
+                                    " A nude man strolls by."
+                                    " A tiny monkey on a Harley slowly cruises by, staring at you."
+                                    '({:group :person :config #{:no-groups}} " is here, throwing a profanity-laced tantrum.")
+                                    " A hundred small dogs are here, looking menacing."]}}
+            {:text "New York Public Library"
              :article "the"
              :prep ["at" "near" "behind" "in front of"]}
-            {:index 21
-             :text "park restroom stall"
-             :type :interior
+            {:text "park restroom stall"
              :prep "in"
-             :follow-up {:fragment [{:index 0
-                                     :text " The door has been torn off its hinges."}
-                                    {:index 1
-                                     :text " The walls are covered with violent scratches."}
-                                    {:index 2
-                                     :text " The toilet is made of solid gold."}
-                                    {:index 3
-                                     :text " A garden gnome greets you from the bowl."}
-                                    {:index 4
-                                     :text " The toilet is missing."}
-                                    {:index 5
-                                     :text " There's a basketball in the bowl."}
-                                    {:index 6
-                                     :text " Suddenly the lights go out."}
-                                    {:index 7
-                                     :text " The lingering scents of lemon and Lysol haunt the air."}
-                                    {:index 8
-                                     :text " Someone has scratched your name and number on the wall."}]}}
-            {:index 22
-             :text "particle board storage facility"
-             :type :interior
+             :follow-up {:fragment [" The door has been torn off its hinges."
+                                    " The walls are covered with violent scratches."
+                                    " The toilet is made of solid gold."
+                                    " A garden gnome greets you from the bowl."
+                                    " The toilet is missing."
+                                    " There's a basketball in the bowl."
+                                    " Suddenly the lights go out."
+                                    " The lingering scents of lemon and Lysol haunt the air."
+                                    " Someone has scratched your name and number on the wall."]}}
+            {:text "particle board storage facility"
              :prep ["at" "near" "in front of" "behind" "inside"]}
-            {:index 23
-             :text "pile of diapers"
-             :type :exterior
+            {:text "pile of diapers"
              :prep ["in" "near" "behind" "in front of" "underneath"]
-             :follow-up {:fragment [{:index 0
-                                     :text " Some of these look awfully familiar."}
-                                    {:index 1
-                                     :text " They're all filled with fortune cookies."}
-                                    {:index 2
-                                     :text " The smell here is far worse than what was promised."}
-                                    {:index 3
-                                     :text " Adult diapers. Let that sink in for awhile."}
-                                    {:index 4
-                                     :text " Oddly, you feel slightly aroused."}
-                                    {:index 5
-                                     :text " It's currently on fire."}]}}
-            {:index 24
-             :text "playground"
-             :type :exterior
+             :follow-up {:fragment [" Some of these look awfully familiar."
+                                    " They're all filled with fortune cookies."
+                                    " The smell here is far worse than what was promised."
+                                    " Adult diapers. Let that sink in for awhile."
+                                    " Oddly, you feel slightly aroused."
+                                    " It's currently on fire."]}}
+            {:text "playground"
              :prep ["in" "near" "behind" "in front of"]
-             :follow-up {:fragment [{:index 0
-                                     :text " The equipment looks like it's never been used."}
-                                    {:index 1
-                                     :text " Most of the equipment is missing or broken."}
-                                    {:index 2
-                                     :text " You hear the sound of children laughing but no one else is here."}]}}
-            {:index 25
-             :text "quicksand"
-             :type :exterior
+             :follow-up {:fragment [" The equipment looks like it's never been used."
+                                    " Most of the equipment is missing or broken."
+                                    " You hear the sound of children laughing but no one else is here."]}}
+            {:text "quicksand"
              :article "some"
              :prep ["in" "near"]
-             :follow-up {:fragment [{:index 0
-                                     :text " Briefly, you see a fin rise up and cruise back and forth."}
-                                    {:index 1
-                                     :text " The surface quicksand gently sways, beckoning you..."}
-                                    {:index 2
-                                     :text " Oddly, it smells like freshly cooked oatmeal."}]}}
-            {:index 26
-             :text "ravine"
-             :type :exterior
+             :follow-up {:fragment [" Briefly, you see a fin rise up and cruise back and forth."
+                                    " The surface quicksand gently sways, beckoning you..."
+                                    " Oddly, it smells like freshly cooked oatmeal."]}}
+            {:text "ravine"
              :prep ["in"]
-             :follow-up {:fragment [{:index 0
-                                     :text " It stretches out in front of you, meandering as if drunk."}
-                                    {:index 1
-                                     :text " A giant marshmallow avalanche blocks the way ahead."}
-                                    {:index 2
-                                     :text " Waves of warm mayonnaise threaten to drown you."}
-                                    {:index 3
-                                     :text " A lone monkey is here, sobbing and painting itself orange."}
-                                    {:index 4
-                                     :text " A ball from the ball-pit bounces by."}
-                                    {:index 5
-                                     :text " A flock of birds lands in one single, tall stack."}
-                                    {:index 6
-                                     :text " A small trickle of spaghetti sauce runs down the middle."}]}}
-            {:index 27
-             :text "riverbed"
-             :type :exterior
+             :follow-up {:fragment [" It stretches out in front of you, meandering as if drunk."
+                                    " A giant marshmallow avalanche blocks the way ahead."
+                                    " Waves of warm mayonnaise threaten to drown you."
+                                    " A lone monkey is here, sobbing and painting itself orange."
+                                    " A ball from the ball-pit bounces by."
+                                    " A flock of birds lands in one single, tall stack."
+                                    " A small trickle of spaghetti sauce runs down the middle."]}}
+            {:text "riverbed"
              :prep ["in" "near"]
-             :follow-up {:fragment [{:index 0
-                                     :text " It's dry and littered with rocks and branches."}
-                                    {:index 1
-                                     :text " The water steadfastedly refuses to flow. It just sits there."}
-                                    {:index 2
-                                     :text " Nearby two bears are standing on the water, defiantly."}
-                                    {:index 3
-                                     :text " The river immediately parts and just keeps on parting."}
-                                    {:index 4
-                                     :text " It's mostly dry, the flow of the water blocked by a beaver dams upstream."}]}}
-            {:index 28
-             :text "sauna"
-             :type :interior
+             :follow-up {:fragment [" It's dry and littered with rocks and branches."
+                                    " The water steadfastedly refuses to flow. It just sits there."
+                                    " Nearby two bears are standing on the water, defiantly."
+                                    " The river immediately parts and just keeps on parting."
+                                    " It's mostly dry, the flow of the water blocked by a beaver dams upstream."]}}
+            {:text "sauna"
              :prep "in"
-             :follow-up {:fragment [{:index 0
-                                     :text " The wood paneling sweats sweetly in the oppressive heat."}
-                                    {:index 1
-                                     :text " Great thunderheads of steam rise up from the rock basin, making it hard to see."}
-                                    {:index 2
-                                     :text " The room is cold and dark. No one has been here in years."}
-                                    {:index 3
-                                     :text " The steam smells like patchouli. You throw up a lot."}
-                                    {:index 4
-                                     :text " %10 is here, totally nude."
-                                     :sub [{:token 10 :group :person}]}
-                                    {:index 5
-                                     :text " The floor is covered with Phish ticket stubs."}
-                                    {:index 6
-                                     :text " A demotivational tape is playing over the loudspeakers, repeating, 'Just give up.'"}
-                                    {:index 7
-                                     :text " The floor is covered with cute little mushrooms."}]}}
-            {:index 29
-             :text "Shrim Healing Center"
-             :type :exterior
+             :follow-up {:fragment [" The wood paneling sweats sweetly in the oppressive heat."
+                                    " Great thunderheads of steam rise up from the rock basin, making it hard to see."
+                                    " The room is cold and dark. No one has been here in years."
+                                    " The steam smells like patchouli. You throw up a lot."
+                                    '({:group :person} " is here, totally nude.")
+                                    " The floor is covered with Phish ticket stubs."
+                                    " A demotivational tape is playing over the loudspeakers, repeating, 'Just give up.'"
+                                    " The floor is covered with cute little mushrooms."]}}
+            {:text "Shrim Healing Center"
              :prep ["in" "at" "in front of" "behind"]
-             :follow-up {:fragment [{:index 0
-                                     :text " There are TVs in the window, all turned off."}
-                                    {:index 1
-                                     :text " Someone has spray-painted 'I crave brown baths' here."}
-                                    {:index 2
-                                     :text " Inside you hear the sound of repulsed joy."}
-                                    {:index 3
-                                     :text " The door has been boarded up."}
-                                    {:index 4
-                                     :text " %10 is patiently waiting in line by %11."
-                                     :sub [{:token 10 :group :person}
-                                           {:token 11 :group :gender :case :compound}]}
-                                    {:index 5
-                                     :text " The building looks like it has been condemned."}]}}
-            {:index 30
-             :text "Starbucks"
-             :type :exterior
+             :follow-up {:fragment [" There are TVs in the window, all turned off."
+                                    " Someone has spray-painted 'I crave brown baths' here."
+                                    " Inside you hear the sound of repulsed joy."
+                                    " The door has been boarded up."
+                                    '({:group :person} " is patiently waiting in line by " {:group :gender :case :compound} ".")
+                                    " The building looks like it has been condemned."]}}
+            {:text "Starbucks"
              :prep ["in" "near" "behind" "in front of"]
-             :follow-up {:fragment [{:index 0
-                                     :text " It is packed tightly with hipsters."}
-                                    {:index 1
-                                     :text " There is a surprising lack of hipsters here."}
-                                    {:index 2
-                                     :text " For some reason, they're only serving orange juice."}
-                                    {:index 3
-                                     :text " Your name is mispelled on the cup."}
-                                    {:index 4
-                                     :text " A hollow voice intones, '%10'"
-                                     :sub [{:token 10 :group :intonation}]}
-                                    {:index 5
-                                     :text " It's on fire."}
-                                    {:index 6
-                                     :text " A barista skips by, joyfully on fire."}
-                                    {:index 7
-                                     :text " It reeks of slightly burnt coffee here."}]}}
-            {:index 31
-             :text "swimming pool"
-             :type :exterior
+             :follow-up {:fragment [" It is packed tightly with hipsters."
+                                    " There is a surprising lack of hipsters here."
+                                    " For some reason, they're only serving orange juice."
+                                    " Your name is mispelled on the cup."
+                                    '(" A hollow voice intones, '" {:group :intonation} "'")
+                                    " It's on fire."
+                                    " A barista skips by, joyfully on fire."
+                                    " It reeks of slightly burnt coffee here."]}}
+            {:text "swimming pool"
              :prep ["in" "at" "near"]
-             :follow-up {:fragment [{:index 0
-                                     :text " The surface of the pool is almost entirely still. You are afraid to disturb it."}
-                                    {:index 1
-                                     :text " The water has turned slightly murky; it does not look inviting."}
-                                    {:index 2
-                                     :text " The surface of the pool is littered with leaves."}
-                                    {:index 3
-                                     :text " The pool is empty."}
-                                    {:index 4
-                                     :text " The pool is empty. A broken skateboard is nearby."}
-                                    {:index 5
-                                     :text " The water has been replaced by orange juice."}
-                                    {:index 6
-                                     :text " A dead bird floats by."}
-                                    {:index 7
-                                     :text " It's jam packed with kids, all of whom are staring at you."}
-                                    {:index 8
-                                     :text " A waterspout is gently descending from the sky to fuck things up."}
-                                    {:index 9
-                                     :text " An abandoned plastic float with a dinosaur's head floats lonely nearby."}]}}
-            {:index 32
-             :text "Taco Bell"
-             :type :exterior
+             :follow-up {:fragment [" The surface of the pool is almost entirely still. You are afraid to disturb it."
+                                    " The water has turned slightly murky; it does not look inviting."
+                                    " The surface of the pool is littered with leaves."
+                                    " The pool is empty."
+                                    " The pool is empty. A broken skateboard is nearby."
+                                    " The water has been replaced by orange juice."
+                                    " A dead bird floats by."
+                                    " It's jam packed with kids, all of whom are staring at you."
+                                    " A waterspout is gently descending from the sky to fuck things up."
+                                    " An abandoned plastic float with a dinosaur's head floats lonely nearby."]}}
+            {:text "Taco Bell"
              :prep ["at" "in" "near" "behind" "in front of"]
-             :follow-up {:fragment [{:index 0
-                                     :text " They're fresh out of tortillas so they're using Wonder Bread."}
-                                    {:index 1
-                                     :text " Diablo suace is slowly dripped from the air condition vents."}
-                                    {:index 2
-                                     :text " A guy only wearing jorts is here, eating a dozen bean burritos."}]}}
-            {:index 33
-             :text "tire fire"
-             :type :exterior
+             :follow-up {:fragment [" They're fresh out of tortillas so they're using Wonder Bread."
+                                    " Diablo suace is slowly dripped from the air condition vents."
+                                    " A guy only wearing jorts is here, eating a dozen bean burritos."]}}
+            {:text "tire fire"
              :prep ["at" "near" "behind" "in front of"]
-             :follow-up {:fragment [{:index 0
-                                     :text " It is warm and welcoming."}
-                                    {:index 1
-                                     :text " Unsurprisingly, it's on fire."}
-                                    {:index 2
-                                     :text " Someone had been roasting marshmallows here."}
-                                    {:index 3
-                                     :text " The air here is black with despair and entropy."}
-                                    {:index 4
-                                     :text " It England, it'd be a 'tyre fire.' Fancy talk for this trailer park, yo."}
-                                    {:index 5
-                                     :text " The sky is darkened by the hellish smoke."}]}}
-            {:index 34
-             :text "trunk of a car"
-             :type :interior
+             :follow-up {:fragment [" It is warm and welcoming."
+                                    " Unsurprisingly, it's on fire."
+                                    " Someone had been roasting marshmallows here."
+                                    " The air here is black with despair and entropy."
+                                    " It England, it'd be a 'tyre fire.' Fancy talk for this trailer park, yo."
+                                    " The sky is darkened by the hellish smoke."]}}
+            {:text "trunk of a car"
              :article "the"
              :prep "in"
-             :follow-up {:fragment [{:index 0
-                                     :text " It is well upholstered."}
-                                    {:index 1
-                                     :text " A tire iron is digging into your back a little bit."}
-                                    {:index 2
-                                     :text " There's a half-eaten bag of Bugles here."}
-                                    {:index 3
-                                     :text " With all the trash in here, there's barely any room for you."}
-                                    {:index 4
-                                     :text " It's filled with balls from the ball-pit."}
-                                    {:index 5
-                                     :text " It's filled with toilet water."}
-                                    {:index 6
-                                     :text " It's filled with orange juice."}
-                                    {:index 7
-                                     :text " %10 is here, looking at you with hunger and/or lust."
-                                     :sub [{:token 10 :group :actor}]}
-                                    {:index 8
-                                     :text " It's pitch black. No room for a grue, luckily."}]}}
-            {:index 35
-             :text "White Castle"
-             :type :exterior
+             :follow-up {:fragment [" It is well upholstered."
+                                    " A tire iron is digging into your back a little bit."
+                                    " There's a half-eaten bag of Bugles here."
+                                    " With all the trash in here, there's barely any room for you."
+                                    " It's filled with balls from the ball-pit."
+                                    " It's filled with toilet water."
+                                    " It's filled with orange juice."
+                                    '({:group :actor} " is here, looking at you with hunger and/or lust.")
+                                    " It's pitch black. No room for a grue, luckily."]}}
+            {:text "White Castle"
              :prep ["at" "in" "near" "behind" "in front of"]
-             :follow-up {:fragment [{:index 0
-                                     :text " It's white and vaguely castle-shaped."}
-                                    {:index 1
-                                     :text " Inside is a Starbucks."}
-                                    {:index 2
-                                     :text " Guess what. It's on fire."}
-                                    {:index 3
-                                     :text " It's currently closed which makes you goddamned mad."}
-                                    {:index 4
-                                     :text " It smells squarely delicious."}]}}]}
+             :follow-up {:fragment [" It's white and vaguely castle-shaped."
+                                    " Inside is a Starbucks."
+                                    " Guess what. It's on fire."
+                                    " It's currently closed which makes you goddamned mad."
+                                    " It smells squarely delicious."]}}]}

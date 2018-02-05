@@ -1,35 +1,19 @@
 {:group :garment
  :type :sub
- :fragment [{:index 0
-             :text "belt"}
-            {:index 1
-             :text "clown suit"
-             :decorator {:prefix {:fragment [{:text "heirloom"}]}}}
-            {:index 2
-             :text "coat"}
-            {:index 3
-             :text "dress"}
-            {:index 4
-             :text "gloves"}
-            {:index 5
-             :text "hat"}
-            {:index 6
-             :text "jacket"}
-            {:index 7
-             :text "pants"}
-            {:index 8
-             :text "schizophrenic mood ring"}
-            {:index 9
-             :text "shirt"}
-            {:index 10
-             :text "shoes"}
-            {:index 11
-             :text "skirt"}
-            {:index 12
-             :text "socks"}
-            {:index 13
-             :text "sweater"}
-            {:index 14
-             :text "underwear"}
-            {:index 15
-             :text "watch"}]}
+ :fragment [{:text '("belt")}
+            {:text '("clown suit")
+             :decorator {:prefix {:fragment "heirloom"}}}
+            {:text '("coat")}
+            {:text '("dress")}
+            {:text '("gloves")}
+            {:text '("hat")}
+            {:text '("jacket")}
+            {:text '("pants")}
+            {:text '("schizophrenic mood ring")}
+            {:text '("shirt")}
+            {:text '("shoes")}
+            {:text '("skirt")}
+            {:text '("socks")}
+            {:text '("sweater")}
+            {:text '("underwear")}
+            {:text '("watch")}]}

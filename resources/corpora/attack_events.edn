@@ -1,33 +1,56 @@
 {:group :attack-event
  :category :event
- :fragment [{:text '({:index 0 :group :actor} " attacks you and knocks you out. You awake sometime later " {:index 1 :group :location} ".")]
-            {:text '({:index 0 :group :actor} " attacks you but you fight back with " {:index 1 :group :attack} ", ")
+ :fragment [{:text '({:group :actor}
+                     " attacks you and knocks you out. You awake sometime later "
+                     {:group :location} ".")]
+            {:text '({:group :actor}
+                     " attacks you but you fight back with "
+                     {:group :attack} ", ")
              :follow-up {:config #{:required}
                          :fragment [{:text '("winning the battle.")}
                                     {:text '("taking only a hit to your pride.")}]}}
-            {:text '({:index 0 :group :actor} " attacks you but you fight back with " {:index 1 :group :attack} ".")
+            {:text '({:group :actor}
+                     " attacks you but you fight back with " {:group :attack} ".")
              :follow-up {:config #{:required}
                          :fragment [{:text '("It isn't enough: you lose.")}
-                                    {:text '("This scares the shit out of " {:index 2 :ref 0 :group :gender :case :objective} ". " {:index 3 :ref 0 :group :gender :case :subjective} "runs away.")}]}}
-            {:text '({:index 0 :group :actor} " attacks with " {:index 1 :group :attack} ". You execute " {:index 2 :group :attack} ".")
+                                    {:text '("This scares the shit out of "
+                                             {:group :gender :case :objective}
+                                             ". "
+                                             {:group :gender :case :subjective}
+                                             "runs away.")}]}}
+            {:text '({:group :actor} " attacks with " {:group :attack}
+                     ". You execute " {:group :attack} ".")
              :follow-up {:config #{:required}
                          :fragment [{:text '("You are victorious!")}
                                     {:text '("You have been killed.")}
                                     {:text '("You have been slain!")}
-                                    {:text '("So much blood... but is it yours or " {:index 3 :ref 0 :group :gender :case :possessive} "?")}
-                                    {:text '({:index 3 :ref 0 :group :gender :case :subjective} " keels over all dead and stuff.")}]}}
-            {:text '({:index 0 :group :actor} " attacks with " {:index 1 :group :attack} ". You respond with " {:index 2 :group :attack} ".")
+                                    {:text '("So much blood... but is it yours or "
+                                             {:group :gender :case :possessive}
+                                             "?")}
+                                    {:text '({:group :gender :case :subjective}
+                                             " keels over all dead and stuff.")}]}}
+            {:text '({:group :actor} " attacks with "
+                     {:group :attack} ". You respond with "
+                     {:group :attack} ".")
              :follow-up {:config #{:required}
                          :fragment [{:text '("You are defeated.")}
                                     {:text '("You're the winner!")}]}}
-            {:text '({:index 0 :group :actor} " attacks with " {:index 1 :group :attack} ". You attack with " {:index 2 :group :attack} ".")
+            {:text '({:group :actor} " attacks with "
+                     {:group :attack} ". You attack with "
+                     {:group :attack} ".")
              :follow-up {:config #{:required}
                          :fragment [{:text '("You are defeated.")}
                                     {:text '("You're the winner!")}]}}
-            {:text '({:index 0 :group :actor} " attacks with " {:index 1 :group :attack} ". You strike back with " {:index 2 :group :attack} ". FATALITY. But who?!")
-             {:text '({:index 0 :group :actor} " attacks with " {:index 1 :group :attack} ". You with " {:index 2 :group :attack} ".")
+            {:text '({:group :actor} " attacks with "
+                     {:group :attack} ". You strike back with "
+                     {:group :attack} ". FATALITY. But who?!")
+             {:text '({:group :actor} " attacks with "
+                      {:group :attack} ". You with "
+                      {:group :attack} ".")
              :follow-up {:config #{:required}
                          :fragment [{:text '("Look at you what with the killing and all.")}
                                     {:text '("You've been converted into a broken zip file.")}
-                                    {:text '({:index 3 :ref 0 :group :gender :case :subjective} " explodes into a ball of green flame. GREEN FLAME.")}
-                                    {:text '({:index 3 :ref 0 :group :gender :case :subjective} " is a bloodstain.")}]}}]}
+                                    {:text '({:group :gender :case :subjective}
+                                             " explodes into a ball of green flame. GREEN FLAME.")}
+                                    {:text '({:group :gender :case :subjective}
+                                             " is a bloodstain.")}]}}]}

@@ -1,8 +1,13 @@
 {:group :dialogue-event
  :category :event
- :fragment [{:text '({:index 0 :group :person} {:index 1 :group :dialogue})}
-            {:text '({:index 0 :group :person :config #{:no-groups}} " is nearby. " {:index 1 :ref 0 :group :gender :case :subjective} {:index 2 :group :dialogue})}
-            {:text '({:index 0 :group :person} " marches up to you and " {:index 1 :group :dialogue})}
+ :fragment [{:text '({:group :person}
+                     {:group :dialogue})}
+            {:text '({:group :person :config #{:no-groups}} " is nearby. "
+                     {:group :gender :case :subjective}
+                     {:group :dialogue})}
+            {:text '({:group :person :config #{:no-groups}} " marches up to you and "
+                     {:group :dialogue})}
             {:text '("You check your messages: ")
              :follow-up {:config #{:required}
-                         :fragment [{:text '({:index 0 :group :person :config #{:no-groups}} {:index 1 :group :dialogue})}]}}]}
+                         :fragment [{:text '({:group :person :config #{:no-groups}}
+                                             {:group :dialogue})}]}}]}

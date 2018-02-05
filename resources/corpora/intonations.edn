@@ -1,51 +1,28 @@
 {:group :intonation
  :type :sub
  :config #{:no-article}
- :fragment [{:index 0
-             :text "Clean up in aisle 8A."}
-            {:index 1
-             :text "Coitus?"}
-            {:index 2
-             :text "Consider deeply the baked ham."}
-            {:index 3
-             :text "Don't panic."}
-            {:index 4
-             :text "Don't panic. Oh, all right. You can panic a little bit."}
-            {:index 5
-             :text "Fill me up with your babies."}
-            {:index 6
-             :text "For those who can make the journey, there is a place."}
-            {:index 7
-             :text "Guch."}
-            {:index 8
-             :text "It is a winning cake."}
-            {:index 9
-             :text "Meet me behind the dough machine."}
-            {:index 10
-             :text "Pave Canada."}
-            {:index 11
-             :text "Plugh."}
-            {:index 12
-             :text "POKE 1024,0."}
-            {:index 13
-             :text "Rabbit feces."}
-            {:index 14
-             :text "Slightly uncomfortable pleasures."}
-            {:index 15
-             :text "Sorry, but it couldn't be helped."}
-            {:index 16
-             :text "Spigot."}
-            {:index 17
-             :text "The owls are not what they seem."}
-            {:index 18
-             :text "These pretzels are making me thirsty."}
-            {:index 19
-             :text "Toast goes in the toaster."}
-            {:index 20
-             :text "You can't go up against city hall."}
-            {:index 21
-             :text "Your pilikia is all pau."}
-            {:index 22
-             :text "You sank my battleship."}
-            {:index 23
-             :text "Zzyzx."}]}
+ :fragment [{:text '("Clean up in aisle 8A.")}
+            {:text '("Coitus?")}
+            {:text '("Consider deeply the baked ham.")}
+            {:text '("Don't panic.")}
+            {:text '("Don't panic. Oh, all right. You can panic a little bit.")}
+            {:text '("Fill me up with your babies.")}
+            {:text '("For those who can make the journey, there is a place.")}
+            {:text '("Guch.")}
+            {:text '("It is a winning cake.")}
+            {:text '("Meet me behind the dough machine.")}
+            {:text '("Pave Canada.")}
+            {:text '("Please turn to the page where you die.")}
+            {:text '("Plugh.")}
+            {:text '("POKE 1024,0.")}
+            {:text '("Rabbit feces.")}
+            {:text '("Slightly uncomfortable pleasures.")}
+            {:text '("Sorry, but it couldn't be helped.")}
+            {:text '("Spigot.")}
+            {:text '("The owls are not what they seem.")}
+            {:text '("These pretzels are making me thirsty.")}
+            {:text '("Toast goes in the toaster.")}
+            {:text '("You can't go up against city hall.")}
+            {:text '("Your pilikia is all pau.")}
+            {:text '("You sank my battleship.")}
+            {:text '("Zzyzx.")}]}

@@ -9,7 +9,8 @@
             {:text ("baboon")}
             {:text ("badger")}
             {:text ("bat")}
-            {:text ("bear") :decorator {:prefix {:option ["grizzly" "brown" "teddy"]}}}
+            {:text ("bear")
+             :decorator {:prefix {:option ["grizzly" "brown" "teddy"]}}}
             {:text ("beaver")}
             {:text ("bison")}
             {:text ("boar")}
@@ -20,7 +21,10 @@
             {:text ("camel")}
             {:text ("canary")}
             {:text ("capybara")}
-            {:text (["cat" "kitten"]) :decorator {:prefix {:option ["tabby" "gray" "black" "butter" "white"]} :ambifix {:option ["purring" "meowing" "growling"]}} :sound ["purrs" "meows" "growls"]}
+            {:text (["cat" "kitten"])
+             :decorator {:prefix {:option ["tabby" "gray" "black" "butter" "white"]}
+                         :ambifix {:option ["purring" "meowing" "growling"]}}
+             :sound ["purrs" "meows" "growls"]}
             {:text ("chameleon")}
             {:text ("cheetah")}
             {:text ("chicken")}
@@ -31,18 +35,25 @@
             {:text ("cow")}
             {:text ("coyote")}
             {:text ("crocodile")}
-            {:text ("crow") :prefix {:option "cawing"} :sound ["caws" "caws at you" "caws forlornly" "caws quietly"]}
+            {:text ("crow")
+             :decorator {:prefix {:option ["cawing"]}
+                         :sound ["caws" "caws at you" "caws forlornly" "caws quietly"]}}
             {:text ("dingo")}
-            {:text (["dog" "puppy"]) :decorator {:prefix {:option ["black" "white" "brown"]} :ambifix {:option ["barking" "panting" "growling"]}} :sound ["barks" "pants" "growls"]}
+            {:text (["dog" "puppy"])
+             :decorator {:prefix {:option ["black" "white" "brown"]}
+                         :ambifix {:option ["barking" "panting" "growling"]}}
+             :sound ["barks" "pants" "growls"]}
             {:text ("dolphin")}
             {:text ("donkey")}
-            {:text ("duck") :decorator {:prefix {:option "quacking"}} :sound "quacks"}
+            {:text ("duck")
+             :decorator {:prefix {:option ["quacking"]}}
+             :sound "quacks"}
             {:text ("eagle")}
             {:text ("elephant")}
             {:text ("ewe")}
             {:text ("hawk")}
             {:text ("ferret")}
-            {:text ("finch") :sound "chirps"}
+            {:text ("finch") :sound ["chirps"]}
             {:text ("fox")}
             {:text ("gazelle")}
             {:text ("gerbil")}
@@ -52,13 +63,17 @@
             {:text ("goat")}
             {:text ("gopher")}
             {:text ("gorilla")}
-            {:text ("groundhog") :decorator {:prefix {:option ["repeating" "familiar"]}}}
+            {:text ("groundhog")
+             :decorator {:prefix {:option ["repeating" "familiar"]}}}
             {:text ("guinea pig")}
             {:text ("hamster")}
             {:text ("hawk")}
-            {:text ("hedgehog") :decorator {:prefix {:option "prickly"}}}
+            {:text ("hedgehog")
+             :decorator {:prefix {:option "prickly"}}}
             {:text ("hippopotamus")}
-            {:text ("hog") :decorator {:prefix {:option ["snorting" "oinking"]}} :sound ["snorts" "oinks"]}
+            {:text ("hog")
+             :decorator {:prefix {:option ["snorting" "oinking"]}}
+             :sound ["snorts" "oinks"]}
             {:text ("horse")}
             {:text ("hyena")}
             {:text ("ibex")}

@@ -1,141 +1,97 @@
 {:group :person
  :type :sub
  :config #{:no-article}
- :fragment [{:index 0
-             :text "Justin Bieber"
+ :fragment [{:text "Justin Bieber"
              :gender :male}
-            {:index 1
-             :text "Lloyd Braun"
+            {:text "Lloyd Braun"
              :gender :male}
-            {:index 2
-             :text "Jim J. Bullock"
+            {:text "Jim J. Bullock"
              :gender :male}
-            {:index 3
-             :text "Ruth Buzzi"
+            {:text "Ruth Buzzi"
              :gender :female}
-            {:index 4
-             :text "Johnny Cash"
+            {:text "Johnny Cash"
              :gender :male}
-            {:index 5
-             :text "George Clooney"
+            {:text "George Clooney"
              :gender :male}
-            {:index 6
-             :text "Stephen Colbert"
+            {:text "Stephen Colbert"
              :gender :male}
-            {:index 7
-             :text "Peter Dinklage"
+            {:text "Peter Dinklage"
              :gender :male}
-            {:index 8
-             :text "Craig Ferguson"
+            {:text "Craig Ferguson"
              :gender :male}
-            {:index 9
-             :text "James Franco"
+            {:text "James Franco"
              :gender :male}
-            {:index 10
-             :text "Stephen Fry"
+            {:text "Stephen Fry"
              :gender :male}
-            {:index 11
-             :text "a gas station attendant"
+            {:text "a gas station attendant"
              :gender [:female :male]}
-            {:index 12
-             :text "Whoopi Goldberg"
+            {:text "Whoopi Goldberg"
              :gender :female}
-            {:index 13
-             :text "Nancy Grace"
+            {:text '("good_egg")
+             :gender :male}
+            {:text "Nancy Grace"
              :gender :female}
-            {:index 14
-             :text "Louis Gray"
+            {:text "Louis Gray"
              :gender :male}
-            {:index 15
-             :text "Tim Heidecker"
+            {:text "Tim Heidecker"
              :gender :male}
-            {:index 16
-             :text "Jonah Hill"
+            {:text "Jonah Hill"
              :gender :male}
-            {:index 17
-             :text "Samuel L. Jackson"
+            {:text "Samuel L. Jackson"
              :gender :male}
-            {:index 18
-             :text "Allison Janney"
+            {:text "Allison Janney"
              :gender :female}
-            {:index 19
-             :text "Grace Jones"
+            {:text "Grace Jones"
              :gender :female}
-            {:index 20
-             :text "a bunch of kids"
+            {:text "a bunch of kids"
              :gender :group}
-            {:index 21
-             :text "Hugh Laurie"
+            {:text "Hugh Laurie"
              :gender :male}
-            {:index 22
-             :text "Jennifer Lawrence"
+            {:text "Jennifer Lawrence"
              :gender :female}
-            {:index 23
-             :text "Lindsay Lohan"
+            {:text "Lindsay Lohan"
              :gender :female}
-            {:index 24
-             :text "Rob Lowe"
+            {:text "Rob Lowe"
              :gender :male}
-            {:index 25
-             :text "David Lynch"
+            {:text "David Lynch"
              :gender :male}
-            {:index 26
-             :text "Josh Malina"
+            {:text "Josh Malina"
              :gender :male}
-            {:index 27
-             :text "Bill Maher"
+            {:text "Bill Maher"
              :gender :male}
-            {:index 28
-             :text "Frances McDormand"
+            {:text "Frances McDormand"
              :gender :female}
-            {:index 29
-             :text "your mom"
+            {:text "your mom"
              :gender :female}
-            {:index 30
-             :text "Bill Murray"
+            {:text "Bill Murray"
              :gender :male}
-            {:index 31
-             :text "Craig T. Nelson"
+            {:text "Craig T. Nelson"
              :gender :male}
-            {:index 32
-             :text "Katy Perry"
+            {:text "Katy Perry"
              :gender :female}
-            {:index 33
-             :text "Geoff Petersen"
+            {:text "Geoff Petersen"
              :gender :male}
-            {:index 34
-             :text "Brad Pitt"
+            {:text "Brad Pitt"
              :gender :male}
-            {:index 35
-             :text "a police officer"
+            {:text "a police officer"
              :gender [:female :male]}
-            {:index 36
-             :text "Thomas Pynchon"
+            {:text "Thomas Pynchon"
              :gender :male}
-            {:index 37
-             :text "Bob Sacamano"
+            {:text "Bob Sacamano"
              :gender :male}
-            {:index 38
-             :text "Zombie Carl Sagan"
+            {:text "Zombie Carl Sagan"
              :gender :male}
-            {:index 39
-             :text "Tilda Swinton"
+            {:text "Tilda Swinton"
              :gender :female}
-            {:index 40
-             :text "Zombie Hunter Thompson"
+            {:text "Zombie Hunter Thompson"
              :gender :male}
-            {:index 41
-             :text "Alex Trebek"
+            {:text "Alex Trebek"
              :gender :male}
-            {:index 42
-             :text "Neil deGrasse Tyson"
+            {:text "Neil deGrasse Tyson"
              :gender :male}
-            {:index 43
-             :text "Eric Wareheim"
+            {:text "Eric Wareheim"
              :gender :male}
-            {:index 44
-             :text "Bradley Whitford"
+            {:text "Bradley Whitford"
              :gender :male}
-            {:index 45
-             :text "a crowd of Yoga enthusiasts"
+            {:text "a crowd of Yoga enthusiasts"
              :gender :group}]}
