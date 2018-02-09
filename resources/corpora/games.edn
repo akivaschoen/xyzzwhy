@@ -1,11 +1,11 @@
 {:group :game
  :type :sub
  :config #{:no-article}
- :fragment [{:text '("Agricola")}
-            {:text '("Advanced Squad Leader")}
-            {:text '("Carcassonne")}
-            {:text '("World in Flames")}
-            {:text '("Monopoly")}
-            {:text '("World of Warcraft")}
-            {:text '("Civilization V")}
-            {:text '("Grand Theft Auto V")}
+ :fragment [{:text ["Agricola"]}
+            {:text ["Advanced Squad Leader"]}
+            {:text ["Carcassonne"]}
+            {:text ["World in Flames"]}
+            {:text ["Monopoly"]}
+            {:text ["World of Warcraft"]}
+            {:text ["Civilization V"]}
+            {:text ["Grand Theft Auto V"]}

@@ -1,56 +1,56 @@
 {:group :secondary-event
  :type :event
- :fragment [{:text '({:group :person} " " {:group :dialogue})}
-            {:text '({:group :actor} " follows you.")}
-            {:text '({:group :actor} " is here.")}
-            {:text '({:group :actor} " is here " {:group :actor-action})}
-            {:text '({:group :actor} " is here with " {:group :actor} ". They look " {:group :adjective} ".")}
-            {:text '({:group :actor} " is here searching for " {:group :item} ".")}
-            {:text '({:group :actor} " slinks up behind you.")}
-            {:text '({:group :actor} " wanders by, ")
+ :fragment [{:text [{:group :person} " " {:group :dialogue}]}
+            {:text [{:group :actor} " follows you."]}
+            {:text [{:group :actor} " is here."]}
+            {:text [{:group :actor} " is here " {:group :actor-action}]}
+            {:text [{:group :actor} " is here with " {:group :actor} ". They look " {:group :adjective} "."]}
+            {:text [{:group :actor} " is here searching for " {:group :item} "."]}
+            {:text [{:group :actor} " slinks up behind you."]}
+            {:text [{:group :actor} " wanders by, "]
              :follow-up {:config #{:required}
-                         :fragment [{:text "doing algebra and shit."}
-                                    {:text "playing a recorder."}
-                                    {:text "jamming on a mouth organ."}
-                                    {:text "wearing a cape."}
-                                    {:text "casually on fire."}
-                                    {:text "followed by a groupy balloon."}
-                                    {:text "whistling the theme to the Andy Griffith Show."}
-                                    {:text "whistling the theme to the Garry Shandling Show."}]}}
-            {:text '("A hollow voice intones, '" {:group :intonation} "'")}
-            {:text "A fire truck goes by."
-             :follow-up {:fragment [{:text " It's covered in ice."}
-                                    {:text " It's playing a funeral dirge."}]}}
-            {:text "An ice cream truck goes by."
-             :follow-up {:fragment [{:text " It's on fire."}
-                                    {:text " It's going by at nearly 212,020 mph. Somehow, a group of children are managing to keep up."}]}}
-            {:text "It appears abandoned."}
-            {:text "It seems that no one has been here for a long time."}
-            {:text '("It smells " {:group :scent} "."}
-            {:text "Someone has attached marionnette wires to your hands, feet, and head."}
-            {:text "Someone has been here recently."}
-            {:text "Someone has left a running bulldozer here."}
-            {:text '("Something smells " {:group :scent} "here.")}
-            {:text "Spray-painted on the wall here are the words 'Alice?! Alice?! Who the f...'. The rest is illegible."}
-            {:text "There are fresh footprints here."}
-            {:text '("There has been significant damage from " {:group :disaster} ".")}
-            {:text '("There is " {:group :item} " here.")}
-            {:text "The wind howls in the distance."}
-            {:text "The words 'eat dulp' are spray-painted on a wall here."}
-            {:text "The words 'Hammerdog lives!' are spray-painted on a wall here."}
-            {:text "The words 'Knifekitten lives!' are spray-painted on a wall here."}
-            {:text '("You drop " {:group :item} " here.")
-             :follow-up {:fragment [{:text " It bursts into flames."}
-                                    {:text " It turns into a wisp of smoke."}
-                                    {:text " And then some really bad CGI happens."}
-                                    {:text " It pierces the crust of the Earth."}
-                                    {:text " It bounces right back into your hand."}]}}
-            {:text '("You hear " {:group :noise} " in the distance.")}
-            {:text '("You hear the sound of " {:group :noise} " nearby.")}
-            {:text '("You find " {:group :actor} " here " {:group :actor-action})}
-            {:text '("You find " {:group :item} " here. You back away  " {:group :adjective} ".")}
-            {:text '("You pick up " {:group :item} ".")
-             :follow-up {:fragment [{:text " It's covered in dust."}]}}
-            {:text '("You see " {:group :item} " here.")
-             :follow-up {:fragment [{:text " It looks oddly familiar"}]}}
-            {:text '("You see a sign here. On it is written '" {:group :sign} "'.")}]}
+                         :fragment [{:text ["doing algebra and shit."]}
+                                    {:text ["playing a recorder."]}
+                                    {:text ["jamming on a mouth organ."]}
+                                    {:text ["wearing a cape."]}
+                                    {:text ["casually on fire."]}
+                                    {:text ["followed by a groupy balloon."]}
+                                    {:text ["whistling the theme to the Andy Griffith Show."]}
+                                    {:text ["whistling the theme to the Garry Shandling Show."]}]}}
+            {:text ["A hollow voice intones, '" {:group :intonation} "'"]}
+            {:text ["A fire truck goes by."]
+             :follow-up {:fragment [{:text [" It's covered in ice."]}
+                                    {:text [" It's playing a funeral dirge."]}]}}
+            {:text ["An ice cream truck goes by."]
+             :follow-up {:fragment [{:text [" It's on fire."]}
+                                    {:text [" It's going by at nearly 212,020 mph. Somehow, a group of children are managing to keep up."]}]}}
+            {:text ["It appears abandoned."]}
+            {:text ["It seems that no one has been here for a long time."]}
+            {:text ["It smells " {:group :scent} "."]}
+            {:text ["Someone has attached marionnette wires to your hands, feet, and head."]}
+            {:text ["Someone has been here recently."]}
+            {:text ["Someone has left a running bulldozer here."]}
+            {:text ["Something smells " {:group :scent} "here."]}
+            {:text ["Spray-painted on the wall here are the words 'Alice?! Alice?! Who the f...'. The rest is illegible."]}
+            {:text ["There are fresh footprints here."]}
+            {:text ["There has been significant damage from " {:group :disaster} "."]}
+            {:text ["There is " {:group :item} " here."]}
+            {:text ["The wind howls in the distance."]}
+            {:text ["The words 'eat dulp' are spray-painted on a wall here."]}
+            {:text ["The words 'Hammerdog lives!' are spray-painted on a wall here."]}
+            {:text ["The words 'Knifekitten lives!' are spray-painted on a wall here."]}
+            {:text ["You drop " {:group :item} " here."]
+             :follow-up {:fragment [{:text [" It bursts into flames."]}
+                                    {:text [" It turns into a wisp of smoke."]}
+                                    {:text [" And then some really bad CGI happens."]}
+                                    {:text [" It pierces the crust of the Earth."]}
+                                    {:text [" It bounces right back into your hand."]}]}}
+            {:text ["You hear " {:group :noise} " in the distance."]}
+            {:text ["You hear the sound of " {:group :noise} " nearby."]}
+            {:text ["You find " {:group :actor} " here " {:group :actor-action}]}
+            {:text ["You find " {:group :item} " here. You back away  " {:group :adjective} "."]}
+            {:text ["You pick up " {:group :item} "."]
+             :follow-up {:fragment [{:text [" It's covered in dust."]}]}}
+            {:text ["You see " {:group :item} " here."]
+             :follow-up {:fragment [{:text [" It looks oddly familiar"]}]}}
+            {:text ["You see a sign here. On it is written '" {:group :sign} "'."]}]}

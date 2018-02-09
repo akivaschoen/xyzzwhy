@@ -1,5 +1,7 @@
 {:group :thought-event
  :category :event
  :config #{:no-article}
- :fragment [{:text '("You pause and think, '" {:group :thought} "'")}
-            {:text '("A thought bubble appears above " {:group :person :config #{:no-groups}} "'s head: '" {:group :thought} "'")}]}
+ :fragment [{:text ["You pause and think, '" {:group :thought} "'"]}
+            {:text ["A thought bubble appears above "
+                    {:group :person :config #{:no-groups}} "'s head: '"
+                    {:group :thought} "'"]}]}

@@ -1,97 +1,98 @@
 {:group :person
  :type :sub
  :config #{:no-article}
- :fragment [{:text "Justin Bieber"
+ :fragment [{:text ["Justin Bieber"]
              :gender :male}
-            {:text "Lloyd Braun"
+            {:text ["Lloyd Braun"]
              :gender :male}
-            {:text "Jim J. Bullock"
+            {:text ["Jim J. Bullock"]
              :gender :male}
-            {:text "Ruth Buzzi"
+            {:text ["Ruth Buzzi"]
              :gender :female}
-            {:text "Johnny Cash"
+            {:text ["Johnny Cash"]
              :gender :male}
-            {:text "George Clooney"
+            {:text ["George Clooney"]
              :gender :male}
-            {:text "Stephen Colbert"
+            {:text ["Stephen Colbert"]
              :gender :male}
-            {:text "Peter Dinklage"
+            {:text ["Peter Dinklage"]
              :gender :male}
-            {:text "Craig Ferguson"
+            {:text ["Craig Ferguson"]
              :gender :male}
-            {:text "James Franco"
+            {:text ["James Franco"]
              :gender :male}
-            {:text "Stephen Fry"
+            {:text ["Stephen Fry"]
              :gender :male}
-            {:text "a gas station attendant"
+            {:text ["a gas station attendant"]
              :gender [:female :male]}
-            {:text "Whoopi Goldberg"
+            {:text ["Whoopi Goldberg"]
              :gender :female}
-            {:text '("good_egg")
+            {:text ["good_egg"]
              :gender :male}
-            {:text "Nancy Grace"
+            {:text ["Nancy Grace"]
              :gender :female}
-            {:text "Louis Gray"
+            {:text ["Louis Gray"]
              :gender :male}
-            {:text "Tim Heidecker"
+            {:text ["Tim Heidecker"]
              :gender :male}
-            {:text "Jonah Hill"
+            {:text ["Jonah Hill"]
              :gender :male}
-            {:text "Samuel L. Jackson"
+            {:text ["Samuel L. Jackson"]
              :gender :male}
-            {:text "Allison Janney"
+            {:text ["Allison Janney"]
              :gender :female}
-            {:text "Grace Jones"
+            {:text ["Grace Jones"]
              :gender :female}
-            {:text "a bunch of kids"
+            {:text ["a bunch of kids"]
              :gender :group}
-            {:text "Hugh Laurie"
+            {:text ["Hugh Laurie"]
              :gender :male}
-            {:text "Jennifer Lawrence"
+            {:text ["Jennifer Lawrence"]
              :gender :female}
-            {:text "Lindsay Lohan"
+            {:text ["Lindsay Lohan"]
              :gender :female}
-            {:text "Rob Lowe"
+            {:text ["Rob Lowe"]
              :gender :male}
-            {:text "David Lynch"
+            {:text ["David Lynch"]
              :gender :male}
-            {:text "Josh Malina"
+            {:text ["Josh Malina"]
              :gender :male}
-            {:text "Bill Maher"
+            {:text ["Bill Maher"]
              :gender :male}
-            {:text "Frances McDormand"
+            {:text ["Frances McDormand"]
              :gender :female}
-            {:text "your mom"
+            {:text ["your mom"]
              :gender :female}
-            {:text "Bill Murray"
+            {:text ["Bill Murray"]
              :gender :male}
-            {:text "Craig T. Nelson"
+            {:text ["Craig T. Nelson"]
              :gender :male}
-            {:text "Katy Perry"
+            {:text ["Katy Perry"]
              :gender :female}
-            {:text "Geoff Petersen"
+            {:text ["Geoff Petersen"]
              :gender :male}
-            {:text "Brad Pitt"
+            {:text ["Brad Pitt"]
              :gender :male}
-            {:text "a police officer"
+            {:text ["a police officer"]
              :gender [:female :male]}
-            {:text "Thomas Pynchon"
+            {:text ["Thomas Pynchon"]
              :gender :male}
-            {:text "Bob Sacamano"
+            {:text ["Bob Sacamano"]
              :gender :male}
-            {:text "Zombie Carl Sagan"
+            {:text ["Zombie Carl Sagan"]
              :gender :male}
-            {:text "Tilda Swinton"
+            {:text ["Tilda Swinton"]
              :gender :female}
-            {:text "Zombie Hunter Thompson"
+            {:text ["Zombie Hunter Thompson"]
              :gender :male}
-            {:text "Alex Trebek"
+            {:text ["Alex Trebek"]
              :gender :male}
-            {:text "Neil deGrasse Tyson"
+            {:text ["Neil deGrasse Tyson"]
              :gender :male}
-            {:text "Eric Wareheim"
+            {:text ["Eric Wareheim"]
              :gender :male}
-            {:text "Bradley Whitford"
+            {:text ["Bradley Whitford"]
              :gender :male}
-            {:text "a crowd of Yoga enthusiasts"
+            {:text ["a crowd of Yoga enthusiasts"]
              :gender :group}]}
+[]

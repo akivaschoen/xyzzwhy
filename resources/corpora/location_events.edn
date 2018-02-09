@@ -1,91 +1,91 @@
 {:group :location-event
  :type :event
- :fragment [{:text '({:group :obstacle} " prevents you from going " {:group :direction} " to " {:group :location :config #{:no-prep}} ".")}
-            {:text '("A double bounce on a trampoline lands you " {:group :location} ".")}
-            {:text '("After " {:group :disaster} " at your " {:group :location :config #{:no-prep :no-article}}
-                     ", you are relocated by FEMA to " {:group :location :config #{:no-prep}} ".")}
-            {:text '("After being shot out of a cannon, you land " {:group :location} ".")}
-            {:text '("After pushing your way through a dense crowd, you arrive " {:group :location} ".")}
-            {:text '("After scrambling through some dense underbrush, you find yourself " {:group :location} ".")}
-            {:text '("After the shoot-out, you make your escape to " {:group :location :config #{:no-prep}} ".")}
-            {:text '("After walking for a long time, you find yourself " {:group :location} ".")}
-            {:text '("A tornado deposits you " {:group :location} ".")}
-            {:text '("The bridge game turned violent so you went to " {:group :location :config #{:no-prep}} ".")}
-            {:text '("The drugs are kicking in. You are " {:group :location} ".")}
-            {:text '("The drugs are wearing off. You are " {:group :location} ".")}
-            {:text '("Google Maps leads you to " {:group :location :config #{:no-prep}} ".")}
-            {:text '("Hands on your hips, you survey " {:group :location :config #{:no-prep}} " " {:group :adverb} ".")}
-            {:text '("No matter how hard you try, you still end up " {:group :location} ".")}
-            {:text '("Right on cue, you pop up out of the jack-in-the-box. You're " {:group :location} ".")}
-            {:text '("The drugs are starting to take hold. Casually you saunter over to " {:group :location :config #{:no-prep}} ".")}
-            {:text '("The elevator doors open to reveal " {:group :location :config #{:no-prep}} ".")}
-            {:text '("The fog clears and you find yourself " {:group :location} ".")}
-            {:text '("The merry-go-round spins faster and faster until you're flung off and land " {:group :location} ".")}
-            {:text '("The metro bus unceremoniously dumps you " {:group :location} ".")}
-            {:text '("The spell effects are wearing off. You are " {:group :location} ".")}
-            {:text '("The taxi driver randomly drops you off " {:group :location} ".")}
-            {:text '("The trapdoor drops open beneath you and you land " {:group :location} ".")}
-            {:text '("Using a vine to swing across a pit, you land " {:group :location} ".")}
-            {:text '("You are " {:group :location} ".")}
-            {:text '("You are magically teleported to " {:group :location :config #{:no-prep}} "!")}
-            {:text '("You are serving jury duty.")
-             :follow-up {:fragment [{:text '(" The prosecuting attorney insists on speaking through a broken bullhorn.")}
-                                    {:text '(" They hand out Chicken McNuggets but they're stone cold.")}
-                                    {:text '(" The judge is dressed like Dr. Frankenfurter.")}
-                                    {:text '(" The courtroom is on fire.")}
-                                    {:text '(" An altar boy wanders around aimlessly, swinging an incense burner.")}
-                                    {:text '(" The juror next to you keeps putting " ["his" "her"] " hand " ["on your knee" "in your lap"] ".")}
-                                    {:text '(" A handsome guy in a white suit is nearby. He's going to fuck up deliberations, isn't he?")}
-                                    {:text '(" You're unsure why they insist the jury sit in a vat of carbonated " {:group :drink :config #{:no-article}} ".")}]}}
-            {:text '("You are standing " {:group :direction} " of " {:group :location :config #{:no-prep}} ".")}
-            {:text '("You are laying face down " {:group :location} ".")}
-            {:text '("You arrive " {:group :location} ".")}
-            {:text '("With a shriek, you rush " {:group :direction} " from " {:group location :config #{:no-prep}} ".")}
-            {:text '("You arrive for your first day at college only to find your roommate is " {:group :actor} ".")}
-            {:text '("You blow into the cartridge too hard and are teleported to " {:group :location :config #{:no-prep}} ".")}
-            {:text '("You climb down a tree and find yourself " {:group :location} ".")}
-            {:text '("You climb out of the treasure chest. You are now " {:group :location} ".")}
-            {:text '("You climb up a flight of stairs. You are now " {:group :location} ".")}
-            {:text '("You come across " {:group :location :config #{:no-prep}} ".")}
-            {:text '("You come to " {:group :location} ".")}
-            {:text '("You cripwalk " {:group :direction} " to " {:group :location :config #{:no-prep}} ".")}
-            {:text '("You emerge " {:group :location} ".")}
-            {:text '("You fall down a flight of stairs and into " {:group :location :config #{:no-prep}} ".")}
-            {:text '("You fall through the ceiling and land " {:group :location} ".")}
-            {:text '("You find yourself " {:group :location} ".")}
-            {:text '("You fall asleep in the bath and wake up " {:group :location} ".")
-             :follow-up {:fragment [{:text '({:group :actor :config #{:no-groups}} " is now in the tub with you.")}]}}
-            {:text '("You feel your way blindly and end up " {:group :location} ".")}
-            {:text '("You flip the Game Select selector and find yourself " {:group :location} ".")}
-            {:text '("You follow " {:group :actor} " to " {:group :location :config #{:no-prep}} ".")}
-            {:text '("You follow a sloping path " {:group :direction} ". You find yourself " {:group :location} ".")}
-            {:text '("You follow a treasure map to " {:group :location :config #{:no-prep}} ".")}
-            {:text '("You follow a winding path " {:group :direction} " only to find yourself " {:group :location} ".")}
-            {:text '("You get tangled up in a revolving door. You stumble out into " {:group :location :config #{:no-prep}} ".")}
-            {:text '("You go " {:group :direction} " and find yourself at " {:group :location :config #{:no-prep}} ".")}
-            {:text '("You have entered " {:group :location :config #{:no-prep}} ".")}
-            {:text '("You head " {:group :direction} " and arrive at " {:group :location :config #{:no-prep}} ".")}
-            {:text '("You jump out of a moving car, roll down a hill, and find yourself " ["in another moving car" {:group :location}] ".")}
-            {:text '("You jump out of an airplane and gently plop " {:group :location} ".")}
-            {:text '("You open the secret door only to see " {:group :location :config #{:no-prep}} ".")}
-            {:text '("You ride " {:group :animal} " to " {:group :location :config #{:no-prep}} ".")}
-            {:text '("You run screaming into " {:group :location :config #{:no-prep}} ".")}
-            {:text '("You're " {:group :location} ".")}
-            {:text '("Your parachute gently plops you " {:group :location} ".")}
-            {:text '("You shuffle down a flight of stairs and enter " {:group :location :config #{:no-prep}} ".")}
-            {:text '("You slide down a fireman's pole and land " {:group :location} ".")}
-            {:text '("You squeeze out of the sewage outflow and tumble into " {:group :location :config #{:no-prep}} ".")}
-            {:text '("You start doing the worm until you find yourself " {:group :location} ".")}
-            {:text '("You step through a magic mirror and end up " {:group :location} ".")}
-            {:text '("You strut " {:group :direction} " and end up " {:group :location} ".")}
-            {:text '("You stumble into " {:group :location :config #{:no-prep}} ".")}
-            {:text '("You tunnel through the soil and pop up " {:group :location} ".")}
-            {:text '("You try to go " {:group :direction} " but your way is blocked by " {:group :obstacle} ".")}
-            {:text '("You wake up " {:group :location} ".")}
-            {:text '("You wake up in front of " {:group :person} "'s house. You have no clue how you got there.")}
-            {:text '("You wake up from an odd dream. You are " {:group :location} ".")}
-            {:text '("You start your job " {:group :location} ".")
-             :follow-up {:fragment [{:text '({:group :actor} " is here, looking " {:group :adjective} ".")}]}}
-            {:text '("After getting fired from your job at " {:group :location :config #{:no-prep}}
-                     ", you head " {:group :direction} " to " {:group :location :config #{:no-prep}} ".")}
-            {:text '("You walk " {:group :direction} " and arrive at " {:group :location :config #{:no-prep}} ".")}]}
+ :fragment [{:text [{:group :obstacle} " prevents you from going " {:group :direction} " to " {:group :location :config #{:no-prep}} "."]}
+            {:text ["A double bounce on a trampoline lands you " {:group :location} "."]}
+            {:text ["After " {:group :disaster} " at your " {:group :location :config #{:no-prep :no-article}}
+                     ", you are relocated by FEMA to " {:group :location :config #{:no-prep}} "."]}
+            {:text ["After being shot out of a cannon, you land " {:group :location} "."]}
+            {:text ["After pushing your way through a dense crowd, you arrive " {:group :location} "."]}
+            {:text ["After scrambling through some dense underbrush, you find yourself " {:group :location} "."]}
+            {:text ["After the shoot-out, you make your escape to " {:group :location :config #{:no-prep}} "."]}
+            {:text ["After walking for a long time, you find yourself " {:group :location} "."]}
+            {:text ["A tornado deposits you " {:group :location} "."]}
+            {:text ["The bridge game turned violent so you went to " {:group :location :config #{:no-prep}} "."]}
+            {:text ["The drugs are kicking in. You are " {:group :location} "."]}
+            {:text ["The drugs are wearing off. You are " {:group :location} "."]}
+            {:text ["Google Maps leads you to " {:group :location :config #{:no-prep}} "."]}
+            {:text ["Hands on your hips, you survey " {:group :location :config #{:no-prep}} " " {:group :adverb} "."]}
+            {:text ["No matter how hard you try, you still end up " {:group :location} "."]}
+            {:text ["Right on cue, you pop up out of the jack-in-the-box. You're " {:group :location} "."]}
+            {:text ["The drugs are starting to take hold. Casually you saunter over to " {:group :location :config #{:no-prep}} "."]}
+            {:text ["The elevator doors open to reveal " {:group :location :config #{:no-prep}} "."]}
+            {:text ["The fog clears and you find yourself " {:group :location} "."]}
+            {:text ["The merry-go-round spins faster and faster until you're flung off and land " {:group :location} "."]}
+            {:text ["The metro bus unceremoniously dumps you " {:group :location} "."]}
+            {:text ["The spell effects are wearing off. You are " {:group :location} "."]}
+            {:text ["The taxi driver randomly drops you off " {:group :location} "."]}
+            {:text ["The trapdoor drops open beneath you and you land " {:group :location} "."]}
+            {:text ["Using a vine to swing across a pit, you land " {:group :location} "."]}
+            {:text ["You are " {:group :location} "."]}
+            {:text ["You are magically teleported to " {:group :location :config #{:no-prep}} "!"]}
+            {:text ["You are serving jury duty."]
+             :follow-up {:fragment [{:text [" The prosecuting attorney insists on speaking through a broken bullhorn."]}
+                                    {:text [" They hand out Chicken McNuggets but they're stone cold."]}
+                                    {:text [" The judge is dressed like Dr. Frankenfurter."]}
+                                    {:text [" The courtroom is on fire."]}
+                                    {:text [" An altar boy wanders around aimlessly, swinging an incense burner."]}
+                                    {:text [" The juror next to you keeps putting " ["his" "her"] " hand " ["on your knee" "in your lap"] "."]}
+                                    {:text [" A handsome guy in a white suit is nearby. He's going to fuck up deliberations, isn't he?"]}
+                                    {:text [" You're unsure why they insist the jury sit in a vat of carbonated " {:group :drink :config #{:no-article}} "."]}]}}
+            {:text ["You are standing " {:group :direction} " of " {:group :location :config #{:no-prep}} "."]}
+            {:text ["You are laying face down " {:group :location} "."]}
+            {:text ["You arrive " {:group :location} "."]}
+            {:text ["With a shriek, you rush " {:group :direction} " from " {:group location :config #{:no-prep}} "."]}
+            {:text ["You arrive for your first day at college only to find your roommate is " {:group :actor} "."]}
+            {:text ["You blow into the cartridge too hard and are teleported to " {:group :location :config #{:no-prep}} "."]}
+            {:text ["You climb down a tree and find yourself " {:group :location} "."]}
+            {:text ["You climb out of the treasure chest. You are now " {:group :location} "."]}
+            {:text ["You climb up a flight of stairs. You are now " {:group :location} "."]}
+            {:text ["You come across " {:group :location :config #{:no-prep}} "."]}
+            {:text ["You come to " {:group :location} "."]}
+            {:text ["You cripwalk " {:group :direction} " to " {:group :location :config #{:no-prep}} "."]}
+            {:text ["You emerge " {:group :location} "."]}
+            {:text ["You fall down a flight of stairs and into " {:group :location :config #{:no-prep}} "."]}
+            {:text ["You fall through the ceiling and land " {:group :location} "."]}
+            {:text ["You find yourself " {:group :location} "."]}
+            {:text ["You fall asleep in the bath and wake up " {:group :location} "."]
+             :follow-up {:fragment [{:text [{:group :actor :config #{:no-groups}} " is now in the tub with you."]}]}}
+            {:text ["You feel your way blindly and end up " {:group :location} "."]}
+            {:text ["You flip the Game Select selector and find yourself " {:group :location} "."]}
+            {:text ["You follow " {:group :actor} " to " {:group :location :config #{:no-prep}} "."]}
+            {:text ["You follow a sloping path " {:group :direction} ". You find yourself " {:group :location} "."]}
+            {:text ["You follow a treasure map to " {:group :location :config #{:no-prep}} "."]}
+            {:text ["You follow a winding path " {:group :direction} " only to find yourself " {:group :location} "."]}
+            {:text ["You get tangled up in a revolving door. You stumble out into " {:group :location :config #{:no-prep}} "."]}
+            {:text ["You go " {:group :direction} " and find yourself at " {:group :location :config #{:no-prep}} "."]}
+            {:text ["You have entered " {:group :location :config #{:no-prep}} "."]}
+            {:text ["You head " {:group :direction} " and arrive at " {:group :location :config #{:no-prep}} "."]}
+            {:text ["You jump out of a moving car, roll down a hill, and find yourself " ["in another moving car" {:group :location}] "."]}
+            {:text ["You jump out of an airplane and gently plop " {:group :location} "."]}
+            {:text ["You open the secret door only to see " {:group :location :config #{:no-prep}} "."]}
+            {:text ["You ride " {:group :animal} " to " {:group :location :config #{:no-prep}} "."]}
+            {:text ["You run screaming into " {:group :location :config #{:no-prep}} "."]}
+            {:text ["You're " {:group :location} "."]}
+            {:text ["Your parachute gently plops you " {:group :location} "."]}
+            {:text ["You shuffle down a flight of stairs and enter " {:group :location :config #{:no-prep}} "."]}
+            {:text ["You slide down a fireman's pole and land " {:group :location} "."]}
+            {:text ["You squeeze out of the sewage outflow and tumble into " {:group :location :config #{:no-prep}} "."]}
+            {:text ["You start doing the worm until you find yourself " {:group :location} "."]}
+            {:text ["You step through a magic mirror and end up " {:group :location} "."]}
+            {:text ["You strut " {:group :direction} " and end up " {:group :location} "."]}
+            {:text ["You stumble into " {:group :location :config #{:no-prep}} "."]}
+            {:text ["You tunnel through the soil and pop up " {:group :location} "."]}
+            {:text ["You try to go " {:group :direction} " but your way is blocked by " {:group :obstacle} "."]}
+            {:text ["You wake up " {:group :location} "."]}
+            {:text ["You wake up in front of " {:group :person} "'s house. You have no clue how you got there."]}
+            {:text ["You wake up from an odd dream. You are " {:group :location} "."]}
+            {:text ["You start your job " {:group :location} "."]
+             :follow-up {:fragment [{:text [{:group :actor} " is here, looking " {:group :adjective} "."]}]}}
+            {:text ["After getting fired from your job at " {:group :location :config #{:no-prep}}
+                     ", you head " {:group :direction} " to " {:group :location :config #{:no-prep}} "."]}
+            {:text ["You walk " {:group :direction} " and arrive at " {:group :location :config #{:no-prep}} "."]}]}

@@ -1,35 +1,35 @@
 {:group :item
  :type :sub
- :fragment [{:text '({:group :movie})
+ :fragment [{:text [{:group :movie}]
              :article ["a Laserdisc copy of" "a VHS cassette of" "a Betamax of"]}
-            {:text '(["Aquanet" "spackle" "spray-on bacon"])
-             :article "a can of"}
-            {:text "books"
-             :article "some"
+            {:text [["Aquanet" "spackle" "spray-on bacon"]]
+             :article ["a can of"]}
+            {:text ["books"]
+             :article ["some"]
              :decorator {:prefix {:config #{:multiple}
                                   :fragment [{:text ["children's" "dusty" "old"
                                                      "pornographic" "rare"]}]}}}
             {:text ["baseball" "softball" "tennis ball"]
              :decorator {:prefix {:fragment [{:text ["huge" "oddly-shaped"
                                                      "radioactive" "tiny"]}]}}}
-            {:text "briefcase"
+            {:text ["briefcase"]
              :decorator {:prefix {:fragment [{:text ["familiar" "leather" "plastic"
                                                      "unfamiliar"]}]}}
-             :follow-up {:fragment [{:text " It's on fire."}
-                                    {:text " It's covered in bees."}
-                                    {:text " It's full of whole milk."}
-                                    {:text " It's been deep-fried."}
-                                    {:text " It appears to be empty."}]}}
-            {:text "bucket of corks"}
-            {:text "discarded puppets"
-             :article '(["a collection" "a pile" "a stack" "a stash" "a sack"] " of ")}
-            {:text "fat-soluble Jesus"
-             :article "a bottle of"}
-            {:text "floppy disk"}
+             :follow-up {:fragment [{:text [" It's on fire."]}
+                                    {:text [" It's covered in bees."]}
+                                    {:text [" It's full of whole milk."]}
+                                    {:text [" It's been deep-fried."]}
+                                    {:text [" It appears to be empty."]}]}}
+            {:text ["bucket of corks"]}
+            {:text ["discarded puppets"]
+             :article [["a collection" "a pile" "a stack" "a stash" "a sack"] " of "]}
+            {:text ["fat-soluble Jesus"]
+             :article ["a bottle of"]}
+            {:text ["floppy disk"]}
             {:text ["football" "soccer ball"]
              :decorator {:prefix {:fragment [{:text ["deflated" "huge" "oddly-shaped"
                                                      "radioactive" "tiny"]}]}}}
-            {:text "grade school report card"
+            {:text ["grade school report card"]
              :article ["your" "your mom's" "your dad's"]
              :decorators {:prefix {:fragment [{:text ["first" "second" "third" "fourth"
                                                       "fifth" "sixth"]}]}}}
@@ -46,7 +46,7 @@
              :article "a bag of"}
             {:text "magic scroll"
              :follow-up {:config #{:required}
-                         :fragment [{:text '("of " {:group :spell :config #{:no-article}})}]}}
+                         :fragment [{:text ["of " {:group :spell :config #{:no-article}}]}]}}
             {:text "movie ticket"
              :decorator {:prefix {:fragment {:text "old"}}}
              :follow-up {:fragment [{:text " It's already been torn."}
@@ -66,10 +66,10 @@
             {:text "puppy"
              :decorator {:prefix {:fragment [{:text ["growling" "hungry" "panting" "playful"
                                                      "sleeping" "sleepy" "tumbly"]}]}}}
-            {:text '("receipt from " {:group :animal} " outfit rental")}
+            {:text ["receipt from " {:group :animal} " outfit rental"]}
             {:text "sandwich"
              :decorator {:prefix {:fragment [{:text ["damp" "deep-fried" "half-eaten" "moist"]}]}}}
-            {:text '("signed photograph of " {:group :person :qualifier :famous})}
+            {:text ["signed photograph of " {:group :person :qualifier :famous}]}
             {:text "slide rule"}
             {:text "Snausages"
              :article "some"}
@@ -85,7 +85,7 @@
              :decorator {:prefix {:fragment [{:text "hipster"}]}}}
             {:text ["Betamax tape" "Blu-ray" "DVD" "Laserdisc" "VHS cassette"]
              :decorator {:suffix {:fragment [{:text "covered in blood"}]}}}
-            {:text '("a picture of ")
+            {:text ["a picture of "]
              :follow-up {:fragment [{:text ["good_egg.jpg" "Dorian Grey" "your mom"
                                             "a loaf of bread" "you" "Bill Bixby"]}]}}
             {:text "vitamins"

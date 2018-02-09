@@ -1,30 +1,30 @@
 {:group :actor-event
  :category :event
- :fragment [{:text '({:group :actor} " " {:group :actor-action} " " {:group :actor} ".")}
-            {:text '({:group :actor} {:group :actor-action} " you.")}
-            {:text '({:group :person} " appears in a puff of smoke, " {:group :actor-activity})}
-            {:text '({:group :actor :config #{:no-groups}} " arrives from the " {:group :direction} ", carrying " {:group :item} ".")}
-            {:text '({:group :actor :config #{:no-groups}} " pulls " {:group :item} " out of " {:group :gender :case :possessive} " pocket and flings it over the horizon.")}
-            {:text '({:group :actor} " drops " {:group :item} " here.")}
-            {:text '({:group :actor} " drops " {:group :item} ", looks at you " {:group :adverb} ", then leaves.")}
-            {:text '({:group :actor} " gently places " {:group :item} "on the ground and then backs away slowly.")}
-            {:text '({:group :person} " is calling from " {:group :location :config #{:no-prep}})
+ :fragment [{:text [{:group :actor} " " {:group :actor-action} " " {:group :actor} "."]}
+            {:text [{:group :actor} {:group :actor-action} " you."]}
+            {:text [{:group :person} " appears in a puff of smoke, " {:group :actor-activity}]}
+            {:text [{:group :actor :config #{:no-groups}} " arrives from the " {:group :direction} ", carrying " {:group :item} "."]}
+            {:text [{:group :actor :config #{:no-groups}} " pulls " {:group :item} " out of " {:group :gender :case :possessive} " pocket and flings it over the horizon."]}
+            {:text [{:group :actor} " drops " {:group :item} " here."]}
+            {:text [{:group :actor} " drops " {:group :item} ", looks at you " {:group :adverb} ", then leaves."]}
+            {:text [{:group :actor} " gently places " {:group :item} "on the ground and then backs away slowly."]}
+            {:text [{:group :person} " is calling from " {:group :location :config #{:no-prep}}]
              :follow-up {:config #{:required}
-                         :fragment [{:text '(" asking if " {:group :person} " can come out and play.")}
-                                    {:text '(" asking for " {:group :item} ".")}
-                                    {:text '(" taking responsibility for a recent " {:group :disaster} ".")}]}}
-            {:text '({:group :person} " makes a rude noise. " {:group :gender :case :subjective} " points surreptitiously to " {:group :animal} " nearby.")}
-            {:text '({:group :actor} " picks up " {:group :item} ".")}
-            {:text '({:group :person} " slams down a half-empty glass of " {:group :drink :config #{:no-prep :no-article}} ".")
-             :follow-up {:fragment [{:text '(" 'All this nonsense about " {:group :item} " needs to stop! I can't take it anymore!'")}
-                                    {:text '(" 'They're making plans for Nigel! They want what's best for him!'")}
-                                    {:text '(" 'You can't go up against city hall!'")}
-                                    {:text '(" 'I just can't take you seriously anymore!'")}
-                                    {:text '(" 'MOM?!'")}]}}
-            {:text '({:group :person} " starts breakdancing and won't stop no matter how much you scream.")}
-            {:text '({:group :actor} " suddenly appears out of the shadows and ")
+                         :fragment [{:text [" asking if " {:group :person} " can come out and play."]}
+                                    {:text [" asking for " {:group :item} "."]}
+                                    {:text [" taking responsibility for a recent " {:group :disaster} "."]}]}}
+            {:text [{:group :person} " makes a rude noise. " {:group :gender :case :subjective} " points surreptitiously to " {:group :animal} " nearby."]}
+            {:text [{:group :actor} " picks up " {:group :item} "."]}
+            {:text [{:group :person} " slams down a half-empty glass of " {:group :drink :config #{:no-prep :no-article}} "."]
+             :follow-up {:fragment [{:text [" 'All this nonsense about " {:group :item} " needs to stop! I can't take it anymore!'"]}
+                                    {:text [" 'They're making plans for Nigel! They want what's best for him!'"]}
+                                    {:text [" 'You can't go up against city hall!'"]}
+                                    {:text [" 'I just can't take you seriously anymore!'"]}
+                                    {:text [" 'MOM?!'"]}]}}
+            {:text [{:group :person} " starts breakdancing and won't stop no matter how much you scream."]}
+            {:text [{:group :actor} " suddenly appears out of the shadows and "]
              :follow-up {:config #{:required}
-                         :fragment [{:text '("hisses at you, then scrambles away like a spider.")}
-                                    {:text '("says, 'Oh, sorry about that,' then retreats back into the shadows.")}
-                                    {:text '("says, '" {:group :actor} " will see you now,' then slowly retreats back into the shadows.")}]}}
-            {:text '({:group :person} " suddenly shrieks.")}]}
+                         :fragment [{:text ["hisses at you, then scrambles away like a spider."]}
+                                    {:text ["says, 'Oh, sorry about that,' then retreats back into the shadows."]}
+                                    {:text ["says, '" {:group :actor} " will see you now,' then slowly retreats back into the shadows."]}]}}
+            {:text [{:group :person} " suddenly shrieks."]}]}

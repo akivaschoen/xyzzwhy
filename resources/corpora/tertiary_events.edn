@@ -1,68 +1,68 @@
 {:group :tertiary-event
  :category :event
  :config #{:no-article}
- :fragment [{:text "A basketball bounces by."}
-            {:text "A cool breeze blows by."}
-            {:text "A warm breeze blows by."}
-            {:text "A vat of quicksand has been following you."}
-            {:text "It starts to rain."}
-            {:text "It starts to snow."}
-            {:text '("Somehow, you've lost your " {:group :garment :config #{:no-article}} ".")}
-            {:text "Someone is having fun against their will nearby."}
-            {:text "Someone is struggling with warped Tupperware nearby."}
-            {:text "Someone nearby farts loudly."}
-            {:text "Someone nearby farts quietly."}
-            {:text "Someone nearby is repeatedly zipping and unzipping a duffel bag."}
-            {:text "Something nearby is on fire."}
-            {:text "Thunder coughs gently in the distance."}
-            {:text "You are starting to feel hungry."}
-            {:text "You are starting to feel sleepy."}
-            {:text "You are starting to feel thirsty."}
-            {:text "You aren't alone."}
-            {:text "You aren't wearing any clothes."}
-            {:text "You begin to smile uncontrollably."}
-            {:text "You blink really slowly."}
-            {:text "You can smell something burning in the distance."}
-            {:text "You chuckle to yourself."}
-            {:text "You clap once."}
-            {:text "You cough."}
-            {:text "You do a little jig and then whistle."}
-            {:text "You feel anxious."}
-            {:text "You feel as if you're being followed."}
-            {:text "You feel better."}
-            {:text "You feel cold."}
-            {:text "You feel nervous."}
-            {:text "You feel serene."}
-            {:text "You feel warm."}
-            {:text "You find yourself humming the theme to Too Many Cooks."}
-            {:text "You glance at your watch; somehow, you're still on time."}
-            {:text "You glance at your watch; you're a little ahead of schedule."}
-            {:text "You glance at your watch; you're running 15 minutes late."}
-            {:text "You have died."}
-            {:text "You have socks on your hands."}
-            {:text "You hear a party in the distance."}
-            {:text "You hear a toilet flush nearby."}
-            {:text "You hear gunfire in the distance."}
-            {:text "You hear someone nearby typing away on a manual typewriter."}
-            {:text "You look around nervously."}
-            {:text "You practice frowning for awhile."}
-            {:text "You see a pair of sneakers dangling on a utility line overhead."}
-            {:text "You slowly slide your hands into your pockets. You regret this immediately."}
-            {:text "You sneeze."}
-            {:text "You spend a few moments thinking fondly about your teeth."}
-            {:text "You spot a balloon stuck in a tree."}
-            {:text "You spot a bonsai tree stuck in a regular tree."}
-            {:text "You spot a kitten stuck in a tree."}
-            {:text "You spot an office desk in a tree."}
-            {:text "You wish you had your grandpappy's harmonica."}
-            {:text "You yawn."}
-            {:text "You're catching your second wind."}
-            {:text "You're catching your third wind."}
-            {:text "You're certain these aren't your clothes."}
-            {:text "You're not wearing any underwear."}
-            {:text "You're wearing two bowties for some reason."}
-            {:text "You're wearing two pairs of underwear."}
-            {:text "Your clothes feel too loose."}
-            {:text "Your clothes feel too small."}
-            {:text "Your shoes are on the wrong feet."}
-            {:text "Your tie feels uneven."}]}
+ :fragment [{:text ["A basketball bounces by."]}
+            {:text ["A cool breeze blows by."]}
+            {:text ["A warm breeze blows by."]}
+            {:text ["A vat of quicksand has been following you."]}
+            {:text ["It starts to rain."]}
+            {:text ["It starts to snow."]}
+            {:text ["Somehow, you've lost your " {:group :garment :config #{:no-article}} "."]}
+            {:text ["Someone is having fun against their will nearby."]}
+            {:text ["Someone is struggling with warped Tupperware nearby."]}
+            {:text ["Someone nearby farts loudly."]}
+            {:text ["Someone nearby farts quietly."]}
+            {:text ["Someone nearby is repeatedly zipping and unzipping a duffel bag."]}
+            {:text ["Something nearby is on fire."]}
+            {:text ["Thunder coughs gently in the distance."]}
+            {:text ["You are starting to feel hungry."]}
+            {:text ["You are starting to feel sleepy."]}
+            {:text ["You are starting to feel thirsty."]}
+            {:text ["You aren't alone."]}
+            {:text ["You aren't wearing any clothes."]}
+            {:text ["You begin to smile uncontrollably."]}
+            {:text ["You blink really slowly."]}
+            {:text ["You can smell something burning in the distance."]}
+            {:text ["You chuckle to yourself."]}
+            {:text ["You clap once."]}
+            {:text ["You cough."]}
+            {:text ["You do a little jig and then whistle."]}
+            {:text ["You feel anxious."]}
+            {:text ["You feel as if you're being followed."]}
+            {:text ["You feel better."]}
+            {:text ["You feel cold."]}
+            {:text ["You feel nervous."]}
+            {:text ["You feel serene."]}
+            {:text ["You feel warm."]}
+            {:text ["You find yourself humming the theme to Too Many Cooks."]}
+            {:text ["You glance at your watch; somehow, you're still on time."]}
+            {:text ["You glance at your watch; you're a little ahead of schedule."]}
+            {:text ["You glance at your watch; you're running 15 minutes late."]}
+            {:text ["You have died."]}
+            {:text ["You have socks on your hands."]}
+            {:text ["You hear a party in the distance."]}
+            {:text ["You hear a toilet flush nearby."]}
+            {:text ["You hear gunfire in the distance."]}
+            {:text ["You hear someone nearby typing away on a manual typewriter."]}
+            {:text ["You look around nervously."]}
+            {:text ["You practice frowning for awhile."]}
+            {:text ["You see a pair of sneakers dangling on a utility line overhead."]}
+            {:text ["You slowly slide your hands into your pockets. You regret this immediately."]}
+            {:text ["You sneeze."]}
+            {:text ["You spend a few moments thinking fondly about your teeth."]}
+            {:text ["You spot a balloon stuck in a tree."]}
+            {:text ["You spot a bonsai tree stuck in a regular tree."]}
+            {:text ["You spot a kitten stuck in a tree."]}
+            {:text ["You spot an office desk in a tree."]}
+            {:text ["You wish you had your grandpappy's harmonica."]}
+            {:text ["You yawn."]}
+            {:text ["You're catching your second wind."]}
+            {:text ["You're catching your third wind."]}
+            {:text ["You're certain these aren't your clothes."]}
+            {:text ["You're not wearing any underwear."]}
+            {:text ["You're wearing two bowties for some reason."]}
+            {:text ["You're wearing two pairs of underwear."]}
+            {:text ["Your clothes feel too loose."]}
+            {:text ["Your clothes feel too small."]}
+            {:text ["Your shoes are on the wrong feet."]}
+            {:text ["Your tie feels uneven."]}]}

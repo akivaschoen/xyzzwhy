@@ -1,34 +1,34 @@
-(:group :actor-activity
+{:group :actor-activity
         :category :sub
         :config #{:no-article}
-        :fragment [{:text '({:group :adverb} " playing the organ.")}
-                   {:text '("being chased around by " {:group :animal :config #{:article}} ".")}
-                   {:text '("being chased by " {:group :person} ".")}
-                   {:text '("being chased by " {:group :item} " which is attached to them by a string.")}
-                   {:text '("being chased by a swarm of balloon animals.")}
-                   {:text '("being menaced by " {:group :animal} ".")}
-                   {:text '("clutching a DVD of " {:group :movie} ".")}
-                   {:text '("dancing extremely slowly.")}
-                   {:text '("dancing furiously.")}
-                   {:text '("dancing in a small circle.")}
-                   {:text '("defiantly eating Scrabble tiles, one by one.")}
-                   {:text '("doing the Kenosha Kid.")}
-                   {:text '("drooling uncontrollably.")}
-                   {:text '("examining " {:group :item} " with great confusion.")}
-                   {:text '("having a coughing fit.")}
-                   {:text '("having a sneezing fit.")}
-                   {:text '("having a Guru Meditation Error.")}
-                   {:text '("hiding under a sofa.")}
-                   {:text '("hiding under a table.")}
-                   {:text '("hiding in the bushes.")}
-                   {:text '("looking " {:group :adjective} ".")}
-                   {:text '("juggling some balls.")}
-                   {:text '("munching on " {:group :food} ".")} :sub []
-                   {:text '("organizing matches.")}
-                   {:text '("pretending to be invisible.")}
-                   {:text '("ready to start some shit.")}
-                   {:text '("shouting at an imaginary helicopter.")}
-                   {:text '("stooping up and down like a rapper in concert.")}
-                   {:text '("thinking " {:group :adverb} " about " {:group :actor} ".")}
-                   {:text '("wearing an eyepatch.")}
-                   {:text '("wearing two eyepatches and stumbling around blindly.")}])
+        :fragment [{:text [{:group :adverb} " playing the organ."]}
+                   {:text ["being chased around by " {:group :animal :config #{:article}} "."]}
+                   {:text ["being chased by " {:group :person} "."]}
+                   {:text ["being chased by " {:group :item} " which is attached to them by a string."]}
+                   {:text ["being chased by a swarm of balloon animals."]}
+                   {:text ["being menaced by " {:group :animal} "."]}
+                   {:text ["clutching a DVD of " {:group :movie} "."]}
+                   {:text ["dancing extremely slowly."]}
+                   {:text ["dancing furiously."]}
+                   {:text ["dancing in a small circle."]}
+                   {:text ["defiantly eating Scrabble tiles, one by one."]}
+                   {:text ["doing the Kenosha Kid."]}
+                   {:text ["drooling uncontrollably."]}
+                   {:text ["examining " {:group :item} " with great confusion."]}
+                   {:text ["having a coughing fit."]}
+                   {:text ["having a sneezing fit."]}
+                   {:text ["having a Guru Meditation Error."]}
+                   {:text ["hiding under a sofa."]}
+                   {:text ["hiding under a table."]}
+                   {:text ["hiding in the bushes."]}
+                   {:text ["looking " {:group :adjective} "."]}
+                   {:text ["juggling some balls."]}
+                   {:text ["munching on " {:group :food} "."]} :sub []
+                   {:text ["organizing matches."]}
+                   {:text ["pretending to be invisible."]}
+                   {:text ["ready to start some shit."]}
+                   {:text ["shouting at an imaginary helicopter."]}
+                   {:text ["stooping up and down like a rapper in concert."]}
+                   {:text ["thinking " {:group :adverb} " about " {:group :actor} "."]}
+                   {:text ["wearing an eyepatch."]}
+                   {:text ["wearing two eyepatches and stumbling around blindly."]}]}

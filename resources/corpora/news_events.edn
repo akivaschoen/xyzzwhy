@@ -1,5 +1,5 @@
 {:group :news-event
  :type :event
- :fragment [{:text '("You read morning paper: '" {:group :headline} "'.")}
-            {:text '("You turn on the radio and hear a news broadcast: '" {:group :headline} "'.")}
-            {:text '("You pick up a magazine and read '" {:group :headline} "'.")}]}
+ :fragment [{:text ["You read morning paper: '" {:group :headline} "'."]}
+            {:text ["You turn on the radio and hear a news broadcast: '" {:group :headline} "'."]}
+            {:text ["You pick up a magazine and read '" {:group :headline} "'."]}]}

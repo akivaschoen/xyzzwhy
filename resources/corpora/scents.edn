@@ -1,16 +1,16 @@
 {:group :scent
  :type :sub
  :config #{:no-article}
- :fragment [{:text "acrid"}
-            {:text "bitter"}
-            {:text "foul"}
-            {:text "gross"}
-            {:text "of feet"}
-            {:text "of your grandfather's hair cream"}
-            {:text "of warm peanut butter"}
-            {:text "pleasant"}
-            {:text "nice"}
-            {:text "rotten"}
-            {:text "sweet"}
-            {:text "sour"}
-            {:text "smoky"}]}
+ :fragment [{:text ["acrid"]}
+            {:text ["bitter"]}
+            {:text ["foul"]}
+            {:text ["gross"]}
+            {:text ["of feet"]}
+            {:text ["of your grandfather's hair cream"]}
+            {:text ["of warm peanut butter"]}
+            {:text ["pleasant"]}
+            {:text ["nice"]}
+            {:text ["rotten"]}
+            {:text ["sweet"]}
+            {:text ["sour"]}
+            {:text ["smoky"]}]}
