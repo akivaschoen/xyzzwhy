@@ -1,26 +1,22 @@
 # xyzzwhy
 
-A Clojure-powered Twitter bot who goes on random adventures through a dreamlike world. 
+A Clojure-powered Twitter bot who goes on random adventures through a dreamlike world. Inspired by the Infocom text adventures of yore with an unhealthy dose of paranoia and gentle schizophrenia.
+
+# NOTE AND/OR WARNING
+
+The dev branch is currently in a completely unusable state as I re-write the app and the supporting corpus from the ground up. Potential talent scouts, check the 'dev' branch for an example of my current ability with Clojure.
 
 ## Installation
 
 1. Clone the repository
 2. `lein uberjar`
-3. Either `lein run` or `java -jar target/uberjar/xyzzwhy-1.0.0-standalone.jar`
+3. Either `lein run` or `java -jar target/uberjar/xyzzwhy-*.jar`
 
 You'll need to use Twitter's developer's tools to get an app going. This is done [here](https://apps.twitter.com) and is beyond the scope of this document.
 
 ## Current Status
 
 xyzzwhy has been going strong on Twitter since November 2014. You can get a taste of what he's currently capable of [here](https://twitter.com/xyzzwhy). 
-
-### Ongoing
-
-As of 1.0, all of the basic functionality that was established in 0.7.0 remains the same only written with far better Clojure code (yeesh). Now it's time for the data to take the wheel and dictate what I need to do with the code to add some more depth to xyzzwhy's adventures. 
-
-My main idea is to occasionally have arcs where there are multiple tweets that continue a single 'story' which would consist of some state so xyzzwhy knows where he is, what he's carrying, how many hit points he has, whatever. This lays the ground work to be able to have custom stories that are randomly determined. For example, xyzzwhy at a Halloween carnival. Let that play out for a limited time and then switch back to the standard corpus. 
-
-We'll see.
 
 ## License
 
